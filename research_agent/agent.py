@@ -36,6 +36,17 @@ Rules:
    task, so make that reply your complete final answer.
 Be concise."""
 
+DEFAULT_FINALIZE_PROMPT = (
+    "This is your final step. Tools are now disabled. Reply with your final answer "
+    "now. If a JSON format was requested, return that JSON and nothing else."
+)
+
+GRACE_PROMPT = (
+    "You are out of tool calls. Everything you have read so far is above this "
+    "message. Answer now using only that material. If a JSON format was "
+    "requested, return that JSON and nothing else."
+)
+
 
 @dataclass(slots=True)
 class Step:
@@ -71,6 +82,9 @@ class Agent:
         max_tokens: int | None = 400,
         max_tool_result_chars: int = 2000,
         repeat_limit: int = 3,
+        force_final_answer: bool = True,
+        grace_answer: bool = True,
+        finalize_prompt: str = DEFAULT_FINALIZE_PROMPT,
         on_step: Callable[[Step], None] | None = None,
     ) -> None:
         self.client = client
@@ -84,6 +98,9 @@ class Agent:
         self.max_tokens = max_tokens
         self.max_tool_result_chars = max_tool_result_chars
         self.repeat_limit = repeat_limit
+        self.force_final_answer = force_final_answer
+        self.grace_answer = grace_answer
+        self.finalize_prompt = finalize_prompt
         self.on_step = on_step
 
     # ------------------------------------------------------------------ #
@@ -100,6 +117,14 @@ class Agent:
         answer = ""
 
         for index in range(1, self.max_steps + 1):
+            last_step = index == self.max_steps
+            if last_step and self.force_final_answer:
+                # Nudge only. We keep the tools in the request because some
+                # providers reject a tool-free call when the model tries to use
+                # one anyway (Groq: 400 tool_use_failed). The hard stop is the
+                # loop bound plus the grace call at the end of run().
+                messages.append(Message.user(self.finalize_prompt))
+
             response = await self.client.chat(
                 messages,
                 tools=self._schemas,
@@ -147,6 +172,28 @@ class Agent:
 
             if self.on_step:
                 self.on_step(step)
+
+        # ---- grace call: out of budget, but the model owes us an answer ----
+        # One extra turn that cannot change the world (results are already
+        # collected) but can be turned into the structured output we need.
+        # Skipped when the model already answered or when it looped.
+        if not answer and self.grace_answer and stopped != "loop_detected":
+            messages.append(Message.user(GRACE_PROMPT))
+            try:
+                final = await self.client.chat(
+                    messages,
+                    tools=self._schemas,
+                    temperature=self.temperature,
+                    max_tokens=self.max_tokens,
+                )
+            except Exception:
+                final = None
+            if final is not None:
+                usage += final.usage
+                messages.append(final.message)
+                if not final.message.tool_calls and final.message.content.strip():
+                    answer = final.message.content.strip()
+                    stopped = "final_answer"
 
         return AgentResult(
             answer=answer,

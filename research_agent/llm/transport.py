@@ -30,6 +30,7 @@ async def post_json(
     last_error: Exception | None = None
 
     for attempt in range(max_retries + 1):
+        retry_after: float | None = None
         try:
             response = await http.post(path, json=payload, headers=headers)
         except httpx.TransportError as exc:  # refused, reset, timeout
@@ -39,6 +40,12 @@ async def post_json(
                 last_error = TransientLLMError(
                     f"HTTP {response.status_code}: {response.text[:300]}"
                 )
+                header = response.headers.get("retry-after")
+                if header:
+                    try:
+                        retry_after = float(header)
+                    except ValueError:
+                        retry_after = None
             elif response.status_code >= 400:
                 raise PermanentLLMError(
                     f"HTTP {response.status_code}: {response.text[:500]}"
@@ -58,7 +65,15 @@ async def post_json(
         if attempt < max_retries:
             # Exponential backoff *with jitter*. Without jitter, N sub-agents
             # hitting a 429 retry in lockstep and hammer the server together.
-            delay = 0.5 * (2**attempt) + random.random() * 0.25
+            #
+            # 429 is special: a provider's limit is usually per minute, so a
+            # 0.5s retry just burns another attempt against the same window.
+            # Honour Retry-After when it is offered.
+            delay = (
+                retry_after
+                if retry_after is not None
+                else min(1.5 * (2**attempt), 20.0) + random.random() * 0.5
+            )
             await asyncio.sleep(delay)
 
     raise LLMError(

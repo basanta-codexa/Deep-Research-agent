@@ -13,8 +13,8 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 3 | Tool registry (schema from signature + pydantic validation) | done |
 | 4 | Real retrieval: search, fetch, extract, cache, SSRF guard | done |
 | 5 | Planner (query decomposition) | done |
-| 6 | Parallel sub-agents | next |
-| 7 | Evidence store | |
+| 6 | Parallel sub-agents (two-phase reader/extractor) | done |
+| 7 | Evidence store | next |
 | 8 | Report writer | |
 | 9 | Claim verifier | |
 | 10 | Eval harness | |
