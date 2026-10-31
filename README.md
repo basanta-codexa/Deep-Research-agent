@@ -14,8 +14,8 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 4 | Real retrieval: search, fetch, extract, cache, SSRF guard | done |
 | 5 | Planner (query decomposition) | done |
 | 6 | Parallel sub-agents (two-phase reader/extractor) | done |
-| 7 | Evidence store | next |
-| 8 | Report writer | |
+| 7 | Evidence store (dedupe + span verification) | done |
+| 8 | Report writer | next |
 | 9 | Claim verifier | |
 | 10 | Eval harness | |
 | 11 | Tracing + cost | |

@@ -40,6 +40,22 @@ from .planning import SubQuestion
 from .tools.registry import Tool
 
 _SOURCE_RE = re.compile(r"^URL: (\S+)", re.MULTILINE)
+_TITLE_RE = re.compile(r"^TITLE: (.+)$", re.MULTILINE)
+
+
+def parse_source_output(output: str) -> tuple[str, str, str] | None:
+    """Split a `read_source`/`fetch_page` result into (url, title, text)."""
+    if not output.startswith("URL: "):
+        return None
+    url_match = _SOURCE_RE.search(output)
+    if url_match is None:
+        return None
+    _, separator, text = output.partition("\n---\n")
+    if not separator:
+        return None
+    title_match = _TITLE_RE.search(output)
+    title = title_match.group(1).strip() if title_match else ""
+    return url_match.group(1).strip(), title, text
 
 READER_PROMPT = """You are a reader. You gather evidence for ONE sub-question.
 
@@ -92,6 +108,8 @@ class SubAgentResult:
     findings: list[FindingModel] = field(default_factory=list)
     gaps: list[str] = field(default_factory=list)
     sources: list[str] = field(default_factory=list)
+    source_texts: dict[str, str] = field(default_factory=dict)
+    source_titles: dict[str, str] = field(default_factory=dict)
     ungrounded_urls: list[str] = field(default_factory=list)
     queries_used: list[str] = field(default_factory=list)
     usage: Usage = field(default_factory=Usage)
@@ -204,7 +222,15 @@ class SubAgent:
         for step in agent_result.steps:
             for _, output in step.tool_outputs:
                 blobs.append(output)
-                sources.update(_SOURCE_RE.findall(output))
+                parsed = parse_source_output(output)
+                if parsed is None:
+                    continue
+                url, title, text = parsed
+                sources.add(url)
+                result.source_titles[url] = title
+                # Keep the longest window if a URL was read twice.
+                if len(text) > len(result.source_texts.get(url, "")):
+                    result.source_texts[url] = text
         result.sources = sorted(sources)
 
         if not blobs:
