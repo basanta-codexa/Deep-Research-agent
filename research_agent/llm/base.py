@@ -108,6 +108,16 @@ class LLMResponse:
     # Untouched provider payload, kept for debugging only.
     raw: dict[str, Any] | None = None
 
+    @property
+    def truncated(self) -> bool:
+        """True when the provider stopped us, not the model.
+
+        Ollama says "length", OpenAI-compatible APIs say "length" or
+        "max_tokens". Reasoning models make this common: they burn the output
+        budget on hidden reasoning and return empty content.
+        """
+        return self.finish_reason in {"length", "max_tokens", "limit"}
+
 
 # --------------------------------------------------------------------------- #
 # Errors
@@ -146,6 +156,7 @@ class LLMClient(ABC):
         tools: Sequence[dict[str, Any]] | None = None,
         temperature: float = 0.2,
         max_tokens: int | None = None,
+        json_mode: bool = False,
     ) -> LLMResponse:
         """Send a conversation, get back one assistant message."""
 

@@ -10,7 +10,7 @@ We deliberately do NOT use the ``ollama`` python package here. Two reasons:
 
 from __future__ import annotations
 
-import asyncio
+import json
 import time
 import uuid
 from typing import Any, Sequence
@@ -22,13 +22,10 @@ from .base import (
     LLMError,
     LLMResponse,
     Message,
-    PermanentLLMError,
     ToolCall,
-    TransientLLMError,
     Usage,
 )
-
-_RETRYABLE_STATUS = {408, 409, 429, 500, 502, 503, 504}
+from .transport import post_json
 
 
 class OllamaClient(LLMClient):
@@ -60,6 +57,7 @@ class OllamaClient(LLMClient):
         tools: Sequence[dict[str, Any]] | None = None,
         temperature: float = 0.2,
         max_tokens: int | None = None,
+        json_mode: bool = False,
     ) -> LLMResponse:
         payload: dict[str, Any] = {
             "model": self.model,
@@ -73,6 +71,8 @@ class OllamaClient(LLMClient):
         }
         if max_tokens:
             payload["options"]["num_predict"] = max_tokens
+        if json_mode:
+            payload["format"] = "json"
         if tools:
             payload["tools"] = list(tools)
 
@@ -113,8 +113,6 @@ class OllamaClient(LLMClient):
             args = fn.get("arguments")
             # Ollama sometimes returns arguments as a JSON *string*. Normalize.
             if isinstance(args, str):
-                import json
-
                 try:
                     args = json.loads(args)
                 except json.JSONDecodeError as exc:
@@ -154,32 +152,6 @@ class OllamaClient(LLMClient):
     # Transport: retries, timeouts, error classification
     # ------------------------------------------------------------------ #
     async def _post(self, path: str, payload: dict[str, Any]) -> dict[str, Any]:
-        last_error: Exception | None = None
-
-        for attempt in range(self.max_retries + 1):
-            try:
-                response = await self._http.post(path, json=payload)
-            except httpx.TransportError as exc:  # connection refused, timeout
-                last_error = exc
-            else:
-                if response.status_code in _RETRYABLE_STATUS:
-                    last_error = TransientLLMError(
-                        f"HTTP {response.status_code}: {response.text[:300]}"
-                    )
-                elif response.status_code >= 400:
-                    raise PermanentLLMError(
-                        f"HTTP {response.status_code}: {response.text[:500]}"
-                    )
-                else:
-                    data = response.json()
-                    # Ollama reports model errors with 200 + {"error": ...}
-                    if "error" in data:
-                        raise PermanentLLMError(str(data["error"]))
-                    return data
-
-            if attempt < self.max_retries:
-                await asyncio.sleep(0.5 * (2**attempt))
-
-        raise LLMError(
-            f"ollama request to {path} failed after {self.max_retries + 1} attempts"
-        ) from last_error
+        return await post_json(
+            self._http, path, payload, max_retries=self.max_retries
+        )

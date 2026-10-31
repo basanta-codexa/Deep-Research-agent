@@ -20,6 +20,7 @@ from .base import (
     Usage,
 )
 from .ollama import OllamaClient
+from .openai_compat import OpenAICompatClient
 
 __all__ = [
     "LLMClient",
@@ -31,6 +32,7 @@ __all__ = [
     "TransientLLMError",
     "Usage",
     "OllamaClient",
+    "OpenAICompatClient",
     "create_client",
 ]
 
@@ -44,9 +46,16 @@ def create_client(settings: Settings) -> LLMClient:
             think=settings.think,
             num_ctx=settings.num_ctx,
         )
-    if settings.provider == "openai":
-        raise NotImplementedError(
-            "OpenAI-compatible adapter lands in a later step. "
-            "Set RA_PROVIDER=ollama for now."
+    if settings.provider in ("groq", "openai"):
+        if not settings.api_key:
+            raise ValueError(
+                f"provider {settings.provider!r} needs an API key. Set RA_API_KEY "
+                f"or {settings.provider.upper()}_API_KEY in the environment or .env"
+            )
+        return OpenAICompatClient(
+            model=settings.model,
+            base_url=settings.base_url or settings.provider_default_url(),
+            api_key=settings.api_key,
+            name=settings.provider,
         )
     raise ValueError(f"unknown provider: {settings.provider!r}")
