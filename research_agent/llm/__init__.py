@@ -42,6 +42,7 @@ def create_client(settings: Settings) -> LLMClient:
             model=settings.model,
             base_url=settings.base_url or "http://localhost:11434",
             think=settings.think,
+            num_ctx=settings.num_ctx,
         )
     if settings.provider == "openai":
         raise NotImplementedError(

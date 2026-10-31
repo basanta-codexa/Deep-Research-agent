@@ -48,6 +48,13 @@ class Settings:
     # Local reasoning models expose a "thinking" stream. Off by default:
     # thinking tokens are billed as output and we do not use them yet.
     think: bool = False
+    # Ollama's default context is 4096 tokens, which a research agent blows
+    # through in two steps. Bigger = more memory, slower prompt processing.
+    num_ctx: int = 8192
+    # Retrieval
+    cache_path: str = "cache/agent.sqlite3"
+    cache_ttl_s: int = 86_400
+    request_timeout: float = 20.0
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -59,4 +66,8 @@ class Settings:
             temperature=_env_float("RA_TEMPERATURE", 0.2),
             max_tokens=int(os.getenv("RA_MAX_TOKENS") or 0) or None,
             think=_env_bool("RA_THINK", False),
+            num_ctx=int(os.getenv("RA_NUM_CTX") or 8192),
+            cache_path=_env_str("RA_CACHE_PATH", "cache/agent.sqlite3"),
+            cache_ttl_s=int(os.getenv("RA_CACHE_TTL") or 86_400),
+            request_timeout=_env_float("RA_TIMEOUT", 20.0),
         )

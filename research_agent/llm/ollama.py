@@ -42,10 +42,12 @@ class OllamaClient(LLMClient):
         timeout: float = 180.0,
         max_retries: int = 2,
         think: bool = False,
+        num_ctx: int = 8192,
     ) -> None:
         self.model = model
         self.max_retries = max_retries
         self.think = think
+        self.num_ctx = num_ctx
         self._http = httpx.AsyncClient(base_url=base_url.rstrip("/"), timeout=timeout)
 
     # ------------------------------------------------------------------ #
@@ -67,7 +69,7 @@ class OllamaClient(LLMClient):
             # thinking model will spend your whole output budget inside a
             # `thinking` field we never read, returning empty `content`.
             "think": self.think,
-            "options": {"temperature": temperature},
+            "options": {"temperature": temperature, "num_ctx": self.num_ctx},
         }
         if max_tokens:
             payload["options"]["num_predict"] = max_tokens

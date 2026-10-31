@@ -11,8 +11,8 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 1 | LLM provider abstraction + Ollama adapter | done |
 | 2 | Agent loop (ReAct) | done |
 | 3 | Tool registry (schema from signature + pydantic validation) | done |
-| 4 | Search / fetch / extract / cache | next |
-| 5 | Planner | |
+| 4 | Real retrieval: search, fetch, extract, cache, SSRF guard | done |
+| 5 | Planner (query decomposition) | next |
 | 6 | Parallel sub-agents | |
 | 7 | Evidence store | |
 | 8 | Report writer | |

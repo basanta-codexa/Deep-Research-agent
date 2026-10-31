@@ -84,8 +84,12 @@ class Tool:
         # `from __future__ import annotations` turns hints into strings, so we
         # resolve them through the function's own globals before pydantic sees
         # them. Skipping this is the classic "@tool raises NameError" bug.
+        #
+        # include_extras=True is NOT optional: without it, get_type_hints strips
+        # `Annotated[str, Field(min_length=2)]` down to plain `str`, and every
+        # constraint you declared silently disappears from schema and validation.
         try:
-            hints = get_type_hints(fn)
+            hints = get_type_hints(fn, include_extras=True)
         except Exception as exc:  # unresolved forward reference
             raise TypeError(
                 f"cannot resolve type hints for {tool_name}: {exc}"
