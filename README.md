@@ -15,8 +15,8 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 5 | Planner (query decomposition) | done |
 | 6 | Parallel sub-agents (two-phase reader/extractor) | done |
 | 7 | Evidence store (dedupe + span verification) | done |
-| 8 | Report writer | next |
-| 9 | Claim verifier | |
+| 8 | Report writer (citation-closed prose) | done |
+| 9 | Claim verifier | next |
 | 10 | Eval harness | |
 | 11 | Tracing + cost | |
 | 12 | Ablations | |

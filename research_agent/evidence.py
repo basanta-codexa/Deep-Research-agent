@@ -43,6 +43,19 @@ _PUNCT = str.maketrans(
 _TOKEN = re.compile(r"[a-z0-9]{4,}")
 _ELLIPSIS = re.compile(r"\.\.\.|\u2026|\s+\[\.\.\.\]\s+")
 _CONF_RANK = {"low": 1, "medium": 2, "high": 3}
+_EVIDENCE_FIELDS = {
+    "id",
+    "claim",
+    "quote",
+    "url",
+    "title",
+    "sub_questions",
+    "confidence",
+    "span_start",
+    "span_end",
+    "match",
+    "created_at",
+}
 
 
 # --------------------------------------------------------------------------- #
@@ -320,6 +333,21 @@ class EvidenceStore:
     def verified_items(self) -> list[Evidence]:
         return [item for item in self._items.values() if item.verified]
 
+    def citable(self) -> list[Evidence]:
+        """Only evidence the writer is allowed to cite.
+
+        `outside_window` quotes are real sentences the agent never read, and
+        `missing` ones cannot be found at all. Both are stored for audit, neither
+        may reach the report.
+        """
+        return [item for item in self._items.values() if item.verified]
+
+    def get(self, evidence_id: str) -> Evidence | None:
+        for item in self._items.values():
+            if item.id == evidence_id:
+                return item
+        return None
+
     def coverage(self, questions: Sequence[str]) -> dict[str, int]:
         counts = {question: 0 for question in questions}
         for item in self._items.values():
@@ -340,6 +368,22 @@ class EvidenceStore:
         }
 
     # -- publishing ----------------------------------------------------- #
+    @classmethod
+    def load(cls, path: str | Path) -> EvidenceStore:
+        """Rebuild a store from a saved artifact.
+
+        Spans are persisted, so a report can be regenerated without re-fetching
+        anything — but sources are not stored, so quotes cannot be re-verified.
+        """
+        payload = json.loads(Path(path).read_text("utf-8"))
+        store = cls()
+        for raw in payload.get("evidence", []):
+            fields = {key: value for key, value in raw.items() if key in _EVIDENCE_FIELDS}
+            item = Evidence(**fields)
+            store._items[store._key(item.url, item.quote)] = item
+        store.findings_seen = payload.get("stats", {}).get("findings_seen", len(store))
+        return store
+
     def save(self, path: str | Path) -> Path:
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
