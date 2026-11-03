@@ -30,10 +30,36 @@ from urllib.parse import urlsplit
 from .evidence import Evidence, EvidenceStore
 from .llm import LLMClient, Message, Usage
 from .planning import Plan
+from .structured import strip_fences
 
 BRACKET_RE = re.compile(r"\[([^\[\]]*)\]")
 ID_RE = re.compile(r"ev_[0-9a-f]{8}")
 URL_RE = re.compile(r"https?://\S+")
+
+# Models occasionally typeset citations with full-width or CJK brackets, e.g.
+# 【ev_1a2b3c4d】. Those are visually identical to [ev_1a2b3c4d] and pass a human
+# read, but BRACKET_RE only knows ASCII, so the id was never extracted and the
+# report shipped with zero machine-readable citations while every check passed.
+# Normalising at the boundary costs nothing and closes that hole.
+_UNICODE_BRACKETS = str.maketrans(
+    {
+        "\u3010": "[",  # 【
+        "\u3011": "]",  # 】
+        "\uff3b": "[",  # ［
+        "\uff3d": "]",  # ］
+        "\ufe5d": "[",  # ﹝
+        "\ufe5e": "]",  # ﹞
+        "\u3014": "[",  # 〔
+        "\u3015": "]",  # 〕
+        "\u2772": "[",  # ❲
+        "\u2773": "]",  # ❳
+    }
+)
+
+
+def normalize_citations(text: str) -> str:
+    """Map look-alike brackets to ASCII so ids are actually extractable."""
+    return (text or "").translate(_UNICODE_BRACKETS)
 
 WRITER_PROMPT = """You write short, dense research briefs for software engineers.
 
@@ -137,7 +163,7 @@ def build_brief(items: Sequence[Evidence], *, max_chars: int = 9000) -> str:
 
 def extract_ids(text: str) -> list[str]:
     found: list[str] = []
-    for match in BRACKET_RE.finditer(text):
+    for match in BRACKET_RE.finditer(normalize_citations(text)):
         for evidence_id in ID_RE.findall(match.group(1)):
             if evidence_id not in found:
                 found.append(evidence_id)
@@ -185,6 +211,7 @@ def _iter_blocks(body: str) -> list[tuple[str, str]]:
 def check_draft(body: str, allowed: set[str]) -> list[Problem]:
     """Mechanical checks. No model involved — this must be deterministic."""
     problems: list[Problem] = []
+    body = normalize_citations(body)
 
     for evidence_id in extract_ids(body):
         if evidence_id not in allowed:
@@ -194,6 +221,14 @@ def check_draft(body: str, allowed: set[str]) -> list[Problem]:
                     f"{evidence_id} is not in the citable evidence set",
                 )
             )
+
+    if not extract_ids(body):
+        # A report with no ids is not a cited report. Without this check an
+        # uncitable format (e.g. 【...】) produced a green draft that cited
+        # nothing at all — the exact failure this project exists to prevent.
+        problems.append(
+            Problem("no_citations", "the draft cites no evidence id")
+        )
 
     for match in URL_RE.finditer(body):
         problems.append(
@@ -254,6 +289,7 @@ def renumber(
     Four passages from one page are one reference, not four. Per-quote detail
     lives in the appendix, where it is actually useful.
     """
+    body = normalize_citations(body)
     url_number: dict[str, int] = {}
     id_number: dict[str, int] = {}
     for evidence_id in extract_ids(body):
@@ -334,14 +370,7 @@ def render_appendix(
 
 
 def _strip_fences(text: str) -> str:
-    text = (text or "").strip()
-    if not text.startswith("```"):
-        return text
-    lines = text.splitlines()
-    lines = lines[1:]
-    if lines and lines[-1].strip().startswith("```"):
-        lines = lines[:-1]
-    return "\n".join(lines).strip()
+    return strip_fences(text)
 
 
 class ReportWriter:
@@ -405,7 +434,7 @@ class ReportWriter:
             max_tokens=self.max_tokens,
         )
         usage += response.usage
-        body = _strip_fences(response.message.content)
+        body = normalize_citations(_strip_fences(response.message.content))
         messages.append(response.message)
 
         problems = check_draft(body, allowed)
@@ -424,7 +453,7 @@ class ReportWriter:
                 max_tokens=self.max_tokens,
             )
             usage += response.usage
-            body = _strip_fences(response.message.content)
+            body = normalize_citations(_strip_fences(response.message.content))
             messages.append(response.message)
             problems = check_draft(body, allowed)
             repaired = True

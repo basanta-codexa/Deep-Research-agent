@@ -37,6 +37,7 @@ from pydantic import BaseModel, Field, ValidationError
 from .agent import Agent
 from .llm import LLMClient, Message, Usage
 from .planning import SubQuestion
+from .structured import complete_json
 from .tools.registry import Tool
 
 _SOURCE_RE = re.compile(r"^URL: (\S+)", re.MULTILINE)
@@ -271,18 +272,25 @@ class SubAgent:
                 f"SOURCES:\n{joined}"
             ),
         ]
+        def parse(text: str) -> SubAgentOutput:
+            output, error = parse_output(text)
+            if output is None:
+                raise ValueError(error or "unparseable extractor output")
+            return output
+
         try:
-            response = await self.client.chat(
+            output, usage = await complete_json(
+                self.client,
                 messages,
-                temperature=0.0,
+                parse=parse,
                 max_tokens=self.extract_budget,
-                json_mode=True,
+                temperature=0.0,
             )
         except Exception as exc:
-            return None, Usage(), f"{type(exc).__name__}: {exc}"
-
-        output, error = parse_output(response.message.content)
-        return output, response.usage, error
+            # Recover the tokens spent failing: the eval harness bills them.
+            burned = getattr(exc, "usage", Usage())
+            return None, burned, f"{type(exc).__name__}: {exc}"
+        return output, usage, None
 
 
 class ResearchOrchestrator:

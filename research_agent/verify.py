@@ -39,6 +39,7 @@ from pydantic import BaseModel, Field
 
 from .evidence import Evidence, EvidenceStore
 from .llm import LLMClient, Message, Usage
+from .structured import complete_json
 
 Verdict = Literal["supported", "partial", "unsupported", "contradicted"]
 
@@ -171,50 +172,6 @@ class ClaimVerifier:
         self.concurrency = max(1, concurrency)
         self.max_tokens = max_tokens
 
-    async def _structured(self, messages: list[Message], max_tokens: int, parse):
-        """Plain completion first; JSON mode only if the text will not parse.
-
-        JSON mode is not free: on some providers/model combinations it stalls
-        (observed: 90s timeout on Groq gpt-oss while the same prompt in plain
-        mode took 8s) or fails server-side validation outright. The prompt
-        already asks for JSON and the parser tolerates fences, so plain mode is
-        the fast path and `response_format` is the repair mechanism.
-        """
-        response = await self.client.chat(
-            messages,
-            temperature=0.0,
-            max_tokens=max_tokens,
-            json_mode=False,
-        )
-        usage = response.usage
-        try:
-            return parse(response.message.content), usage
-        except Exception:
-            pass
-
-        # Second attempt: same call, sharper instruction. Cheaper than a
-        # provider-side JSON constraint and far more reliable on Groq.
-        retry = await self.client.chat(
-            messages + [Message.user("Return only the JSON object. No prose, no fences.")],
-            temperature=0.0,
-            max_tokens=max_tokens,
-            json_mode=False,
-        )
-        usage += retry.usage
-        try:
-            return parse(retry.message.content), usage
-        except Exception:
-            pass
-
-        # Last resort: let the provider enforce JSON, even if it is slow.
-        strict = await self.client.chat(
-            messages,
-            temperature=0.0,
-            max_tokens=max_tokens,
-            json_mode=True,
-        )
-        return parse(strict.message.content), usage + strict.usage
-
     async def judge(self, claim: str, quote: str) -> tuple[SupportJudgement, Usage]:
         messages = [
             Message.system(JUDGE_PROMPT),
@@ -224,7 +181,9 @@ class ClaimVerifier:
         def parse(text: str) -> SupportJudgement:
             return SupportJudgement.model_validate(_parse_json(text))
 
-        judgement, usage = await self._structured(messages, self.max_tokens, parse)
+        judgement, usage = await complete_json(
+            self.client, messages, parse=parse, max_tokens=self.max_tokens
+        )
         return judgement, usage
 
     async def verify_items(
@@ -259,11 +218,10 @@ class ClaimVerifier:
             Message.user(f"CLAIMS:\n{listing}"),
         ]
 
-        def parse(text: str) -> dict:
-            return _parse_json(text)
-
         try:
-            payload, usage = await self._structured(messages, 500, parse)
+            payload, usage = await complete_json(
+                self.client, messages, parse=_parse_json, max_tokens=500
+            )
         except Exception:
             # A failed conflict scan must not destroy a run that already has
             # support verdicts. Degrade to "no conflicts found, unscanned".

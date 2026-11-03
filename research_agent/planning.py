@@ -17,6 +17,7 @@ import json
 from pydantic import BaseModel, Field, ValidationError
 
 from .llm import LLMClient, Message
+from .structured import json_candidate
 
 PLANNER_PROMPT = """You are a research planner. Turn the user's question into \
 3-5 sub-questions that, taken together, fully answer it.
@@ -85,11 +86,15 @@ class Planner:
                 messages,
                 temperature=self.temperature,
                 max_tokens=budget,
-                json_mode=True,
+                # Plain mode on purpose. The schema is already in the system
+                # prompt, and a malformed answer is repaired below with the
+                # validator's exact complaint. Provider-enforced JSON mode
+                # stalled on Groq (see research_agent/structured.py).
+                json_mode=False,
             )
             prompt_tokens += response.usage.prompt_tokens
             completion_tokens += response.usage.completion_tokens
-            text = response.message.content.strip()
+            text = json_candidate(response.message.content)
 
             if response.truncated:
                 # Cut off mid-JSON. Retrying the same budget just truncates

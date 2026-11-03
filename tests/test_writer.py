@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+import asyncio
+
 from research_agent.evidence import EvidenceStore
+from research_agent.llm import LLMResponse, Message, Usage
 from research_agent.writer import (
+    ReportWriter,
     _collapse_brackets,
     build_brief,
     check_draft,
@@ -98,6 +102,29 @@ def test_extract_ids_handles_grouped_brackets():
     assert extract_ids(text) == ["ev_11111111", "ev_22222222"]
 
 
+def test_extract_ids_accepts_full_width_brackets():
+    assert extract_ids("claim \u3010ev_11111111\u3011") == ["ev_11111111"]
+    assert extract_ids("claim \uff3bev_22222222\uff3d") == ["ev_22222222"]
+
+
+def test_full_width_citations_are_not_a_silent_pass():
+    """Regression: 【ev_...】 used to yield a draft that cited nothing but passed."""
+    draft = VALID.replace("[ev_11111111]", "\u3010ev_11111111\u3011")
+    assert check_draft(draft, ALLOWED) == []
+    assert extract_ids(draft) == ["ev_11111111", "ev_22222222"]
+
+
+def test_draft_with_no_ids_is_an_error():
+    draft = VALID.replace("[ev_11111111]", "").replace("[ev_22222222]", "")
+    assert "no_citations" in codes(check_draft(draft, ALLOWED))
+
+
+def test_unbracketed_ids_do_not_count_as_citations():
+    draft = VALID.replace("[ev_11111111]", "ev_11111111")
+    draft = draft.replace("[ev_22222222]", "ev_22222222")
+    assert "no_citations" in codes(check_draft(draft, ALLOWED))
+
+
 def test_renumber_numbers_sources_not_quotes():
     store = EvidenceStore()
     store.register_source("https://a.example/1", "First quote about alpha here.")
@@ -133,6 +160,100 @@ def test_collapse_brackets_merges_adjacent_citations():
     assert _collapse_brackets("[1][2]") == "[1, 2]"
     assert _collapse_brackets("[1, 2][3]") == "[1, 2, 3]"
     assert _collapse_brackets("[1] text [2]") == "[1] text [2]"
+
+
+# --------------------------------------------------------------------------- #
+# writer end-to-end with a fake model
+# --------------------------------------------------------------------------- #
+class FakeClient:
+    model = "fake"
+
+    def __init__(self, replies: list[str]) -> None:
+        self.replies = list(replies)
+        self.calls = 0
+
+    async def chat(self, messages, **kwargs):
+        self.calls += 1
+        text = self.replies.pop(0) if self.replies else ""
+        return LLMResponse(
+            message=Message.assistant(text),
+            model="fake",
+            usage=Usage(prompt_tokens=10, completion_tokens=10, total_tokens=20),
+        )
+
+
+def make_store():
+    store = EvidenceStore()
+    store.register_source(
+        "https://docs.python.org/3/library/time.html",
+        "time.time() returns the time in seconds since the epoch. "
+        "time.perf_counter() returns a monotonic clock with the highest resolution.",
+    )
+    one = store.add(
+        "time.time() is wall-clock time",
+        "time.time() returns the time in seconds since the epoch.",
+        "https://docs.python.org/3/library/time.html",
+    )
+    two = store.add(
+        "perf_counter is monotonic",
+        "time.perf_counter() returns a monotonic clock with the highest resolution.",
+        "https://docs.python.org/3/library/time.html",
+    )
+    assert one is not None and two is not None
+    for item in (one, two):
+        item.support = "supported"
+    return store, one, two
+
+
+def test_writer_normalises_full_width_brackets_before_citing():
+    store, one, two = make_store()
+    draft = f"""# Timing short code paths
+
+## Summary
+time.time() is wall-clock time and can jump 【{one.id}】.
+
+## Why it is a poor clock
+The clock can move when it is adjusted 【{two.id}】.
+
+## What to use instead
+time.perf_counter() is monotonic and high resolution 【{one.id}】.
+
+## Limitations
+- Two standard-library pages only.
+"""
+    report = asyncio.run(
+        ReportWriter(FakeClient([draft])).write(question="Which clock?", store=store)
+    )
+    assert report.ok is True
+    assert "【" not in report.markdown
+    assert "[1]" in report.markdown
+    assert report.cited_ids == [one.id, two.id]
+    assert report.unused_ids == []
+
+
+def test_writer_rejects_a_report_that_cites_nothing():
+    store, one, _ = make_store()
+    draft = f"""# Timing short code paths
+
+## Summary
+time.time() is wall-clock time and can jump.
+
+## Why it is a poor clock
+The clock can move when it is adjusted.
+
+## What to use instead
+time.perf_counter() is monotonic and high resolution.
+
+## Limitations
+- Two standard-library pages only.
+"""
+    report = asyncio.run(
+        ReportWriter(FakeClient([draft]), repair_attempts=0).write(
+            question="Which clock?", store=store
+        )
+    )
+    assert report.ok is False
+    assert "no_citations" in {problem.code for problem in report.errors}
 
 
 def test_brief_never_contains_urls():
