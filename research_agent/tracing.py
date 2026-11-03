@@ -35,7 +35,7 @@ from contextvars import ContextVar
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterator, Sequence
+from typing import Any, Callable, Iterator, Sequence
 
 from .llm import LLMClient, LLMResponse, Message, Usage
 from .pricing import apply_cost
@@ -111,6 +111,11 @@ class Span:
         }
 
 
+# Called on every span start and end. Used by the live web UI to stream a run
+# without knowing anything about the pipeline's internals.
+SpanListener = Callable[[str, Span], None]
+
+
 # --------------------------------------------------------------------------- #
 # tracer
 # --------------------------------------------------------------------------- #
@@ -118,17 +123,35 @@ class Tracer:
     """Collects spans for one run and turns them into JSON and HTML."""
 
     def __init__(
-        self, name: str = "run", attributes: dict[str, Any] | None = None
+        self,
+        name: str = "run",
+        attributes: dict[str, Any] | None = None,
+        listeners: Sequence[SpanListener] | None = None,
     ) -> None:
         self.trace_id = uuid.uuid4().hex[:12]
         self.name = name
         self.attributes = dict(attributes or {})
         self.started_at = datetime.now(timezone.utc)
         self.spans: list[Span] = []
+        self._listeners: list[SpanListener] = list(listeners or ())
         self._t0 = time.perf_counter()
         self._stack: ContextVar[tuple[Span, ...]] = ContextVar(
             f"span_stack_{self.trace_id}", default=()
         )
+
+    def add_listener(self, listener: SpanListener) -> None:
+        self._listeners.append(listener)
+
+    def _notify(self, phase: str, item: Span) -> None:
+        """Broadcast without letting a bad listener kill the run.
+
+        Observability must never be able to break the thing it observes.
+        """
+        for listener in self._listeners:
+            try:
+                listener(phase, item)
+            except Exception:
+                pass
 
     # -- lifecycle ------------------------------------------------------ #
     def now_ms(self) -> float:
@@ -162,6 +185,7 @@ class Tracer:
         )
         self.spans.append(item)
         token = self._stack.set(self._stack.get() + (item,))
+        self._notify("start", item)
         try:
             yield item
         except BaseException as exc:  # cancellation is an error for this span
@@ -170,6 +194,7 @@ class Tracer:
             raise
         finally:
             item.end_ms = self.now_ms()
+            self._notify("end", item)
             self._stack.reset(token)
 
     # -- aggregation ---------------------------------------------------- #

@@ -86,17 +86,21 @@ class ResearchPipeline:
         question: str,
         *,
         on_stage: Callable[[str, str], None] | None = None,
+        tracer: Tracer | None = None,
     ) -> PipelineResult:
-        tracer = Tracer(
-            question[:120],
-            attributes={
-                "provider": self.client.name,
-                "model": self.client.model,
-                "judge_model": self.judge_client.model,
-                "concurrency": self.config.concurrency,
-                "max_steps": self.config.max_steps,
-            },
-        )
+        meta = {
+            "provider": self.client.name,
+            "model": self.client.model,
+            "judge_model": self.judge_client.model,
+            "concurrency": self.config.concurrency,
+            "max_steps": self.config.max_steps,
+        }
+        if tracer is None:
+            tracer = Tracer(question[:120], attributes=meta)
+        else:
+            # A caller-supplied tracer (the web UI) already has listeners; fill
+            # in the run metadata without overwriting anything it set.
+            tracer.attributes = {**meta, **tracer.attributes}
         # A cancelled run (timeout) never returns a result, so the eval needs a
         # handle on the partial trace to explain where the time went.
         self.last_trace = tracer
@@ -125,7 +129,7 @@ class ResearchPipeline:
         # ---- plan ---------------------------------------------------------- #
         stage("plan", "start")
         started = time.perf_counter()
-        with tracer.span("plan", kind="stage"):
+        with tracer.span("plan", kind="stage") as stage_span:
             try:
                 plan, prompt_tokens, completion_tokens = await Planner(
                     self.client, max_tokens=cfg.plan_max_tokens
@@ -138,13 +142,25 @@ class ResearchPipeline:
                 completion_tokens=completion_tokens,
                 total_tokens=prompt_tokens + completion_tokens,
             )
+            stage_span.attributes.update(
+                {
+                    "restated": plan.restated,
+                    "questions": [
+                        {
+                            "question": sub.question,
+                            "search_query": sub.search_query,
+                        }
+                        for sub in plan.sub_questions
+                    ],
+                }
+            )
         result.timings["plan"] = time.perf_counter() - started
         stage("plan", "done")
 
         # ---- research ------------------------------------------------------ #
         stage("research", "start")
         started = time.perf_counter()
-        with tracer.span("research", kind="stage"):
+        with tracer.span("research", kind="stage") as stage_span:
             try:
                 batch = await ResearchOrchestrator(
                     self.client,
@@ -156,13 +172,26 @@ class ResearchPipeline:
                 return self._fail(tracer, result, "research", exc)
             result.batch = batch
             result.usage += batch.usage
+            stage_span.attributes.update(
+                {
+                    "questions": len(plan.sub_questions),
+                    "findings": len(batch.findings),
+                    "sources": len(
+                        {
+                            url
+                            for sub_result in batch.results
+                            for url in sub_result.source_texts
+                        }
+                    ),
+                }
+            )
         result.timings["research"] = time.perf_counter() - started
         stage("research", "done")
 
         # ---- evidence ------------------------------------------------------ #
         stage("evidence", "start")
         started = time.perf_counter()
-        with tracer.span("evidence", kind="stage"):
+        with tracer.span("evidence", kind="stage") as stage_span:
             for sub_result in batch.results:
                 for url, text in sub_result.source_texts.items():
                     result.store.register_source(
@@ -178,13 +207,14 @@ class ResearchPipeline:
                         f"{len(result.store)} finding(s), none traceable to a fetched page"
                     ),
                 )
+            stage_span.attributes.update(result.store.stats())
         result.timings["evidence"] = time.perf_counter() - started
         stage("evidence", "done")
 
         # ---- verify -------------------------------------------------------- #
         stage("verify", "start")
         started = time.perf_counter()
-        with tracer.span("verify", kind="stage"):
+        with tracer.span("verify", kind="stage") as stage_span:
             try:
                 result.verification = await verify_store(
                     self.judge_client,
@@ -195,6 +225,13 @@ class ResearchPipeline:
             except Exception as exc:
                 return self._fail(tracer, result, "verify", exc)
             result.usage += result.verification.usage
+            stage_span.attributes.update(
+                {
+                    "verdicts": result.verification.counts(),
+                    "contradictions": len(result.verification.contradictions),
+                    "judge_errors": len(result.verification.errors),
+                }
+            )
         result.timings["verify"] = time.perf_counter() - started
         stage("verify", "done")
 
@@ -202,7 +239,7 @@ class ResearchPipeline:
         stage("write", "start")
         started = time.perf_counter()
         gaps = [gap for sub_result in batch.results for gap in sub_result.gaps]
-        with tracer.span("write", kind="stage"):
+        with tracer.span("write", kind="stage") as stage_span:
             try:
                 result.report = await ReportWriter(
                     self.client, max_tokens=cfg.writer_max_tokens
@@ -212,6 +249,19 @@ class ResearchPipeline:
             except Exception as exc:
                 return self._fail(tracer, result, "write", exc)
             result.usage += result.report.usage
+            cited_sources = {
+                cited.url
+                for evidence_id in result.report.cited_ids
+                if (cited := result.store.get(evidence_id)) is not None
+            }
+            stage_span.attributes.update(
+                {
+                    "words": result.report.word_count,
+                    "citations": len(result.report.cited_ids),
+                    "cited_sources": len(cited_sources),
+                    "repaired": result.report.repaired,
+                }
+            )
         result.timings["write"] = time.perf_counter() - started
         stage("write", "done")
         # The planner returns raw token counts, so rebuild the cost from the one

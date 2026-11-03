@@ -19,6 +19,7 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 9 | Claim verifier (support + contradiction scan + trust tiers) | done |
 | 10 | Eval harness (30-question set, metrics, artifacts) | done |
 | 11 | Tracing + cost (spans, waterfall, token attribution) | done |
+| 11b | Live web UI (FastAPI + SSE, citation spotlight) | done |
 | 12 | Ablations | next |
 | 13 | Packaging + CI | |
 | 14 | README with real numbers | |
@@ -28,10 +29,55 @@ See [ROADMAP.md](ROADMAP.md) for the full plan.
 ## Quickstart
 
 ```bash
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
 ollama serve                  # only needed for the local provider
 cp .env.example .env          # then set RA_PROVIDER and a key if using a hosted one
 .\venv\Scripts\python.exe -m examples.step5_planner
 ```
+
+## Live web UI
+
+```bash
+.\venv\Scripts\python.exe -m web.server
+# open http://127.0.0.1:8000
+```
+
+Type a question and watch the run stream in: the plan's sub-questions, each
+sub-agent's tool calls and sources, evidence and verdict counts, then the
+writing stage. Plain HTML/CSS/JS — no build step, no framework, no CDN.
+
+![A finished run: plan, sub-agents, tool calls, failed fetch, and stats](docs/web-run.png)
+
+The screenshots are a real run (`openai/gpt-oss-20b`, free tier): 2m 8s,
+26 model calls, 25,011 tokens, 4/4 cited claims judged supported, and one
+`read_source` tool call that timed out and is shown as an error instead of
+being hidden.
+
+![The finished report with clickable citation chips](docs/web-report.png)
+
+Clicking a citation opens the page text the agent actually read and highlights
+the stored quote at its exact character offsets:
+
+![Source drawer with the exact quote highlighted at characters 24-285](docs/web-source.png)
+
+That interaction is the project thesis. The span was computed when the evidence
+was stored; the browser receives `{start, end}` and paints that range. It never
+searches the page for the quote, so a wrong span would be visibly wrong instead
+of silently plausible.
+
+How it is wired:
+
+* `Tracer` accepts listeners. The SSE endpoint subscribes to span start/end and
+  pushes events into a queue, so the UI required no callbacks in planning,
+  research, verification or writing.
+* Stage spans carry semantic attributes (sub-questions, findings, verdict
+  counts, word/citation counts). The timeline renders what the trace already
+  records; the UI is a second reader of the same data as `trace.json`.
+* One consumer loop with result/error sentinels, so "queue is empty" never
+  means "still thinking". A timeout cancels the runner and emits the partial
+  trace instead of hanging the browser.
+* `create_app(pipeline=...)` accepts a fake pipeline, so the UI's tests run
+  offline with no API key.
 
 ## Config
 

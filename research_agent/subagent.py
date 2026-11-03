@@ -349,6 +349,7 @@ class ResearchOrchestrator:
                         item.attributes["findings"] = len(result.findings)
                         item.attributes["sources"] = len(result.sources)
                         item.attributes["steps"] = result.steps
+                        item.attributes["urls"] = result.sources[:4]
                         if result.error:
                             item.status = "error"
                             item.error = result.error[:200]
