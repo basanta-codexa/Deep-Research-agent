@@ -16,8 +16,8 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 6 | Parallel sub-agents (two-phase reader/extractor) | done |
 | 7 | Evidence store (dedupe + span verification) | done |
 | 8 | Report writer (citation-closed prose) | done |
-| 9 | Claim verifier | next |
-| 10 | Eval harness | |
+| 9 | Claim verifier (support + contradiction scan + trust tiers) | done |
+| 10 | Eval harness | next |
 | 11 | Tracing + cost | |
 | 12 | Ablations | |
 | 13 | Packaging + CI | |
@@ -42,6 +42,7 @@ env vars win). `.env.example` documents the minimum.
 | --- | --- | --- |
 | `RA_PROVIDER` | `ollama` | `ollama`, `groq`, or `openai` |
 | `RA_MODEL` | per provider | model name |
+| `RA_JUDGE_MODEL` | per provider | cheaper model for classification calls (support judging); empty = same as `RA_MODEL` |
 | `RA_BASE_URL` | per provider | server URL |
 | `RA_API_KEY` | – | key for hosted providers |
 | `GROQ_API_KEY` | – | used automatically when `RA_PROVIDER=groq` |
@@ -51,3 +52,15 @@ env vars win). `.env.example` documents the minimum.
 | `RA_NUM_CTX` | `8192` | Ollama context window |
 | `RA_CACHE_TTL` | `86400` | seconds a cached page/search stays fresh |
 | `RA_TIMEOUT` | `20` | per-request network timeout |
+
+## Tests
+
+```bash
+.\venv\Scripts\python.exe -m pytest tests -q
+```
+
+The suite is deterministic and offline: no API key, no network. The LLM is
+replaced by a scripted fake client wherever a model would otherwise be called.
+It covers quote location (exact / normalized / fragment / missing), dedupe,
+the citable gate, draft checks, citation renumbering, failure-to-verdict
+mapping, and the fail-closed path when a judge call errors.

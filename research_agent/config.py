@@ -9,7 +9,7 @@ different models in a loop.
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Literal
 
@@ -20,6 +20,14 @@ PROVIDER_DEFAULTS: dict[str, tuple[str, str]] = {
     "ollama": ("qwen3.5:4b", "http://localhost:11434"),
     "groq": ("openai/gpt-oss-120b", "https://api.groq.com/openai/v1"),
     "openai": ("gpt-4.1-mini", "https://api.openai.com/v1"),
+}
+
+# Cheap model for classification-style calls (support judging, conflict scan).
+# Empty = same as the main model.
+JUDGE_DEFAULTS: dict[str, str] = {
+    "groq": "openai/gpt-oss-20b",
+    "ollama": "",
+    "openai": "gpt-4.1-nano",
 }
 
 _ENV_FILE = Path(__file__).resolve().parents[1] / ".env"
@@ -85,6 +93,10 @@ class Settings:
     # Local reasoning models expose a "thinking" stream. Off by default:
     # thinking tokens are billed as output and we do not use them yet.
     think: bool = False
+    # Verification is a classification task, not a research task. A small model
+    # does it in <1s where the big one takes 15-40s, so route by job, not by
+    # "best model". Empty means "use `model`".
+    judge_model: str = ""
     # Ollama's default context is 4096 tokens, which a research agent blows
     # through in two steps. Bigger = more memory, slower prompt processing.
     num_ctx: int = 8192
@@ -100,6 +112,7 @@ class Settings:
         default_model, default_url = PROVIDER_DEFAULTS.get(
             provider, PROVIDER_DEFAULTS["ollama"]
         )
+        default_judge = JUDGE_DEFAULTS.get(provider, "")
         return cls(
             provider=provider,  # type: ignore[arg-type]
             model=_env_str("RA_MODEL", default_model),
@@ -108,6 +121,7 @@ class Settings:
             temperature=_env_float("RA_TEMPERATURE", 0.2),
             max_tokens=int(os.getenv("RA_MAX_TOKENS") or 0) or None,
             think=_env_bool("RA_THINK", False),
+            judge_model=_env_str("RA_JUDGE_MODEL", default_judge),
             num_ctx=int(os.getenv("RA_NUM_CTX") or 8192),
             cache_path=_env_str("RA_CACHE_PATH", "cache/agent.sqlite3"),
             cache_ttl_s=int(os.getenv("RA_CACHE_TTL") or 86_400),
@@ -129,6 +143,12 @@ class Settings:
         return PROVIDER_DEFAULTS.get(
             self.provider, PROVIDER_DEFAULTS["ollama"]
         )[1]
+
+    def judge_settings(self) -> "Settings":
+        """Settings for classification jobs: same provider, cheaper model."""
+        if not self.judge_model or self.judge_model == self.model:
+            return self
+        return replace(self, model=self.judge_model)
 
     def safe_summary(self) -> str:
         """Loggable config. Never print the key itself."""

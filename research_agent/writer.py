@@ -48,6 +48,10 @@ Hard rules:
 4. Do not state anything the evidence does not say. If the evidence is thin,
    one-sided or contradictory, say so under Limitations.
 5. No filler. No "in today's fast-paced world", no "in conclusion".
+6. Each record may be tagged [support, trust]. If support is "partial", hedge
+   the sentence ("at least one source reports..."). If trust is "aggregator",
+   prefer a "primary" source making the same point. Never cite a claim more
+   strongly than its quote allows.
 
 Length: 350-550 words. Output markdown in exactly this shape:
 
@@ -90,6 +94,7 @@ class Report:
     markdown: str
     body: str
     errors: list[Problem] = field(default_factory=list)
+    initial_errors: list[Problem] = field(default_factory=list)
     warnings: list[Problem] = field(default_factory=list)
     cited_ids: list[str] = field(default_factory=list)
     unused_ids: list[str] = field(default_factory=list)
@@ -113,8 +118,13 @@ def build_brief(items: Sequence[Evidence], *, max_chars: int = 9000) -> str:
     used = 0
     for item in items:
         quote = " ".join(item.quote.split())[:220]
+        tag = (
+            f" [{item.support}, {item.trust}]"
+            if item.support != "unchecked"
+            else ""
+        )
         block = (
-            f"[{item.id}] {item.claim}\n"
+            f"[{item.id}]{tag} {item.claim}\n"
             f'    quote: "{quote}"\n'
             f"    source: {domain(item.url)}"
         )
@@ -135,10 +145,15 @@ def extract_ids(text: str) -> list[str]:
 
 
 def _iter_blocks(body: str) -> list[tuple[str, str]]:
-    """(section, text) for every non-heading block, split on blank lines."""
+    """(section, text) for every prose block, split on blank lines.
+
+    Fenced code blocks are skipped: a code sample is not a factual claim and
+    demanding a citation for it just forces a useless repair turn.
+    """
     blocks: list[tuple[str, str]] = []
     section = ""
     buffer: list[str] = []
+    in_fence = False
 
     def flush() -> None:
         if buffer:
@@ -147,6 +162,12 @@ def _iter_blocks(body: str) -> list[tuple[str, str]]:
 
     for line in body.splitlines():
         stripped = line.strip()
+        if stripped.startswith("```"):
+            flush()
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
         if stripped.startswith("## "):
             flush()
             section = stripped[3:].strip()
@@ -341,8 +362,8 @@ class ReportWriter:
         self,
         *,
         question: str,
-        plan: Plan,
         store: EvidenceStore,
+        plan: Plan | None = None,
         gaps: Sequence[str] = (),
     ) -> Report:
         items = store.citable()
@@ -350,11 +371,24 @@ class ReportWriter:
             raise WriterError("no citable evidence: every record failed verification")
 
         allowed = {item.id for item in items}
-        outline = "\n".join(f"- {sq.question}" for sq in plan.sub_questions)
+        if plan is not None:
+            outline_lines = [f"- {sq.question}" for sq in plan.sub_questions]
+            restated = plan.restated
+        else:
+            # Stages are decoupled: a saved store has no plan attached, so derive
+            # the outline from the sub-questions that actually produced evidence.
+            seen: list[str] = []
+            for item in items:
+                for sub_question in item.sub_questions:
+                    if sub_question and sub_question not in seen:
+                        seen.append(sub_question)
+            outline_lines = [f"- {sub_question}" for sub_question in seen[:5]]
+            restated = question
+        outline = "\n".join(outline_lines) or "- (no outline recorded)"
         gap_text = "\n".join(f"- {gap}" for gap in gaps) or "- none recorded"
         user = (
             f"QUESTION: {question}\n\n"
-            f"RESTATED: {plan.restated}\n\n"
+            f"RESTATED: {restated}\n\n"
             f"SUB-QUESTIONS TO COVER:\n{outline}\n\n"
             f"GAPS FOUND DURING RESEARCH:\n{gap_text}\n\n"
             f"EVIDENCE (the only legal ids):\n{build_brief(items)}"
@@ -375,6 +409,7 @@ class ReportWriter:
         messages.append(response.message)
 
         problems = check_draft(body, allowed)
+        initial_errors = [p for p in problems if p.severity == "error"]
         repaired = False
 
         for _ in range(self.repair_attempts):
@@ -419,6 +454,7 @@ class ReportWriter:
             markdown=markdown,
             body=body,
             errors=[p for p in problems if p.severity == "error"],
+            initial_errors=initial_errors,
             warnings=warnings + [p for p in problems if p.severity == "warning"],
             cited_ids=cited,
             unused_ids=unused,

@@ -54,6 +54,9 @@ _EVIDENCE_FIELDS = {
     "span_start",
     "span_end",
     "match",
+    "support",
+    "support_reason",
+    "trust",
     "created_at",
 }
 
@@ -180,6 +183,11 @@ class Evidence:
     span_start: int | None = None
     span_end: int | None = None
     match: str = "missing"
+    # Filled in by step 9. "unchecked" exists so earlier stages can run alone;
+    # the full pipeline always judges before writing.
+    support: str = "unchecked"  # supported | partial | unsupported | contradicted
+    support_reason: str = ""
+    trust: str = "unknown"  # primary | community | aggregator | unknown
     created_at: float = field(default_factory=time.time)
 
     @property
@@ -336,11 +344,22 @@ class EvidenceStore:
     def citable(self) -> list[Evidence]:
         """Only evidence the writer is allowed to cite.
 
-        `outside_window` quotes are real sentences the agent never read, and
-        `missing` ones cannot be found at all. Both are stored for audit, neither
-        may reach the report.
+        Two independent gates:
+          * provenance — the quote must be in the text the agent read
+          * support    — the quote must not contradict or fail to back the claim
+
+        `unchecked` is allowed because stages can be run standalone; the full
+        pipeline always verifies before writing.
         """
-        return [item for item in self._items.values() if item.verified]
+        return [
+            item
+            for item in self._items.values()
+            if item.verified and item.support not in {
+                "unsupported",
+                "contradicted",
+                "unjudged",
+            }
+        ]
 
     def get(self, evidence_id: str) -> Evidence | None:
         for item in self._items.values():
@@ -397,8 +416,8 @@ class EvidenceStore:
 
     def to_markdown(self) -> str:
         lines = [
-            "| id | claim | source | verified | match | span |",
-            "| --- | --- | --- | --- | --- | --- |",
+            "| id | claim | source | verified | match | span | support | trust |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- |",
         ]
         for item in self._items.values():
             span = (
@@ -410,6 +429,7 @@ class EvidenceStore:
             url = item.url.replace("|", "/")
             lines.append(
                 f"| {item.id} | {claim} | {url} | "
-                f"{'yes' if item.verified else 'NO'} | {item.match} | {span} |"
+                f"{'yes' if item.verified else 'NO'} | {item.match} | {span} | "
+                f"{item.support} | {item.trust} |"
             )
         return "\n".join(lines)
