@@ -113,6 +113,15 @@ def test_stream_runs_start_to_done():
     assert report["stats"]["cited_passages"] == 1
 
 
+def test_run_logs_start_and_outcome(caplog):
+    with caplog.at_level("INFO", logger="web.events"):
+        asyncio.run(collect(FakePipeline()))
+
+    messages = [record.getMessage() for record in caplog.records]
+    assert any("run start" in message for message in messages)
+    assert any("run report" in message for message in messages)
+
+
 def test_result_with_error_sends_error_and_done():
     failed = PipelineResult(question="What is the GIL?", error="planner exploded")
     events = parse(asyncio.run(collect(FakePipeline(failed))))

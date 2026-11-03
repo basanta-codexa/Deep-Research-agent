@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import time
 from typing import Any, AsyncIterator
 
@@ -35,6 +36,7 @@ from research_agent.tracing import Span, Tracer
 from .payload import build_payload
 
 DEFAULT_TIMEOUT_S = 360.0
+log = logging.getLogger("web.events")
 
 
 def sse(payload: dict[str, Any]) -> str:
@@ -78,6 +80,7 @@ async def stream_run(
 
     tracer = Tracer(question[:120], listeners=[listener])
     started = time.perf_counter()
+    log.info("run start trace=%s question=%r", tracer.trace_id, question)
 
     async def execute() -> None:
         try:
@@ -148,6 +151,12 @@ async def stream_run(
                 pass
 
     if timed_out:
+        log.warning(
+            "run timeout trace=%s elapsed=%.0fs spans=%d",
+            tracer.trace_id,
+            time.perf_counter() - started,
+            len(tracer.spans),
+        )
         yield sse(
             {
                 "type": "error",
@@ -162,6 +171,13 @@ async def stream_run(
     if result is None or result.report is None:
         message = (
             result.error if result is not None and result.error else "no report produced"
+        )
+        log.warning(
+            "run failed trace=%s elapsed=%.0fs error=%s stage_errors=%s",
+            tracer.trace_id,
+            time.perf_counter() - started,
+            message,
+            result.stage_errors if result is not None else {},
         )
         yield sse(
             {
@@ -183,5 +199,12 @@ async def stream_run(
         yield sse({"type": "done", "ok": False})
         return
 
+    log.info(
+        "run report trace=%s elapsed=%.1fs spans=%d sources=%d",
+        tracer.trace_id,
+        time.perf_counter() - started,
+        len(tracer.spans),
+        len(payload.get("sources", [])),
+    )
     yield sse({"type": "report", "data": payload})
     yield sse({"type": "done", "ok": True})

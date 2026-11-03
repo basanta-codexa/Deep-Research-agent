@@ -47,6 +47,12 @@ def test_index_and_config():
         assert config["max_seconds"] > 0
 
 
+def test_timeout_is_configurable(monkeypatch):
+    monkeypatch.setenv("RA_WEB_TIMEOUT", "900")
+    with TestClient(create_app(FakePipeline())) as client:
+        assert client.get("/api/config").json()["max_seconds"] == 900.0
+
+
 def test_question_validation():
     with TestClient(create_app(FakePipeline())) as client:
         too_short = client.post("/api/research", json={"question": "hi"})

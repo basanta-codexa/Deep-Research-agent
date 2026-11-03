@@ -79,6 +79,12 @@ How it is wired:
 * `create_app(pipeline=...)` accepts a fake pipeline, so the UI's tests run
   offline with no API key.
 
+A run is hard-stopped at `RA_WEB_TIMEOUT` seconds (default 360). The timeout
+cancels the runner and returns the partial trace, so a slow model produces a
+diagnosable error instead of a hung page. If the server itself is restarted
+mid-run, the page says the connection closed and shows how many events arrived
+and which one was last — it does not claim the run produced no report.
+
 ## Config
 
 All via environment variables (prefix `RA_`) or a local `.env` (gitignored; real
@@ -98,6 +104,7 @@ env vars win). `.env.example` documents the minimum.
 | `RA_NUM_CTX` | `8192` | Ollama context window |
 | `RA_CACHE_TTL` | `86400` | seconds a cached page/search stays fresh |
 | `RA_TIMEOUT` | `20` | per-request network timeout |
+| `RA_WEB_TIMEOUT` | `360` | wall-clock budget for one web-UI run, in seconds |
 | `RA_PRICE_INPUT` | – | USD per 1M prompt tokens; overrides the built-in price table |
 | `RA_PRICE_OUTPUT` | – | USD per 1M completion tokens; must be set with the input price |
 

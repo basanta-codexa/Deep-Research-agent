@@ -20,6 +20,7 @@ Design notes
 from __future__ import annotations
 
 import asyncio
+import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
@@ -29,7 +30,7 @@ from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from research_agent.config import Settings
+from research_agent.config import Settings, load_dotenv
 from research_agent.llm import create_client
 from research_agent.pipeline import PipelineConfig, ResearchPipeline
 from research_agent.tools.web import make_subagent_tools
@@ -37,6 +38,18 @@ from research_agent.tools.web import make_subagent_tools
 from .events import DEFAULT_TIMEOUT_S, stream_run
 
 STATIC_DIR = Path(__file__).parent / "static"
+
+
+def _env_timeout() -> float:
+    """Wall-clock budget for one run. 6 min by default; RA_WEB_TIMEOUT overrides."""
+    load_dotenv()
+    raw = os.getenv("RA_WEB_TIMEOUT")
+    if not raw:
+        return DEFAULT_TIMEOUT_S
+    try:
+        return max(30.0, float(raw))
+    except ValueError as exc:
+        raise ValueError(f"RA_WEB_TIMEOUT must be a number, got {raw!r}") from exc
 
 
 def build_pipeline(
@@ -57,9 +70,10 @@ class ResearchRequest(BaseModel):
 def create_app(
     pipeline: ResearchPipeline | None = None,
     *,
-    timeout: float = DEFAULT_TIMEOUT_S,
+    timeout: float | None = None,
 ) -> FastAPI:
     owned = pipeline is None
+    timeout = _env_timeout() if timeout is None else timeout
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
@@ -149,6 +163,14 @@ app = create_app()
 
 
 if __name__ == "__main__":
+    import logging
+
     import uvicorn
 
+    # Without this, our INFO lines go to the root logger's last-resort handler
+    # and disappear. Warnings/tracebacks (timeouts, failed runs) still surface.
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(levelname)s %(name)s: %(message)s",
+    )
     uvicorn.run("web.server:app", host="127.0.0.1", port=8000, reload=False)

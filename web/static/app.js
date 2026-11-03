@@ -26,6 +26,9 @@ const state = {
   refs: [],
   controller: null,
   finished: false,
+  errored: false,
+  events: 0,
+  lastEvent: "",
 };
 
 const els = {
@@ -36,6 +39,7 @@ const els = {
   go: $("#go"),
   newRun: $("#new-run"),
   examples: $("#examples"),
+  fineprint: $("#fineprint"),
   runQuestion: $("#run-question"),
   statTime: $("#stat-time"),
   statCalls: $("#stat-calls"),
@@ -76,6 +80,12 @@ async function boot() {
     const model = shortModel(config.model);
     els.modelPill.textContent = `${config.provider || "model"} · ${model}`;
     els.modelPill.title = `research: ${config.model}\njudge: ${config.judge_model}`;
+    if (config.max_seconds) {
+      const minutes = Math.round(config.max_seconds / 60);
+      els.fineprint.textContent =
+        "One run takes 1–3 minutes on a free-tier model. The trace is live; " +
+        `a run is hard-stopped at ${minutes} minute${minutes === 1 ? "" : "s"}.`;
+    }
   } catch {
     els.modelPill.textContent = "offline";
   }
@@ -154,7 +164,16 @@ async function startRun(question) {
     if (!response.body) throw new Error("streaming is not supported by this browser");
 
     await consume(response.body);
-    if (!state.finished) showError("The stream ended before a report arrived.");
+    if (!state.finished) {
+      // The server closed without a `done` frame at all. That is different
+      // from a run that failed (which sends error + done); usually the server
+      // was restarted or crashed mid-run.
+      showError(
+        `The connection closed after ${elapsed(state.startedAt)} without a final ` +
+          `event (${state.events} events, last: ${state.lastEvent || "none"}). ` +
+          "Check the server terminal for a traceback.",
+      );
+    }
   } catch (error) {
     if (error.name !== "AbortError") showError(error.message || String(error));
   } finally {
@@ -209,10 +228,24 @@ function dispatch(frame) {
     return;
   }
 
-  if (event === "span") handleSpan(payload);
-  else if (event === "report") renderReport(payload.data);
-  else if (event === "error") showError(payload.message || "The run failed.", payload);
-  else if (event === "done") state.finished = Boolean(payload.ok);
+  state.events += 1;
+  if (event === "span") {
+    state.lastEvent = `${payload.kind} ${payload.name || ""}`.trim();
+    handleSpan(payload);
+  } else if (event === "report") {
+    state.lastEvent = "report";
+    renderReport(payload.data);
+  } else if (event === "error") {
+    state.lastEvent = "error";
+    showError(payload.message || "The run failed.", payload);
+  } else if (event === "done") {
+    // A `done` frame is terminal even when ok is false. Overwriting this with
+    // `false` used to make the generic "stream ended" message replace the
+    // real server error.
+    state.finished = true;
+    state.lastEvent = "done";
+    if (!payload.ok && !state.errored) showError("The run failed without details.");
+  }
 }
 
 /* ------------------------------------------------------------------ */
@@ -634,6 +667,7 @@ function setRail(stage, status) {
 }
 
 function showError(message, payload = {}) {
+  state.errored = true;
   els.error.hidden = false;
   let text = message;
   if (payload.stage_errors && Object.keys(payload.stage_errors).length) {
@@ -655,6 +689,9 @@ function reset() {
   if (state.controller) state.controller.abort();
   state.controller = null;
   state.finished = false;
+  state.errored = false;
+  state.events = 0;
+  state.lastEvent = "";
   state.currentStage = null;
   state.spans.clear();
   state.subagents = 0;
