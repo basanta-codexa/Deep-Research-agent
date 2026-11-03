@@ -21,7 +21,8 @@ distribution, and a distribution is what a regression test can compare against.
 | `keyword_recall` | expected terms present ÷ expected terms | correctness: term present ≠ claim true |
 | `misconception_rate` | questions whose report contains a known-wrong phrase | crude negation handling; phrase lists are incomplete |
 | `repair_rate` | runs where the writer needed a constraint-driven rewrite | quality: a repair can still be a good report |
-| `mean_tokens`, `mean_seconds` | cost and latency per question | price, on a free tier |
+| `mean_tokens`, `mean_seconds` | token spend and latency per question | where the tokens went (see the trace) |
+| `mean_cost_usd` | dollars per question from `research_agent/pricing.py` | what you *paid* — a free tier is genuinely `$0` |
 
 Two consequences of that table:
 
@@ -79,7 +80,15 @@ evals/runs/<run>/
     report.md
     evidence.json       # every claim, quote, span, verdict, trust tier
     plan.json
+    trace.json          # span tree: stages, sub-agents, LLM calls, tools
+    trace.html          # self-contained waterfall; open it in a browser
 ```
+
+`trace.json` is the data and `trace.html` is a rendering of it. The HTML is the
+fast way to answer "why did this question take 90 seconds": the waterfall shows
+which sub-agent was still running while the others finished, and the token table
+shows which stage actually spent the budget. Cost comes from the price table;
+a model that is not in it is reported as *unpriced* (`n/a`), never as `$0`.
 
 Each question is written as soon as it finishes, so an interrupted run keeps its
 work. `--timeout` (default 300s) turns a hung provider call into a failed row

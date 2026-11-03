@@ -21,6 +21,7 @@ from typing import Callable, Literal, Sequence
 
 from .llm import LLMClient, Message, ToolCall, Usage
 from .tools.registry import Tool, ToolRegistry
+from .tracing import span
 
 StopReason = Literal["final_answer", "max_steps", "loop_detected"]
 
@@ -208,8 +209,18 @@ class Agent:
     async def _execute(self, call: ToolCall) -> str:
         """Delegate to the registry: validate, run, and convert every failure
         into readable text. A tool error is information, not a crash."""
-        output = await self.registry.execute(call.name, call.arguments)
-        return self._truncate(output)
+        with span(
+            call.name,
+            kind="tool",
+            args=json.dumps(call.arguments, ensure_ascii=False)[:200],
+        ) as item:
+            output = await self.registry.execute(call.name, call.arguments)
+            if item is not None:
+                item.attributes["output_chars"] = len(output)
+                if output.startswith("ERROR:"):
+                    item.status = "error"
+                    item.error = output[:200]
+            return self._truncate(output)
 
     def _truncate(self, text: str) -> str:
         """Tool output is context budget. A 50KB page must not eat the window."""

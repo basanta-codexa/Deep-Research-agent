@@ -39,6 +39,7 @@ from .llm import LLMClient, Message, Usage
 from .planning import SubQuestion
 from .structured import complete_json
 from .tools.registry import Tool
+from .tracing import span
 
 _SOURCE_RE = re.compile(r"^URL: (\S+)", re.MULTILINE)
 _TITLE_RE = re.compile(r"^TITLE: (.+)$", re.MULTILINE)
@@ -330,13 +331,27 @@ class ResearchOrchestrator:
 
         async def one(index: int, sub_question: SubQuestion) -> None:
             async with semaphore:
-                result = await SubAgent(
-                    self.client,
-                    self.tools,
-                    max_steps=self.max_steps,
-                    max_tokens=self.max_tokens,
-                    text_budget=self.text_budget,
-                ).run(sub_question)
+                # The span is what makes a parallel batch legible: four bars,
+                # each with its own calls, instead of one opaque "research".
+                with span(
+                    sub_question.question[:70],
+                    kind="subagent",
+                    query=sub_question.search_query[:120],
+                ) as item:
+                    result = await SubAgent(
+                        self.client,
+                        self.tools,
+                        max_steps=self.max_steps,
+                        max_tokens=self.max_tokens,
+                        text_budget=self.text_budget,
+                    ).run(sub_question)
+                    if item is not None:
+                        item.attributes["findings"] = len(result.findings)
+                        item.attributes["sources"] = len(result.sources)
+                        item.attributes["steps"] = result.steps
+                        if result.error:
+                            item.status = "error"
+                            item.error = result.error[:200]
             results[index] = result
             if on_result is not None:
                 on_result(result)

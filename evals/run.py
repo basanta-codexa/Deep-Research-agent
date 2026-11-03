@@ -109,10 +109,16 @@ def print_record(index: int, total: int, record: RunRecord) -> None:
     rate = f"{good}/{judged}" if judged else "-"
     keywords = f"{len(record.keyword_hits)}/{len(record.keyword_hits) + len(record.keyword_misses)}"
     status = "ok  " if record.ok else "FAIL"
+    cost = (
+        "cost n/a"
+        if record.unpriced_models or record.cost_usd is None
+        else f"${record.cost_usd:.4f}"
+    )
     print(
         f"[{index:>2}/{total}] {record.item_id:<32} {status} "
         f"support {rate:<5} cite {record.citations:<2} "
-        f"kw {keywords:<4} {record.tokens_total:>6,} tok {record.duration_s:>6.1f}s",
+        f"kw {keywords:<4} {record.tokens_total:>6,} tok {cost:>9} "
+        f"{record.duration_s:>6.1f}s",
         flush=True,
     )
     if not record.ok and record.error:
@@ -184,6 +190,7 @@ async def run(args: argparse.Namespace) -> int:
     print("\n" + to_markdown(summary, title="Summary"))
     print(f"\nwall clock: {elapsed:.1f}s")
     print(f"artifacts:  {out_dir}")
+    print(f"traces:     {out_dir}\\<question-id>\\trace.html")
     return 0 if summary["success_rate"] > 0 else 1
 
 

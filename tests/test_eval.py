@@ -21,6 +21,7 @@ from evals.metrics import (
 from research_agent.evidence import EvidenceStore
 from research_agent.llm import Usage
 from research_agent.pipeline import PipelineResult
+from research_agent.tracing import Tracer
 
 # --------------------------------------------------------------------------- #
 # dataset
@@ -144,6 +145,9 @@ def test_record_from_result_survives_a_failed_stage():
 
 
 class SlowPipeline:
+    def __init__(self) -> None:
+        self.last_trace = Tracer("slow")
+
     async def run(self, question, *, on_stage=None):
         await asyncio.sleep(10)
         raise AssertionError("run_item should have timed out first")
@@ -156,11 +160,24 @@ def test_run_item_turns_a_hang_into_a_row():
     assert record.ok is False
     assert record.error is not None and "timeout" in record.error
     assert result.stage_errors["pipeline"].startswith("timeout")
+    # The partial trace survives cancellation and can be inspected.
+    assert result.trace is not None
 
 
 # --------------------------------------------------------------------------- #
 # artifacts
 # --------------------------------------------------------------------------- #
+def test_write_item_writes_the_trace(tmp_path):
+    result = PipelineResult(question="q", trace=Tracer("q"))
+    item = make_item()
+
+    write_item(tmp_path, item, result)
+
+    folder = tmp_path / item.id
+    assert (folder / "trace.json").exists()
+    assert (folder / "trace.html").exists()
+
+
 def test_write_item_keeps_the_report_even_if_the_run_dies_later(tmp_path):
     result = PipelineResult(question="q")
     result.report = SimpleNamespace(markdown="# Report\n\nbody [1]")
@@ -225,6 +242,27 @@ def test_citation_precision_penalises_bad_citations():
 
 def test_citation_coverage_is_cited_over_citable():
     assert citation_coverage(make_record()) == pytest.approx(0.5)
+
+
+def test_cost_total_is_na_if_any_record_was_not_priced():
+    priced = make_record(cost_usd=0.0)
+    unknown = make_record(item_id="t-2", cost_usd=None)
+
+    summary = summarize([priced])
+    assert summary["total_cost_usd"] == 0.0
+    assert summary["mean_cost_usd"] == 0.0
+
+    summary = summarize([priced, unknown])
+    assert summary["total_cost_usd"] is None
+    assert summary["mean_cost_usd"] is None
+
+
+def test_an_unpriced_model_makes_the_total_unknown():
+    summary = summarize(
+        [make_record(cost_usd=0.0, unpriced_models=["mystery-model"])]
+    )
+    assert summary["total_cost_usd"] is None
+    assert summary["unpriced_models"] == ["mystery-model"]
     assert citation_coverage(make_record(evidence_citable=0)) == 0.0
 
 

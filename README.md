@@ -18,8 +18,8 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 8 | Report writer (citation-closed prose) | done |
 | 9 | Claim verifier (support + contradiction scan + trust tiers) | done |
 | 10 | Eval harness (30-question set, metrics, artifacts) | done |
-| 11 | Tracing + cost | next |
-| 12 | Ablations | |
+| 11 | Tracing + cost (spans, waterfall, token attribution) | done |
+| 12 | Ablations | next |
 | 13 | Packaging + CI | |
 | 14 | README with real numbers | |
 
@@ -52,6 +52,8 @@ env vars win). `.env.example` documents the minimum.
 | `RA_NUM_CTX` | `8192` | Ollama context window |
 | `RA_CACHE_TTL` | `86400` | seconds a cached page/search stays fresh |
 | `RA_TIMEOUT` | `20` | per-request network timeout |
+| `RA_PRICE_INPUT` | – | USD per 1M prompt tokens; overrides the built-in price table |
+| `RA_PRICE_OUTPUT` | – | USD per 1M completion tokens; must be set with the input price |
 
 ## Evals
 
@@ -79,7 +81,7 @@ can gate CI once step 13 wires it up.
 | citation coverage | 90% of citable evidence used |
 | keyword recall | 90% (one report never used the term `Retry-After`) |
 | misconception hits | 0 |
-| cost | 22,419 tokens and 126 s per question (224,190 total, 21 minutes) |
+| budget | 22,419 tokens and 126 s per question (224,190 total, 21 minutes) |
 
 The tenth report is why the eval exists. It typeset citations with full-width
 brackets (`【ev_…】`); the ASCII extractor saw no ids, so it published with zero
@@ -103,7 +105,46 @@ Rates are macro (per question, then averaged), so one long run cannot hide ten
 short failures. Citation precision is the exception — micro-averaged, because a
 report that cited nothing has no precision; that failure shows up in success
 rate instead. Every run writes `summary.json` and `summary.md`, plus
-`report.md`, `evidence.json` and `plan.json` per question under `evals/runs/`.
+`report.md`, `evidence.json`, `plan.json`, `trace.json` and `trace.html` per
+question under `evals/runs/`.
+
+## Tracing & cost
+
+A report says what the agent concluded. A trace says how it got there. Every run
+builds a span tree — `pipeline → plan/research/verify/write → sub-agent → LLM
+call or tool` — and writes it twice:
+
+- `trace.json` — the data (one object per span, parent ids, start/duration,
+  status, attributes, token usage, cost). Queryable and diffable.
+- `trace.html` — a self-contained waterfall (no server, no CDN, no build step)
+  with per-stage token tables, per-model cost, the critical path and the slowest
+  calls. Double-click it.
+
+Open a trace directly:
+
+```python
+from research_agent.pipeline import ResearchPipeline
+
+result = await pipeline.run(question)
+if result.trace is not None:
+    result.trace.save_html("trace.html")
+```
+
+Attribution rules that keep the numbers honest:
+
+- **Tokens are counted once.** Only LLM spans carry usage; stage totals roll up
+  their nearest stage. Summing every span would double-count each call.
+- **Unknown is not free.** A model missing from `research_agent/pricing.py`
+  makes the cost `n/a` and names the model — it never quietly becomes `$0.00`.
+  The Groq and Ollama entries are genuinely `0.0` (free tier / local), which is
+  a different statement from "we don't know".
+- **The critical path is a chain, not a call.** With parallel sub-agents, the
+  long pole is root → the child that ends last → its slowest child. That is what
+  to optimise; the slowest single call may be sitting off the critical path.
+
+Prices are what *this deployment* pays, not vendor list prices; override them
+with `RA_PRICE_INPUT` / `RA_PRICE_OUTPUT` (USD per 1M tokens) when you move to a
+paid tier.
 
 ## Tests
 
@@ -117,4 +158,6 @@ It covers quote location (exact / normalized / fragment / missing), dedupe,
 the citable gate, draft checks (including full-width brackets and a draft with
 no citations), citation renumbering, failure-to-verdict mapping, the fail-closed
 path when a judge call errors, the JSON-mode fallback ladder, metric arithmetic,
-the regression gate, and per-question timeouts in the eval harness.
+the regression gate, per-question timeouts in the eval harness, span nesting
+(including concurrent tasks), token attribution without double counting, the
+critical path, pricing/override math, and HTML escaping of model output.

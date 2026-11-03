@@ -6,6 +6,7 @@ from research_agent.pipeline import PipelineConfig, ResearchPipeline
 
 
 class BoomClient:
+    name = "boom"
     model = "boom"
 
     async def chat(self, *args, **kwargs):
@@ -29,3 +30,18 @@ def test_failed_run_still_reports_the_question():
     pipeline = ResearchPipeline(BoomClient(), tools=[])
     result = asyncio.run(pipeline.run("Another question"))
     assert result.question == "Another question"
+
+
+def test_a_failed_run_still_produces_a_trace():
+    pipeline = ResearchPipeline(BoomClient(), tools=[])
+    result = asyncio.run(pipeline.run("Trace the failure"))
+
+    assert result.trace is not None
+    spans = {item.name: item for item in result.trace.spans}
+    assert spans["pipeline"].kind == "pipeline"
+    assert spans["plan"].status == "error"
+    assert (spans["plan"].error or "").startswith("RuntimeError")
+    # The failed model call is still a span, and still an error.
+    summary = result.trace.summary()
+    assert summary["llm_calls"] >= 1
+    assert summary["errors"] >= 1

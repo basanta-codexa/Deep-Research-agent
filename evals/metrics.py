@@ -50,6 +50,9 @@ class RunRecord:
     tokens_prompt: int = 0
     tokens_completion: int = 0
     tokens_total: int = 0
+    # None means "not measured"; a free tier is 0.0. Do not conflate the two.
+    cost_usd: float | None = None
+    unpriced_models: list[str] = field(default_factory=list)
     timings: dict[str, float] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
@@ -152,6 +155,19 @@ def _precision(records: list[RunRecord]) -> float | None:
 def summarize(records: list[RunRecord]) -> dict:
     tokens = [float(record.tokens_total) for record in records]
     seconds = [record.duration_s for record in records]
+    # A cost total is only a number if every record has a known price. One
+    # unpriced model or one unmeasured record makes it "n/a", never a cheap lie.
+    unpriced = sorted(
+        {model for record in records for model in record.unpriced_models}
+    )
+    costs = [record.cost_usd for record in records]
+    if unpriced or any(cost is None for cost in costs):
+        total_cost = None
+        mean_cost = None
+    else:
+        known = [cost for cost in costs if cost is not None]
+        total_cost = round(sum(known), 6)
+        mean_cost = _mean(known)
     summary = {
         "n": len(records),
         "success_rate": _rate(records, successful),
@@ -176,6 +192,9 @@ def summarize(records: list[RunRecord]) -> dict:
         "mean_seconds": _mean(seconds),
         "total_tokens": int(sum(tokens)),
         "total_seconds": round(sum(seconds), 1),
+        "total_cost_usd": total_cost,
+        "mean_cost_usd": mean_cost,
+        "unpriced_models": unpriced,
         "unsupported_citations": sum(r.unsupported_citations for r in records),
         "contradictions": sum(r.contradictions for r in records),
         "verdicts": {
@@ -271,6 +290,7 @@ SUMMARY_METRICS = (
     ("mean_words", "words / report", "num"),
     ("mean_tokens", "tokens / question", "num"),
     ("mean_seconds", "seconds / question", "num"),
+    ("mean_cost_usd", "cost / question", "money"),
 )
 
 
@@ -291,8 +311,23 @@ def to_markdown(summary: dict, title: str = "Eval summary") -> str:
         if value is None:
             lines.append(f"| {label} | n/a |")
             continue
-        rendered = f"{value:.1%}" if kind == "pct" else f"{value:.1f}"
+        if kind == "pct":
+            rendered = f"{value:.1%}"
+        elif kind == "money":
+            rendered = f"${value:.4f}"
+        else:
+            rendered = f"{value:.1f}"
         lines.append(f"| {label} | {rendered} |")
+
+    unpriced = summary.get("unpriced_models") or []
+    if unpriced:
+        lines.append("")
+        lines.append(
+            "cost excludes unpriced models: " + ", ".join(f"`{m}`" for m in unpriced)
+        )
+    elif summary.get("mean_cost_usd") is None:
+        lines.append("")
+        lines.append("cost was not measured in this run (no pricing at the time)")
     lines.append("")
     verdicts = summary.get("verdicts", {})
     if verdicts:

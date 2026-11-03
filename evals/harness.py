@@ -66,6 +66,14 @@ def record_from_result(
     verified = store.verified_items
     citable = store.citable()
     report = result.report
+    trace = result.trace.summary() if result.trace is not None else {}
+    trace_tokens = trace.get("tokens") or {}
+    # The trace sees every call, including the ones a cancelled run never got to
+    # add to `result.usage`; prefer it when it exists.
+    prompt_tokens = trace_tokens.get("prompt", result.usage.prompt_tokens)
+    completion_tokens = trace_tokens.get("completion", result.usage.completion_tokens)
+    total_tokens = trace_tokens.get("total", result.usage.total_tokens)
+    cost = trace.get("cost_usd")
 
     support: dict[str, int] = {}
     for evidence in verified:
@@ -117,9 +125,11 @@ def record_from_result(
         keyword_hits=hits,
         keyword_misses=misses,
         misconception_hits=misconceptions,
-        tokens_prompt=result.usage.prompt_tokens,
-        tokens_completion=result.usage.completion_tokens,
-        tokens_total=result.usage.total_tokens,
+        tokens_prompt=prompt_tokens,
+        tokens_completion=completion_tokens,
+        tokens_total=total_tokens,
+        cost_usd=float(cost) if cost is not None else None,
+        unpriced_models=list(trace.get("unpriced_models", [])),
         timings={key: round(value, 2) for key, value in result.timings.items()},
     )
 
@@ -141,10 +151,12 @@ async def run_item(
             result = await pipeline.run(item.question, on_stage=on_stage)
     except asyncio.TimeoutError:
         # A hung provider call must become a row in the table, not a hung run.
+        # Keep the partial trace: it is the only record of where the time went.
         result = PipelineResult(
             question=item.question,
             error=f"timeout after {timeout:.0f}s",
             stage_errors={"pipeline": f"timeout after {timeout:.0f}s"},
+            trace=pipeline.last_trace,
         )
     return record_from_result(item, result, time.perf_counter() - started), result
 
@@ -161,6 +173,9 @@ def write_item(directory: Path, item: EvalItem, result: PipelineResult) -> None:
         (folder / "plan.json").write_text(
             result.plan.model_dump_json(indent=2), encoding="utf-8"
         )
+    if result.trace is not None:
+        result.trace.save(folder / "trace.json")
+        result.trace.save_html(folder / "trace.html")
 
 
 def write_artifacts(
