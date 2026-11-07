@@ -1,12 +1,23 @@
 from __future__ import annotations
 
 import asyncio
+import json
 from types import SimpleNamespace
 
 import pytest
 
+import evals.run as eval_run
 from evals.dataset import DEFAULT_PATH, EvalItem, category_counts, load_dataset
-from evals.harness import mentions, record_from_result, run_item, write_artifacts, write_item
+from evals.harness import (
+    load_record,
+    mentions,
+    record_from_result,
+    run_item,
+    write_artifacts,
+    write_item,
+    write_record,
+)
+from evals.run import reusable_record
 from evals.metrics import (
     RunRecord,
     citation_coverage,
@@ -127,6 +138,7 @@ def test_record_from_result_counts_support_and_unsupported_citations():
     assert record.ok is True
     assert record.support == {"supported": 1, "unsupported": 1}
     assert record.citations == 2
+    assert record.cited_ids == [good.id, bad.id]
     assert record.unsupported_citations == 1
     assert record.keyword_hits == ["return_exceptions"]
     assert record.keyword_misses == []
@@ -184,6 +196,128 @@ def test_write_item_keeps_the_report_even_if_the_run_dies_later(tmp_path):
     write_item(tmp_path, make_item(), result)
     report = tmp_path / "t-1" / "report.md"
     assert report.read_text(encoding="utf-8").startswith("# Report")
+
+
+def test_write_item_writes_a_resumable_record(tmp_path):
+    item = make_item()
+    record = make_record(item_id=item.id, question=item.question, cited_ids=["ev_1"])
+    write_item(tmp_path, item, PipelineResult(question=item.question), record)
+
+    payload = json.loads(
+        (tmp_path / item.id / "record.json").read_text(encoding="utf-8")
+    )
+    assert payload["item_id"] == item.id
+    assert payload["cited_ids"] == ["ev_1"]
+    assert load_record(tmp_path, item.id) == record
+
+
+def test_load_record_returns_none_for_a_question_that_never_finished(tmp_path):
+    assert load_record(tmp_path, "t-1") is None
+
+
+def test_load_record_rejects_a_corrupt_file(tmp_path):
+    folder = tmp_path / "t-1"
+    folder.mkdir()
+    (folder / "record.json").write_text("{", encoding="utf-8")
+
+    with pytest.raises(ValueError, match="corrupt"):
+        load_record(tmp_path, "t-1")
+
+
+def test_reusable_record_keeps_success_and_reruns_failure(tmp_path):
+    item = make_item()
+    ok = make_record(item_id=item.id, question=item.question)
+    write_record(tmp_path / item.id, ok)
+    assert reusable_record(tmp_path, item) == ok
+
+    failed = make_record(
+        item_id=item.id, question=item.question, ok=False, report_ok=False
+    )
+    write_record(tmp_path / item.id, failed)
+    assert reusable_record(tmp_path, item) is None
+    assert reusable_record(tmp_path, item, keep_failures=True) == failed
+
+
+def test_reusable_record_ignores_an_answer_to_a_changed_question(tmp_path):
+    item = make_item()
+    stale = make_record(item_id=item.id, question="An older wording?")
+    write_record(tmp_path / item.id, stale)
+
+    assert reusable_record(tmp_path, item) is None
+
+
+class FakeClient:
+    async def aclose(self):
+        pass
+
+
+class FakePipeline:
+    def __init__(self) -> None:
+        self.calls = 0
+        self.client = FakeClient()
+        self.judge_client = self.client
+        self.last_trace = Tracer("fake")
+
+    async def run(self, question, *, on_stage=None):
+        self.calls += 1
+        store = EvidenceStore()
+        url = "https://example.com/fact"
+        store.register_source(url, "A fact that supports the claim.")
+        evidence = store.add("the claim", "A fact that supports the claim.", url)
+        assert evidence is not None
+        evidence.support = "supported"
+
+        result = PipelineResult(question=question, store=store, trace=self.last_trace)
+        result.report = SimpleNamespace(
+            markdown="# Report\n\nA fact [1].",
+            body="A fact that supports the claim.",
+            cited_ids=[evidence.id],
+            unused_ids=[],
+            word_count=4,
+            ok=True,
+            repaired=False,
+            errors=[],
+        )
+        return result
+
+
+def test_run_resume_skips_finished_questions(tmp_path, monkeypatch):
+    item = make_item()
+    dataset = tmp_path / "dataset.jsonl"
+    dataset.write_text(item.model_dump_json() + "\n", encoding="utf-8")
+    out = tmp_path / "run"
+    made: list[FakePipeline] = []
+
+    def make_fake(settings, args):
+        made.append(FakePipeline())
+        return made[-1]
+
+    monkeypatch.setattr(eval_run, "make_pipeline", make_fake)
+
+    first = eval_run.parse_args(
+        ["--dataset", str(dataset), "--id", item.id, "--out", str(out)]
+    )
+    assert asyncio.run(eval_run.run(first)) == 0
+    assert made[0].calls == 1
+    assert (out / item.id / "record.json").exists()
+
+    second = eval_run.parse_args(
+        [
+            "--dataset",
+            str(dataset),
+            "--id",
+            item.id,
+            "--out",
+            str(out),
+            "--resume",
+        ]
+    )
+    assert asyncio.run(eval_run.run(second)) == 0
+    assert made[1].calls == 0
+
+    payload = json.loads((out / "summary.json").read_text(encoding="utf-8"))
+    assert payload["summary"]["resumed"] == 1
+    assert payload["records"][0]["item_id"] == item.id
 
 
 def test_write_artifacts_serialises_summary_records_and_dataset(tmp_path):

@@ -117,6 +117,7 @@ def record_from_result(
             else 0
         ),
         citations=len(cited_ids),
+        cited_ids=cited_ids,
         unsupported_citations=unsupported,
         words=report.word_count if report else 0,
         report_ok=bool(report and report.ok),
@@ -161,7 +162,45 @@ async def run_item(
     return record_from_result(item, result, time.perf_counter() - started), result
 
 
-def write_item(directory: Path, item: EvalItem, result: PipelineResult) -> None:
+def _write_json(path: Path, payload: dict) -> None:
+    """Write JSON atomically so a crash cannot leave a half-written record."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(path.name + ".tmp")
+    temporary.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    temporary.replace(path)
+
+
+def write_record(folder: Path, record: RunRecord) -> Path:
+    path = Path(folder) / "record.json"
+    _write_json(path, record.to_dict())
+    return path
+
+
+def load_record(directory: Path, item_id: str) -> RunRecord | None:
+    """Load one completed record, or None when the question never finished."""
+    path = Path(directory) / item_id / "record.json"
+    if not path.exists():
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        record = RunRecord.from_dict(payload)
+    except (OSError, TypeError, ValueError) as exc:
+        raise ValueError(f"corrupt eval record {path}: {exc}") from exc
+    if record.item_id != item_id:
+        raise ValueError(
+            f"eval record {path} belongs to {record.item_id!r}, not {item_id!r}"
+        )
+    return record
+
+
+def write_item(
+    directory: Path,
+    item: EvalItem,
+    result: PipelineResult,
+    record: RunRecord | None = None,
+) -> None:
     """Persist one question immediately, so an interrupted run keeps its work."""
     folder = directory / item.id
     folder.mkdir(parents=True, exist_ok=True)
@@ -176,6 +215,8 @@ def write_item(directory: Path, item: EvalItem, result: PipelineResult) -> None:
     if result.trace is not None:
         result.trace.save(folder / "trace.json")
         result.trace.save_html(folder / "trace.html")
+    if record is not None:
+        write_record(folder, record)
 
 
 def write_artifacts(
@@ -199,7 +240,8 @@ def write_artifacts(
         encoding="utf-8",
     )
 
+    records_by_id = {record.item_id: record for record in records}
     for item in items:
         result = results.get(item.id)
         if result is not None:
-            write_item(directory, item, result)
+            write_item(directory, item, result, records_by_id.get(item.id))

@@ -26,7 +26,7 @@ from research_agent.pipeline import PipelineConfig, PipelineResult, ResearchPipe
 from research_agent.tools.web import make_subagent_tools
 
 from .dataset import EvalItem, category_counts, load_dataset
-from .harness import run_item, write_artifacts, write_item
+from .harness import load_record, run_item, write_artifacts, write_item
 from .metrics import RunRecord, summarize, to_markdown
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -58,6 +58,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--timeout", type=float, default=300.0, help="seconds per question")
     parser.add_argument("--dry-run", action="store_true", help="print the plan, no API calls")
     parser.add_argument("--verbose", action="store_true", help="print each pipeline stage")
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="reuse successful per-question records in --out; rerun failures/missing",
+    )
+    parser.add_argument(
+        "--keep-failures",
+        action="store_true",
+        help="with --resume, keep failed records instead of rerunning them",
+    )
     return parser.parse_args(argv)
 
 
@@ -99,7 +109,26 @@ def make_pipeline(settings: Settings, args: argparse.Namespace) -> ResearchPipel
     )
 
 
-def print_record(index: int, total: int, record: RunRecord) -> None:
+def reusable_record(
+    directory: Path, item: EvalItem, *, keep_failures: bool = False
+) -> RunRecord | None:
+    """Return an existing record that can be reused by a resumed run.
+
+    A failed row is re-run by default: free-tier failures are usually transient,
+    and a baseline with holes is not a baseline. A question whose text changed
+    never matches an old answer, even when the id did not change.
+    """
+    record = load_record(directory, item.id)
+    if record is None or record.question != item.question:
+        return None
+    if record.ok or keep_failures:
+        return record
+    return None
+
+
+def print_record(
+    index: int, total: int, record: RunRecord, *, status: str | None = None
+) -> None:
     support = record.support
     judged = sum(
         support.get(key, 0)
@@ -108,14 +137,14 @@ def print_record(index: int, total: int, record: RunRecord) -> None:
     good = support.get("supported", 0) + support.get("partial", 0)
     rate = f"{good}/{judged}" if judged else "-"
     keywords = f"{len(record.keyword_hits)}/{len(record.keyword_hits) + len(record.keyword_misses)}"
-    status = "ok  " if record.ok else "FAIL"
+    label = status or ("ok  " if record.ok else "FAIL")
     cost = (
         "cost n/a"
         if record.unpriced_models or record.cost_usd is None
         else f"${record.cost_usd:.4f}"
     )
     print(
-        f"[{index:>2}/{total}] {record.item_id:<32} {status} "
+        f"[{index:>2}/{total}] {record.item_id:<32} {label:<4} "
         f"support {rate:<5} cite {record.citations:<2} "
         f"kw {keywords:<4} {record.tokens_total:>6,} tok {cost:>9} "
         f"{record.duration_s:>6.1f}s",
@@ -140,6 +169,16 @@ async def run(args: argparse.Namespace) -> int:
                 print(f"  must mention: {', '.join(item.must_include)}")
         return 0
 
+    stamp = datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
+    out_dir = Path(args.out) if args.out else Path("evals/runs") / stamp
+    if args.keep_failures and not args.resume:
+        raise SystemExit("--keep-failures requires --resume")
+    if args.resume:
+        if not args.out:
+            raise SystemExit("--resume requires --out <run directory>")
+        if not out_dir.exists():
+            raise SystemExit(f"--resume: {out_dir} does not exist")
+
     settings = Settings.from_env()
     print(f"\nprovider={settings.provider} model={settings.model} "
           f"judge={settings.judge_settings().model}")
@@ -147,9 +186,7 @@ async def run(args: argparse.Namespace) -> int:
     pipeline = make_pipeline(settings, args)
     records: list[RunRecord] = []
     results: dict[str, PipelineResult] = {}
-
-    stamp = datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
-    out_dir = Path(args.out) if args.out else Path("evals/runs") / stamp
+    skipped = 0
 
     def on_stage(item_id: str):
         if not args.verbose:
@@ -161,13 +198,23 @@ async def run(args: argparse.Namespace) -> int:
     started = time.perf_counter()
     try:
         for index, item in enumerate(items, 1):
+            existing = (
+                reusable_record(out_dir, item, keep_failures=args.keep_failures)
+                if args.resume
+                else None
+            )
+            if existing is not None:
+                records.append(existing)
+                skipped += 1
+                print_record(index, len(items), existing, status="skip")
+                continue
             record, result = await run_item(
                 pipeline, item, timeout=args.timeout, on_stage=on_stage(item.id)
             )
             records.append(record)
             results[item.id] = result
             print_record(index, len(items), record)
-            write_item(out_dir, item, result)
+            write_item(out_dir, item, result, record)
     finally:
         await pipeline.client.aclose()
         if pipeline.judge_client is not pipeline.client:
@@ -181,6 +228,7 @@ async def run(args: argparse.Namespace) -> int:
     summary["concurrency"] = args.concurrency
     summary["max_steps"] = args.max_steps
     summary["timeout_s"] = args.timeout
+    summary["resumed"] = skipped
 
     write_artifacts(out_dir, items, records, results, summary)
     (out_dir / "summary.md").write_text(
@@ -188,6 +236,8 @@ async def run(args: argparse.Namespace) -> int:
     )
 
     print("\n" + to_markdown(summary, title="Summary"))
+    if args.resume:
+        print(f"resumed:     {skipped} kept, {len(records) - skipped} run")
     print(f"\nwall clock: {elapsed:.1f}s")
     print(f"artifacts:  {out_dir}")
     print(f"traces:     {out_dir}\\<question-id>\\trace.html")

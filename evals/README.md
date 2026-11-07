@@ -59,9 +59,16 @@ python -m evals.run --sample 10 --seed 7          # reproducible random sample
 python -m evals.run --all                         # full set (long, costs tokens)
 python -m evals.run --category asyncio            # one category
 python -m evals.run --id perf-benchmark-clock     # re-run one known failure
+python -m evals.run --resume --out evals/runs/sample10   # keep finished rows
+python -m evals.run --resume --keep-failures --out evals/runs/sample10
 python -m evals.recompute evals/runs/sample10     # re-derive an old run's summary
 python -m evals.compare base/summary.json cand/summary.json
 ```
+
+A resumed run reuses every `record.json` whose question still matches. Failed
+rows are re-run by default because free-tier failures are usually transient;
+`--keep-failures` keeps them instead. `--resume` requires an explicit `--out`
+so a typo cannot silently create a new run.
 
 `evals.compare` exits 1 on regression: any unsupported citation, citation
 precision below 1.0, or a drop in success/support rate. That is the hook for
@@ -77,12 +84,18 @@ evals/runs/<run>/
   summary.json          # summary + every RunRecord + the dataset used
   summary.md            # the table a human reads
   <question-id>/
+    record.json         # RunRecord: status, support counts, cited ids, tokens
     report.md
     evidence.json       # every claim, quote, span, verdict, trust tier
     plan.json
     trace.json          # span tree: stages, sub-agents, LLM calls, tools
     trace.html          # self-contained waterfall; open it in a browser
 ```
+
+`record.json` is written as soon as a question finishes, before `summary.json`.
+That is what makes `--resume` possible, and it is what an offline re-judge will
+use: `cited_ids` is persisted, so the cited claims can be scored again without
+re-running the pipeline.
 
 `trace.json` is the data and `trace.html` is a rendering of it. The HTML is the
 fast way to answer "why did this question take 90 seconds": the waterfall shows

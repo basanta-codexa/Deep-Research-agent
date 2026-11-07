@@ -117,8 +117,13 @@ pipeline (plan → research → verify → write).
 .\venv\Scripts\python.exe -m evals.run --dry-run          # show the dataset
 .\venv\Scripts\python.exe -m evals.run --sample 10 --seed 7
 .\venv\Scripts\python.exe -m evals.run --all              # the whole set
+.\venv\Scripts\python.exe -m evals.run --resume --out evals/runs/sample10
 .\venv\Scripts\python.exe -m evals.compare evals/runs/a/summary.json evals/runs/b/summary.json
 ```
+
+Each question writes `record.json` as soon as it finishes, so `--resume` keeps
+finished rows and re-runs failures or missing questions. A changed question
+invalidates its old record. `--keep-failures` keeps failed rows instead.
 
 `evals.compare` exits non-zero when a regression is detected (citation precision
 below 1.0, any unsupported citation, or a drop in success/support rate), so it

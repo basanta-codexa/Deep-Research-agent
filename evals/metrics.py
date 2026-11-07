@@ -37,6 +37,9 @@ class RunRecord:
     contradictions: int = 0
 
     citations: int = 0
+    # Persisted so an offline re-judge can re-score exactly the claims that
+    # made it into the report, not only the whole evidence store.
+    cited_ids: list[str] = field(default_factory=list)
     unsupported_citations: int = 0
     words: int = 0
     report_ok: bool = False
