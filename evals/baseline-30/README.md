@@ -97,7 +97,8 @@ of 36 claims. The repair set cost 207,318 tokens, 741.9 s and $0.0143 total
 
 This is a repair check, not a new baseline: the six questions were selected
 because they failed, so their success rate is not comparable to the 30-question
-sample. The frozen baseline above is what later ablations compare against.
+sample. The frozen baseline above is the historical reference; ablations use a
+post-fix control generated with the same code as the ablation runs.
 
 One Windows-specific artifact bug also surfaced here: writing a record could hit
 a transient `PermissionError` while OneDrive had the target file open. Commit
