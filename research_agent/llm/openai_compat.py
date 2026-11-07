@@ -23,6 +23,17 @@ from .base import (
 from .transport import post_json
 
 
+def _accepts_reasoning_effort(model: str) -> bool:
+    """Whether a generic OpenAI-compatible endpoint is likely to know the field.
+
+    OpenRouter normalises the parameter itself, so it is handled separately.
+    Elsewhere we only send it for model families that document it; sending an
+    unknown field to vLLM, LM Studio, or an older hosted model can be a 400.
+    """
+    name = model.lower()
+    return name.startswith(("o1", "o3", "o4", "gpt-5")) or "gpt-oss" in name
+
+
 class OpenAICompatClient(LLMClient):
     def __init__(
         self,
@@ -77,7 +88,7 @@ class OpenAICompatClient(LLMClient):
             # the OpenAI-compatible APIs that expose it use a top-level field.
             if self.name == "openrouter":
                 payload["reasoning"] = {"effort": reasoning_effort}
-            else:
+            elif _accepts_reasoning_effort(self.model):
                 payload["reasoning_effort"] = reasoning_effort
 
         started = time.perf_counter()

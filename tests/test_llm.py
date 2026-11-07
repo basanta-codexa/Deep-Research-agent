@@ -64,7 +64,7 @@ def test_openai_reasoning_effort_uses_top_level_field(monkeypatch):
         "research_agent.llm.openai_compat.post_json", fake_post
     )
     client = OpenAICompatClient(
-        model="gpt-4.1-mini",
+        model="o3-mini",
         base_url="https://api.openai.com/v1",
         api_key="test-key",
         name="openai",
@@ -81,4 +81,35 @@ def test_openai_reasoning_effort_uses_top_level_field(monkeypatch):
     asyncio.run(call())
 
     assert captured["reasoning_effort"] == "low"
+    assert "reasoning" not in captured
+
+
+def test_non_reasoning_model_does_not_receive_an_unknown_parameter(monkeypatch):
+    captured: dict = {}
+
+    async def fake_post(http, path, payload, *, max_retries, headers=None):
+        captured.update(payload)
+        return _reply()
+
+    monkeypatch.setattr(
+        "research_agent.llm.openai_compat.post_json", fake_post
+    )
+    client = OpenAICompatClient(
+        model="gpt-4.1-mini",
+        base_url="https://api.openai.com/v1",
+        api_key="test-key",
+        name="openai",
+    )
+
+    async def call():
+        try:
+            return await client.chat(
+                [Message.user("hi")], reasoning_effort="low"
+            )
+        finally:
+            await client.aclose()
+
+    asyncio.run(call())
+
+    assert "reasoning_effort" not in captured
     assert "reasoning" not in captured
