@@ -82,9 +82,15 @@ Given a sub-question and the text of the pages a reader fetched, return JSON onl
  "gaps": ["what could not be established"]}
 
 Rules:
+- `claim` must be ONE atomic statement that the whole quote states directly.
+  Do not add causes, explanations, recommendations, comparisons, or context the
+  quote does not contain. If the quote supports only a narrower point, write the
+  narrower claim. A claim that needs an unstated assumption is a worse finding.
 - `quote` must be copied character-for-character from the SOURCES text.
 - `url` must be one of the URLs listed in SOURCES.
-- Maximum 3 findings. Fewer, better-grounded findings beat many.
+- Maximum 3 findings. Fewer, better-grounded findings beat many. Prefer a
+  directly supported narrower claim over a broad claim that is only partly
+  supported.
 - If the sources do not answer the sub-question, return an empty findings list and
   explain in `gaps`. Never invent a source, a number, or a quote."""
 

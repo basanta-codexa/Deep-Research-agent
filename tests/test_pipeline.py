@@ -12,6 +12,7 @@ from research_agent.pipeline import (
 from research_agent.planning import Plan, SubQuestion
 from research_agent.retrieval.cache import NullCache
 from research_agent.subagent import (
+    EXTRACT_PROMPT,
     FindingModel,
     ResearchBatch,
     SubAgentResult,
@@ -184,6 +185,11 @@ def test_verify_can_be_disabled_without_losing_citations(monkeypatch):
     spans = {item.name: item for item in result.trace.spans}
     assert spans["verify"].attributes["skipped"] is True
     assert "verify" in result.timings
+
+
+def test_extractor_prompt_requires_atomic_claims():
+    assert "ONE atomic statement" in EXTRACT_PROMPT
+    assert "narrower claim" in EXTRACT_PROMPT
 
 
 def test_null_cache_never_stores_anything():
