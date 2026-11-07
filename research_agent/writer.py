@@ -78,6 +78,8 @@ Hard rules:
    the sentence ("at least one source reports..."). If trust is "aggregator",
    prefer a "primary" source making the same point. Never cite a claim more
    strongly than its quote allows.
+7. The user message may list UNCOVERED SUB-QUESTIONS. Do not answer those from
+   general knowledge. Mention the gap under Limitations and omit that section.
 
 Length: 350-550 words. Output markdown in exactly this shape:
 
@@ -451,7 +453,18 @@ class ReportWriter:
             raise WriterError("no citable evidence: every record failed verification")
 
         allowed = {item.id for item in items}
+        uncovered: list[str] = []
         if plan is not None:
+            covered = {
+                sub_question
+                for item in items
+                for sub_question in item.sub_questions
+            }
+            uncovered = [
+                sub.question
+                for sub in plan.sub_questions
+                if sub.question not in covered
+            ]
             outline_lines = [f"- {sq.question}" for sq in plan.sub_questions]
             restated = plan.restated
         else:
@@ -465,11 +478,19 @@ class ReportWriter:
             outline_lines = [f"- {sub_question}" for sub_question in seen[:5]]
             restated = question
         outline = "\n".join(outline_lines) or "- (no outline recorded)"
-        gap_text = "\n".join(f"- {gap}" for gap in gaps) or "- none recorded"
+        gap_lines = [f"- {gap}" for gap in gaps]
+        gap_lines.extend(
+            f"- no evidence was extracted for: {sub_question}"
+            for sub_question in uncovered
+        )
+        gap_text = "\n".join(gap_lines) or "- none recorded"
+        uncovered_text = "\n".join(f"- {item}" for item in uncovered) or "- none"
         user = (
             f"QUESTION: {question}\n\n"
             f"RESTATED: {restated}\n\n"
             f"SUB-QUESTIONS TO COVER:\n{outline}\n\n"
+            f"UNCOVERED SUB-QUESTIONS (do not answer from general knowledge):\n"
+            f"{uncovered_text}\n\n"
             f"GAPS FOUND DURING RESEARCH:\n{gap_text}\n\n"
             f"EVIDENCE (the only legal ids):\n{build_brief(items)}"
         )

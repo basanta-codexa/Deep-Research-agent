@@ -4,6 +4,7 @@ import asyncio
 
 from research_agent.evidence import EvidenceStore
 from research_agent.llm import LLMResponse, Message, Usage
+from research_agent.planning import Plan, SubQuestion
 from research_agent.writer import (
     ReportWriter,
     _collapse_brackets,
@@ -173,11 +174,13 @@ class FakeClient:
         self.calls = 0
         self.budgets: list[int | None] = []
         self.reasoning_efforts: list[str | None] = []
+        self.requests: list[list] = []
 
     async def chat(self, messages, **kwargs):
         self.calls += 1
         self.budgets.append(kwargs.get("max_tokens"))
         self.reasoning_efforts.append(kwargs.get("reasoning_effort"))
+        self.requests.append(list(messages))
         text = self.replies.pop(0) if self.replies else ""
         return LLMResponse(
             message=Message.assistant(text),
@@ -262,6 +265,42 @@ time.perf_counter() is monotonic and high resolution.
 
 def draft_citing(one, two) -> str:
     return VALID.replace("ev_11111111", one.id).replace("ev_22222222", two.id)
+
+
+def test_writer_marks_sub_questions_without_evidence_as_uncovered():
+    store, one, two = make_store()
+    one.sub_questions = ["What is an iterator?"]
+    plan = Plan.model_construct(
+        restated="Explain iterators and iterables.",
+        sub_questions=[
+            SubQuestion(
+                question="What is an iterator?",
+                search_query="python iterator",
+                why="definition",
+            ),
+            SubQuestion(
+                question="What is an iterable?",
+                search_query="python iterable",
+                why="definition",
+            ),
+        ],
+        assumptions=[],
+    )
+    client = FakeClient([draft_citing(one, two)])
+
+    report = asyncio.run(
+        ReportWriter(client).write(
+            question="Explain iterators and iterables.", store=store, plan=plan
+        )
+    )
+
+    assert report.ok is True
+    user_message = client.requests[0][1].content
+    uncovered_block = user_message.split("UNCOVERED SUB-QUESTIONS")[1].split(
+        "GAPS FOUND"
+    )[0]
+    assert "What is an iterable?" in uncovered_block
+    assert "What is an iterator?" not in uncovered_block
 
 
 def test_writer_retries_an_empty_completion_with_a_larger_budget():
