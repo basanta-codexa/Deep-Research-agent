@@ -10,8 +10,14 @@ from research_agent.structured import StructuredError, complete_json
 
 
 class FakeClient:
-    def __init__(self, replies: list[object]) -> None:
+    def __init__(
+        self,
+        replies: list[object],
+        *,
+        finish_reasons: list[str | None] | None = None,
+    ) -> None:
         self.replies = list(replies)
+        self.finish_reasons = list(finish_reasons or [])
         self.calls: list[dict] = []
 
     async def chat(
@@ -33,6 +39,9 @@ class FakeClient:
             message=Message.assistant(str(reply)),
             model="fake",
             usage=Usage(prompt_tokens=10, completion_tokens=5, total_tokens=15),
+            finish_reason=(
+                self.finish_reasons.pop(0) if self.finish_reasons else None
+            ),
         )
 
 
@@ -110,3 +119,32 @@ def test_provider_error_moves_to_the_next_rung():
     value, _ = asyncio.run(complete_json(client, MESSAGES, parse=parse, max_tokens=100))
     assert value == {"ok": True}
     assert len(client.calls) == 2
+
+
+def test_empty_completion_retries_with_a_larger_budget():
+    client = FakeClient(
+        ["", '{"ok": true}'],
+        finish_reasons=["stop", "stop"],
+    )
+
+    value, _ = asyncio.run(
+        complete_json(client, MESSAGES, parse=parse, max_tokens=100)
+    )
+
+    assert value == {"ok": True}
+    assert [call["max_tokens"] for call in client.calls] == [100, 1000]
+    assert "Return only the JSON object" in client.calls[1]["messages"][-1].content
+
+
+def test_truncated_json_retries_with_a_larger_budget():
+    client = FakeClient(
+        ['{"verdict": "trunca', '{"verdict": "ok"}'],
+        finish_reasons=["length", "stop"],
+    )
+
+    value, _ = asyncio.run(
+        complete_json(client, MESSAGES, parse=parse, max_tokens=100)
+    )
+
+    assert value == {"verdict": "ok"}
+    assert [call["max_tokens"] for call in client.calls] == [100, 1000]

@@ -88,13 +88,14 @@ async def complete_json(
     attempts: list[str] = []
     usage = Usage()
     last_error: Exception | None = None
+    budget = max_tokens
 
     for label, extra, json_mode in rungs:
         try:
             response = await client.chat(
                 list(messages) + list(extra),
                 temperature=temperature,
-                max_tokens=max_tokens,
+                max_tokens=budget,
                 json_mode=json_mode,
             )
         except Exception as exc:  # provider or transport failure
@@ -103,8 +104,28 @@ async def complete_json(
             continue
 
         usage += response.usage
+        content = response.message.content or ""
+        if not content.strip():
+            # Reasoning models can spend the whole budget on hidden tokens and
+            # return empty content. Retrying at the same size just repeats the
+            # stall; give the next rung room to finish.
+            attempts.append(
+                f"{label}: empty completion (finish_reason="
+                f"{response.finish_reason!r}, budget={budget})"
+            )
+            budget = max(budget * 2, 1000)
+            continue
+        if response.truncated:
+            # Cut off mid-JSON, same lesson as the planner: double and go.
+            attempts.append(
+                f"{label}: truncated at {budget} tokens (finish_reason="
+                f"{response.finish_reason!r})"
+            )
+            budget = max(budget * 2, 1000)
+            continue
+
         try:
-            return parse(response.message.content), usage
+            return parse(content), usage
         except Exception as exc:  # the model answered, in the wrong shape
             attempts.append(f"{label}: unparseable ({type(exc).__name__}: {exc})")
             last_error = exc
