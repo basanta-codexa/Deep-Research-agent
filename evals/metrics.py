@@ -265,13 +265,22 @@ def summarize(
         known = [cost for cost in costs if cost is not None]
         total_cost = round(sum(known), 6)
         mean_cost = _mean(known)
+    judged_total = sum(judged(record) for record in records)
     summary = {
         "n": len(records),
         "success_rate": _rate(records, successful),
         "error_rate": _rate(records, lambda r: not r.ok),
-        "support_rate": _mean([support_rate(record) for record in records]),
-        "strict_support_rate": _mean(
-            [strict_support_rate(record) for record in records]
+        # A run with verification disabled has no support verdicts. That is
+        # unknown, not 0%: the strict/lenient keys become n/a until a rejudge.
+        "support_rate": (
+            _mean([support_rate(record) for record in records])
+            if judged_total
+            else None
+        ),
+        "strict_support_rate": (
+            _mean([strict_support_rate(record) for record in records])
+            if judged_total
+            else None
         ),
         "verified_rate": _mean([verified_rate(record) for record in records]),
         # Micro-averaged on purpose. Precision is a property of the citations,
@@ -310,9 +319,13 @@ def summarize(
         "by_category": _by_category(records),
     }
     if bootstrap:
-        summary["ci95"] = _bootstrap_cis(
+        intervals = _bootstrap_cis(
             records, iterations=iterations, seed=seed, level=level
         )
+        for key in ("support_rate", "strict_support_rate"):
+            if summary.get(key) is None:
+                intervals.pop(key, None)
+        summary["ci95"] = intervals
         summary["ci"] = {
             "method": "cluster bootstrap over questions",
             "level": level,
@@ -326,18 +339,25 @@ def _by_category(records: list[RunRecord]) -> dict[str, dict]:
     groups: dict[str, list[RunRecord]] = {}
     for record in records:
         groups.setdefault(record.category, []).append(record)
-    return {
-        category: {
+    result: dict[str, dict] = {}
+    for category, group in sorted(groups.items()):
+        has_judged = any(judged(record) for record in group)
+        result[category] = {
             "n": len(group),
             "success_rate": _rate(group, successful),
-            "support_rate": _mean([support_rate(record) for record in group]),
-            "strict_support_rate": _mean(
-                [strict_support_rate(record) for record in group]
+            "support_rate": (
+                _mean([support_rate(record) for record in group])
+                if has_judged
+                else None
+            ),
+            "strict_support_rate": (
+                _mean([strict_support_rate(record) for record in group])
+                if has_judged
+                else None
             ),
             "mean_tokens": _mean([float(record.tokens_total) for record in group]),
         }
-        for category, group in sorted(groups.items())
-    }
+    return result
 
 
 # --------------------------------------------------------------------------- #
@@ -359,14 +379,24 @@ def compare(baseline: dict, candidate: dict) -> dict:
     """Diff two summaries and name the regressions, not just the numbers."""
     rows = []
     for key in COMPARED:
-        before = float(baseline.get(key, 0.0))
-        after = float(candidate.get(key, 0.0))
+        before = baseline.get(key)
+        after = candidate.get(key)
+        if before is None or after is None:
+            rows.append(
+                {
+                    "metric": key,
+                    "baseline": None,
+                    "candidate": None,
+                    "delta": None,
+                }
+            )
+            continue
         rows.append(
             {
                 "metric": key,
-                "baseline": round(before, 4),
-                "candidate": round(after, 4),
-                "delta": round(after - before, 4),
+                "baseline": round(float(before), 4),
+                "candidate": round(float(after), 4),
+                "delta": round(float(after) - float(before), 4),
             }
         )
 
@@ -385,10 +415,15 @@ def compare(baseline: dict, candidate: dict) -> dict:
             f"success rate dropped {baseline['success_rate']:.0%} -> "
             f"{candidate['success_rate']:.0%}"
         )
-    if baseline.get("support_rate", 0) - candidate.get("support_rate", 0) > 0.03:
+    before_support = baseline.get("support_rate")
+    after_support = candidate.get("support_rate")
+    if (
+        before_support is not None
+        and after_support is not None
+        and before_support - after_support > 0.03
+    ):
         regressions.append(
-            f"support rate dropped {baseline['support_rate']:.0%} -> "
-            f"{candidate['support_rate']:.0%}"
+            f"support rate dropped {before_support:.0%} -> {after_support:.0%}"
         )
     return {"rows": rows, "regressions": regressions}
 
@@ -473,8 +508,10 @@ def to_markdown(summary: dict, title: str = "Eval summary") -> str:
     lines.append("| category | n | success | support | tokens |")
     lines.append("| --- | --- | --- | --- | --- |")
     for category, row in summary.get("by_category", {}).items():
+        support = row.get("support_rate")
+        support_text = f"{support:.0%}" if support is not None else "n/a"
         lines.append(
             f"| {category} | {row['n']} | {row['success_rate']:.0%} | "
-            f"{row['support_rate']:.0%} | {row['mean_tokens']:.0f} |"
+            f"{support_text} | {row['mean_tokens']:.0f} |"
         )
     return "\n".join(lines)

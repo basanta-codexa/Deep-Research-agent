@@ -9,6 +9,7 @@ from evals.rejudge import (
     apply_judgements,
     load_records,
     main as rejudge_main,
+    render_markdown,
     rejudge_records,
 )
 from research_agent.evidence import EvidenceStore
@@ -134,6 +135,29 @@ def test_rejudge_records_replays_only_the_saved_evidence(tmp_path):
     assert rejudged[0].support == {"supported": 2}
     assert rejudged[0].unsupported_citations == 0
     assert details["q-1"]["verdicts"][alpha.id]["verdict"] == "supported"
+
+
+def test_rejudge_markdown_reports_an_unjudged_original_as_na():
+    summary = {
+        "n": 1,
+        "total_tokens": 1,
+        "total_seconds": 1.0,
+        "judge_model": "judge",
+        "support_rate": 0.5,
+        "strict_support_rate": 0.5,
+        "verdicts": {"supported": 1},
+    }
+    original = {
+        "judge_model": "",
+        "support_rate": None,
+        "strict_support_rate": None,
+        "verdicts": {},
+    }
+
+    text = render_markdown(summary, original)
+
+    assert "n/a" in text
+    assert "| support rate (supported + partial) | n/a | 50.0% |" in text
 
 
 def test_rejudge_dry_run_does_not_need_a_client(tmp_path, capsys):

@@ -22,7 +22,7 @@ from typing import Callable, Sequence
 
 from .evidence import EvidenceStore
 from .llm import LLMClient, Usage
-from .planning import Plan, Planner
+from .planning import Plan, Planner, SubQuestion
 from .subagent import ResearchBatch, ResearchOrchestrator
 from .tools.registry import Tool
 from .tracing import Tracer, TraceLLMClient
@@ -38,6 +38,30 @@ class PipelineConfig:
     writer_max_tokens: int = 1800
     judge_concurrency: int = 4
     check_conflicts: bool = True
+    # Ablations. Defaults preserve the full plan -> research -> verify -> write
+    # pipeline; the eval flags flip these deliberately.
+    verify: bool = True
+    single_agent: bool = False
+
+
+def single_agent_plan(question: str) -> Plan:
+    """The ablation's plan: one objective, no decomposition.
+
+    `Plan` normally requires 3-5 sub-questions. Constructing it directly keeps
+    that contract strict for the real planner while representing a deliberate
+    one-thread variant, instead of weakening the schema for everyone.
+    """
+    return Plan.model_construct(
+        restated=question,
+        sub_questions=[
+            SubQuestion(
+                question=question,
+                search_query=question,
+                why="Single-agent ablation: answer the original question directly.",
+            )
+        ],
+        assumptions=[],
+    )
 
 
 @dataclass(slots=True)
@@ -94,6 +118,8 @@ class ResearchPipeline:
             "judge_model": self.judge_client.model,
             "concurrency": self.config.concurrency,
             "max_steps": self.config.max_steps,
+            "verify": self.config.verify,
+            "single_agent": self.config.single_agent,
         }
         if tracer is None:
             tracer = Tracer(question[:120], attributes=meta)
@@ -130,18 +156,22 @@ class ResearchPipeline:
         stage("plan", "start")
         started = time.perf_counter()
         with tracer.span("plan", kind="stage") as stage_span:
-            try:
-                plan, prompt_tokens, completion_tokens = await Planner(
-                    self.client, max_tokens=cfg.plan_max_tokens
-                ).plan(question)
-            except Exception as exc:
-                return self._fail(tracer, result, "plan", exc)
+            if cfg.single_agent:
+                plan = single_agent_plan(question)
+                stage_span.attributes["skipped"] = True
+            else:
+                try:
+                    plan, prompt_tokens, completion_tokens = await Planner(
+                        self.client, max_tokens=cfg.plan_max_tokens
+                    ).plan(question)
+                except Exception as exc:
+                    return self._fail(tracer, result, "plan", exc)
+                result.usage += Usage(
+                    prompt_tokens=prompt_tokens,
+                    completion_tokens=completion_tokens,
+                    total_tokens=prompt_tokens + completion_tokens,
+                )
             result.plan = plan
-            result.usage += Usage(
-                prompt_tokens=prompt_tokens,
-                completion_tokens=completion_tokens,
-                total_tokens=prompt_tokens + completion_tokens,
-            )
             stage_span.attributes.update(
                 {
                     "restated": plan.restated,
@@ -215,23 +245,31 @@ class ResearchPipeline:
         stage("verify", "start")
         started = time.perf_counter()
         with tracer.span("verify", kind="stage") as stage_span:
-            try:
-                result.verification = await verify_store(
-                    self.judge_client,
-                    result.store,
-                    check_conflicts=cfg.check_conflicts,
-                    concurrency=cfg.judge_concurrency,
+            if not cfg.verify:
+                # The quote-in-page gate already ran above. Skipping only the
+                # support judge leaves citable, but unjudged, evidence: the
+                # writer still cannot invent a citation, and an offline rejudge
+                # can score the same claims later.
+                stage_span.attributes["skipped"] = True
+                stage_span.attributes["reason"] = "verify disabled"
+            else:
+                try:
+                    result.verification = await verify_store(
+                        self.judge_client,
+                        result.store,
+                        check_conflicts=cfg.check_conflicts,
+                        concurrency=cfg.judge_concurrency,
+                    )
+                except Exception as exc:
+                    return self._fail(tracer, result, "verify", exc)
+                result.usage += result.verification.usage
+                stage_span.attributes.update(
+                    {
+                        "verdicts": result.verification.counts(),
+                        "contradictions": len(result.verification.contradictions),
+                        "judge_errors": len(result.verification.errors),
+                    }
                 )
-            except Exception as exc:
-                return self._fail(tracer, result, "verify", exc)
-            result.usage += result.verification.usage
-            stage_span.attributes.update(
-                {
-                    "verdicts": result.verification.counts(),
-                    "contradictions": len(result.verification.contradictions),
-                    "judge_errors": len(result.verification.errors),
-                }
-            )
         result.timings["verify"] = time.perf_counter() - started
         stage("verify", "done")
 

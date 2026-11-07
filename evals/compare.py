@@ -37,6 +37,9 @@ def main(argv: list[str] | None = None) -> int:
 
     print(f"{'metric':<20} {'baseline':>10} {'candidate':>10} {'delta':>10}")
     for row in result["rows"]:
+        if row["delta"] is None:
+            print(f"{row['metric']:<20} {'n/a':>10} {'n/a':>10} {'n/a':>10}")
+            continue
         delta = row["delta"]
         marker = "" if abs(delta) < 1e-9 else ("  +" if delta > 0 else "  -")
         print(

@@ -17,19 +17,22 @@ distribution, and a distribution is what a regression test can compare against.
 | `support_rate` | (supported + partial) ÷ judged claims | one judge's opinion; partial counts as support |
 | `strict_support_rate` | supported ÷ judged claims | one judge's opinion; a quote that supports most of a compound claim is counted as a miss |
 | `verified_rate` | quotes found in the fetched page ÷ findings | relevance: a real quote can still be off-topic |
-| `citation_precision` | citable citations ÷ all citations, micro-averaged | **nothing** — it is 1.0 by construction
-
-Every rate also carries a **95% cluster-bootstrap interval over questions**
-(2,000 resamples, seed 7). Questions are the sampling unit because claims
-inside one report are correlated; resampling claims would pretend there is
-more independent evidence than there is. With 30 questions the intervals are
-wide. Two runs whose intervals overlap have not been shown to differ.; it is an invariant |
+| `citation_precision` | citable citations ÷ all citations, micro-averaged | **nothing** — it is 1.0 by construction; it is an invariant |
 | `citation_coverage` | cited evidence ÷ citable evidence | whether the *right* evidence was used |
 | `keyword_recall` | expected terms present ÷ expected terms | correctness: term present ≠ claim true |
 | `misconception_rate` | questions whose report contains a known-wrong phrase | crude negation handling; phrase lists are incomplete |
 | `repair_rate` | runs where the writer needed a constraint-driven rewrite | quality: a repair can still be a good report |
 | `mean_tokens`, `mean_seconds` | token spend and latency per question | where the tokens went (see the trace) |
 | `mean_cost_usd` | dollars per question from `research_agent/pricing.py` | what you *paid* — a free tier is genuinely `$0` |
+
+Every rate also carries a **95% cluster-bootstrap interval over questions**
+(2,000 resamples, seed 7). Questions are the sampling unit because claims
+inside one report are correlated; resampling claims would pretend there is
+more independent evidence than there is. With 30 questions the intervals are
+wide. Two runs whose intervals overlap have not been shown to differ.
+
+If verification is disabled, support is `n/a`, not `0%`: no judge was asked,
+so there is no support measurement until `evals.rejudge` runs.
 
 Two consequences of that table:
 
@@ -92,6 +95,35 @@ original run, never regenerates a report, and keeps the re-judge's own token
 usage separate from generation cost. It replays support only, not the conflict
 scan. If the re-judge model is the same as the generation model it warns: that
 is still a self-judgement.
+
+## Ablations
+
+Step 12 compares the full pipeline with one component removed at a time. The
+switches are deliberately explicit, and the run summary records them:
+
+```bash
+python -m evals.run --all --out evals/runs/base
+python -m evals.run --all --single-agent --out evals/runs/no-planner
+python -m evals.run --all --no-verify --out evals/runs/no-verify
+python -m evals.run --all --no-cache --out evals/runs/no-cache
+python -m evals.run --all --model openai/gpt-oss-20b --judge-model openai/gpt-oss-120b
+```
+
+| Flag | What changes | What to read carefully |
+| --- | --- | --- |
+| `--single-agent` | skips the planner; one research thread gets the original question | compare support, not just tokens; the writer still runs |
+| `--no-verify` | skips the support judge; the quote-in-page gate still runs | support is `n/a`; run `evals.rejudge` separately |
+| `--no-cache` | retrieval never reads or writes the SQLite cache | pages differ between runs; that is the point and the confound |
+| `--model` | overrides the generation model | keep the judge and other settings fixed |
+| `--judge-model` | overrides the support judge | changing the judge changes the metric, not the system |
+
+`--single-agent` is an ablation of *decomposition*, not a tool-for-tool
+single-agent baseline: one sub-agent still has `read_source`, but it no longer
+gets 3–5 separate research threads. State that limitation when you report it.
+
+Do not run `evals.compare` on two runs whose model, judge, cache setting or
+question set differ and call the delta an effect of the component. The run
+metadata exists to catch that mistake.
 
 ## Artifacts
 

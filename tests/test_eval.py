@@ -30,14 +30,82 @@ from evals.metrics import (
     successful,
     to_markdown,
 )
+from research_agent.config import Settings
 from research_agent.evidence import EvidenceStore
 from research_agent.llm import Usage
 from research_agent.pipeline import PipelineResult
+from research_agent.retrieval.cache import NullCache
 from research_agent.tracing import Tracer
 
 # --------------------------------------------------------------------------- #
 # dataset
 # --------------------------------------------------------------------------- #
+def test_parse_args_exposes_the_ablation_switches():
+    args = eval_run.parse_args(
+        [
+            "--no-verify",
+            "--single-agent",
+            "--no-cache",
+            "--model",
+            "generation-model",
+            "--judge-model",
+            "judge-model",
+        ]
+    )
+
+    assert args.no_verify is True
+    assert args.single_agent is True
+    assert args.no_cache is True
+    assert args.model == "generation-model"
+    assert args.judge_model == "judge-model"
+
+
+def test_model_overrides_do_not_mutate_the_loaded_settings():
+    original = Settings(provider="groq", model="old", judge_model="old-judge")
+    args = eval_run.parse_args(
+        ["--model", "new", "--judge-model", "new-judge"]
+    )
+
+    changed = eval_run.apply_settings_overrides(original, args)
+
+    assert changed.model == "new"
+    assert changed.judge_model == "new-judge"
+    assert original.model == "old"
+    assert original.judge_model == "old-judge"
+
+
+class InertClient:
+    name = "inert"
+    model = "inert"
+
+    async def chat(self, *args, **kwargs):
+        raise RuntimeError("not used in this test")
+
+    async def aclose(self) -> None:
+        return None
+
+
+def test_make_pipeline_wires_ablation_flags(monkeypatch):
+    captured: dict[str, object] = {}
+    monkeypatch.setattr(eval_run, "create_client", lambda settings: InertClient())
+
+    def fake_tools(settings, *, cache=None):
+        captured["cache"] = cache
+        return []
+
+    monkeypatch.setattr(eval_run, "make_subagent_tools", fake_tools)
+    args = eval_run.parse_args(
+        ["--no-cache", "--no-verify", "--single-agent"]
+    )
+    settings = Settings(provider="groq", model="m", judge_model="j")
+
+    pipeline = eval_run.make_pipeline(settings, args)
+
+    assert isinstance(captured["cache"], NullCache)
+    assert pipeline.config.verify is False
+    assert pipeline.config.single_agent is True
+
+
 def test_dataset_loads_and_is_big_enough():
     items = load_dataset(DEFAULT_PATH)
     assert len(items) >= 30
@@ -318,6 +386,9 @@ def test_run_resume_skips_finished_questions(tmp_path, monkeypatch):
 
     payload = json.loads((out / "summary.json").read_text(encoding="utf-8"))
     assert payload["summary"]["resumed"] == 1
+    assert payload["summary"]["verify"] is True
+    assert payload["summary"]["single_agent"] is False
+    assert payload["summary"]["cache"] is True
     assert payload["records"][0]["item_id"] == item.id
 
 
@@ -480,6 +551,28 @@ def test_undefined_precision_has_no_confidence_interval():
     summary = summarize([make_record(citations=0, unsupported_citations=0)])
     assert summary["citation_precision"] is None
     assert "citation_precision" not in summary["ci95"]
+
+
+def test_unjudged_run_marks_support_as_unavailable_not_zero():
+    summary = summarize([make_record(support={})])
+
+    assert summary["support_rate"] is None
+    assert summary["strict_support_rate"] is None
+    assert "support_rate" not in summary["ci95"]
+    assert "strict_support_rate" not in summary["ci95"]
+    assert "claim support (supported + partial) | n/a" in to_markdown(summary)
+
+
+def test_compare_treats_unmeasured_support_as_not_applicable():
+    result = compare(
+        {"success_rate": 1.0, "support_rate": None, "citation_precision": 1.0},
+        {"success_rate": 1.0, "support_rate": None, "citation_precision": 1.0},
+    )
+
+    support_row = next(row for row in result["rows"] if row["metric"] == "support_rate")
+    assert support_row["baseline"] is None
+    assert support_row["delta"] is None
+    assert result["regressions"] == []
 
 
 def test_bootstrap_can_be_disabled_for_cheap_recomputation():

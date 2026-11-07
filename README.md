@@ -117,6 +117,9 @@ pipeline (plan → research → verify → write).
 .\venv\Scripts\python.exe -m evals.run --dry-run          # show the dataset
 .\venv\Scripts\python.exe -m evals.run --sample 10 --seed 7
 .\venv\Scripts\python.exe -m evals.run --all              # the whole set
+.\venv\Scripts\python.exe -m evals.run --all --single-agent --out evals/runs/no-planner
+.\venv\Scripts\python.exe -m evals.run --all --no-verify --out evals/runs/no-verify
+.\venv\Scripts\python.exe -m evals.run --all --no-cache --out evals/runs/no-cache
 .\venv\Scripts\python.exe -m evals.run --resume --out evals/runs/sample10
 .\venv\Scripts\python.exe -m evals.compare evals/runs/a/summary.json evals/runs/b/summary.json
 ```
@@ -124,6 +127,11 @@ pipeline (plan → research → verify → write).
 Each question writes `record.json` as soon as it finishes, so `--resume` keeps
 finished rows and re-runs failures or missing questions. A changed question
 invalidates its old record. `--keep-failures` keeps failed rows instead.
+
+The ablation flags are explicit and recorded in `summary.json`: `--single-agent`
+skips the planner and uses one research thread; `--no-verify` skips support
+judging but keeps the quote-in-page gate; `--no-cache` disables retrieval
+caching. With `--no-verify`, support is `n/a`, not `0%`; use `evals.rejudge`.
 
 `evals.compare` exits non-zero when a regression is detected (citation precision
 below 1.0, any unsupported citation, or a drop in success/support rate), so it

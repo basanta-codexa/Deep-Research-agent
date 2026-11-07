@@ -133,6 +133,10 @@ async def rejudge_records(
     return rejudged, details, errors, usage
 
 
+def _pct(value: float | None) -> str:
+    return "n/a" if value is None else f"{float(value):.1%}"
+
+
 def render_markdown(summary: dict, original: dict) -> str:
     lines = [to_markdown(summary, title="Independent re-judge"), ""]
     lines.append("## Compared with the original run")
@@ -145,13 +149,13 @@ def render_markdown(summary: dict, original: dict) -> str:
     )
     lines.append(
         f"| support rate (supported + partial) | "
-        f"{float(original.get('support_rate', 0.0)):.1%} | "
-        f"{float(summary.get('support_rate', 0.0)):.1%} |"
+        f"{_pct(original.get('support_rate'))} | "
+        f"{_pct(summary.get('support_rate'))} |"
     )
     lines.append(
         f"| strict support rate (supported only) | "
-        f"{float(original.get('strict_support_rate', 0.0)):.1%} | "
-        f"{float(summary.get('strict_support_rate', 0.0)):.1%} |"
+        f"{_pct(original.get('strict_support_rate'))} | "
+        f"{_pct(summary.get('strict_support_rate'))} |"
     )
     original_verdicts = original.get("verdicts") or {}
     new_verdicts = summary.get("verdicts") or {}

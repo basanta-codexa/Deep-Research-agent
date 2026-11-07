@@ -25,7 +25,17 @@ from .metrics import RunRecord, summarize, to_markdown
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-CARRIED = ("provider", "model", "judge_model", "concurrency", "max_steps", "timeout_s")
+CARRIED = (
+    "provider",
+    "model",
+    "judge_model",
+    "concurrency",
+    "max_steps",
+    "timeout_s",
+    "verify",
+    "single_agent",
+    "cache",
+)
 
 
 def recompute(payload: dict) -> dict:

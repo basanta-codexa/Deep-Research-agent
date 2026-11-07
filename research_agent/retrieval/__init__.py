@@ -1,4 +1,4 @@
-from .cache import Cache
+from .cache import Cache, NullCache
 from .fetch import Document, FetchError, fetch
 from .search import (
     CachedSearch,
@@ -11,6 +11,7 @@ from .search import (
 __all__ = [
     "Cache",
     "CachedSearch",
+    "NullCache",
     "Document",
     "DuckDuckGoBackend",
     "FetchError",

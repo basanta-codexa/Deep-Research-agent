@@ -17,12 +17,14 @@ import asyncio
 import random
 import sys
 import time
+from dataclasses import replace
 from datetime import datetime
 from pathlib import Path
 
 from research_agent.config import Settings
 from research_agent.llm import create_client
 from research_agent.pipeline import PipelineConfig, PipelineResult, ResearchPipeline
+from research_agent.retrieval.cache import NullCache
 from research_agent.tools.web import make_subagent_tools
 
 from .dataset import EvalItem, category_counts, load_dataset
@@ -56,6 +58,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--concurrency", type=int, default=2, help="sub-agents in flight")
     parser.add_argument("--max-steps", type=int, default=3)
     parser.add_argument("--timeout", type=float, default=300.0, help="seconds per question")
+    parser.add_argument("--model", default=None, help="override the generation model")
+    parser.add_argument("--judge-model", default=None, help="override the support judge")
+    parser.add_argument("--no-verify", action="store_true", help="skip support judging")
+    parser.add_argument(
+        "--single-agent",
+        action="store_true",
+        help="skip the planner; one research thread for the whole question",
+    )
+    parser.add_argument("--no-cache", action="store_true", help="disable retrieval cache")
     parser.add_argument("--dry-run", action="store_true", help="print the plan, no API calls")
     parser.add_argument("--verbose", action="store_true", help="print each pipeline stage")
     parser.add_argument(
@@ -95,16 +106,30 @@ def select_items(items: list[EvalItem], args: argparse.Namespace) -> list[EvalIt
     return chosen
 
 
+def apply_settings_overrides(
+    settings: Settings, args: argparse.Namespace
+) -> Settings:
+    """Apply `--model` / `--judge-model` without mutating the environment."""
+    if args.model:
+        settings = replace(settings, model=args.model)
+    if args.judge_model:
+        settings = replace(settings, judge_model=args.judge_model)
+    return settings
+
+
 def make_pipeline(settings: Settings, args: argparse.Namespace) -> ResearchPipeline:
     client = create_client(settings)
     judge_client = create_client(settings.judge_settings())
+    cache = NullCache() if args.no_cache else None
     return ResearchPipeline(
         client,
-        make_subagent_tools(settings),
+        make_subagent_tools(settings, cache=cache),
         judge_client=judge_client,
         config=PipelineConfig(
             concurrency=args.concurrency,
             max_steps=args.max_steps,
+            verify=not args.no_verify,
+            single_agent=args.single_agent,
         ),
     )
 
@@ -179,9 +204,16 @@ async def run(args: argparse.Namespace) -> int:
         if not out_dir.exists():
             raise SystemExit(f"--resume: {out_dir} does not exist")
 
-    settings = Settings.from_env()
+    settings = apply_settings_overrides(Settings.from_env(), args)
+    judge_model = settings.judge_settings().model
     print(f"\nprovider={settings.provider} model={settings.model} "
-          f"judge={settings.judge_settings().model}")
+          f"judge={judge_model}")
+    if judge_model == settings.model:
+        print("warning: judge model equals generation model; support is self-judged")
+    print(
+        f"config: verify={not args.no_verify} "
+        f"single_agent={args.single_agent} cache={not args.no_cache}"
+    )
 
     pipeline = make_pipeline(settings, args)
     records: list[RunRecord] = []
@@ -229,6 +261,9 @@ async def run(args: argparse.Namespace) -> int:
     summary["max_steps"] = args.max_steps
     summary["timeout_s"] = args.timeout
     summary["resumed"] = skipped
+    summary["verify"] = not args.no_verify
+    summary["single_agent"] = args.single_agent
+    summary["cache"] = not args.no_cache
 
     write_artifacts(out_dir, items, records, results, summary)
     (out_dir / "summary.md").write_text(

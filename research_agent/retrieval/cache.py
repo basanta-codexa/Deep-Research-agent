@@ -87,3 +87,24 @@ class Cache:
                 "SELECT COUNT(*) FROM kv WHERE expires_at > ?", (time.time(),)
             ).fetchone()[0]
         return {"path": str(self.path), "rows": total, "live": live}
+
+
+class NullCache:
+    """A cache-shaped no-op for the `--no-cache` ablation.
+
+    The retrieval layer only needs `aget`/`aset`; keeping the same shape means
+    the ablation changes caching, not the search path. It never touches disk.
+    """
+
+    def __init__(self) -> None:
+        self.path = None
+        self.ttl_s = 0
+
+    async def aget(self, key: str) -> Any | None:
+        return None
+
+    async def aset(self, key: str, value: Any, ttl_s: int | None = None) -> None:
+        return None
+
+    def stats(self) -> dict[str, Any]:
+        return {"path": None, "rows": 0, "live": 0, "enabled": False}
