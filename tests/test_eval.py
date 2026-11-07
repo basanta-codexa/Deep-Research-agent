@@ -60,6 +60,47 @@ def test_parse_args_exposes_the_ablation_switches():
     assert args.judge_model == "judge-model"
 
 
+def test_explicit_id_selection_is_not_truncated_by_the_quick_run_default():
+    items = load_dataset(DEFAULT_PATH)
+    ids = [item.id for item in items[:4]]
+
+    chosen = eval_run.select_items(
+        items,
+        SimpleNamespace(
+            id=ids, category=None, sample=0, all=False, limit=None
+        ),
+    )
+
+    assert [item.id for item in chosen] == ids
+
+
+def test_a_bare_run_still_defaults_to_three_questions():
+    items = load_dataset(DEFAULT_PATH)
+
+    chosen = eval_run.select_items(
+        items,
+        SimpleNamespace(
+            id=[], category=None, sample=0, all=False, limit=None
+        ),
+    )
+
+    assert len(chosen) == 3
+
+
+def test_explicit_limit_still_wins_over_an_explicit_selector():
+    items = load_dataset(DEFAULT_PATH)
+    ids = [item.id for item in items[:4]]
+
+    chosen = eval_run.select_items(
+        items,
+        SimpleNamespace(
+            id=ids, category=None, sample=0, all=False, limit=2
+        ),
+    )
+
+    assert [item.id for item in chosen] == ids[:2]
+
+
 def test_model_overrides_do_not_mutate_the_loaded_settings():
     original = Settings(provider="groq", model="old", judge_model="old-judge")
     args = eval_run.parse_args(

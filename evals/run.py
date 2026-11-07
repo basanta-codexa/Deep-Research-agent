@@ -38,7 +38,12 @@ if hasattr(sys.stdout, "reconfigure"):
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the research eval set.")
     parser.add_argument("--dataset", default=None, help="path to dataset.jsonl")
-    parser.add_argument("--limit", type=int, default=3, help="first N questions (0 = all)")
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="first N questions (default 3; 0 = all; ignored with --id/--category)",
+    )
     parser.add_argument(
         "--sample",
         type=int,
@@ -101,8 +106,14 @@ def select_items(items: list[EvalItem], args: argparse.Namespace) -> list[EvalIt
         chosen = list(chosen)
         rng.shuffle(chosen)
         return chosen[: args.sample]
-    if not args.all and args.limit:
-        chosen = chosen[: args.limit]
+    # An explicit selector is not a request for "the first three of them".
+    # Before this, `--id a --id b --id c --id d` silently ran only three,
+    # because the quick-run default outlived the selection it belonged to.
+    limit = args.limit
+    if limit is None:
+        limit = 0 if (args.id or args.category) else 3
+    if not args.all and limit:
+        chosen = chosen[:limit]
     return chosen
 
 
