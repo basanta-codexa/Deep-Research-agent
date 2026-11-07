@@ -37,6 +37,9 @@ PRICES: dict[str, Price] = {
     "ollama": Price(0.0, 0.0),
     # Groq free tier. Paid tier: set RA_PRICE_INPUT / RA_PRICE_OUTPUT.
     "groq": Price(0.0, 0.0),
+    # OpenRouter list prices, USD per million tokens (checked 2026-11-07).
+    "openrouter:openai/gpt-oss-20b": Price(0.03, 0.13),
+    "openrouter:openai/gpt-oss-120b": Price(0.013, 0.049),
     # Example paid entries; delete or edit for your account.
     "openai:gpt-4o-mini": Price(0.15, 0.60),
     "openai:gpt-4o": Price(2.50, 10.00),

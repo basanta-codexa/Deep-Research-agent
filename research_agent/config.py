@@ -13,13 +13,14 @@ from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Literal
 
-Provider = Literal["ollama", "groq", "openai"]
+Provider = Literal["ollama", "groq", "openai", "openrouter"]
 
 # (default model, default base url) per provider.
 PROVIDER_DEFAULTS: dict[str, tuple[str, str]] = {
     "ollama": ("qwen3.5:4b", "http://localhost:11434"),
     "groq": ("openai/gpt-oss-120b", "https://api.groq.com/openai/v1"),
     "openai": ("gpt-4.1-mini", "https://api.openai.com/v1"),
+    "openrouter": ("openai/gpt-oss-20b", "https://openrouter.ai/api/v1"),
 }
 
 # Cheap model for classification-style calls (support judging, conflict scan).
@@ -28,6 +29,7 @@ JUDGE_DEFAULTS: dict[str, str] = {
     "groq": "openai/gpt-oss-20b",
     "ollama": "",
     "openai": "gpt-4.1-nano",
+    "openrouter": "openai/gpt-oss-20b",
 }
 
 _ENV_FILE = Path(__file__).resolve().parents[1] / ".env"
@@ -137,6 +139,8 @@ class Settings:
             return _env_any("GROQ_API_KEY", "groq_api_key")
         if provider == "openai":
             return _env_any("OPENAI_API_KEY", "openai_api_key")
+        if provider == "openrouter":
+            return _env_any("OPENROUTER_API_KEY", "openrouter_api_key")
         return None
 
     def provider_default_url(self) -> str:

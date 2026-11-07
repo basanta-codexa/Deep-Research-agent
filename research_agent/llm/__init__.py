@@ -46,7 +46,7 @@ def create_client(settings: Settings) -> LLMClient:
             think=settings.think,
             num_ctx=settings.num_ctx,
         )
-    if settings.provider in ("groq", "openai"):
+    if settings.provider in ("groq", "openai", "openrouter"):
         if not settings.api_key:
             raise ValueError(
                 f"provider {settings.provider!r} needs an API key. Set RA_API_KEY "

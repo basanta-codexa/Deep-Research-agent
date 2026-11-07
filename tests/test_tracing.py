@@ -32,6 +32,11 @@ def test_model_specific_price_beats_the_provider_default():
     assert lookup("openai", "gpt-4o-mini") == Price(0.15, 0.60)
 
 
+def test_openrouter_models_have_explicit_prices():
+    assert lookup("openrouter", "openai/gpt-oss-20b") == Price(0.03, 0.13)
+    assert lookup("openrouter", "openai/gpt-oss-120b") == Price(0.013, 0.049)
+
+
 def test_unknown_provider_is_unpriced_not_free():
     assert lookup("mystery", "some-model") is None
 
