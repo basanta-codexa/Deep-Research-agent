@@ -432,6 +432,46 @@ def test_summary_is_a_macro_average():
     assert summary["total_tokens"] == 1000
 
 
+def test_summary_bootstrap_intervals_are_deterministic():
+    records = [
+        make_record(
+            item_id=f"t-{index}",
+            ok=index % 2 == 0,
+            report_ok=index % 2 == 0,
+            support={"supported": 3, "partial": 1} if index % 2 == 0 else {},
+            tokens_total=500 + index * 10,
+        )
+        for index in range(10)
+    ]
+
+    first = summarize(records)
+    second = summarize(records)
+
+    assert first["ci95"] == second["ci95"]
+    assert first["ci"]["method"] == "cluster bootstrap over questions"
+    assert first["ci"]["iterations"] == 2000
+    assert first["ci95"]["success_rate"][0] <= first["ci95"]["success_rate"][1]
+    assert "95% CI" in to_markdown(first)
+
+
+def test_single_question_bootstrap_is_degenerate():
+    summary = summarize([make_record()])
+    assert summary["ci95"]["success_rate"] == [1.0, 1.0]
+    assert summary["ci95"]["support_rate"] == [0.8, 0.8]
+
+
+def test_undefined_precision_has_no_confidence_interval():
+    summary = summarize([make_record(citations=0, unsupported_citations=0)])
+    assert summary["citation_precision"] is None
+    assert "citation_precision" not in summary["ci95"]
+
+
+def test_bootstrap_can_be_disabled_for_cheap_recomputation():
+    summary = summarize([make_record()], bootstrap=False)
+    assert "ci95" not in summary
+    assert "ci" not in summary
+
+
 def test_summary_percentiles():
     records = [
         make_record(tokens_total=n) for n in (100, 200, 300, 400)

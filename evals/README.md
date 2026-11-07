@@ -16,7 +16,13 @@ distribution, and a distribution is what a regression test can compare against.
 | `success_rate` | report published, checks passed, ≥1 citation | whether the answer is any good |
 | `support_rate` | (supported + partial) ÷ judged claims | one judge's opinion; partial counts as support |
 | `verified_rate` | quotes found in the fetched page ÷ findings | relevance: a real quote can still be off-topic |
-| `citation_precision` | citable citations ÷ all citations, micro-averaged | **nothing** — it is 1.0 by construction; it is an invariant |
+| `citation_precision` | citable citations ÷ all citations, micro-averaged | **nothing** — it is 1.0 by construction
+
+Every rate also carries a **95% cluster-bootstrap interval over questions**
+(2,000 resamples, seed 7). Questions are the sampling unit because claims
+inside one report are correlated; resampling claims would pretend there is
+more independent evidence than there is. With 30 questions the intervals are
+wide. Two runs whose intervals overlap have not been shown to differ.; it is an invariant |
 | `citation_coverage` | cited evidence ÷ citable evidence | whether the *right* evidence was used |
 | `keyword_recall` | expected terms present ÷ expected terms | correctness: term present ≠ claim true |
 | `misconception_rate` | questions whose report contains a known-wrong phrase | crude negation handling; phrase lists are incomplete |
@@ -142,7 +148,8 @@ day that report shipped.
   a different model before treating the support rate as independent; the
   re-judge is only as independent as the second model.
 - **Small n.** 30 questions is enough to see a 10-point regression, not enough
-  for a 2-point one. Report confidence intervals before making fine-grained claims.
+  for a 2-point one. The bootstrap intervals make this visible; do not treat
+  overlapping intervals as proof that two runs are equivalent.
 - **Provider variance.** Groq's free tier changes latency by 10× within an hour.
   Compare success/support across runs, not wall-clock.
 - **One language, one domain.** All questions are software engineering in

@@ -164,7 +164,9 @@ Reported per run:
 | tokens / seconds | cost and latency per question |
 
 Rates are macro (per question, then averaged), so one long run cannot hide ten
-short failures. Citation precision is the exception — micro-averaged, because a
+short failures. They carry 95% cluster-bootstrap intervals over questions
+(2,000 resamples); with n=30 those intervals are wide, and that is the point.
+Citation precision is the exception — micro-averaged, because a
 report that cited nothing has no precision; that failure shows up in success
 rate instead. Every run writes `summary.json` and `summary.md`, plus
 `report.md`, `evidence.json`, `plan.json`, `trace.json` and `trace.html` per

@@ -12,7 +12,9 @@ cannot hide ten short failures.
 
 from __future__ import annotations
 
+import random
 from dataclasses import asdict, dataclass, field
+from typing import Callable
 
 JUDGED_VERDICTS = ("supported", "partial", "unsupported", "contradicted")
 BAD_SUPPORT = ("unsupported", "contradicted", "unjudged")
@@ -155,7 +157,82 @@ def _precision(records: list[RunRecord]) -> float | None:
     return (citations - bad) / citations
 
 
-def summarize(records: list[RunRecord]) -> dict:
+# --------------------------------------------------------------------------- #
+# uncertainty
+# --------------------------------------------------------------------------- #
+# The question is the sampling unit. Claims inside one report are correlated:
+# a bad page can produce five bad claims at once, so resampling claims would
+# pretend the run contains more independent evidence than it does.
+CI_METRICS: dict[str, Callable[[list[RunRecord]], float | None]] = {
+    "success_rate": lambda rows: _rate(rows, successful),
+    "support_rate": lambda rows: _mean([support_rate(record) for record in rows]),
+    "verified_rate": lambda rows: _mean([verified_rate(record) for record in rows]),
+    "citation_precision": _precision,
+    "citation_coverage": lambda rows: _mean(
+        [citation_coverage(record) for record in rows]
+    ),
+    "keyword_recall": lambda rows: _mean([keyword_recall(record) for record in rows]),
+    "misconception_rate": lambda rows: _rate(
+        rows, lambda record: bool(record.misconception_hits)
+    ),
+    "mean_tokens": lambda rows: _mean(
+        [float(record.tokens_total) for record in rows]
+    ),
+    "mean_seconds": lambda rows: _mean([record.duration_s for record in rows]),
+}
+
+
+def bootstrap_ci(
+    records: list[RunRecord],
+    metric: Callable[[list[RunRecord]], float | None],
+    *,
+    iterations: int = 2000,
+    seed: int = 7,
+    level: float = 0.95,
+) -> tuple[float, float] | None:
+    """Percentile cluster-bootstrap interval over questions.
+
+    `None` means the metric was undefined for every resample (for example,
+    citation precision when the report cited nothing). An undefined value is
+    not zero, and it is not a confidence interval either.
+    """
+    if not records or iterations <= 0:
+        return None
+    rng = random.Random(seed)
+    count = len(records)
+    values: list[float] = []
+    for _ in range(iterations):
+        sample = [records[rng.randrange(count)] for _ in range(count)]
+        value = metric(sample)
+        if value is not None:
+            values.append(float(value))
+    if not values:
+        return None
+    alpha = (1.0 - level) / 2.0
+    return (_percentile(values, alpha), _percentile(values, 1.0 - alpha))
+
+
+def _bootstrap_cis(
+    records: list[RunRecord], *, iterations: int, seed: int, level: float
+) -> dict[str, list[float]]:
+    intervals: dict[str, list[float]] = {}
+    for key, metric in CI_METRICS.items():
+        interval = bootstrap_ci(
+            records, metric, iterations=iterations, seed=seed, level=level
+        )
+        if interval is not None:
+            intervals[key] = [round(interval[0], 4), round(interval[1], 4)]
+    return intervals
+
+
+def summarize(
+    records: list[RunRecord],
+    *,
+    bootstrap: bool = True,
+    iterations: int = 2000,
+    seed: int = 7,
+    level: float = 0.95,
+) -> dict:
     tokens = [float(record.tokens_total) for record in records]
     seconds = [record.duration_s for record in records]
     # A cost total is only a number if every record has a known price. One
@@ -212,6 +289,16 @@ def summarize(records: list[RunRecord]) -> dict:
         },
         "by_category": _by_category(records),
     }
+    if bootstrap:
+        summary["ci95"] = _bootstrap_cis(
+            records, iterations=iterations, seed=seed, level=level
+        )
+        summary["ci"] = {
+            "method": "cluster bootstrap over questions",
+            "level": level,
+            "iterations": iterations,
+            "seed": seed,
+        }
     return summary
 
 
@@ -307,12 +394,12 @@ def to_markdown(summary: dict, title: str = "Eval summary") -> str:
     lines.append(f"- total tokens: **{summary['total_tokens']:,}**")
     lines.append(f"- total time: **{summary['total_seconds']}s**")
     lines.append("")
-    lines.append("| metric | value |")
-    lines.append("| --- | --- |")
+    lines.append("| metric | value | 95% CI |")
+    lines.append("| --- | --- | --- |")
     for key, label, kind in SUMMARY_METRICS:
         value = summary.get(key, 0)
         if value is None:
-            lines.append(f"| {label} | n/a |")
+            lines.append(f"| {label} | n/a | - |")
             continue
         if kind == "pct":
             rendered = f"{value:.1%}"
@@ -320,7 +407,26 @@ def to_markdown(summary: dict, title: str = "Eval summary") -> str:
             rendered = f"${value:.4f}"
         else:
             rendered = f"{value:.1f}"
-        lines.append(f"| {label} | {rendered} |")
+        interval = (summary.get("ci95") or {}).get(key)
+        if interval is None:
+            ci = "-"
+        else:
+            low, high = interval
+            if kind == "pct":
+                ci = f"{low:.1%}-{high:.1%}"
+            elif kind == "money":
+                ci = f"${low:.4f}-${high:.4f}"
+            else:
+                ci = f"{low:.1f}-{high:.1f}"
+        lines.append(f"| {label} | {rendered} | {ci} |")
+
+    method = summary.get("ci") or {}
+    if method:
+        lines.append("")
+        lines.append(
+            f"CI: {method['method']} ({method['iterations']} resamples, "
+            f"seed {method['seed']}, {method['level']:.0%})."
+        )
 
     unpriced = summary.get("unpriced_models") or []
     if unpriced:
