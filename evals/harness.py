@@ -163,13 +163,24 @@ async def run_item(
 
 
 def _write_json(path: Path, payload: dict) -> None:
-    """Write JSON atomically so a crash cannot leave a half-written record."""
+    """Write JSON atomically so a crash cannot leave a half-written record.
+
+    Windows can briefly deny the replace while an indexer, antivirus, or
+    OneDrive sync has the target open. Retrying is safe: the write is atomic,
+    and a real permission problem still raises after the retry budget.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(path.name + ".tmp")
-    temporary.write_text(
-        json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
-    )
-    temporary.replace(path)
+    text = json.dumps(payload, indent=2, ensure_ascii=False)
+    for attempt in range(5):
+        try:
+            temporary.write_text(text, encoding="utf-8")
+            temporary.replace(path)
+            return
+        except PermissionError:
+            if attempt == 4:
+                raise
+            time.sleep(0.1 * (attempt + 1))
 
 
 def write_record(folder: Path, record: RunRecord) -> Path:

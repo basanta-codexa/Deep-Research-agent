@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
@@ -9,6 +10,7 @@ import pytest
 import evals.run as eval_run
 from evals.dataset import DEFAULT_PATH, EvalItem, category_counts, load_dataset
 from evals.harness import (
+    _write_json,
     load_record,
     mentions,
     record_from_result,
@@ -289,6 +291,27 @@ def test_run_item_turns_a_hang_into_a_row():
 # --------------------------------------------------------------------------- #
 # artifacts
 # --------------------------------------------------------------------------- #
+def test_write_json_retries_a_transient_windows_permission_error(
+    tmp_path, monkeypatch
+):
+    original = Path.replace
+    calls = {"count": 0}
+
+    def flaky(self, target):
+        calls["count"] += 1
+        if calls["count"] < 3:
+            raise PermissionError("the indexer has the file open")
+        return original(self, target)
+
+    monkeypatch.setattr(Path, "replace", flaky)
+    path = tmp_path / "record.json"
+
+    _write_json(path, {"ok": True})
+
+    assert json.loads(path.read_text(encoding="utf-8")) == {"ok": True}
+    assert calls["count"] == 3
+
+
 def test_write_item_writes_the_trace(tmp_path):
     result = PipelineResult(question="q", trace=Tracer("q"))
     item = make_item()

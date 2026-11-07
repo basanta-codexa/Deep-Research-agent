@@ -69,6 +69,9 @@ with an id, a claim, a quote and a source domain.
 Hard rules:
 1. After every factual sentence, cite the ids that support it: [ev_1a2b3c4d].
    Multiple ids go in separate brackets: [ev_aaaabbbb][ev_ccccdddd].
+   Lists and tables count: every bullet and every table row needs at least one
+   id. If a row is pure synthesis, cite the ids it summarizes; if none support
+   it, move the point to Limitations instead.
 2. Use ONLY ids from the EVIDENCE list. Never invent an id.
 3. NEVER write a URL. A references section is generated from your ids.
 4. Do not state anything the evidence does not say. If the evidence is thin,
@@ -108,8 +111,9 @@ REPAIR_PROMPT = """Your draft failed citation checks:
 {problems}
 
 Return the corrected draft as markdown only, no fences. Change only what is
-needed: add ids to uncited factual paragraphs, remove ids that are not in the
-evidence list, and delete any URL from the prose. Keep the structure."""
+needed: add ids to every uncited paragraph, bullet, and table row; if no evidence
+supports a point, delete it or move it to Limitations. Remove ids that are not
+in the evidence list, and delete any URL from the prose. Keep the structure."""
 
 
 class WriterError(RuntimeError):
