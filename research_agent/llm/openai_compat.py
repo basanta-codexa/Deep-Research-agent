@@ -55,6 +55,7 @@ class OpenAICompatClient(LLMClient):
         temperature: float = 0.2,
         max_tokens: int | None = None,
         json_mode: bool = False,
+        reasoning_effort: str | None = None,
     ) -> LLMResponse:
         payload: dict[str, Any] = {
             "model": self.model,
@@ -71,6 +72,13 @@ class OpenAICompatClient(LLMClient):
             # Providers require the word "JSON" somewhere in the prompt when
             # this flag is set. Our planner prompt says it explicitly.
             payload["response_format"] = {"type": "json_object"}
+        if reasoning_effort:
+            # OpenRouter normalises this across providers as a nested object;
+            # the OpenAI-compatible APIs that expose it use a top-level field.
+            if self.name == "openrouter":
+                payload["reasoning"] = {"effort": reasoning_effort}
+            else:
+                payload["reasoning_effort"] = reasoning_effort
 
         started = time.perf_counter()
         data = await post_json(

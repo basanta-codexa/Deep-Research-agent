@@ -138,6 +138,22 @@ def test_rejudge_records_replays_only_the_saved_evidence(tmp_path):
     assert details["q-1"]["verdicts"][alpha.id]["verdict"] == "supported"
 
 
+def test_rejudge_records_skips_missing_evidence_without_dropping_the_record(tmp_path):
+    run = tmp_path / "run"
+    run.mkdir()
+    record = make_record(item_id="timed-out", support={}, citations=0)
+
+    rejudged, details, errors, usage = asyncio.run(
+        rejudge_records(run, [record], FakeVerifier())
+    )
+
+    assert len(rejudged) == 1
+    assert rejudged[0].support == {}
+    assert "missing evidence" in errors["timed-out"]["evidence"]
+    assert details["timed-out"]["skipped"] == "missing evidence"
+    assert usage.total_tokens == 0
+
+
 def test_rejudge_markdown_reports_an_unjudged_original_as_na():
     summary = {
         "n": 1,

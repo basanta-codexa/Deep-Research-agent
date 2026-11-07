@@ -82,6 +82,7 @@ class Agent:
         temperature: float = 0.2,
         max_tokens: int | None = 400,
         max_tool_result_chars: int = 2000,
+        tool_timeout: float = 60.0,
         repeat_limit: int = 3,
         force_final_answer: bool = True,
         grace_answer: bool = True,
@@ -98,6 +99,7 @@ class Agent:
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.max_tool_result_chars = max_tool_result_chars
+        self.tool_timeout = tool_timeout
         self.repeat_limit = repeat_limit
         self.force_final_answer = force_final_answer
         self.grace_answer = grace_answer
@@ -214,7 +216,20 @@ class Agent:
             kind="tool",
             args=json.dumps(call.arguments, ensure_ascii=False)[:200],
         ) as item:
-            output = await self.registry.execute(call.name, call.arguments)
+            try:
+                # A tool is allowed to be slow, not to be infinite. Without
+                # this bound one hung search/fetch call can consume the whole
+                # question's timeout, and cancellation then waits on its
+                # thread. Timeouts are feedback, like any other tool error.
+                output = await asyncio.wait_for(
+                    self.registry.execute(call.name, call.arguments),
+                    timeout=self.tool_timeout,
+                )
+            except asyncio.TimeoutError:
+                output = (
+                    f"ERROR: {call.name} timed out after "
+                    f"{self.tool_timeout:g}s. Try a narrower query or another tool."
+                )
             if item is not None:
                 item.attributes["output_chars"] = len(output)
                 if output.startswith("ERROR:"):

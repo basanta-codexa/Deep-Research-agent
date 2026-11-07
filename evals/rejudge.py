@@ -107,9 +107,16 @@ async def rejudge_records(
     for record in records:
         evidence_path = run_dir / record.item_id / "evidence.json"
         if not evidence_path.exists():
-            raise SystemExit(
-                f"missing evidence for {record.item_id}: {evidence_path}"
-            )
+            # A timed-out question can finish with no evidence at all. It has
+            # nothing to re-judge, but dropping it would silently change the
+            # denominator and make the run look better. Keep its original
+            # record and surface the skip.
+            errors[record.item_id] = {
+                "evidence": f"missing evidence, record left unchanged: {evidence_path}"
+            }
+            details[record.item_id] = {"skipped": "missing evidence"}
+            rejudged.append(record)
+            continue
         store = EvidenceStore.load(evidence_path)
         report = await verifier.verify_items(store.verified_items)
         new_record, verdicts = apply_judgements(record, store, report)

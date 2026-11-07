@@ -387,11 +387,18 @@ class ReportWriter:
         max_tokens: int = 1800,
         temperature: float = 0.3,
         repair_attempts: int = 1,
+        reasoning_effort: str | None = "low",
     ) -> None:
         self.client = client
         self.max_tokens = max_tokens
         self.temperature = temperature
         self.repair_attempts = repair_attempts
+        # Writing from a fixed evidence list benefits from less hidden
+        # deliberation, and a reasoning model that spends 1,800-3,600 tokens
+        # thinking can return empty `content`. Low effort made this stochastic
+        # failure disappear in the reproducibility check; keep it configurable
+        # so a caller can turn it off for a model that ignores the hint.
+        self.reasoning_effort = reasoning_effort
 
     async def _complete(
         self,
@@ -418,6 +425,7 @@ class ReportWriter:
                 prompt,
                 temperature=temperature,
                 max_tokens=budget,
+                reasoning_effort=self.reasoning_effort,
             )
             usage += response.usage
             content = (response.message.content or "").strip()

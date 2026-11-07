@@ -625,6 +625,7 @@ class TraceLLMClient(LLMClient):
         temperature: float = 0.2,
         max_tokens: int | None = None,
         json_mode: bool = False,
+        reasoning_effort: str | None = None,
     ) -> LLMResponse:
         with span(
             "llm",
@@ -634,6 +635,7 @@ class TraceLLMClient(LLMClient):
             tools=len(tools) if tools else 0,
             json_mode=json_mode,
             max_tokens=max_tokens,
+            reasoning_effort=reasoning_effort,
         ) as item:
             response = await self.inner.chat(
                 messages,
@@ -641,6 +643,7 @@ class TraceLLMClient(LLMClient):
                 temperature=temperature,
                 max_tokens=max_tokens,
                 json_mode=json_mode,
+                reasoning_effort=reasoning_effort,
             )
             usage, priced = apply_cost(
                 self.name, response.model or self.model, response.usage

@@ -172,10 +172,12 @@ class FakeClient:
         self.replies = list(replies)
         self.calls = 0
         self.budgets: list[int | None] = []
+        self.reasoning_efforts: list[str | None] = []
 
     async def chat(self, messages, **kwargs):
         self.calls += 1
         self.budgets.append(kwargs.get("max_tokens"))
+        self.reasoning_efforts.append(kwargs.get("reasoning_effort"))
         text = self.replies.pop(0) if self.replies else ""
         return LLMResponse(
             message=Message.assistant(text),
@@ -275,6 +277,18 @@ def test_writer_retries_an_empty_completion_with_a_larger_budget():
     assert client.budgets[0] == 1800
     assert client.budgets[1] > client.budgets[0]
     assert report.errors == []
+
+
+def test_writer_asks_for_low_reasoning_by_default():
+    store, one, two = make_store()
+    client = FakeClient([draft_citing(one, two)])
+
+    report = asyncio.run(
+        ReportWriter(client).write(question="Which clock?", store=store)
+    )
+
+    assert report.ok is True
+    assert client.reasoning_efforts == ["low"]
 
 
 def test_an_empty_completion_is_an_error_not_a_repairable_draft():

@@ -157,8 +157,15 @@ class LLMClient(ABC):
         temperature: float = 0.2,
         max_tokens: int | None = None,
         json_mode: bool = False,
+        reasoning_effort: str | None = None,
     ) -> LLMResponse:
-        """Send a conversation, get back one assistant message."""
+        """Send a conversation, get back one assistant message.
+
+        ``reasoning_effort`` is an optional hint for reasoning models. Adapters
+        that do not support it must ignore it; callers must not rely on it
+        changing the answer. The writer uses ``low`` because a hidden reasoning
+        burn can consume the whole output budget and return an empty draft.
+        """
 
     async def aclose(self) -> None:
         """Release network resources. Default: nothing to release."""

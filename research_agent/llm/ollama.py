@@ -58,7 +58,11 @@ class OllamaClient(LLMClient):
         temperature: float = 0.2,
         max_tokens: int | None = None,
         json_mode: bool = False,
+        reasoning_effort: str | None = None,
     ) -> LLMResponse:
+        # Ollama exposes a model-specific `think` switch, not an effort scale.
+        # Ignore the hint rather than send an unsupported field.
+        _ = reasoning_effort
         payload: dict[str, Any] = {
             "model": self.model,
             "messages": [self._to_wire(m) for m in messages],
