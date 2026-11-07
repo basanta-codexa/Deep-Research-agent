@@ -1,0 +1,48 @@
+{
+  "item_id": "k8s-probe-types",
+  "category": "containers",
+  "question": "What is the difference between a Kubernetes readiness probe and a liveness probe?",
+  "ok": true,
+  "error": null,
+  "duration_s": 84.03,
+  "stage_errors": {},
+  "evidence_total": 9,
+  "evidence_verified": 4,
+  "evidence_citable": 4,
+  "evidence_cited": 4,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 4
+  },
+  "contradictions": 0,
+  "citations": 4,
+  "cited_ids": [
+    "ev_f8f62343",
+    "ev_d6c3c347",
+    "ev_76ce46c3",
+    "ev_4a1ba020"
+  ],
+  "unsupported_citations": 0,
+  "words": 486,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "readiness",
+    "liveness"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 19532,
+  "tokens_completion": 10944,
+  "tokens_total": 30476,
+  "cost_usd": 0.00200868,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 8.3,
+    "research": 60.8,
+    "evidence": 0.0,
+    "verify": 4.82,
+    "write": 10.11
+  }
+}

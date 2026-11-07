@@ -1,0 +1,185 @@
+{
+  "generated_at": 1794041053.3235438,
+  "stats": {
+    "findings_seen": 9,
+    "evidence_kept": 9,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 5,
+    "outside_window": 0,
+    "sources": 4
+  },
+  "evidence": [
+    {
+      "id": "ev_19bfbb12",
+      "claim": "The N+1 query problem occurs when an ORM runs one query to fetch a list of records and then runs an additional query for each record to fetch related data, resulting in N+1 total queries.",
+      "quote": "In this case, you are running one query to fetch the list of blog posts and then running multiple queries that fetch N number of authors corresponding to every blog post, hence the name N + 1 query problem.",
+      "url": "https://dev.to/leelussh/what-is-the-n1-query-problem-and-how-to-detect-it-2g7p",
+      "title": "What Is the N+1 Query Problem and How to Detect It",
+      "sub_questions": [
+        "What is the N+1 query problem in an ORM?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794038840.6193094,
+      "verified": false
+    },
+    {
+      "id": "ev_a4c7026a",
+      "claim": "The N+1 query problem is an anti‑pattern that stems from the leaky abstraction that ORMs provide.",
+      "quote": "The infamous N + 1 query problem is an anti‑pattern that stems from the leaky abstraction that ORMs provide.",
+      "url": "https://dev.to/leelussh/what-is-the-n1-query-problem-and-how-to-detect-it-2g7p",
+      "title": "What Is the N+1 Query Problem and How to Detect It",
+      "sub_questions": [
+        "What is the N+1 query problem in an ORM?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794038840.621402,
+      "verified": false
+    },
+    {
+      "id": "ev_ee738915",
+      "claim": "The N+1 problem occurs because ORMs use lazy loading, which defers fetching related entities until they are accessed, causing a separate query per parent when accessed in a loop.",
+      "quote": "The root cause of the N+1 problem is lazy loading, a default behavior in most ORMs.",
+      "url": "https://www.tutorialpedia.org/blog/what-is-the-n-1-selects-problem-in-orm-object-relational-mapping/",
+      "title": "What is the N+1 Selects Problem in ORM? A Detailed Explanation for Developers",
+      "sub_questions": [
+        "Why does the N+1 query problem occur in ORMs?"
+      ],
+      "confidence": "high",
+      "span_start": 926,
+      "span_end": 1009,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote identifies lazy loading as the root cause of N+1, but does not mention deferring fetches or separate queries per parent in a loop.",
+      "trust": "aggregator",
+      "created_at": 1794038840.621549,
+      "verified": true
+    },
+    {
+      "id": "ev_dc269f39",
+      "claim": "The N+1 problem occurs when an ORM executes an excessive number of database queries to fetch related entities, specifically N additional queries for each parent, resulting in 1 + N total queries.",
+      "quote": "The N+1 Selects Problem is a performance anti-pattern that occurs when an ORM executes an excessive number of database queries to fetch related entities. Specifically, it happens when: N additional queries are executed to fetch related child entities for each parent (e.g., 1 query per Author to fetch their Book records), resulting in 1 + N total queries.",
+      "url": "https://www.tutorialpedia.org/blog/what-is-the-n-1-selects-problem-in-orm-object-relational-mapping/",
+      "title": "What is the N+1 Selects Problem in ORM? A Detailed Explanation for Developers",
+      "sub_questions": [
+        "Why does the N+1 query problem occur in ORMs?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794038840.6244643,
+      "verified": false
+    },
+    {
+      "id": "ev_cfee8429",
+      "claim": "Digma can detect N+1 queries by analyzing runtime traces collected via OpenTelemetry",
+      "quote": "Problems such as repeated queries associated with N+1 Select statements are easy to detect in the runtime data. Specifically, in traces that Digma automatically collects using OpenTelemetry.",
+      "url": "https://dev.to/leelussh/what-is-the-n1-query-problem-and-how-to-detect-it-2g7p",
+      "title": "What Is the N+1 Query Problem and How to Detect It",
+      "sub_questions": [
+        "How can I detect N+1 queries in my application?"
+      ],
+      "confidence": "high",
+      "span_start": 602,
+      "span_end": 792,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that repeated queries associated with N+1 Select statements are easy to detect in the runtime data, specifically in traces that Digma automatically collects using OpenTelemetry.",
+      "trust": "aggregator",
+      "created_at": 1794038840.6248577,
+      "verified": true
+    },
+    {
+      "id": "ev_7eb9291b",
+      "claim": "Digma provides endpoint‑level insights that allow detection and fixing of N+1 queries related to specific endpoints",
+      "quote": "Besides the insights on the repeating database spans, Digma also provides key endpoint insights that allow us to detect and fix N + 1 queries related to specific endpoints, among other performance issues at their source.",
+      "url": "https://dev.to/leelussh/what-is-the-n1-query-problem-and-how-to-detect-it-2g7p",
+      "title": "What Is the N+1 Query Problem and How to Detect It",
+      "sub_questions": [
+        "How can I detect N+1 queries in my application?"
+      ],
+      "confidence": "high",
+      "span_start": 793,
+      "span_end": 1013,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that Digma provides endpoint insights that allow detection and fixing of N+1 queries related to specific endpoints.",
+      "trust": "aggregator",
+      "created_at": 1794038840.6251574,
+      "verified": true
+    },
+    {
+      "id": "ev_7d231740",
+      "claim": "Static analysis tools often miss N+1 regressions because they infer execution paths instead of observing runtime behavior.",
+      "quote": "Static analysis tools often miss N+1 regressions because they infer execution paths instead of observing runtime behavior.",
+      "url": "https://www.hypertest.co/post/n-plus-one-query-detection-code-review",
+      "title": "N+1 Query Detection in Code Review: Why Most Tools Miss It",
+      "sub_questions": [
+        "What tools or techniques can help detect N+1 queries?"
+      ],
+      "confidence": "high",
+      "span_start": 148,
+      "span_end": 270,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794038840.6253066,
+      "verified": true
+    },
+    {
+      "id": "ev_0e391239",
+      "claim": "Runtime‑aware review systems can compare execution traces directly and show that query count increased from 12 queries to 450 queries after the change.",
+      "quote": "A runtime‑aware review system can compare execution traces directly and show that query count increased from 12 queries to 450 queries after the change.",
+      "url": "https://www.hypertest.co/post/n-plus-one-query-detection-code-review",
+      "title": "N+1 Query Detection in Code Review: Why Most Tools Miss It",
+      "sub_questions": [
+        "What tools or techniques can help detect N+1 queries?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794038840.6277187,
+      "verified": false
+    },
+    {
+      "id": "ev_442d3ab6",
+      "claim": "Django developers can use django‑debug‑toolbar to detect duplicate queries in development.",
+      "quote": "Use django‑debug‑toolbar SQL panel — the 'Queries' tab with duplicate detection.",
+      "url": "https://buglyst.com/learn/guides/django-orm-query-debug",
+      "title": "Django ORM N+1 Query Debugging Guide | Buglyst",
+      "sub_questions": [
+        "What tools or techniques can help detect N+1 queries?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794038840.63026,
+      "verified": false
+    }
+  ]
+}

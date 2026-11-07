@@ -79,11 +79,12 @@ def apply_judgements(
         support[verdict] = support.get(verdict, 0) + 1
 
     rejudged.support = support
-    rejudged.evidence_citable = sum(
-        1
-        for item in store.verified_items
-        if verdicts.get(item.id) not in BAD_SUPPORT
-    )
+
+    # `evidence_citable` is a generation-time count: the evidence that was
+    # allowed into the writer's brief. Re-judging support does not change what
+    # the writer could have cited, and recomputing it here made citation
+    # coverage exceed 100% when a cited claim was downgraded. Keep the original
+    # denominator and update only the support verdicts.
 
     if rejudged.cited_ids:
         rejudged.unsupported_citations = sum(

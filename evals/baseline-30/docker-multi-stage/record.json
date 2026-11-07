@@ -1,0 +1,50 @@
+{
+  "item_id": "docker-multi-stage",
+  "category": "containers",
+  "question": "How does a multi-stage Docker build reduce the size of the final image?",
+  "ok": true,
+  "error": null,
+  "duration_s": 196.04,
+  "stage_errors": {},
+  "evidence_total": 10,
+  "evidence_verified": 6,
+  "evidence_citable": 6,
+  "evidence_cited": 6,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 5,
+    "partial": 1
+  },
+  "contradictions": 0,
+  "citations": 6,
+  "cited_ids": [
+    "ev_5edd9658",
+    "ev_1a2bf49f",
+    "ev_8b507319",
+    "ev_f5964c3c",
+    "ev_98f9a93e",
+    "ev_ff84d663"
+  ],
+  "unsupported_citations": 0,
+  "words": 403,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [],
+  "keyword_misses": [
+    "multi-stage"
+  ],
+  "misconception_hits": [],
+  "tokens_prompt": 27307,
+  "tokens_completion": 18550,
+  "tokens_total": 45857,
+  "cost_usd": 0.00323071,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 7.03,
+    "research": 136.41,
+    "evidence": 0.01,
+    "verify": 12.11,
+    "write": 40.48
+  }
+}

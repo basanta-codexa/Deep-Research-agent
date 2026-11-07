@@ -1,0 +1,109 @@
+{
+  "generated_at": 1794041053.012499,
+  "stats": {
+    "findings_seen": 5,
+    "evidence_kept": 5,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 1,
+    "outside_window": 0,
+    "sources": 4
+  },
+  "evidence": [
+    {
+      "id": "ev_51efb12f",
+      "claim": "The no-cache response directive requires a cache to validate the response with the origin server before using it to satisfy any subsequent request.",
+      "quote": "RFC 9111 §5.2.2.4 defines no-cache as: the response “MUST NOT be used to satisfy any other request without forwarding it for validation and receiving a successful response”. Storing is fine.",
+      "url": "https://bytefork.tools/blog/no-cache-does-not-mean-no-caching/",
+      "title": "Cache-Control: no-cache does not mean \"do not cache\" — By...",
+      "sub_questions": [
+        "What is the formal definition of the Cache-Control: no-cache directive in the HTTP/1.1 specification?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 541,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that a response with no-cache must not be used to satisfy another request without forwarding it for validation and receiving a successful response, which matches the claim.",
+      "trust": "unknown",
+      "created_at": 1794037471.6693718,
+      "verified": true
+    },
+    {
+      "id": "ev_a9cecaef",
+      "claim": "no-cache does not prevent storage",
+      "quote": "no-cache does not prevent storage.",
+      "url": "https://howhttpworks.com/compare/no-cache-vs-no-store",
+      "title": "Cache-Control: no-cache vs no-store",
+      "sub_questions": [
+        "What is the difference between Cache-Control: no-cache and Cache-Control: no-store?"
+      ],
+      "confidence": "high",
+      "span_start": 666,
+      "span_end": 700,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote literally states that no-cache does not prevent storage.",
+      "trust": "unknown",
+      "created_at": 1794037471.66939,
+      "verified": true
+    },
+    {
+      "id": "ev_3f1b9e90",
+      "claim": "no-store is the directive that tells caches not to store the response",
+      "quote": "no-store is the directive that tells caches not to store the response.",
+      "url": "https://howhttpworks.com/compare/no-cache-vs-no-store",
+      "title": "Cache-Control: no-cache vs no-store",
+      "sub_questions": [
+        "What is the difference between Cache-Control: no-cache and Cache-Control: no-store?"
+      ],
+      "confidence": "high",
+      "span_start": 899,
+      "span_end": 969,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly that no-store is the directive that tells caches not to store the response.",
+      "trust": "unknown",
+      "created_at": 1794037471.669415,
+      "verified": true
+    },
+    {
+      "id": "ev_b7192485",
+      "claim": "no-cache means a cache may store the response but must revalidate it with the origin before every reuse; no-store means do not store it at all",
+      "quote": "TL;DR: no-cache means a cache may store the response but must revalidate it with the origin before every reuse. no-store means do not store it at all.",
+      "url": "https://howhttpworks.com/compare/no-cache-vs-no-store",
+      "title": "Cache-Control: no-cache vs no-store",
+      "sub_questions": [
+        "What is the difference between Cache-Control: no-cache and Cache-Control: no-store?"
+      ],
+      "confidence": "high",
+      "span_start": 0,
+      "span_end": 150,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly that no-cache allows storage but requires revalidation before reuse, and that no-store forbids storage.",
+      "trust": "unknown",
+      "created_at": 1794037471.6694565,
+      "verified": true
+    },
+    {
+      "id": "ev_db658c48",
+      "claim": "Cache‑Control: no‑cache requires a cache to revalidate the response with the origin server before serving it",
+      "quote": "no-cache: forces caches to submit the request to the origin server for validation before releasing a cached copy.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control",
+      "title": "Cache-Control header",
+      "sub_questions": [
+        "Does Cache-Control: no-cache require a cache to revalidate the response with the origin server before serving it?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "primary",
+      "created_at": 1794037471.6695864,
+      "verified": false
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "item_id": "security-password-hashing",
+  "category": "security",
+  "question": "Why should passwords be stored with Argon2id or bcrypt instead of a single round of SHA-256?",
+  "ok": true,
+  "error": null,
+  "duration_s": 116.37,
+  "stage_errors": {},
+  "evidence_total": 9,
+  "evidence_verified": 7,
+  "evidence_citable": 7,
+  "evidence_cited": 7,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 6,
+    "partial": 1
+  },
+  "contradictions": 0,
+  "citations": 7,
+  "cited_ids": [
+    "ev_94bf6c9c",
+    "ev_98dc42d8",
+    "ev_ee006dc3",
+    "ev_2e6464de",
+    "ev_6523b248",
+    "ev_fe02f354",
+    "ev_0625e3b4"
+  ],
+  "unsupported_citations": 0,
+  "words": 535,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "salt",
+    "bcrypt"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 25469,
+  "tokens_completion": 18370,
+  "tokens_total": 43839,
+  "cost_usd": 0.00315217,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 6.45,
+    "research": 72.72,
+    "evidence": 0.01,
+    "verify": 26.47,
+    "write": 10.71
+  }
+}

@@ -1,0 +1,1270 @@
+{
+  "trace_id": "cb5873ca4891",
+  "name": "What does the HTTP Cache-Control: no-cache directive actually require a cache to do?",
+  "started_at": "2026-11-07T07:43:15.811205+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "f23dcce6",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.08,
+      "duration_ms": 97249.03,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "34c0cc8e",
+      "parent_id": "f23dcce6",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.19,
+      "duration_ms": 8129.67,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "What does the HTTP Cache-Control: no-cache directive actually require a cache to do?",
+        "questions": [
+          {
+            "question": "What is the formal definition of the Cache-Control: no-cache directive in the HTTP/1.1 specification?",
+            "search_query": "Cache-Control no-cache definition HTTP/1.1"
+          },
+          {
+            "question": "How must a cache treat a response that includes Cache-Control: no-cache?",
+            "search_query": "Cache-Control no-cache cache behavior"
+          },
+          {
+            "question": "What is the difference between Cache-Control: no-cache and Cache-Control: no-store?",
+            "search_query": "no-cache vs no-store HTTP"
+          },
+          {
+            "question": "Does Cache-Control: no-cache require a cache to revalidate the response with the origin server before serving it?",
+            "search_query": "no-cache revalidation requirement"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4434b9e0",
+      "parent_id": "34c0cc8e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 2.35,
+      "duration_ms": 8127.4,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8127.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 569,
+        "completion": 928,
+        "total": 1497,
+        "cost_usd": 0.00013771
+      }
+    },
+    {
+      "id": "7ec4cc81",
+      "parent_id": "f23dcce6",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 8129.91,
+      "duration_ms": 67728.08,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 4,
+        "findings": 5,
+        "sources": 4
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "bd94e933",
+      "parent_id": "7ec4cc81",
+      "name": "What is the formal definition of the Cache-Control: no-cache directive",
+      "kind": "subagent",
+      "start_ms": 8129.98,
+      "duration_ms": 58826.69,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "Cache-Control no-cache definition HTTP/1.1",
+        "findings": 1,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://bytefork.tools/blog/no-cache-does-not-mean-no-caching/",
+          "https://www.rfc-editor.org/info/rfc7234/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "0130316f",
+      "parent_id": "bd94e933",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 8130.04,
+      "duration_ms": 2285.41,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2285.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 419,
+        "completion": 116,
+        "total": 535,
+        "cost_usd": 2.765e-05
+      }
+    },
+    {
+      "id": "d88bc5ce",
+      "parent_id": "7ec4cc81",
+      "name": "How must a cache treat a response that includes Cache-Control: no-cach",
+      "kind": "subagent",
+      "start_ms": 8130.78,
+      "duration_ms": 17274.09,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "Cache-Control no-cache cache behavior",
+        "findings": 0,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "d4de1500",
+      "parent_id": "d88bc5ce",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 8130.82,
+      "duration_ms": 2685.79,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2685.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 416,
+        "completion": 60,
+        "total": 476,
+        "cost_usd": 2.028e-05
+      }
+    },
+    {
+      "id": "b1bb0916",
+      "parent_id": "bd94e933",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 10415.53,
+      "duration_ms": 9194.05,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Cache-Control no-cache definition HTTP/1.1 RFC 7234\", \"focus\": \"no-cache directive definition\", \"max_chars\": 2000}",
+        "output_chars": 2031
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "7d51c9dd",
+      "parent_id": "d88bc5ce",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 10816.69,
+      "duration_ms": 5484.33,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Cache-Control no-cache cache behavior\", \"focus\": \"Cache-Control no-cache cache behavior\", \"max_chars\": 500}",
+        "output_chars": 609
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "1fff1716",
+      "parent_id": "d88bc5ce",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 16301.07,
+      "duration_ms": 1701.7,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1701.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 572,
+        "completion": 80,
+        "total": 652,
+        "cost_usd": 2.756e-05
+      }
+    },
+    {
+      "id": "5c5648de",
+      "parent_id": "d88bc5ce",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 18002.87,
+      "duration_ms": 1.94,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Cache-Control no-cache cache behavior\", \"focus\": \"no-cache\", \"max_chars\": 500}",
+        "output_chars": 609
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "5ea0351d",
+      "parent_id": "d88bc5ce",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 18004.88,
+      "duration_ms": 1959.54,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1959.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 760,
+        "completion": 114,
+        "total": 874,
+        "cost_usd": 3.762e-05
+      }
+    },
+    {
+      "id": "7a392a73",
+      "parent_id": "bd94e933",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 19609.67,
+      "duration_ms": 2501.49,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2501.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 994,
+        "completion": 98,
+        "total": 1092,
+        "cost_usd": 4.256e-05
+      }
+    },
+    {
+      "id": "90c1f435",
+      "parent_id": "d88bc5ce",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 19964.56,
+      "duration_ms": 2598.48,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Cache-Control no-cache must revalidate before reuse\", \"focus\": \"no-cache must revalidate\", \"max_chars\": 500}",
+        "output_chars": 620
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "58e1aba3",
+      "parent_id": "bd94e933",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 22111.31,
+      "duration_ms": 13146.53,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: No results found.",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"RFC 7234 no-cache directive definition\", \"focus\": \"no-cache directive definition\", \"max_chars\": 2000}",
+        "output_chars": 54
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "338b7653",
+      "parent_id": "d88bc5ce",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 22563.14,
+      "duration_ms": 2841.66,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2841.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 658,
+        "completion": 293,
+        "total": 951,
+        "cost_usd": 5.783e-05
+      }
+    },
+    {
+      "id": "d9682f91",
+      "parent_id": "7ec4cc81",
+      "name": "What is the difference between Cache-Control: no-cache and Cache-Contr",
+      "kind": "subagent",
+      "start_ms": 25404.9,
+      "duration_ms": 25004.17,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "no-cache vs no-store HTTP",
+        "findings": 3,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://howhttpworks.com/compare/no-cache-vs-no-store"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8c381fca",
+      "parent_id": "d9682f91",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 25404.94,
+      "duration_ms": 916.71,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 916.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 414,
+        "completion": 52,
+        "total": 466,
+        "cost_usd": 1.918e-05
+      }
+    },
+    {
+      "id": "348f9783",
+      "parent_id": "d9682f91",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 26321.73,
+      "duration_ms": 13736.9,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"no-cache vs no-store HTTP\", \"focus\": \"no-cache vs no-store\", \"max_chars\": 2000}",
+        "output_chars": 1984
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "93ecf104",
+      "parent_id": "bd94e933",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 35257.92,
+      "duration_ms": 5396.23,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 5396.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1098,
+        "completion": 377,
+        "total": 1475,
+        "cost_usd": 8.195e-05
+      }
+    },
+    {
+      "id": "e0efbb42",
+      "parent_id": "d9682f91",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 40058.7,
+      "duration_ms": 2614.17,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2614.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 870,
+        "completion": 177,
+        "total": 1047,
+        "cost_usd": 4.911e-05
+      }
+    },
+    {
+      "id": "ba302608",
+      "parent_id": "bd94e933",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 40654.28,
+      "duration_ms": 6591.21,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"no-cache request directive indicates that a cache MUST NOT use\", \"focus\": \"no-cache request directive indicates that a cache MUST NOT use\", \"max_chars\": 2000}",
+        "output_chars": 2043
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "115a8331",
+      "parent_id": "d9682f91",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 42672.97,
+      "duration_ms": 7735.97,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7735.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 746,
+        "completion": 852,
+        "total": 1598,
+        "cost_usd": 0.00013314
+      }
+    },
+    {
+      "id": "793185f5",
+      "parent_id": "bd94e933",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 47245.57,
+      "duration_ms": 1438.91,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 1438.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1380,
+        "completion": 1000,
+        "total": 2380,
+        "cost_usd": 0.0001714
+      }
+    },
+    {
+      "id": "15b4fe91",
+      "parent_id": "bd94e933",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 48684.51,
+      "duration_ms": 15560.02,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 15560.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1383,
+        "completion": 2000,
+        "total": 3383,
+        "cost_usd": 0.00030149
+      }
+    },
+    {
+      "id": "ea6bf1d8",
+      "parent_id": "7ec4cc81",
+      "name": "Does Cache-Control: no-cache require a cache to revalidate the respons",
+      "kind": "subagent",
+      "start_ms": 50409.13,
+      "duration_ms": 25448.8,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "no-cache revalidation requirement",
+        "findings": 1,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4f935c89",
+      "parent_id": "ea6bf1d8",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 50409.18,
+      "duration_ms": 633.79,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 633.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 477,
+        "completion": 49,
+        "total": 526,
+        "cost_usd": 2.068e-05
+      }
+    },
+    {
+      "id": "fc79a6d2",
+      "parent_id": "ea6bf1d8",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 51043.06,
+      "duration_ms": 3631.29,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"Cache-Control: no-cache revalidation requirement\", \"max_chars\": 500, \"query\": \"no-cache revalidation requirement\"}",
+        "output_chars": 609
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "677afcc2",
+      "parent_id": "ea6bf1d8",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 54674.42,
+      "duration_ms": 687.79,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 687.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 629,
+        "completion": 66,
+        "total": 695,
+        "cost_usd": 2.745e-05
+      }
+    },
+    {
+      "id": "cf59f245",
+      "parent_id": "ea6bf1d8",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 55362.3,
+      "duration_ms": 12575.24,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: No results found.",
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"no-cache revalidation\", \"max_chars\": 500, \"query\": \"Cache-Control no-cache revalidation\"}",
+        "output_chars": 54
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "27c70ebf",
+      "parent_id": "bd94e933",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 64244.59,
+      "duration_ms": 2711.98,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": true,
+        "max_tokens": 4000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2711.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1408,
+        "completion": 1255,
+        "total": 2663,
+        "cost_usd": 0.00020539
+      }
+    },
+    {
+      "id": "08b48aa7",
+      "parent_id": "ea6bf1d8",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 67937.59,
+      "duration_ms": 985.44,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 985.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 725,
+        "completion": 375,
+        "total": 1100,
+        "cost_usd": 7.05e-05
+      }
+    },
+    {
+      "id": "a18d384a",
+      "parent_id": "ea6bf1d8",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 68923.09,
+      "duration_ms": 6929.35,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 6929.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 464,
+        "completion": 711,
+        "total": 1175,
+        "cost_usd": 0.00010635
+      }
+    },
+    {
+      "id": "a7ea43ad",
+      "parent_id": "f23dcce6",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 75858.05,
+      "duration_ms": 0.33,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 5,
+        "evidence_kept": 5,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 1,
+        "outside_window": 0,
+        "sources": 4
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "cfc57395",
+      "parent_id": "f23dcce6",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 75858.4,
+      "duration_ms": 7150.4,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 4,
+          "partial": 0,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "42f6c206",
+      "parent_id": "cfc57395",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 75858.49,
+      "duration_ms": 4347.21,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4347.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 348,
+        "completion": 287,
+        "total": 635,
+        "cost_usd": 4.775e-05
+      }
+    },
+    {
+      "id": "687418a5",
+      "parent_id": "cfc57395",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 75859.34,
+      "duration_ms": 2392.18,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2392.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 291,
+        "completion": 89,
+        "total": 380,
+        "cost_usd": 2.03e-05
+      }
+    },
+    {
+      "id": "334e3a8f",
+      "parent_id": "cfc57395",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 75860.03,
+      "duration_ms": 1390.86,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1390.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 318,
+        "completion": 95,
+        "total": 413,
+        "cost_usd": 2.189e-05
+      }
+    },
+    {
+      "id": "520826f9",
+      "parent_id": "cfc57395",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 75860.65,
+      "duration_ms": 2223.84,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2223.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 343,
+        "completion": 147,
+        "total": 490,
+        "cost_usd": 2.94e-05
+      }
+    },
+    {
+      "id": "98ae1b11",
+      "parent_id": "cfc57395",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 80206.02,
+      "duration_ms": 2802.64,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2802.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 333,
+        "completion": 308,
+        "total": 641,
+        "cost_usd": 5.003e-05
+      }
+    },
+    {
+      "id": "9f7c6cf2",
+      "parent_id": "f23dcce6",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 83008.9,
+      "duration_ms": 14240.15,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 438,
+        "citations": 4,
+        "cited_sources": 2,
+        "repaired": false
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "30aedf63",
+      "parent_id": "9f7c6cf2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 83009.01,
+      "duration_ms": 14239.1,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 14239.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 824,
+        "completion": 1642,
+        "total": 2466,
+        "cost_usd": 0.00023818
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 3657220.4,
+    "span_count": 43,
+    "llm_calls": 24,
+    "tool_calls": 9,
+    "errors": 2,
+    "tokens": {
+      "prompt": 16439,
+      "completion": 11171,
+      "total": 27610
+    },
+    "cost_usd": 0.0019454,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 24,
+        "prompt": 16439,
+        "completion": 11171,
+        "total": 27610,
+        "cost_usd": 0.0019454,
+        "priced": true,
+        "duration_ms": 95109.2
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 1,
+        "prompt": 569,
+        "completion": 928,
+        "total": 1497,
+        "cost_usd": 0.00013771
+      },
+      "research": {
+        "calls": 17,
+        "prompt": 13413,
+        "completion": 7675,
+        "total": 21088,
+        "cost_usd": 0.00140014
+      },
+      "verify": {
+        "calls": 5,
+        "prompt": 1633,
+        "completion": 926,
+        "total": 2559,
+        "cost_usd": 0.00016937
+      },
+      "write": {
+        "calls": 1,
+        "prompt": 824,
+        "completion": 1642,
+        "total": 2466,
+        "cost_usd": 0.00023818
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 97249.0,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 97248.6,
+        "errors": 0
+      },
+      "llm": {
+        "count": 24,
+        "duration_ms": 95109.2,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 4,
+        "duration_ms": 126553.7,
+        "errors": 0
+      },
+      "tool": {
+        "count": 9,
+        "duration_ms": 66960.0,
+        "errors": 2
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 15560.0
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 14239.1
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 8127.4
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7736.0
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 6929.3
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "f23dcce6",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 97249.0
+      },
+      {
+        "id": "9f7c6cf2",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 14240.1
+      },
+      {
+        "id": "30aedf63",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 14239.1
+      }
+    ]
+  }
+}

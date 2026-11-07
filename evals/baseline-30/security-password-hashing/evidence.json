@@ -1,0 +1,223 @@
+{
+  "generated_at": 1794041053.7593615,
+  "stats": {
+    "findings_seen": 11,
+    "evidence_kept": 11,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 2,
+    "outside_window": 0,
+    "sources": 7
+  },
+  "evidence": [
+    {
+      "id": "ev_603beedd",
+      "claim": "Argon2id is a deliberately slow, memory‑hard password hash (RFC 9106) with a salt and tunable cost.",
+      "quote": "Argon2id is a deliberately slow, memory-hard password hash (RFC 9106) with a salt and tunable cost.",
+      "url": "https://mojoauth.com/security-guides/sha-256-vs-argon2",
+      "title": "Argon2 vs SHA256 for Password Hashing | MojoAuth Security Guides",
+      "sub_questions": [
+        "What are Argon2id and bcrypt, and how do they differ from SHA-256 in the context of password hashing?"
+      ],
+      "confidence": "high",
+      "span_start": 569,
+      "span_end": 668,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794040305.0445755,
+      "verified": true
+    },
+    {
+      "id": "ev_567b3ecc",
+      "claim": "bcrypt is a deliberately slow password hashing function with a built‑in 128‑bit salt and a tunable cost factor.",
+      "quote": "bcrypt is a deliberately slow password hashing function with a built‑in 128‑bit salt and a tunable cost factor.",
+      "url": "https://mojoauth.com/security-guides/sha-256-vs-bcrypt",
+      "title": "bcrypt vs SHA256 for Password Hashing | MojoAuth Security Guides",
+      "sub_questions": [
+        "What are Argon2id and bcrypt, and how do they differ from SHA-256 in the context of password hashing?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794040305.0465603,
+      "verified": false
+    },
+    {
+      "id": "ev_0b19ddc2",
+      "claim": "SHA‑256 is a fast general‑purpose hash built for integrity checks and signatures, so an attacker with a leaked database can test billions of guesses per second on GPUs.",
+      "quote": "SHA-256 is a fast general-purpose hash built for integrity checks and signatures, so an attacker with a leaked database can test billions of guesses per second on GPUs.",
+      "url": "https://mojoauth.com/security-guides/sha-256-vs-argon2",
+      "title": "Argon2 vs SHA256 for Password Hashing | MojoAuth Security Guides",
+      "sub_questions": [
+        "What are Argon2id and bcrypt, and how do they differ from SHA-256 in the context of password hashing?"
+      ],
+      "confidence": "high",
+      "span_start": 112,
+      "span_end": 280,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote repeats the claim verbatim.",
+      "trust": "unknown",
+      "created_at": 1794040305.046734,
+      "verified": true
+    },
+    {
+      "id": "ev_c424046d",
+      "claim": "Argon2id and bcrypt are slow, adaptive password‑hashing algorithms",
+      "quote": "slow, adaptive password hashing algorithms (bcrypt, Argon2id)",
+      "url": "https://www.devutils.run/guides/cryptographic-hashing-sha256-vs-bcrypt",
+      "title": "Cryptographic Hashing vs Password Hashing: SHA-256 vs bcrypt & Argon2 | DevUtils",
+      "sub_questions": [
+        "What specific security advantages do Argon2id and bcrypt offer over a single round of SHA-256 for password storage?"
+      ],
+      "confidence": "high",
+      "span_start": 159,
+      "span_end": 220,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly calls bcrypt and Argon2id \"slow, adaptive password hashing algorithms.\"",
+      "trust": "unknown",
+      "created_at": 1794040305.0468023,
+      "verified": true
+    },
+    {
+      "id": "ev_192c85fd",
+      "claim": "bcrypt incorporates an adaptive work factor and is battle‑tested over two decades",
+      "quote": "bcrypt incorporates an adaptive work factor and is battle-tested over two decades",
+      "url": "https://www.devutils.run/guides/cryptographic-hashing-sha256-vs-bcrypt",
+      "title": "Cryptographic Hashing vs Password Hashing: SHA-256 vs bcrypt & Argon2 | DevUtils",
+      "sub_questions": [
+        "What specific security advantages do Argon2id and bcrypt offer over a single round of SHA-256 for password storage?"
+      ],
+      "confidence": "high",
+      "span_start": 666,
+      "span_end": 747,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly that bcrypt incorporates an adaptive work factor and is battle‑tested over two decades.",
+      "trust": "unknown",
+      "created_at": 1794040305.0468822,
+      "verified": true
+    },
+    {
+      "id": "ev_cbcc2e2d",
+      "claim": "Argon2 uses a large memory region to make brute‑force attacks computationally expensive.",
+      "quote": "The Argon2 function uses a large, fixed-size memory region (often called the 'memory array' in documentation) to make brute‑force attacks computationally expensive.",
+      "url": "https://en.wikipedia.org/wiki/Argon2",
+      "title": "Argon2 - Wikipedia",
+      "sub_questions": [
+        "How do the cost parameters and memory hardness of Argon2id and bcrypt slow down brute‑force attacks compared to a single SHA-256 round?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794040305.0483391,
+      "verified": false
+    },
+    {
+      "id": "ev_24f12587",
+      "claim": "Bcrypt’s security relies on a work‑factor that doubles verification time with each increment.",
+      "quote": "bcrypt derives from the Blowfish cipher's expensive key setup. Its security relies entirely on computational cost via the work factor parameter. In practice, this means verification time doubles with each increment.",
+      "url": "https://khimananda.com/blog/bcrypt-vs-argon2-vs-scrypt-for-passwords",
+      "title": "bcrypt vs Argon2 vs scrypt for Passwords: 2026 Guide",
+      "sub_questions": [
+        "How do the cost parameters and memory hardness of Argon2id and bcrypt slow down brute‑force attacks compared to a single SHA-256 round?"
+      ],
+      "confidence": "high",
+      "span_start": 1362,
+      "span_end": 1577,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that verification time doubles with each increment of the work factor.",
+      "trust": "unknown",
+      "created_at": 1794040305.0484765,
+      "verified": true
+    },
+    {
+      "id": "ev_77075579",
+      "claim": "Argon2id’s memory hardness limits GPU parallelism, making brute‑force slower than bcrypt.",
+      "quote": "Memory hardness forces attackers to allocate substantial RAM per parallel thread. Where a GPU might run 10,000 concurrent bcrypt hashes, it may only manage 50–100 concurrent Argon2id hashes at equivalent security levels.",
+      "url": "https://khimananda.com/blog/bcrypt-vs-argon2-vs-scrypt-for-passwords",
+      "title": "bcrypt vs Argon2 vs scrypt for Passwords: 2026 Guide",
+      "sub_questions": [
+        "How do the cost parameters and memory hardness of Argon2id and bcrypt slow down brute‑force attacks compared to a single SHA-256 round?"
+      ],
+      "confidence": "high",
+      "span_start": 2209,
+      "span_end": 2429,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that memory hardness forces attackers to allocate substantial RAM per thread, limiting GPU parallelism to 50–100 Argon2id hashes versus 10,000 bcrypt hashes, directly supporting the claim that Argon2id’s memory hardness makes brute‑force slower than bcrypt.",
+      "trust": "unknown",
+      "created_at": 1794040305.0486174,
+      "verified": true
+    },
+    {
+      "id": "ev_3047cc1f",
+      "claim": "For most modern systems, Argon2id is recommended.",
+      "quote": "For most modern systems, Argon2id is recommended.",
+      "url": "https://www.mydevtoolhub.com/blog/bcrypt-vs-argon2-password-hashing-strategy",
+      "title": "Bcrypt vs Argon2: Best Password Hashing Strategy for 2026",
+      "sub_questions": [
+        "What are the practical implementation guidelines or best practices for using Argon2id or bcrypt in password storage?"
+      ],
+      "confidence": "high",
+      "span_start": 1962,
+      "span_end": 2011,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote repeats the claim verbatim.",
+      "trust": "unknown",
+      "created_at": 1794040305.0486739,
+      "verified": true
+    },
+    {
+      "id": "ev_d604b2ab",
+      "claim": "Time cost: 2–3 iterations typically translate to ~100–200 ms on a modern CPU.",
+      "quote": "Time cost: 2–3 iterations typically translate to ~100–200 ms on a modern CPU. Run a quick benchmark (argon2.hash with a test password) and adjust until you stay under y",
+      "url": "https://martinuke0.github.io/posts/2026-09-11-mastering-argon2-password-hashing-secure-storage-strategies-for-modern-applications/",
+      "title": "Mastering Argon2 Password Hashing: Secure Storage Strategies for Modern Applications",
+      "sub_questions": [
+        "What are the practical implementation guidelines or best practices for using Argon2id or bcrypt in password storage?"
+      ],
+      "confidence": "high",
+      "span_start": 2168,
+      "span_end": 2336,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote literally repeats the claim verbatim.",
+      "trust": "unknown",
+      "created_at": 1794040305.0487728,
+      "verified": true
+    },
+    {
+      "id": "ev_9f7dc079",
+      "claim": "bcrypt.hash(password, 12) is a recommended cost factor.",
+      "quote": "async function hash(password) { return await bcrypt.hash(password, 12); }",
+      "url": "https://www.mydevtoolhub.com/blog/bcrypt-vs-argon2-password-hashing-strategy",
+      "title": "Bcrypt vs Argon2: Best Password Hashing Strategy for 2026",
+      "sub_questions": [
+        "What are the practical implementation guidelines or best practices for using Argon2id or bcrypt in password storage?"
+      ],
+      "confidence": "high",
+      "span_start": 1540,
+      "span_end": 1613,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote shows bcrypt.hash being called with 12, but does not state that 12 is recommended.",
+      "trust": "unknown",
+      "created_at": 1794040305.0488355,
+      "verified": true
+    }
+  ]
+}

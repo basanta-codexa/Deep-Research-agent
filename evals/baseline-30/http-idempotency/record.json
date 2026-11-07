@@ -1,0 +1,46 @@
+{
+  "item_id": "http-idempotency",
+  "category": "http",
+  "question": "Which HTTP methods are idempotent, and why does idempotency matter when a client retries a request?",
+  "ok": true,
+  "error": null,
+  "duration_s": 66.43,
+  "stage_errors": {},
+  "evidence_total": 3,
+  "evidence_verified": 3,
+  "evidence_citable": 3,
+  "evidence_cited": 3,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 3
+  },
+  "contradictions": 0,
+  "citations": 3,
+  "cited_ids": [
+    "ev_eb071542",
+    "ev_8063d67a",
+    "ev_e4f9e2c6"
+  ],
+  "unsupported_citations": 0,
+  "words": 354,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "PUT"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 9948,
+  "tokens_completion": 5524,
+  "tokens_total": 15472,
+  "cost_usd": 0.00101656,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 5.11,
+    "research": 55.64,
+    "evidence": 0.0,
+    "verify": 3.52,
+    "write": 2.16
+  }
+}

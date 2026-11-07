@@ -1,0 +1,1123 @@
+{
+  "trace_id": "dde7ee9c645f",
+  "name": "What is the N+1 query problem in an ORM, and how do I detect it?",
+  "started_at": "2026-11-07T08:05:42.805270+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "9909daae",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.08,
+      "duration_ms": 117612.35,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "08aa7d6d",
+      "parent_id": "9909daae",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.16,
+      "duration_ms": 8406.55,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "What is the N+1 query problem in an ORM, and how can it be detected?",
+        "questions": [
+          {
+            "question": "What is the N+1 query problem in an ORM?",
+            "search_query": "N+1 query problem ORM definition"
+          },
+          {
+            "question": "Why does the N+1 query problem occur in ORMs?",
+            "search_query": "why N+1 queries happen in ORM"
+          },
+          {
+            "question": "How can I detect N+1 queries in my application?",
+            "search_query": "detect N+1 queries in application"
+          },
+          {
+            "question": "What tools or techniques can help detect N+1 queries?",
+            "search_query": "tools for detecting N+1 queries"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "ba94a7e1",
+      "parent_id": "08aa7d6d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 6.15,
+      "duration_ms": 8399.59,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8399.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 571,
+        "completion": 1004,
+        "total": 1575,
+        "cost_usd": 0.00014765
+      }
+    },
+    {
+      "id": "1f73a08f",
+      "parent_id": "9909daae",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 8406.9,
+      "duration_ms": 89402.43,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 4,
+        "findings": 9,
+        "sources": 4
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "74c54e89",
+      "parent_id": "1f73a08f",
+      "name": "What is the N+1 query problem in an ORM?",
+      "kind": "subagent",
+      "start_ms": 8407.14,
+      "duration_ms": 32314.8,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "N+1 query problem ORM definition",
+        "findings": 2,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://dev.to/leelussh/what-is-the-n1-query-problem-and-how-to-detect-it-2g7p"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "1f3b67f2",
+      "parent_id": "74c54e89",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 8407.4,
+      "duration_ms": 2051.29,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2051.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 408,
+        "completion": 64,
+        "total": 472,
+        "cost_usd": 2.056e-05
+      }
+    },
+    {
+      "id": "d99e291d",
+      "parent_id": "1f73a08f",
+      "name": "Why does the N+1 query problem occur in ORMs?",
+      "kind": "subagent",
+      "start_ms": 8410.5,
+      "duration_ms": 23857.29,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "why N+1 queries happen in ORM",
+        "findings": 2,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://www.tutorialpedia.org/blog/what-is-the-n-1-selects-problem-in-orm-object-relational-mapping/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "9364314d",
+      "parent_id": "d99e291d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 8410.67,
+      "duration_ms": 2046.46,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2046.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 414,
+        "completion": 84,
+        "total": 498,
+        "cost_usd": 2.334e-05
+      }
+    },
+    {
+      "id": "108c346e",
+      "parent_id": "d99e291d",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 10458.94,
+      "duration_ms": 7982.31,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"why N+1 queries happen in ORM\", \"focus\": \"N+1 queries\", \"max_chars\": 4000}",
+        "output_chars": 3589
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "959ede81",
+      "parent_id": "74c54e89",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 10459.22,
+      "duration_ms": 19496.99,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"N+1 query problem ORM definition\", \"focus\": \"N+1 query problem ORM definition\", \"max_chars\": 2000}",
+        "output_chars": 2030
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "92f7c39d",
+      "parent_id": "d99e291d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 18441.68,
+      "duration_ms": 5584.19,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5584.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1048,
+        "completion": 384,
+        "total": 1432,
+        "cost_usd": 8.136e-05
+      }
+    },
+    {
+      "id": "f08ff6b0",
+      "parent_id": "d99e291d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 24026.08,
+      "duration_ms": 8241.5,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8241.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 919,
+        "completion": 842,
+        "total": 1761,
+        "cost_usd": 0.00013703
+      }
+    },
+    {
+      "id": "d1f72c99",
+      "parent_id": "74c54e89",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 29956.37,
+      "duration_ms": 2326.08,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2325.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 901,
+        "completion": 174,
+        "total": 1075,
+        "cost_usd": 4.965e-05
+      }
+    },
+    {
+      "id": "a7ffa235",
+      "parent_id": "1f73a08f",
+      "name": "How can I detect N+1 queries in my application?",
+      "kind": "subagent",
+      "start_ms": 32267.93,
+      "duration_ms": 13095.05,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "detect N+1 queries in application",
+        "findings": 2,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://dev.to/leelussh/what-is-the-n1-query-problem-and-how-to-detect-it-2g7p"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "62df2b57",
+      "parent_id": "a7ffa235",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 32268.05,
+      "duration_ms": 1641.29,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1641.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 407,
+        "completion": 74,
+        "total": 481,
+        "cost_usd": 2.183e-05
+      }
+    },
+    {
+      "id": "4f1d1b52",
+      "parent_id": "74c54e89",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 32282.67,
+      "duration_ms": 8439.06,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8438.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 775,
+        "completion": 917,
+        "total": 1692,
+        "cost_usd": 0.00014246
+      }
+    },
+    {
+      "id": "fce0ba7d",
+      "parent_id": "a7ffa235",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 33909.62,
+      "duration_ms": 3747.46,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"detect N+1 queries in application\", \"focus\": \"detect N+1 queries\", \"max_chars\": 4000}",
+        "output_chars": 3863
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "16a62299",
+      "parent_id": "a7ffa235",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 37657.26,
+      "duration_ms": 2088.68,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2088.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1008,
+        "completion": 102,
+        "total": 1110,
+        "cost_usd": 4.35e-05
+      }
+    },
+    {
+      "id": "b405f08e",
+      "parent_id": "a7ffa235",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 39746.26,
+      "duration_ms": 5616.55,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5616.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 885,
+        "completion": 647,
+        "total": 1532,
+        "cost_usd": 0.00011066
+      }
+    },
+    {
+      "id": "43c9b6c2",
+      "parent_id": "1f73a08f",
+      "name": "What tools or techniques can help detect N+1 queries?",
+      "kind": "subagent",
+      "start_ms": 40722.09,
+      "duration_ms": 57086.08,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "tools for detecting N+1 queries",
+        "findings": 3,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://buglyst.com/learn/guides/django-orm-query-debug",
+          "https://www.hypertest.co/post/n-plus-one-query-detection-code-review"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "f733b585",
+      "parent_id": "43c9b6c2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 40722.58,
+      "duration_ms": 1681.02,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1680.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 415,
+        "completion": 62,
+        "total": 477,
+        "cost_usd": 2.051e-05
+      }
+    },
+    {
+      "id": "d74eb597",
+      "parent_id": "43c9b6c2",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 42403.9,
+      "duration_ms": 12230.44,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"tools for detecting N+1 queries\", \"focus\": \"detecting N+1 queries\", \"max_chars\": 4000}",
+        "output_chars": 2109
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "5a59e8ed",
+      "parent_id": "43c9b6c2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 54634.54,
+      "duration_ms": 2728.46,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2728.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 844,
+        "completion": 98,
+        "total": 942,
+        "cost_usd": 3.806e-05
+      }
+    },
+    {
+      "id": "4a7c4051",
+      "parent_id": "43c9b6c2",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 57363.25,
+      "duration_ms": 3526.75,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"N+1 Query Detection in Code Review: Why Most Tools Miss It\", \"focus\": \"tools\", \"max_chars\": 4000}",
+        "output_chars": 1518
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "81d11dd6",
+      "parent_id": "43c9b6c2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 60890.18,
+      "duration_ms": 2359.06,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2358.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1219,
+        "completion": 149,
+        "total": 1368,
+        "cost_usd": 5.594e-05
+      }
+    },
+    {
+      "id": "c39f764d",
+      "parent_id": "43c9b6c2",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 63249.55,
+      "duration_ms": 15013.46,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Django Debug Toolbar N+1 queries\", \"focus\": \"Django Debug Toolbar N+1\", \"max_chars\": 4000}",
+        "output_chars": 3936
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "c6dad6ee",
+      "parent_id": "43c9b6c2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 78263.81,
+      "duration_ms": 9317.89,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 9317.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1592,
+        "completion": 1000,
+        "total": 2592,
+        "cost_usd": 0.00017776
+      }
+    },
+    {
+      "id": "8cdb2df2",
+      "parent_id": "43c9b6c2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 87582.1,
+      "duration_ms": 10225.53,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 10225.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1608,
+        "completion": 1163,
+        "total": 2771,
+        "cost_usd": 0.00019943
+      }
+    },
+    {
+      "id": "e9ecdbc5",
+      "parent_id": "9909daae",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 97809.99,
+      "duration_ms": 15.3,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 9,
+        "evidence_kept": 9,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 5,
+        "outside_window": 0,
+        "sources": 4
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "37ba1714",
+      "parent_id": "9909daae",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 97825.58,
+      "duration_ms": 6854.97,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 3,
+          "partial": 1,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "c8f85f87",
+      "parent_id": "37ba1714",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 97827.13,
+      "duration_ms": 3657.86,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3657.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 334,
+        "completion": 305,
+        "total": 639,
+        "cost_usd": 4.967e-05
+      }
+    },
+    {
+      "id": "517f9c10",
+      "parent_id": "37ba1714",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 97832.61,
+      "duration_ms": 3562.15,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3562.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 328,
+        "completion": 298,
+        "total": 626,
+        "cost_usd": 4.858e-05
+      }
+    },
+    {
+      "id": "a8b9dcdc",
+      "parent_id": "37ba1714",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 97837.28,
+      "duration_ms": 3259.92,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3259.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 340,
+        "completion": 172,
+        "total": 512,
+        "cost_usd": 3.256e-05
+      }
+    },
+    {
+      "id": "07fb4a28",
+      "parent_id": "37ba1714",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 97840.83,
+      "duration_ms": 2018.86,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2018.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 319,
+        "completion": 111,
+        "total": 430,
+        "cost_usd": 2.4e-05
+      }
+    },
+    {
+      "id": "e5317e8c",
+      "parent_id": "37ba1714",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 101485.68,
+      "duration_ms": 3194.39,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3194.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 349,
+        "completion": 295,
+        "total": 644,
+        "cost_usd": 4.882e-05
+      }
+    },
+    {
+      "id": "e870d9ef",
+      "parent_id": "9909daae",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 104680.68,
+      "duration_ms": 12931.55,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 435,
+        "citations": 4,
+        "cited_sources": 3,
+        "repaired": false
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "3638c544",
+      "parent_id": "e870d9ef",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 104681.35,
+      "duration_ms": 12925.88,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 12925.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 811,
+        "completion": 1657,
+        "total": 2468,
+        "cost_usd": 0.00023974
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 2310529.3,
+    "span_count": 37,
+    "llm_calls": 21,
+    "tool_calls": 6,
+    "errors": 0,
+    "tokens": {
+      "prompt": 15495,
+      "completion": 9602,
+      "total": 25097
+    },
+    "cost_usd": 0.00171311,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 21,
+        "prompt": 15495,
+        "completion": 9602,
+        "total": 25097,
+        "cost_usd": 0.00171311,
+        "priced": true,
+        "duration_ms": 101365.7
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 1,
+        "prompt": 571,
+        "completion": 1004,
+        "total": 1575,
+        "cost_usd": 0.00014765
+      },
+      "research": {
+        "calls": 14,
+        "prompt": 12443,
+        "completion": 5760,
+        "total": 18203,
+        "cost_usd": 0.00112209
+      },
+      "verify": {
+        "calls": 5,
+        "prompt": 1670,
+        "completion": 1181,
+        "total": 2851,
+        "cost_usd": 0.00020363
+      },
+      "write": {
+        "calls": 1,
+        "prompt": 811,
+        "completion": 1657,
+        "total": 2468,
+        "cost_usd": 0.00023974
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 117612.4,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 117610.8,
+        "errors": 0
+      },
+      "llm": {
+        "count": 21,
+        "duration_ms": 101365.7,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 4,
+        "duration_ms": 126353.2,
+        "errors": 0
+      },
+      "tool": {
+        "count": 6,
+        "duration_ms": 61997.4,
+        "errors": 0
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 12925.9
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 10225.5
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 9317.9
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 8439.1
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 8399.6
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "9909daae",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 117612.4
+      },
+      {
+        "id": "e870d9ef",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 12931.6
+      },
+      {
+        "id": "3638c544",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 12925.9
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "item_id": "perf-benchmark-clock",
+  "category": "performance",
+  "question": "Why is time.time() a poor clock for benchmarking short code paths, and what should I use instead?",
+  "ok": true,
+  "error": null,
+  "duration_s": 91.23,
+  "stage_errors": {},
+  "evidence_total": 5,
+  "evidence_verified": 5,
+  "evidence_citable": 5,
+  "evidence_cited": 5,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 5
+  },
+  "contradictions": 0,
+  "citations": 5,
+  "cited_ids": [
+    "ev_56b95061",
+    "ev_8a6ce41b",
+    "ev_8a22f902",
+    "ev_7354fbfd",
+    "ev_1d3064da"
+  ],
+  "unsupported_citations": 0,
+  "words": 340,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "perf_counter"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 17946,
+  "tokens_completion": 9927,
+  "tokens_total": 27873,
+  "cost_usd": 0.00182889,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 6.71,
+    "research": 62.36,
+    "evidence": 0.0,
+    "verify": 5.3,
+    "write": 16.84
+  }
+}

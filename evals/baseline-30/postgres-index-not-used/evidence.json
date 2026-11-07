@@ -1,0 +1,223 @@
+{
+  "generated_at": 1794041053.2388144,
+  "stats": {
+    "findings_seen": 11,
+    "evidence_kept": 11,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 1,
+    "outside_window": 0,
+    "sources": 7
+  },
+  "evidence": [
+    {
+      "id": "ev_8435df8c",
+      "claim": "The planner chooses a sequential scan when it estimates that many rows match the condition, because it is cheaper.",
+      "quote": "If PostgreSQL estimates that many rows match the condition, a sequential scan is cheaper — even if an index exists.",
+      "url": "https://www.cybrosys.com/research-and-development/postgres/how-postgresqls-query-planner-chooses-or-rejects-your-index",
+      "title": "How PostgreSQL’s Query Planner Chooses (or Rejects) Your Index",
+      "sub_questions": [
+        "How does PostgreSQL's query planner decide between performing a sequential scan and using an index scan?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794038545.8074186,
+      "verified": false
+    },
+    {
+      "id": "ev_b495ee7e",
+      "claim": "The database will use an Index Scan instead of a Sequential Scan.",
+      "quote": "Now the database will use an Index Scan instead of a Sequential Scan.",
+      "url": "https://learnomate.org/index-scan-vs-sequential-scan-performance-comparison/",
+      "title": "Index Scan vs Sequential Scan: Key Differences & Performance Explained",
+      "sub_questions": [
+        "How does PostgreSQL's query planner decide between performing a sequential scan and using an index scan?"
+      ],
+      "confidence": "high",
+      "span_start": 443,
+      "span_end": 512,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly that the database will use an Index Scan instead of a Sequential Scan.",
+      "trust": "unknown",
+      "created_at": 1794038545.8075218,
+      "verified": true
+    },
+    {
+      "id": "ev_526be5ea",
+      "claim": "The planner’s decision is a deliberate cost‑based choice.",
+      "quote": "This behavior is not a bug. It’s a deliberate decision made by PostgreSQL’s cost-based query planner.",
+      "url": "https://www.cybrosys.com/research-and-development/postgres/how-postgresqls-query-planner-chooses-or-rejects-your-index",
+      "title": "How PostgreSQL’s Query Planner Chooses (or Rejects) Your Index",
+      "sub_questions": [
+        "How does PostgreSQL's query planner decide between performing a sequential scan and using an index scan?"
+      ],
+      "confidence": "high",
+      "span_start": 176,
+      "span_end": 277,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states it is a deliberate decision made by PostgreSQL’s cost‑based query planner, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794038545.807644,
+      "verified": true
+    },
+    {
+      "id": "ev_a7c7ca31",
+      "claim": "The planner uses amcostestimate to estimate index scan cost based on index access costs and selectivity of WHERE clauses.",
+      "quote": "The amcostestimate function is given information describing a possible index scan, including lists of WHERE and ORDER BY clauses that have been determined to be usable with the index. It must return estimates of the cost of accessing the index and the selectivity of the WHERE clauses (that is, the fraction of parent-table rows that will be retrieved during the index scan).",
+      "url": "https://www.postgresql.org/docs/current/index-cost-estimation.html",
+      "title": "63.6. Index Cost Estimation Functions",
+      "sub_questions": [
+        "What factors does the PostgreSQL planner consider when estimating the cost of an index scan versus a sequential scan?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 726,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that amcostestimate returns estimates of index access cost and WHERE clause selectivity, which is what the claim describes.",
+      "trust": "primary",
+      "created_at": 1794038545.8079207,
+      "verified": true
+    },
+    {
+      "id": "ev_7f269052",
+      "claim": "The planner considers table statistics, cardinality, storage characteristics (SSD vs HDD), and different access methods when evaluating index versus sequential scans.",
+      "quote": "PostgreSQL imagines all possible execution scenarios - considering table statistics, cardinality, storage characteristics (SSD vs HDD), and different access methods (sequential scan, index scan, nested loop join, merge join).",
+      "url": "https://quachthetruong.github.io/tech/postgres-cost-estimation/",
+      "title": "How PostgreSQL Evaluates Execution Plans: Cost Estimation Deep Dive",
+      "sub_questions": [
+        "What factors does the PostgreSQL planner consider when estimating the cost of an index scan versus a sequential scan?"
+      ],
+      "confidence": "high",
+      "span_start": 929,
+      "span_end": 1154,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly lists table statistics, cardinality, storage characteristics (SSD vs HDD), and different access methods (sequential scan, index scan, etc.) as factors considered by PostgreSQL’s planner.",
+      "trust": "unknown",
+      "created_at": 1794038545.808092,
+      "verified": true
+    },
+    {
+      "id": "ev_fcf88b9c",
+      "claim": "For sequential scans, the startup cost is always 0 and the planner assumes all pages are read from storage regardless of buffer cache.",
+      "quote": "For sequential scans, the startup cost is always 0 since there’s no index traversal needed - PostgreSQL can read the first tuple immediately from the data file.",
+      "url": "https://quachthetruong.github.io/tech/postgres-cost-estimation/",
+      "title": "How PostgreSQL Evaluates Execution Plans: Cost Estimation Deep Dive",
+      "sub_questions": [
+        "What factors does the PostgreSQL planner consider when estimating the cost of an index scan versus a sequential scan?"
+      ],
+      "confidence": "high",
+      "span_start": 1226,
+      "span_end": 1386,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote confirms that the startup cost is always 0 for sequential scans, but it does not address the planner’s assumption about reading all pages from storage regardless of the buffer cache.",
+      "trust": "unknown",
+      "created_at": 1794038545.8082397,
+      "verified": true
+    },
+    {
+      "id": "ev_928dfc6e",
+      "claim": "PostgreSQL chooses a sequential scan when the table fits in a handful of data pages.",
+      "quote": "If your table fits in a handful of data pages, PostgreSQL will almost always choose a sequential scan.",
+      "url": "https://www.bitsfolio.com/fix-postgresql-explain-analyze-seq-scan-despite-index/",
+      "title": "PostgreSQL Seq Scan Despite Index: How to Fix It | Bitsfolio",
+      "sub_questions": [
+        "What common situations cause PostgreSQL to choose a sequential scan even though a B-tree index exists on the filtered column?"
+      ],
+      "confidence": "high",
+      "span_start": 1194,
+      "span_end": 1296,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote says PostgreSQL will almost always choose a sequential scan, not that it always does so.",
+      "trust": "unknown",
+      "created_at": 1794038545.8083324,
+      "verified": true
+    },
+    {
+      "id": "ev_c27220b5",
+      "claim": "PostgreSQL chooses a sequential scan when the filter column has few distinct values and many rows are returned.",
+      "quote": "If the column you're filtering on has few distinct values relative to the number of rows, an index on that column provides almost no benefit.",
+      "url": "https://www.bitsfolio.com/fix-postgresql-explain-analyze-seq-scan-despite-index/",
+      "title": "PostgreSQL Seq Scan Despite Index: How to Fix It | Bitsfolio",
+      "sub_questions": [
+        "What common situations cause PostgreSQL to choose a sequential scan even though a B-tree index exists on the filtered column?"
+      ],
+      "confidence": "high",
+      "span_start": 1441,
+      "span_end": 1582,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote states that an index provides almost no benefit when the column has few distinct values relative to the number of rows, implying a sequential scan may be chosen, but it does not explicitly mention PostgreSQL or the scan choice.",
+      "trust": "unknown",
+      "created_at": 1794038545.8084426,
+      "verified": true
+    },
+    {
+      "id": "ev_ff42cb8f",
+      "claim": "PostgreSQL may choose a sequential scan if statistics are outdated or inaccurate.",
+      "quote": "If statistics are outdated or inaccurate, the planner will make poor decisions.",
+      "url": "https://www.cybrosys.com/research-and-development/postgres/how-postgresqls-query-planner-chooses-or-rejects-your-index",
+      "title": "How PostgreSQL’s Query Planner Chooses (or Rejects) Your Index",
+      "sub_questions": [
+        "What common situations cause PostgreSQL to choose a sequential scan even though a B-tree index exists on the filtered column?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 430,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote says the planner will make poor decisions when statistics are outdated or inaccurate, implying it could choose a suboptimal plan such as a sequential scan, but it does not explicitly state that a sequential scan will be chosen.",
+      "trust": "unknown",
+      "created_at": 1794038545.8085418,
+      "verified": true
+    },
+    {
+      "id": "ev_3fe6aaa8",
+      "claim": "The planner may choose a sequential scan for small tables or queries returning a large percentage of rows.",
+      "quote": "For small tables or queries returning a large percentage of rows, sequential scan beats index scan:",
+      "url": "https://oneuptime.com/blog/post/2026-01-25-force-index-usage-postgresql/view",
+      "title": "How to Force Index Usage in PostgreSQL",
+      "sub_questions": [
+        "How can a user influence PostgreSQL to use an index scan instead of a sequential scan when appropriate?"
+      ],
+      "confidence": "high",
+      "span_start": 446,
+      "span_end": 545,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that for small tables or queries returning a large percentage of rows, sequential scan beats index scan, implying the planner would choose a sequential scan in those cases.",
+      "trust": "unknown",
+      "created_at": 1794038545.80865,
+      "verified": true
+    },
+    {
+      "id": "ev_94f07f31",
+      "claim": "Making sequential scans more expensive can encourage index usage.",
+      "quote": "Make sequential scans more expensive (encourages index usage) SELECT /*+ IndexScan(orders idx_orders_status) SeqScan(customers) */",
+      "url": "https://oneuptime.com/blog/post/2026-01-25-force-index-usage-postgresql/view",
+      "title": "How to Force Index Usage in PostgreSQL",
+      "sub_questions": [
+        "How can a user influence PostgreSQL to use an index scan instead of a sequential scan when appropriate?"
+      ],
+      "confidence": "high",
+      "span_start": 549,
+      "span_end": 679,
+      "match": "normalized",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that making sequential scans more expensive encourages index usage.",
+      "trust": "unknown",
+      "created_at": 1794038545.8093092,
+      "verified": true
+    }
+  ]
+}

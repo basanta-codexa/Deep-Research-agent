@@ -1,0 +1,1608 @@
+{
+  "trace_id": "552ae9474d4e",
+  "name": "How does pytest.mark.parametrize turn one test function into several independent test cases?",
+  "started_at": "2026-11-07T08:22:47.971057+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "bd267646",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.09,
+      "duration_ms": 158703.53,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "d104f837",
+      "parent_id": "bd267646",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.23,
+      "duration_ms": 14916.27,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "Explain how the pytest.mark.parametrize decorator transforms a single test function into multiple independent test cases.",
+        "questions": [
+          {
+            "question": "What is the syntax and basic usage of pytest.mark.parametrize?",
+            "search_query": "pytest mark parametrize syntax examples"
+          },
+          {
+            "question": "How does pytest.generate test cases from parametrize arguments?",
+            "search_query": "how pytest parametrize creates test cases"
+          },
+          {
+            "question": "In what way are the generated test cases independent of each other?",
+            "search_query": "pytest parametrize test independence"
+          },
+          {
+            "question": "How does pytest name and discover the individual parameterized test cases?",
+            "search_query": "pytest parametrize test naming convention"
+          },
+          {
+            "question": "What impact does parametrize have on test execution order and isolation?",
+            "search_query": "pytest parametrize execution order isolation"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "30673499",
+      "parent_id": "d104f837",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 3.53,
+      "duration_ms": 9551.78,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 9551.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 567,
+        "completion": 1200,
+        "total": 1767,
+        "cost_usd": 0.00017301
+      }
+    },
+    {
+      "id": "36b8c826",
+      "parent_id": "d104f837",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 9555.5,
+      "duration_ms": 5360.67,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5360.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 567,
+        "completion": 656,
+        "total": 1223,
+        "cost_usd": 0.00010229
+      }
+    },
+    {
+      "id": "2754faae",
+      "parent_id": "bd267646",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 14916.6,
+      "duration_ms": 127097.34,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 5,
+        "findings": 8,
+        "sources": 2
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8b92067d",
+      "parent_id": "2754faae",
+      "name": "What is the syntax and basic usage of pytest.mark.parametrize?",
+      "kind": "subagent",
+      "start_ms": 14916.78,
+      "duration_ms": 25717.18,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest mark parametrize syntax examples",
+        "findings": 3,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://docs.pytest.org/en/stable/how-to/parametrize.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "00e3a135",
+      "parent_id": "8b92067d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 14916.89,
+      "duration_ms": 1344.26,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1344.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 406,
+        "completion": 69,
+        "total": 475,
+        "cost_usd": 2.115e-05
+      }
+    },
+    {
+      "id": "fa9c4d47",
+      "parent_id": "2754faae",
+      "name": "How does pytest.generate test cases from parametrize arguments?",
+      "kind": "subagent",
+      "start_ms": 14918.83,
+      "duration_ms": 56565.33,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "how pytest parametrize creates test cases",
+        "findings": 3,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://docs.pytest.org/en/7.1.x/example/parametrize.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8c1207d7",
+      "parent_id": "fa9c4d47",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 14918.98,
+      "duration_ms": 1844.29,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1844.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 408,
+        "completion": 49,
+        "total": 457,
+        "cost_usd": 1.861e-05
+      }
+    },
+    {
+      "id": "e379d225",
+      "parent_id": "8b92067d",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 16261.35,
+      "duration_ms": 7085.94,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest.mark.parametrize syntax examples\", \"focus\": \"pytest.mark.parametrize\", \"max_chars\": 2000}",
+        "output_chars": 2065
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "e9173cfa",
+      "parent_id": "fa9c4d47",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 16763.54,
+      "duration_ms": 18122.41,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > No connection could be made b",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"how pytest parametrize creates test cases\", \"focus\": \"pytest parametrize creates test cases\", \"max_chars\": 2000}",
+        "output_chars": 265
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "09294e96",
+      "parent_id": "8b92067d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 23347.43,
+      "duration_ms": 1339.81,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1339.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 978,
+        "completion": 228,
+        "total": 1206,
+        "cost_usd": 5.898e-05
+      }
+    },
+    {
+      "id": "b4d2db52",
+      "parent_id": "8b92067d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 24687.4,
+      "duration_ms": 7957.7,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 7957.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 809,
+        "completion": 1000,
+        "total": 1809,
+        "cost_usd": 0.00015427
+      }
+    },
+    {
+      "id": "e50fba0d",
+      "parent_id": "8b92067d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 32645.17,
+      "duration_ms": 7988.62,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7988.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 825,
+        "completion": 1127,
+        "total": 1952,
+        "cost_usd": 0.00017126
+      }
+    },
+    {
+      "id": "c815368a",
+      "parent_id": "fa9c4d47",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 34886.15,
+      "duration_ms": 1850.96,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1850.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 524,
+        "completion": 90,
+        "total": 614,
+        "cost_usd": 2.742e-05
+      }
+    },
+    {
+      "id": "736d41da",
+      "parent_id": "fa9c4d47",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 36737.3,
+      "duration_ms": 10364.04,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest parametrize test case generation\", \"focus\": \"pytest parametrize test case generation\", \"max_chars\": 2000}",
+        "output_chars": 2101
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "66c250fe",
+      "parent_id": "2754faae",
+      "name": "In what way are the generated test cases independent of each other?",
+      "kind": "subagent",
+      "start_ms": 40634.07,
+      "duration_ms": 61722.72,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest parametrize test independence",
+        "findings": 0,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://docs.pytest.org/en/7.1.x/example/parametrize.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "ad3cb270",
+      "parent_id": "66c250fe",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 40634.16,
+      "duration_ms": 1053.13,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1053.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 408,
+        "completion": 46,
+        "total": 454,
+        "cost_usd": 1.822e-05
+      }
+    },
+    {
+      "id": "7f31984c",
+      "parent_id": "66c250fe",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 41687.55,
+      "duration_ms": 7193.29,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest parametrize test independence\", \"focus\": \"independent of each other\", \"max_chars\": 2000}",
+        "output_chars": 1702
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8563360b",
+      "parent_id": "fa9c4d47",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 47101.5,
+      "duration_ms": 2174.37,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2174.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1077,
+        "completion": 139,
+        "total": 1216,
+        "cost_usd": 5.038e-05
+      }
+    },
+    {
+      "id": "b3c00194",
+      "parent_id": "66c250fe",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 48880.97,
+      "duration_ms": 2516.41,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2515.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 811,
+        "completion": 95,
+        "total": 906,
+        "cost_usd": 3.668e-05
+      }
+    },
+    {
+      "id": "973c1964",
+      "parent_id": "fa9c4d47",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 49276.46,
+      "duration_ms": 15173.49,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > No connection could be made b",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest_generate_tests parametrize\", \"focus\": \"pytest_generate_tests parametrize\", \"max_chars\": 2000}",
+        "output_chars": 265
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "6352d904",
+      "parent_id": "66c250fe",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 51398.41,
+      "duration_ms": 17672.65,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > No connection could be made b",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest parametrize independent of each other\", \"focus\": \"independent\", \"max_chars\": 2000}",
+        "output_chars": 265
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "1cbdd7f9",
+      "parent_id": "fa9c4d47",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 64450.24,
+      "duration_ms": 7033.61,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7033.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 920,
+        "completion": 720,
+        "total": 1640,
+        "cost_usd": 0.0001212
+      }
+    },
+    {
+      "id": "9807476d",
+      "parent_id": "66c250fe",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 69071.33,
+      "duration_ms": 2068.0,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2067.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 959,
+        "completion": 95,
+        "total": 1054,
+        "cost_usd": 4.112e-05
+      }
+    },
+    {
+      "id": "73526439",
+      "parent_id": "66c250fe",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 71139.55,
+      "duration_ms": 17484.93,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"independent of each other pytest parametrize\", \"focus\": \"independent\", \"max_chars\": 2000}",
+        "output_chars": 477
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4c89c3e1",
+      "parent_id": "2754faae",
+      "name": "How does pytest name and discover the individual parameterized test ca",
+      "kind": "subagent",
+      "start_ms": 71484.3,
+      "duration_ms": 60546.07,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest parametrize test naming convention",
+        "findings": 2,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://docs.pytest.org/en/7.1.x/example/parametrize.html",
+          "https://docs.pytest.org/en/stable/how-to/parametrize.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "40ca4d36",
+      "parent_id": "4c89c3e1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 71484.43,
+      "duration_ms": 1471.55,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1471.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 417,
+        "completion": 60,
+        "total": 477,
+        "cost_usd": 2.031e-05
+      }
+    },
+    {
+      "id": "04e1255d",
+      "parent_id": "4c89c3e1",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 72956.24,
+      "duration_ms": 8498.2,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest parametrize test naming convention\", \"focus\": \"pytest parametrize test naming convention\", \"max_chars\": 2000}",
+        "output_chars": 2061
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "916e0a7f",
+      "parent_id": "4c89c3e1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 81454.59,
+      "duration_ms": 2826.09,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2825.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 943,
+        "completion": 123,
+        "total": 1066,
+        "cost_usd": 4.428e-05
+      }
+    },
+    {
+      "id": "cca0a9ee",
+      "parent_id": "4c89c3e1",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 84280.87,
+      "duration_ms": 18555.92,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest parametrize naming scheme test_func[param1-param2]\", \"focus\": \"pytest parametrize naming scheme\", \"max_chars\": 2000}",
+        "output_chars": 2025
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "6dd6b1e5",
+      "parent_id": "66c250fe",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 88624.73,
+      "duration_ms": 9121.62,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 9121.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 857,
+        "completion": 1000,
+        "total": 1857,
+        "cost_usd": 0.00015571
+      }
+    },
+    {
+      "id": "a208ea1a",
+      "parent_id": "66c250fe",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 97746.46,
+      "duration_ms": 4610.18,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4610.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 873,
+        "completion": 520,
+        "total": 1393,
+        "cost_usd": 9.379e-05
+      }
+    },
+    {
+      "id": "0a202166",
+      "parent_id": "2754faae",
+      "name": "What impact does parametrize have on test execution order and isolatio",
+      "kind": "subagent",
+      "start_ms": 102356.9,
+      "duration_ms": 39656.9,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest parametrize execution order isolation",
+        "findings": 0,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://docs.pytest.org/en/7.1.x/example/parametrize.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "b6e417c8",
+      "parent_id": "0a202166",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 102356.99,
+      "duration_ms": 1113.21,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1113.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 415,
+        "completion": 60,
+        "total": 475,
+        "cost_usd": 2.025e-05
+      }
+    },
+    {
+      "id": "b87432fe",
+      "parent_id": "4c89c3e1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 102836.98,
+      "duration_ms": 3281.19,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 3281.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1488,
+        "completion": 191,
+        "total": 1679,
+        "cost_usd": 6.947e-05
+      }
+    },
+    {
+      "id": "7ae657f2",
+      "parent_id": "0a202166",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 103470.39,
+      "duration_ms": 17246.1,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest parametrize execution order isolation\", \"focus\": \"parametrize execution order isolation\", \"max_chars\": 4000}",
+        "output_chars": 1666
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "df5fd3f9",
+      "parent_id": "4c89c3e1",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 106118.45,
+      "duration_ms": 17444.67,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > No connection could be made b",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"test_func[param1-param2] pytest\", \"focus\": \"test_func[param1-param2]\", \"max_chars\": 2000}",
+        "output_chars": 265
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "f7de7441",
+      "parent_id": "0a202166",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 120716.65,
+      "duration_ms": 2136.49,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2136.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 859,
+        "completion": 88,
+        "total": 947,
+        "cost_usd": 3.721e-05
+      }
+    },
+    {
+      "id": "fc81926f",
+      "parent_id": "0a202166",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 122853.43,
+      "duration_ms": 2383.43,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest parametrize execution order isolation\", \"focus\": \"order isolation\", \"max_chars\": 4000}",
+        "output_chars": 477
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "b4d688eb",
+      "parent_id": "4c89c3e1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 123563.48,
+      "duration_ms": 1711.31,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 1711.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1336,
+        "completion": 1000,
+        "total": 2336,
+        "cost_usd": 0.00017008
+      }
+    },
+    {
+      "id": "9087a7b5",
+      "parent_id": "0a202166",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 125237.0,
+      "duration_ms": 2838.16,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2838.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1053,
+        "completion": 146,
+        "total": 1199,
+        "cost_usd": 5.057e-05
+      }
+    },
+    {
+      "id": "d65e8c97",
+      "parent_id": "4c89c3e1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 125274.89,
+      "duration_ms": 6755.18,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 6755.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1339,
+        "completion": 871,
+        "total": 2210,
+        "cost_usd": 0.0001534
+      }
+    },
+    {
+      "id": "aad2ce57",
+      "parent_id": "0a202166",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 128075.38,
+      "duration_ms": 10527.1,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest parametrize order of execution isolation\", \"focus\": \"order of execution isolation\", \"max_chars\": 4000}",
+        "output_chars": 477
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "deaa9140",
+      "parent_id": "0a202166",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 138602.73,
+      "duration_ms": 3410.91,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3410.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 945,
+        "completion": 283,
+        "total": 1228,
+        "cost_usd": 6.514e-05
+      }
+    },
+    {
+      "id": "552fc947",
+      "parent_id": "bd267646",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 142014.06,
+      "duration_ms": 3.32,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 8,
+        "evidence_kept": 8,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 2,
+        "outside_window": 0,
+        "sources": 2
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "3bee9356",
+      "parent_id": "bd267646",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 142017.53,
+      "duration_ms": 8707.8,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 6,
+          "partial": 0,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "7e2d5dc2",
+      "parent_id": "3bee9356",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 142017.9,
+      "duration_ms": 2712.46,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2712.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 312,
+        "completion": 244,
+        "total": 556,
+        "cost_usd": 4.108e-05
+      }
+    },
+    {
+      "id": "f7871588",
+      "parent_id": "3bee9356",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 142020.59,
+      "duration_ms": 2791.62,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2791.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 337,
+        "completion": 274,
+        "total": 611,
+        "cost_usd": 4.573e-05
+      }
+    },
+    {
+      "id": "04dbfb67",
+      "parent_id": "3bee9356",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 142023.2,
+      "duration_ms": 2639.63,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2639.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 314,
+        "completion": 154,
+        "total": 468,
+        "cost_usd": 2.944e-05
+      }
+    },
+    {
+      "id": "c3487019",
+      "parent_id": "3bee9356",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 142025.21,
+      "duration_ms": 2970.94,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2970.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 313,
+        "completion": 178,
+        "total": 491,
+        "cost_usd": 3.253e-05
+      }
+    },
+    {
+      "id": "13f71e09",
+      "parent_id": "3bee9356",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 144663.06,
+      "duration_ms": 811.6,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 811.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 322,
+        "completion": 209,
+        "total": 531,
+        "cost_usd": 3.683e-05
+      }
+    },
+    {
+      "id": "127d9658",
+      "parent_id": "3bee9356",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 144730.57,
+      "duration_ms": 1799.22,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1799.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 301,
+        "completion": 95,
+        "total": 396,
+        "cost_usd": 2.138e-05
+      }
+    },
+    {
+      "id": "4346fcc8",
+      "parent_id": "3bee9356",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 146530.08,
+      "duration_ms": 4194.97,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4194.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 379,
+        "completion": 450,
+        "total": 829,
+        "cost_usd": 6.987e-05
+      }
+    },
+    {
+      "id": "89b39e94",
+      "parent_id": "bd267646",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 150725.46,
+      "duration_ms": 7978.02,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 381,
+        "citations": 6,
+        "cited_sources": 2,
+        "repaired": false
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "7127a3b5",
+      "parent_id": "89b39e94",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 150725.64,
+      "duration_ms": 7975.54,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7975.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 939,
+        "completion": 987,
+        "total": 1926,
+        "cost_usd": 0.00015648
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 1285698.2,
+    "span_count": 56,
+    "llm_calls": 32,
+    "tool_calls": 13,
+    "errors": 4,
+    "tokens": {
+      "prompt": 23001,
+      "completion": 12447,
+      "total": 35448
+    },
+    "cost_usd": 0.00230814,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 32,
+        "prompt": 23001,
+        "completion": 12447,
+        "total": 35448,
+        "cost_usd": 0.00230814,
+        "priced": true,
+        "duration_ms": 117255.5
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 2,
+        "prompt": 1134,
+        "completion": 1856,
+        "total": 2990,
+        "cost_usd": 0.0002753
+      },
+      "research": {
+        "calls": 22,
+        "prompt": 18650,
+        "completion": 8000,
+        "total": 26650,
+        "cost_usd": 0.0015995
+      },
+      "verify": {
+        "calls": 7,
+        "prompt": 2278,
+        "completion": 1604,
+        "total": 3882,
+        "cost_usd": 0.00027686
+      },
+      "write": {
+        "calls": 1,
+        "prompt": 939,
+        "completion": 987,
+        "total": 1926,
+        "cost_usd": 0.00015648
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 158703.5,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 158702.7,
+        "errors": 0
+      },
+      "llm": {
+        "count": 32,
+        "duration_ms": 117255.5,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 5,
+        "duration_ms": 244208.2,
+        "errors": 0
+      },
+      "tool": {
+        "count": 13,
+        "duration_ms": 167752.2,
+        "errors": 4
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 9551.8
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 9121.6
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7988.6
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7975.5
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7957.7
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "bd267646",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 158703.5
+      },
+      {
+        "id": "89b39e94",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 7978.0
+      },
+      {
+        "id": "7127a3b5",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 7975.5
+      }
+    ]
+  }
+}

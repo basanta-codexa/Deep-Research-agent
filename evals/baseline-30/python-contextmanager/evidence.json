@@ -1,0 +1,52 @@
+{
+  "generated_at": 1794041053.5427077,
+  "stats": {
+    "findings_seen": 2,
+    "evidence_kept": 2,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 1,
+    "outside_window": 0,
+    "sources": 2
+  },
+  "evidence": [
+    {
+      "id": "ev_5fb76548",
+      "claim": "The decorated function must be a generator that yields exactly one value.",
+      "quote": "The decorated function must be a generator that yields exactly one value.",
+      "url": "https://docs.python.org/3/library/contextlib.html",
+      "title": "contextlib — Utilities for with-statement contexts",
+      "sub_questions": [
+        "What must the decorated function yield?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "primary",
+      "created_at": 1794039548.7028892,
+      "verified": false
+    },
+    {
+      "id": "ev_e899ed53",
+      "claim": "The generator used with @contextmanager must yield exactly one value.",
+      "quote": "This iterator must yield exactly one value, which will be bound to",
+      "url": "https://docs.python.org/3/library/contextlib.html",
+      "title": "contextlib — Utilities for with-statement contexts",
+      "sub_questions": [
+        "Are there restrictions on the number of yields in the decorated function?"
+      ],
+      "confidence": "high",
+      "span_start": 359,
+      "span_end": 425,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that the iterator must yield exactly one value.",
+      "trust": "primary",
+      "created_at": 1794039548.7029743,
+      "verified": true
+    }
+  ]
+}

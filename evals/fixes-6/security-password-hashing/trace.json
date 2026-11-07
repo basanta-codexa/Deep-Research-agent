@@ -1,0 +1,1485 @@
+{
+  "trace_id": "d98c219e622e",
+  "name": "Why should passwords be stored with Argon2id or bcrypt instead of a single round of SHA-256?",
+  "started_at": "2026-11-07T09:01:34.472695+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "a21d0dea",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.11,
+      "duration_ms": 116365.24,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "d56923d6",
+      "parent_id": "a21d0dea",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.19,
+      "duration_ms": 6449.65,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "Why should passwords be stored with Argon2id or bcrypt instead of a single round of SHA-256?",
+        "questions": [
+          {
+            "question": "What are the key features of Argon2id and bcrypt that make them suitable for password hashing?",
+            "search_query": "Argon2id bcrypt password hashing features"
+          },
+          {
+            "question": "Why is a single round of SHA-256 insufficient for secure password storage?",
+            "search_query": "SHA-256 single round password storage risk"
+          },
+          {
+            "question": "How does the computational cost and memory hardness of Argon2id or bcrypt protect against brute-force attacks compared to SHA-256?",
+            "search_query": "Argon2id bcrypt vs SHA-256 brute force resistance"
+          },
+          {
+            "question": "What practical factors (performance, compatibility, implementation) should be considered when choosing Argon2id over bcrypt or vice versa?",
+            "search_query": "Argon2id vs bcrypt performance comparison"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "89dddcfb",
+      "parent_id": "d56923d6",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 6.09,
+      "duration_ms": 6443.06,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 6443.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 587,
+        "completion": 1044,
+        "total": 1631,
+        "cost_usd": 0.00015333
+      }
+    },
+    {
+      "id": "cf7260f6",
+      "parent_id": "a21d0dea",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 6449.96,
+      "duration_ms": 72724.16,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 4,
+        "findings": 9,
+        "sources": 6
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "db9cba14",
+      "parent_id": "cf7260f6",
+      "name": "What are the key features of Argon2id and bcrypt that make them suitab",
+      "kind": "subagent",
+      "start_ms": 6450.3,
+      "duration_ms": 56959.25,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "Argon2id bcrypt password hashing features",
+        "findings": 3,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://dev.to/nesniv/understanding-bcrypts-work-factor-and-choosing-the-right-value-103m",
+          "https://md5-encryption.com/blogs/argon2id-password-hashing-guide.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "279e14a5",
+      "parent_id": "db9cba14",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 6450.42,
+      "duration_ms": 1282.0,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1281.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 435,
+        "completion": 79,
+        "total": 514,
+        "cost_usd": 2.332e-05
+      }
+    },
+    {
+      "id": "17ca782a",
+      "parent_id": "cf7260f6",
+      "name": "Why is a single round of SHA-256 insufficient for secure password stor",
+      "kind": "subagent",
+      "start_ms": 6452.26,
+      "duration_ms": 21921.89,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "SHA-256 single round password storage risk",
+        "findings": 3,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://devholster.com/blog/password-hashing-guide/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "621e6f77",
+      "parent_id": "17ca782a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 6452.31,
+      "duration_ms": 1946.4,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1946.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 422,
+        "completion": 70,
+        "total": 492,
+        "cost_usd": 2.176e-05
+      }
+    },
+    {
+      "id": "ddb4c195",
+      "parent_id": "db9cba14",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 7732.53,
+      "duration_ms": 10362.43,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: No results found.",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Argon2id bcrypt password hashing features salting work factor memory hardness\", \"focus\": \"Argon2id bcrypt password hashing features salting work factor memory hardness\", \"max_chars\": 2600}",
+        "output_chars": 54
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "1b82d665",
+      "parent_id": "17ca782a",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 8398.8,
+      "duration_ms": 2985.06,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"SHA-256 single round password storage risk\", \"focus\": \"single round\", \"max_chars\": 2000}",
+        "output_chars": 2079
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "1842bc51",
+      "parent_id": "17ca782a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 11383.93,
+      "duration_ms": 1055.92,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1055.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1006,
+        "completion": 386,
+        "total": 1392,
+        "cost_usd": 8.036e-05
+      }
+    },
+    {
+      "id": "11ee7521",
+      "parent_id": "17ca782a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 12439.94,
+      "duration_ms": 7981.48,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 7981.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 822,
+        "completion": 1000,
+        "total": 1822,
+        "cost_usd": 0.00015466
+      }
+    },
+    {
+      "id": "ac582c79",
+      "parent_id": "db9cba14",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 18095.11,
+      "duration_ms": 1091.51,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1091.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 559,
+        "completion": 69,
+        "total": 628,
+        "cost_usd": 2.574e-05
+      }
+    },
+    {
+      "id": "0aef68cb",
+      "parent_id": "db9cba14",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 19186.71,
+      "duration_ms": 3361.35,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"Argon2id features salting work factor memory hardness\", \"max_chars\": 2600, \"query\": \"Argon2id features salting work factor memory hardness\"}",
+        "output_chars": 2700
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "5c58c9c6",
+      "parent_id": "17ca782a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 20421.46,
+      "duration_ms": 7949.84,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7949.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 851,
+        "completion": 991,
+        "total": 1842,
+        "cost_usd": 0.00015436
+      }
+    },
+    {
+      "id": "a752ca3b",
+      "parent_id": "db9cba14",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 22548.15,
+      "duration_ms": 857.79,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 857.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1172,
+        "completion": 334,
+        "total": 1506,
+        "cost_usd": 7.858e-05
+      }
+    },
+    {
+      "id": "0f1b7854",
+      "parent_id": "db9cba14",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 23406.04,
+      "duration_ms": 10220.68,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"bcrypt password hashing features salting work factor\", \"max_chars\": 2600, \"query\": \"bcrypt password hashing features salting work factor\"}",
+        "output_chars": 2707
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8bb9d175",
+      "parent_id": "cf7260f6",
+      "name": "How does the computational cost and memory hardness of Argon2id or bcr",
+      "kind": "subagent",
+      "start_ms": 28374.23,
+      "duration_ms": 37920.53,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "Argon2id bcrypt vs SHA-256 brute force resistance",
+        "findings": 3,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://freeutil.app/blog/sha256-vs-bcrypt-vs-argon2/",
+          "https://www.devutils.run/guides/cryptographic-hashing-sha256-vs-bcrypt"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "389377bb",
+      "parent_id": "8bb9d175",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 28374.28,
+      "duration_ms": 1550.52,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1550.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 427,
+        "completion": 60,
+        "total": 487,
+        "cost_usd": 2.061e-05
+      }
+    },
+    {
+      "id": "415d9ceb",
+      "parent_id": "8bb9d175",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 29924.9,
+      "duration_ms": 4148.6,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Argon2id bcrypt vs SHA-256 brute force resistance\", \"focus\": \"Argon2id bcrypt vs SHA-256 brute force resistance\", \"max_chars\": 4000}",
+        "output_chars": 2452
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "44b1d0dd",
+      "parent_id": "db9cba14",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 33626.84,
+      "duration_ms": 1921.85,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 1921.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1470,
+        "completion": 1000,
+        "total": 2470,
+        "cost_usd": 0.0001741
+      }
+    },
+    {
+      "id": "0f98005c",
+      "parent_id": "8bb9d175",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 34073.57,
+      "duration_ms": 2334.88,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2334.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1035,
+        "completion": 116,
+        "total": 1151,
+        "cost_usd": 4.613e-05
+      }
+    },
+    {
+      "id": "fbe72fb0",
+      "parent_id": "db9cba14",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 35548.78,
+      "duration_ms": 14422.15,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 14422.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1486,
+        "completion": 2000,
+        "total": 3486,
+        "cost_usd": 0.00030458
+      }
+    },
+    {
+      "id": "a4a1d48b",
+      "parent_id": "8bb9d175",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 36408.63,
+      "duration_ms": 3897.2,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Argon2id memory-hard bcrypt work factor SHA-256 brute force\", \"focus\": \"Argon2id memory-hard bcrypt work factor SHA-256 brute force\", \"max_chars\": 4000}",
+        "output_chars": 2570
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "cb4741cb",
+      "parent_id": "8bb9d175",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 40305.94,
+      "duration_ms": 4236.26,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4236.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1733,
+        "completion": 438,
+        "total": 2171,
+        "cost_usd": 0.00010893
+      }
+    },
+    {
+      "id": "98ee5efd",
+      "parent_id": "8bb9d175",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 44542.33,
+      "duration_ms": 10551.08,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 10551.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1498,
+        "completion": 1000,
+        "total": 2498,
+        "cost_usd": 0.00017494
+      }
+    },
+    {
+      "id": "80590c5b",
+      "parent_id": "db9cba14",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 49971.06,
+      "duration_ms": 13438.14,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": true,
+        "max_tokens": 4000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 13438.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1470,
+        "completion": 1868,
+        "total": 3338,
+        "cost_usd": 0.00028694
+      }
+    },
+    {
+      "id": "2eadc978",
+      "parent_id": "8bb9d175",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 55093.46,
+      "duration_ms": 11201.03,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 11201.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1501,
+        "completion": 1548,
+        "total": 3049,
+        "cost_usd": 0.00024627
+      }
+    },
+    {
+      "id": "261510b8",
+      "parent_id": "cf7260f6",
+      "name": "What practical factors (performance, compatibility, implementation) sh",
+      "kind": "subagent",
+      "start_ms": 63409.72,
+      "duration_ms": 15763.68,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "Argon2id vs bcrypt performance comparison",
+        "findings": 0,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://guptadeepak.com/the-complete-guide-to-password-hashing-argon2-vs-bcrypt-vs-scrypt-vs-pbkdf2-2026/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "b36fa17b",
+      "parent_id": "261510b8",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 63409.84,
+      "duration_ms": 507.13,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 507.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 482,
+        "completion": 76,
+        "total": 558,
+        "cost_usd": 2.434e-05
+      }
+    },
+    {
+      "id": "e946ff19",
+      "parent_id": "261510b8",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 63917.18,
+      "duration_ms": 13225.18,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"performance, compatibility, implementation\", \"max_chars\": 300, \"query\": \"Argon2id vs bcrypt performance comparison\"}",
+        "output_chars": 555
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "02f590cb",
+      "parent_id": "261510b8",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 77142.68,
+      "duration_ms": 1307.86,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1307.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 694,
+        "completion": 85,
+        "total": 779,
+        "cost_usd": 3.187e-05
+      }
+    },
+    {
+      "id": "533e78ad",
+      "parent_id": "261510b8",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 78450.77,
+      "duration_ms": 722.4,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 722.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 527,
+        "completion": 226,
+        "total": 753,
+        "cost_usd": 4.519e-05
+      }
+    },
+    {
+      "id": "352e5a8d",
+      "parent_id": "a21d0dea",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 79174.61,
+      "duration_ms": 5.2,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 9,
+        "evidence_kept": 9,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 2,
+        "outside_window": 0,
+        "sources": 6
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4cf467ba",
+      "parent_id": "a21d0dea",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 79179.97,
+      "duration_ms": 26471.52,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 6,
+          "partial": 1,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "207cb543",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 79180.75,
+      "duration_ms": 1028.75,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1028.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 350,
+        "completion": 173,
+        "total": 523,
+        "cost_usd": 3.299e-05
+      }
+    },
+    {
+      "id": "3a33a2aa",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 79184.31,
+      "duration_ms": 2720.05,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2720.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 348,
+        "completion": 170,
+        "total": 518,
+        "cost_usd": 3.254e-05
+      }
+    },
+    {
+      "id": "a88a2d31",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 79186.64,
+      "duration_ms": 6303.46,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 6303.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 344,
+        "completion": 400,
+        "total": 744,
+        "cost_usd": 6.232e-05
+      }
+    },
+    {
+      "id": "5b3a5d59",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 79190.03,
+      "duration_ms": 2532.65,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2532.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 318,
+        "completion": 180,
+        "total": 498,
+        "cost_usd": 3.294e-05
+      }
+    },
+    {
+      "id": "d4e8a351",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 80209.85,
+      "duration_ms": 462.85,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 462.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 359,
+        "completion": 203,
+        "total": 562,
+        "cost_usd": 3.716e-05
+      }
+    },
+    {
+      "id": "bd23aa32",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 80672.88,
+      "duration_ms": 1952.23,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1952.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 326,
+        "completion": 121,
+        "total": 447,
+        "cost_usd": 2.551e-05
+      }
+    },
+    {
+      "id": "81e43081",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 81722.9,
+      "duration_ms": 4411.28,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4411.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 336,
+        "completion": 283,
+        "total": 619,
+        "cost_usd": 4.687e-05
+      }
+    },
+    {
+      "id": "b82f4b91",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 85490.17,
+      "duration_ms": 11519.72,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 11519.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 360,
+        "completion": 1000,
+        "total": 1360,
+        "cost_usd": 0.0001408
+      }
+    },
+    {
+      "id": "ffe0e626",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 97009.96,
+      "duration_ms": 1606.85,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": true,
+        "max_tokens": 2000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1606.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 372,
+        "completion": 625,
+        "total": 997,
+        "cost_usd": 9.241e-05
+      }
+    },
+    {
+      "id": "bc261aaf",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 98620.83,
+      "duration_ms": 5428.9,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 5428.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 434,
+        "completion": 500,
+        "total": 934,
+        "cost_usd": 7.802e-05
+      }
+    },
+    {
+      "id": "1c56e20c",
+      "parent_id": "4cf467ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 104049.82,
+      "duration_ms": 1601.3,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1601.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 463,
+        "completion": 582,
+        "total": 1045,
+        "cost_usd": 8.955e-05
+      }
+    },
+    {
+      "id": "e4dba6ba",
+      "parent_id": "a21d0dea",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 105651.59,
+      "duration_ms": 10713.45,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 535,
+        "citations": 7,
+        "cited_sources": 4,
+        "repaired": true
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "abe8a69d",
+      "parent_id": "e4dba6ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 105652.04,
+      "duration_ms": 8960.96,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "reasoning_effort": "low",
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8960.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1169,
+        "completion": 833,
+        "total": 2002,
+        "cost_usd": 0.00014336
+      }
+    },
+    {
+      "id": "440a2d27",
+      "parent_id": "e4dba6ba",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 114615.85,
+      "duration_ms": 1745.05,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 3600,
+        "reasoning_effort": "low",
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1745.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 2113,
+        "completion": 910,
+        "total": 3023,
+        "cost_usd": 0.00018169
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 179821.3,
+    "span_count": 49,
+    "llm_calls": 32,
+    "tool_calls": 7,
+    "errors": 1,
+    "tokens": {
+      "prompt": 25469,
+      "completion": 18370,
+      "total": 43839
+    },
+    "cost_usd": 0.00315217,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 32,
+        "prompt": 25469,
+        "completion": 18370,
+        "total": 43839,
+        "cost_usd": 0.00315217,
+        "priced": true,
+        "duration_ms": 141075.3
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 1,
+        "prompt": 587,
+        "completion": 1044,
+        "total": 1631,
+        "cost_usd": 0.00015333
+      },
+      "research": {
+        "calls": 18,
+        "prompt": 17590,
+        "completion": 11346,
+        "total": 28936,
+        "cost_usd": 0.00200268
+      },
+      "verify": {
+        "calls": 11,
+        "prompt": 4010,
+        "completion": 4237,
+        "total": 8247,
+        "cost_usd": 0.00067111
+      },
+      "write": {
+        "calls": 2,
+        "prompt": 3282,
+        "completion": 1743,
+        "total": 5025,
+        "cost_usd": 0.00032505
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 116365.2,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 116364.0,
+        "errors": 0
+      },
+      "llm": {
+        "count": 32,
+        "duration_ms": 141075.3,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 4,
+        "duration_ms": 132565.4,
+        "errors": 0
+      },
+      "tool": {
+        "count": 7,
+        "duration_ms": 48200.5,
+        "errors": 1
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 14422.2
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 13438.1
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 11519.7
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 11201.0
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 10551.1
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "a21d0dea",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 116365.2
+      },
+      {
+        "id": "e4dba6ba",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 10713.5
+      },
+      {
+        "id": "440a2d27",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 1745.0
+      }
+    ]
+  }
+}

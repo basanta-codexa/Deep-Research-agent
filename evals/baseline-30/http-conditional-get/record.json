@@ -1,0 +1,37 @@
+{
+  "item_id": "http-conditional-get",
+  "category": "http",
+  "question": "How do ETag and If-None-Match let a client avoid downloading a response body it already has?",
+  "ok": false,
+  "error": "timeout after 600s",
+  "duration_s": 600.02,
+  "stage_errors": {
+    "pipeline": "timeout after 600s"
+  },
+  "evidence_total": 0,
+  "evidence_verified": 0,
+  "evidence_citable": 0,
+  "evidence_cited": 0,
+  "evidence_unused": 0,
+  "support": {},
+  "contradictions": 0,
+  "citations": 0,
+  "cited_ids": [],
+  "unsupported_citations": 0,
+  "words": 0,
+  "report_ok": false,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [],
+  "keyword_misses": [
+    "ETag",
+    "304"
+  ],
+  "misconception_hits": [],
+  "tokens_prompt": 11240,
+  "tokens_completion": 5540,
+  "tokens_total": 16780,
+  "cost_usd": 0.0010574,
+  "unpriced_models": [],
+  "timings": {}
+}

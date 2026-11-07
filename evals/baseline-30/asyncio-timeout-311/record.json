@@ -1,0 +1,45 @@
+{
+  "item_id": "asyncio-timeout-311",
+  "category": "asyncio",
+  "question": "How do I apply a timeout to an awaitable in Python 3.11 without asyncio.wait_for()?",
+  "ok": true,
+  "error": null,
+  "duration_s": 104.63,
+  "stage_errors": {},
+  "evidence_total": 4,
+  "evidence_verified": 4,
+  "evidence_citable": 4,
+  "evidence_cited": 2,
+  "evidence_unused": 2,
+  "support": {
+    "supported": 4
+  },
+  "contradictions": 0,
+  "citations": 2,
+  "cited_ids": [
+    "ev_121e7bbb",
+    "ev_780b2ca8"
+  ],
+  "unsupported_citations": 0,
+  "words": 303,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "asyncio.timeout"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 15944,
+  "tokens_completion": 10013,
+  "tokens_total": 25957,
+  "cost_usd": 0.00178001,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 18.79,
+    "research": 56.48,
+    "evidence": 0.0,
+    "verify": 7.32,
+    "write": 22.04
+  }
+}

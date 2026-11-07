@@ -1,0 +1,130 @@
+{
+  "generated_at": 1794041053.4629068,
+  "stats": {
+    "findings_seen": 8,
+    "evidence_kept": 6,
+    "duplicates_exact": 2,
+    "duplicates_near": 0,
+    "unverified_quotes": 2,
+    "outside_window": 0,
+    "sources": 3
+  },
+  "evidence": [
+    {
+      "id": "ev_9a3fbf47",
+      "claim": "Default arguments are parameters with predefined values.",
+      "quote": "In Python, functions can have default arguments, which are parameters with predefined values.",
+      "url": "https://www.geeksforgeeks.org/python/default-arguments-in-python/",
+      "title": "Default arguments in Python - GeeksforGeeks",
+      "sub_questions": [
+        "How are default argument values handled when a Python function is defined?"
+      ],
+      "confidence": "high",
+      "span_start": 0,
+      "span_end": 93,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "quote states that default arguments are parameters with predefined values",
+      "trust": "aggregator",
+      "created_at": 1794039291.9981573,
+      "verified": true
+    },
+    {
+      "id": "ev_49b6147f",
+      "claim": "Non‑default parameters must come before default parameters in the function definition.",
+      "quote": "Non-default parameters must come before default parameters in the function definition.",
+      "url": "https://www.geeksforgeeks.org/python/default-arguments-in-python/",
+      "title": "Default arguments in Python - GeeksforGeeks",
+      "sub_questions": [
+        "How are default argument values handled when a Python function is defined?"
+      ],
+      "confidence": "high",
+      "span_start": 1274,
+      "span_end": 1360,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states the same sentence as the claim.",
+      "trust": "aggregator",
+      "created_at": 1794039291.998248,
+      "verified": true
+    },
+    {
+      "id": "ev_37170da3",
+      "claim": "Mutable default values are shared across function calls, causing modifications to persist.",
+      "quote": "If the default values are mutable or modifiable (lists, dictionaries, etc.), they can be modified within the function and those modifications will persist across function calls.",
+      "url": "https://www.geeksforgeeks.org/python/use-mutable-default-value-as-an-argument-in-python/",
+      "title": "Use mutable default value as an argument in Python - GeeksforGeeks",
+      "sub_questions": [
+        "Why does a mutable default argument become shared between separate function calls?",
+        "How can developers avoid unintended sharing of mutable default arguments in Python?"
+      ],
+      "confidence": "high",
+      "span_start": 567,
+      "span_end": 744,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that mutable defaults can be modified and those modifications persist across function calls, matching the claim.",
+      "trust": "aggregator",
+      "created_at": 1794039291.9983451,
+      "verified": true
+    },
+    {
+      "id": "ev_2acbbe67",
+      "claim": "The same list is used whenever the function is called with a single argument, because the default value list is modified each time the function is called.",
+      "quote": "As you can see the same list is used whenever we call the function with a single argument, this is because the default value list is modified each time the function is called.",
+      "url": "https://www.geeksforgeeks.org/python/use-mutable-default-value-as-an-argument-in-python/",
+      "title": "Use mutable default value as an argument in Python - GeeksforGeeks",
+      "sub_questions": [
+        "Why does a mutable default argument become shared between separate function calls?",
+        "What is a concrete example of a mutable default argument being shared in Python?"
+      ],
+      "confidence": "high",
+      "span_start": 1760,
+      "span_end": 1935,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that the same list is used whenever the function is called with a single argument, because the default value list is modified each time the function is called.",
+      "trust": "aggregator",
+      "created_at": 1794039291.9984488,
+      "verified": true
+    },
+    {
+      "id": "ev_3bcd9fac",
+      "claim": "The same list is reused across calls",
+      "quote": "The same list is reused across calls.",
+      "url": "https://www.geeksforgeeks.org/python/use-mutable-default-value-as-an-argument-in-python/",
+      "title": "Use mutable default value as an argument in Python - GeeksforGeeks",
+      "sub_questions": [
+        "What is a concrete example of a mutable default argument being shared in Python?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794039291.9993896,
+      "verified": false
+    },
+    {
+      "id": "ev_d839c611",
+      "claim": "Use None as the default value and create a new list inside the function to avoid sharing a mutable default across calls.",
+      "quote": "In the above code, we have used 'None' as the default value instead of an empty list. With this modification, calling the `append_to` function without passing a value for `arr` will always create a new empty list and append the element value into that newly created list.",
+      "url": "https://www.geeksforgeeks.org/python/use-mutable-default-value-as-an-argument-in-python/",
+      "title": "Use mutable default value as an argument in Python - GeeksforGeeks",
+      "sub_questions": [
+        "How can developers avoid unintended sharing of mutable default arguments in Python?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794039292.0009952,
+      "verified": false
+    }
+  ]
+}

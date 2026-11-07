@@ -1,0 +1,29 @@
+{
+  "restated": "What is the difference between a Kubernetes readiness probe and a liveness probe?",
+  "sub_questions": [
+    {
+      "question": "What is a Kubernetes readiness probe and what is its purpose?",
+      "search_query": "kubernetes readiness probe purpose",
+      "why": "Provides the definition, intended use, and how readiness probes determine when a pod is ready to receive traffic."
+    },
+    {
+      "question": "What is a Kubernetes liveness probe and what is its purpose?",
+      "search_query": "kubernetes liveness probe purpose",
+      "why": "Explains the definition, intended use, and how liveness probes detect when a pod has become unhealthy and needs to be restarted."
+    },
+    {
+      "question": "How do readiness and liveness probes differ in terms of behavior and impact on pod lifecycle?",
+      "search_query": "readiness vs liveness probe difference",
+      "why": "Directly compares the two probes, highlighting differences in when they are triggered, what actions they cause, and how they affect service routing and pod restarts."
+    },
+    {
+      "question": "What are typical configuration differences and common use cases for readiness and liveness probes?",
+      "search_query": "kubernetes readiness liveness probe configuration examples",
+      "why": "Shows how each probe is usually configured (e.g., initial delay, timeout, failure thresholds) and illustrates typical scenarios where each probe is applied."
+    }
+  ],
+  "assumptions": [
+    "Assume standard Kubernetes readiness and liveness probes as defined in the official Kubernetes documentation.",
+    "Assume the user is interested in general differences, not version‑specific or custom probe implementations."
+  ]
+}

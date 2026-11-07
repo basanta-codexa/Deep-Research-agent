@@ -1,0 +1,29 @@
+{
+  "restated": "How does using @dataclass(slots=True) alter a class’s behavior and the memory usage of its instances?",
+  "sub_questions": [
+    {
+      "question": "What is the purpose of the __slots__ attribute in a Python class?",
+      "search_query": "Python class slots attribute",
+      "why": "Provides the foundational concept of slots, explaining how they restrict attribute storage to a fixed set and eliminate the instance __dict__."
+    },
+    {
+      "question": "How does the dataclass decorator with slots=True modify the generated class?",
+      "search_query": "dataclass slots=True behavior",
+      "why": "Shows the specific changes dataclass applies when slots=True, such as adding __slots__ and adjusting __init__ and other methods."
+    },
+    {
+      "question": "What is the memory impact of using slots on dataclass instances?",
+      "search_query": "Python slots memory savings",
+      "why": "Provides quantitative or qualitative evidence of how slots reduce per-instance memory consumption compared to normal attribute storage."
+    },
+    {
+      "question": "What limitations or trade‑offs arise when using slots in dataclasses?",
+      "search_query": "dataclass slots limitations",
+      "why": "Highlights practical constraints (e.g., no dynamic attributes, inheritance issues, compatibility with other features) that affect the decision to use slots."
+    }
+  ],
+  "assumptions": [
+    "The user is referring to Python 3.10+ where dataclass(slots=True) is supported.",
+    "Memory savings are approximate and depend on the number of attributes and instance count."
+  ]
+}

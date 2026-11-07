@@ -1,0 +1,30 @@
+{
+  "restated": "What is the N+1 query problem in an ORM, and how can it be detected?",
+  "sub_questions": [
+    {
+      "question": "What is the N+1 query problem in an ORM?",
+      "search_query": "N+1 query problem ORM definition",
+      "why": "Provides a clear definition and basic explanation of the N+1 query issue within ORM contexts."
+    },
+    {
+      "question": "Why does the N+1 query problem occur in ORMs?",
+      "search_query": "why N+1 queries happen in ORM",
+      "why": "Explains the underlying causes, such as lazy loading and lack of eager fetching, that lead to the problem."
+    },
+    {
+      "question": "How can I detect N+1 queries in my application?",
+      "search_query": "detect N+1 queries in application",
+      "why": "Outlines general detection strategies, including query counting, profiling, and code review techniques."
+    },
+    {
+      "question": "What tools or techniques can help detect N+1 queries?",
+      "search_query": "tools for detecting N+1 queries",
+      "why": "Lists practical tools (e.g., Django Debug Toolbar, SQLAlchemy events, Hibernate statistics) and techniques for spotting the issue."
+    }
+  ],
+  "assumptions": [
+    "The user is working with a common ORM such as Django ORM, SQLAlchemy, or Hibernate.",
+    "The user has access to application logs or a profiling environment.",
+    "The user is interested in general detection methods applicable across different ORMs."
+  ]
+}

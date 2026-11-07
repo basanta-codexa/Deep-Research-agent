@@ -1,0 +1,1242 @@
+{
+  "trace_id": "6df6e9ede502",
+  "name": "When should a pytest test use monkeypatch instead of unittest.mock.patch?",
+  "started_at": "2026-11-07T08:20:55.835677+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "c00ec58a",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.07,
+      "duration_ms": 112107.94,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "27364d5e",
+      "parent_id": "c00ec58a",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.16,
+      "duration_ms": 7576.04,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "When should a pytest test use the monkeypatch fixture instead of unittest.mock.patch?",
+        "questions": [
+          {
+            "question": "What are the key functional differences between pytest's monkeypatch fixture and unittest.mock.patch?",
+            "search_query": "pytest monkeypatch vs unittest.mock.patch difference"
+          },
+          {
+            "question": "In what typical testing scenarios is pytest's monkeypatch preferred over unittest.mock.patch?",
+            "search_query": "pytest monkeypatch use cases vs mock.patch"
+          },
+          {
+            "question": "What limitations or drawbacks does the pytest monkeypatch fixture have compared to unittest.mock.patch?",
+            "search_query": "limitations of pytest monkeypatch fixture"
+          },
+          {
+            "question": "How does the cleanup and scope handling of pytest monkeypatch differ from unittest.mock.patch?",
+            "search_query": "pytest monkeypatch cleanup behavior compared to mock.patch"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "077e0b18",
+      "parent_id": "27364d5e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 2.56,
+      "duration_ms": 7573.19,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7573.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 566,
+        "completion": 878,
+        "total": 1444,
+        "cost_usd": 0.00013112
+      }
+    },
+    {
+      "id": "d3fe4e47",
+      "parent_id": "c00ec58a",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 7576.38,
+      "duration_ms": 85504.49,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 4,
+        "findings": 2,
+        "sources": 5
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "28575aab",
+      "parent_id": "d3fe4e47",
+      "name": "What are the key functional differences between pytest's monkeypatch f",
+      "kind": "subagent",
+      "start_ms": 7576.75,
+      "duration_ms": 30395.97,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest monkeypatch vs unittest.mock.patch difference",
+        "findings": 0,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://www.cosmiclearn.com/mock/pytest-monkeypatch-comparison.php"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "44789fd5",
+      "parent_id": "28575aab",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 7576.88,
+      "duration_ms": 1017.17,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1017.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 417,
+        "completion": 47,
+        "total": 464,
+        "cost_usd": 1.862e-05
+      }
+    },
+    {
+      "id": "96c586de",
+      "parent_id": "d3fe4e47",
+      "name": "In what typical testing scenarios is pytest's monkeypatch preferred ov",
+      "kind": "subagent",
+      "start_ms": 7579.64,
+      "duration_ms": 83107.32,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest monkeypatch use cases vs mock.patch",
+        "findings": 2,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://docs.pytest.org/en/stable/how-to/monkeypatch.html",
+          "https://pytest-with-eric.com/mocking/mocking-vs-patching/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "f8d5dcec",
+      "parent_id": "96c586de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 7579.77,
+      "duration_ms": 1630.43,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1630.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 420,
+        "completion": 52,
+        "total": 472,
+        "cost_usd": 1.936e-05
+      }
+    },
+    {
+      "id": "e0ea998f",
+      "parent_id": "28575aab",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 8594.24,
+      "duration_ms": 14930.01,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest monkeypatch vs unittest.mock.patch difference\", \"focus\": \"key functional differences\", \"max_chars\": 4000}",
+        "output_chars": 627
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "70175351",
+      "parent_id": "96c586de",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 9210.46,
+      "duration_ms": 11450.91,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest monkeypatch use cases vs mock.patch\", \"focus\": \"pytest monkeypatch use cases vs mock.patch\", \"max_chars\": 4000}",
+        "output_chars": 3851
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "0f42f099",
+      "parent_id": "96c586de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 20661.61,
+      "duration_ms": 2985.0,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2984.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1049,
+        "completion": 92,
+        "total": 1141,
+        "cost_usd": 4.343e-05
+      }
+    },
+    {
+      "id": "27b4b958",
+      "parent_id": "28575aab",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 23524.42,
+      "duration_ms": 1241.67,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "error",
+        "truncated": false,
+        "latency_ms": 1241.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 633,
+        "completion": 49,
+        "total": 682,
+        "cost_usd": 2.536e-05
+      }
+    },
+    {
+      "id": "bdd466b5",
+      "parent_id": "96c586de",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 23648.15,
+      "duration_ms": 18199.35,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > No connection could be made b",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest monkeypatch use cases\", \"focus\": \"monkeypatch use cases\", \"max_chars\": 4000}",
+        "output_chars": 265
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "ce3351ff",
+      "parent_id": "28575aab",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 24766.27,
+      "duration_ms": 7559.76,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 7559.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 463,
+        "completion": 1000,
+        "total": 1463,
+        "cost_usd": 0.00014389
+      }
+    },
+    {
+      "id": "81354ea0",
+      "parent_id": "28575aab",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 32326.21,
+      "duration_ms": 5646.38,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5646.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 479,
+        "completion": 641,
+        "total": 1120,
+        "cost_usd": 9.77e-05
+      }
+    },
+    {
+      "id": "695863fe",
+      "parent_id": "d3fe4e47",
+      "name": "What limitations or drawbacks does the pytest monkeypatch fixture have",
+      "kind": "subagent",
+      "start_ms": 37972.82,
+      "duration_ms": 44155.11,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "limitations of pytest monkeypatch fixture",
+        "findings": 0,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://docs.pytest.org/en/6.2.x/monkeypatch.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "0e651c1f",
+      "parent_id": "695863fe",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 37972.92,
+      "duration_ms": 1534.47,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1533.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 420,
+        "completion": 65,
+        "total": 485,
+        "cost_usd": 2.105e-05
+      }
+    },
+    {
+      "id": "49fb1765",
+      "parent_id": "695863fe",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 39512.64,
+      "duration_ms": 17983.69,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > No connection could be made b",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"limitations of pytest monkeypatch fixture compared to unittest.mock.patch\", \"focus\": \"limitations\", \"max_chars\": 4000}",
+        "output_chars": 265
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "a55a6734",
+      "parent_id": "96c586de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 41847.64,
+      "duration_ms": 5238.69,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 5238.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1198,
+        "completion": 608,
+        "total": 1806,
+        "cost_usd": 0.00011498
+      }
+    },
+    {
+      "id": "c450b887",
+      "parent_id": "96c586de",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 47086.53,
+      "duration_ms": 8710.27,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest monkeypatch fixture docs\", \"focus\": \"monkeypatch fixture\", \"max_chars\": 4000}",
+        "output_chars": 2925
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "333930bd",
+      "parent_id": "96c586de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 55797.05,
+      "duration_ms": 9073.29,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 9073.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1548,
+        "completion": 1000,
+        "total": 2548,
+        "cost_usd": 0.00017644
+      }
+    },
+    {
+      "id": "3cb5198a",
+      "parent_id": "695863fe",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 57496.54,
+      "duration_ms": 2285.56,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2285.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 535,
+        "completion": 69,
+        "total": 604,
+        "cost_usd": 2.502e-05
+      }
+    },
+    {
+      "id": "df985864",
+      "parent_id": "695863fe",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 59782.39,
+      "duration_ms": 17618.83,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest monkeypatch limitations\", \"focus\": \"limitations\", \"max_chars\": 3000}",
+        "output_chars": 497
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "14f88ce1",
+      "parent_id": "96c586de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 64870.43,
+      "duration_ms": 15195.73,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 15195.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1564,
+        "completion": 2000,
+        "total": 3564,
+        "cost_usd": 0.00030692
+      }
+    },
+    {
+      "id": "7777409c",
+      "parent_id": "695863fe",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 77401.36,
+      "duration_ms": 1839.11,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1838.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 732,
+        "completion": 99,
+        "total": 831,
+        "cost_usd": 3.483e-05
+      }
+    },
+    {
+      "id": "4c10b62c",
+      "parent_id": "695863fe",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 79240.7,
+      "duration_ms": 21.62,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest monkeypatch limitations\", \"focus\": \"limitations\", \"max_chars\": 2000}",
+        "output_chars": 497
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4766c946",
+      "parent_id": "695863fe",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 79262.55,
+      "duration_ms": 2865.14,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2865.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 630,
+        "completion": 239,
+        "total": 869,
+        "cost_usd": 4.997e-05
+      }
+    },
+    {
+      "id": "a1518af6",
+      "parent_id": "96c586de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 80066.24,
+      "duration_ms": 10620.49,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": true,
+        "max_tokens": 4000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 10620.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1548,
+        "completion": 1368,
+        "total": 2916,
+        "cost_usd": 0.00022428
+      }
+    },
+    {
+      "id": "ea3491dc",
+      "parent_id": "d3fe4e47",
+      "name": "How does the cleanup and scope handling of pytest monkeypatch differ f",
+      "kind": "subagent",
+      "start_ms": 82128.06,
+      "duration_ms": 10952.68,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest monkeypatch cleanup behavior compared to mock.patch",
+        "findings": 0,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://qaskills.sh/blog/pytest-mock-monkeypatch-guide-2026"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "71df1f9b",
+      "parent_id": "ea3491dc",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 82128.18,
+      "duration_ms": 797.36,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 797.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 465,
+        "completion": 63,
+        "total": 528,
+        "cost_usd": 2.214e-05
+      }
+    },
+    {
+      "id": "0be09651",
+      "parent_id": "ea3491dc",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 82925.73,
+      "duration_ms": 3736.2,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"cleanup\", \"max_chars\": 300, \"query\": \"pytest monkeypatch cleanup behavior compared to mock.patch\"}",
+        "output_chars": 528
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "817a543b",
+      "parent_id": "ea3491dc",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 86662.14,
+      "duration_ms": 702.96,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 702.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 659,
+        "completion": 63,
+        "total": 722,
+        "cost_usd": 2.796e-05
+      }
+    },
+    {
+      "id": "d82710b1",
+      "parent_id": "ea3491dc",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 87365.31,
+      "duration_ms": 19.18,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"cleanup\", \"max_chars\": 800, \"query\": \"pytest monkeypatch cleanup behavior compared to mock.patch\"}",
+        "output_chars": 528
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "5b069103",
+      "parent_id": "ea3491dc",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 87384.62,
+      "duration_ms": 704.67,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 704.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 889,
+        "completion": 129,
+        "total": 1018,
+        "cost_usd": 4.344e-05
+      }
+    },
+    {
+      "id": "90c3339a",
+      "parent_id": "ea3491dc",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 88089.49,
+      "duration_ms": 4991.13,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4991.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 639,
+        "completion": 684,
+        "total": 1323,
+        "cost_usd": 0.00010809
+      }
+    },
+    {
+      "id": "55d423f2",
+      "parent_id": "c00ec58a",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 93081.02,
+      "duration_ms": 3.71,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 2,
+        "evidence_kept": 2,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 1,
+        "outside_window": 0,
+        "sources": 5
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "44e068af",
+      "parent_id": "c00ec58a",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 93084.87,
+      "duration_ms": 2532.78,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 1,
+          "partial": 0,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "6a0fda27",
+      "parent_id": "44e068af",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 93085.12,
+      "duration_ms": 2532.24,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2532.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 327,
+        "completion": 225,
+        "total": 552,
+        "cost_usd": 3.906e-05
+      }
+    },
+    {
+      "id": "d2331f03",
+      "parent_id": "c00ec58a",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 95617.77,
+      "duration_ms": 16490.11,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 201,
+        "citations": 1,
+        "cited_sources": 1,
+        "repaired": true
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "0a158097",
+      "parent_id": "d2331f03",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 95617.93,
+      "duration_ms": 2466.0,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 2465.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 682,
+        "completion": 1800,
+        "total": 2482,
+        "cost_usd": 0.00025446
+      }
+    },
+    {
+      "id": "b3c8ed9b",
+      "parent_id": "d2331f03",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 98084.01,
+      "duration_ms": 6757.88,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 3600,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 6757.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 730,
+        "completion": 943,
+        "total": 1673,
+        "cost_usd": 0.00014449
+      }
+    },
+    {
+      "id": "d4593f1a",
+      "parent_id": "d2331f03",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 104842.62,
+      "duration_ms": 7264.0,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 3600,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7263.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1006,
+        "completion": 1000,
+        "total": 2006,
+        "cost_usd": 0.00016018
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 1397794.0,
+    "span_count": 42,
+    "llm_calls": 23,
+    "tool_calls": 9,
+    "errors": 2,
+    "tokens": {
+      "prompt": 17599,
+      "completion": 13114,
+      "total": 30713
+    },
+    "cost_usd": 0.00223279,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 23,
+        "prompt": 17599,
+        "completion": 13114,
+        "total": 30713,
+        "cost_usd": 0.00223279,
+        "priced": true,
+        "duration_ms": 102522.3
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 1,
+        "prompt": 566,
+        "completion": 878,
+        "total": 1444,
+        "cost_usd": 0.00013112
+      },
+      "research": {
+        "calls": 18,
+        "prompt": 14288,
+        "completion": 8268,
+        "total": 22556,
+        "cost_usd": 0.00150348
+      },
+      "verify": {
+        "calls": 1,
+        "prompt": 327,
+        "completion": 225,
+        "total": 552,
+        "cost_usd": 3.906e-05
+      },
+      "write": {
+        "calls": 3,
+        "prompt": 2418,
+        "completion": 3743,
+        "total": 6161,
+        "cost_usd": 0.00055913
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 112107.9,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 112107.1,
+        "errors": 0
+      },
+      "llm": {
+        "count": 23,
+        "duration_ms": 102522.3,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 4,
+        "duration_ms": 168611.1,
+        "errors": 0
+      },
+      "tool": {
+        "count": 9,
+        "duration_ms": 92670.1,
+        "errors": 2
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 15195.7
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 10620.5
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 9073.3
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7573.2
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7559.8
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "c00ec58a",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 112107.9
+      },
+      {
+        "id": "d2331f03",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 16490.1
+      },
+      {
+        "id": "d4593f1a",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 7264.0
+      }
+    ]
+  }
+}

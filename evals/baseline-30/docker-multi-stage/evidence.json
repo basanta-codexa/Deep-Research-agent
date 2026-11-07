@@ -1,0 +1,204 @@
+{
+  "generated_at": 1794041053.817217,
+  "stats": {
+    "findings_seen": 10,
+    "evidence_kept": 10,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 4,
+    "outside_window": 0,
+    "sources": 7
+  },
+  "evidence": [
+    {
+      "id": "ev_e49f04d3",
+      "claim": "A multistage Dockerfile is a feature introduced in Docker to address the challenge of creating lean and efficient container images.",
+      "quote": "A multistage Dockerfile is a feature introduced in Docker to address the challenge of creating lean and efficient container images.",
+      "url": "https://www.geeksforgeeks.org/devops/what-is-an-multistage-dockerfile/",
+      "title": "What is an Multistage Dockerfile? - GeeksforGeeks",
+      "sub_questions": [
+        "What is a multi-stage Docker build and how does it differ from a single-stage build?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794040646.3519187,
+      "verified": false
+    },
+    {
+      "id": "ev_4c15a836",
+      "claim": "Traditionally, Docker images used to contain all the dependencies, libraries, and tools required to run an application, leading to bloated images that consume unnecessary disk space.",
+      "quote": "Traditionally, Docker images used to contain all the dependencies, libraries, and tools required to run an application, leading to bloated images that consume unnecessary disk space.",
+      "url": "https://www.geeksforgeeks.org/devops/what-is-an-multistage-dockerfile/",
+      "title": "What is an Multistage Dockerfile? - GeeksforGeeks",
+      "sub_questions": [
+        "What is a multi-stage Docker build and how does it differ from a single-stage build?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794040646.3527324,
+      "verified": false
+    },
+    {
+      "id": "ev_5edd9658",
+      "claim": "One stage can contain compilers, development dependencies and build tools, while another contains only the files and runtime dependencies required to run the finished application.",
+      "quote": "One stage can contain compilers, development dependencies and build tools, while another contains only the files and runtime dependencies required to run the finished application.",
+      "url": "https://devtoolshub.net/blog/multi-stage-docker-builds",
+      "title": "DevToolsHub — Free Developer Tools",
+      "sub_questions": [
+        "How does a multi-stage Docker build separate build-time dependencies from runtime dependencies?"
+      ],
+      "confidence": "high",
+      "span_start": 585,
+      "span_end": 764,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794040646.35285,
+      "verified": true
+    },
+    {
+      "id": "ev_1a2bf49f",
+      "claim": "The final image contains only what your application needs to run, excluding build dependencies.",
+      "quote": "The final image contains only what your application needs to run — nothing else.",
+      "url": "https://dev.to/sanjaysundarmurthy/docker-multi-stage-builds-how-i-reduced-image-sizes-by-94-with-real-examples-276d",
+      "title": "Docker Multi-Stage Builds: How I Reduced Image Sizes by 94% (With Real Examples)",
+      "sub_questions": [
+        "What impact does this separation have on Docker image layers and overall size?"
+      ],
+      "confidence": "high",
+      "span_start": 422,
+      "span_end": 502,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states the final image contains only what the application needs to run, implying it excludes build dependencies.",
+      "trust": "aggregator",
+      "created_at": 1794040646.3529189,
+      "verified": true
+    },
+    {
+      "id": "ev_c7a45131",
+      "claim": "Build tools, source code, and devDependencies are omitted from the final image.",
+      "quote": "Build tools, source code, devDependencies — none of it exists in the final image.",
+      "url": "https://dev.to/sanjaysundarmurthy/docker-multi-stage-builds-how-i-reduced-image-sizes-by-94-with-real-examples-276d",
+      "title": "Docker Multi-Stage Builds: How I Reduced Image Sizes by 94% (With Real Examples)",
+      "sub_questions": [
+        "What impact does this separation have on Docker image layers and overall size?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794040646.3557668,
+      "verified": false
+    },
+    {
+      "id": "ev_f5964c3c",
+      "claim": "Separating dependencies into a separate stage allows caching of the dependency layer, so that only the application layer (<1MB) is rebuilt when code changes.",
+      "quote": "Docker caches the dependency layer — so when only your code changes, the rebuild copies just the application layer ( usually <1MB).",
+      "url": "https://dev.to/sanjaysundarmurthy/docker-multi-stage-builds-how-i-reduced-image-sizes-by-94-with-real-examples-276d",
+      "title": "Docker Multi-Stage Builds: How I Reduced Image Sizes by 94% (With Real Examples)",
+      "sub_questions": [
+        "What impact does this separation have on Docker image layers and overall size?"
+      ],
+      "confidence": "high",
+      "span_start": 1203,
+      "span_end": 1334,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "Quote confirms Docker caches the dependency layer and only rebuilds the application layer, but does not mention separating dependencies into a separate stage.",
+      "trust": "aggregator",
+      "created_at": 1794040646.3566055,
+      "verified": true
+    },
+    {
+      "id": "ev_98f9a93e",
+      "claim": "The source provides a complete multi-stage Dockerfile for a React application using Create React App.",
+      "quote": "Here's a complete multi-stage Dockerfile for a React application using Create React App:",
+      "url": "https://serversium.com/en/blog/docker-multi-stage-builds-complete-guide",
+      "title": "Docker Multi-Stage Builds: 90% Image Size Reduction Guide",
+      "sub_questions": [
+        "Can you provide a concrete example of a multi-stage Dockerfile and the size difference compared to a single-stage build?"
+      ],
+      "confidence": "high",
+      "span_start": 1296,
+      "span_end": 1384,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states it is a complete multi-stage Dockerfile for a React application using Create React App.",
+      "trust": "unknown",
+      "created_at": 1794040646.356732,
+      "verified": true
+    },
+    {
+      "id": "ev_8b507319",
+      "claim": "Multi-stage builds typically reduce image sizes by 50–95%, e.g., a Node.js application might go from 1.2 GB to 100–200 MB.",
+      "quote": "Multi-stage builds typically reduce image sizes by 50-95%. A Node.js application might go from 1.2GB (with node_modules and build tools) to 100-200MB (with just production dependencies).",
+      "url": "https://devopskit.in/blog/docker-multi-stage-build-guide/",
+      "title": "Docker Multi-Stage Builds — Reduce Image Size from 1GB to 50MB",
+      "sub_questions": [
+        "Can you provide a concrete example of a multi-stage Dockerfile and the size difference compared to a single-stage build?"
+      ],
+      "confidence": "high",
+      "span_start": 821,
+      "span_end": 1007,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states the same 50‑95% reduction and the same 1.2 GB to 100‑200 MB example as the claim.",
+      "trust": "unknown",
+      "created_at": 1794040646.3568811,
+      "verified": true
+    },
+    {
+      "id": "ev_ff84d663",
+      "claim": "Separate build dependencies from the runtime image to reduce size",
+      "quote": "Learn how to optimize your Dockerfiles by separating build dependencies, ensuring only necessary components reach your final runtime image.",
+      "url": "https://devops.aibit.im/en/article/optimize-docker-images-multi-stage-builds",
+      "title": "Optimize Docker Images with Multi-Stage Builds: A Comprehensive Guide | Master DevOps Tools & Best Practices - DevOps Knowledge Hub",
+      "sub_questions": [
+        "What best practices should be followed to maximize size savings when using multi-stage builds?"
+      ],
+      "confidence": "high",
+      "span_start": 601,
+      "span_end": 740,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that separating build dependencies ensures only necessary components reach the final runtime image, which implies a reduction in size.",
+      "trust": "unknown",
+      "created_at": 1794040646.3569913,
+      "verified": true
+    },
+    {
+      "id": "ev_f2747dfe",
+      "claim": "Multi‑stage builds dramatically shrink image sizes",
+      "quote": "Master Docker multi‑stage builds to dramatically shrink your image sizes, accelerate deployments, and enhance security.",
+      "url": "https://devops.aibit.im/en/article/optimize-docker-images-multi-stage-builds",
+      "title": "Optimize Docker Images with Multi-Stage Builds: A Comprehensive Guide | Master DevOps Tools & Best Practices - DevOps Knowledge Hub",
+      "sub_questions": [
+        "What best practices should be followed to maximize size savings when using multi-stage builds?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794040646.3577197,
+      "verified": false
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "generated_at": 1794041053.9154222,
+  "stats": {
+    "findings_seen": 9,
+    "evidence_kept": 8,
+    "duplicates_exact": 1,
+    "duplicates_near": 0,
+    "unverified_quotes": 1,
+    "outside_window": 0,
+    "sources": 3
+  },
+  "evidence": [
+    {
+      "id": "ev_560a8025",
+      "claim": "Database connection pools solve the problem of repeatedly creating new database connections for each request, which is time‑consuming and resource‑intensive.",
+      "quote": "Instead of creating a new database connection for every request—which is both time-consuming and resource-intensive the application borrows an existing connection from the pool, performs the required operation, and then returns the connection for reuse.",
+      "url": "https://www.supportpro.com/blog/database-connection-pool-exhaustion-causes-fixes/",
+      "title": "Database Connection Pool Exhaustion: Causes and Fixes",
+      "sub_questions": [
+        "What specific problem does a database connection pool solve for web services?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794041019.3607497,
+      "verified": false
+    },
+    {
+      "id": "ev_a4113402",
+      "claim": "Connection pooling reduces the overhead of opening and closing connections, improving performance and scalability in database applications.",
+      "quote": "It reduces the overhead of opening and closing connections, improving performance and scalability in database applications.",
+      "url": "https://en.wikipedia.org/wiki/Connection_pool",
+      "title": "Connection pool - Wikipedia",
+      "sub_questions": [
+        "How does connection pooling improve performance and resource usage in web services?",
+        "How can a developer decide whether to use a connection pool for a particular web service?"
+      ],
+      "confidence": "high",
+      "span_start": 140,
+      "span_end": 263,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that it reduces the overhead of opening and closing connections, improving performance and scalability in database applications, which matches the claim about connection pooling.",
+      "trust": "unknown",
+      "created_at": 1794041019.3611765,
+      "verified": true
+    },
+    {
+      "id": "ev_05fe7851",
+      "claim": "Reusing existing TCP sessions eliminates handshake overhead and enforces a hard concurrency ceiling that protects the backend.",
+      "quote": "reusing existing TCP sessions eliminates handshake overhead and enforces a hard concurrency ceiling that protects your backend.",
+      "url": "https://khimananda.com/blog/database-connection-pooling-explained",
+      "title": "Database Connection Pooling Explained: Sizing & Config 2026",
+      "sub_questions": [
+        "How does connection pooling improve performance and resource usage in web services?"
+      ],
+      "confidence": "high",
+      "span_start": 645,
+      "span_end": 772,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly that reusing existing TCP sessions eliminates handshake overhead and enforces a hard concurrency ceiling that protects the backend.",
+      "trust": "unknown",
+      "created_at": 1794041019.361337,
+      "verified": true
+    },
+    {
+      "id": "ev_bcaf4e02",
+      "claim": "Direct connection pooling is unsuitable for serverless or Lambda workloads because connections are created and destroyed too rapidly.",
+      "quote": "Serverless functions create/destroy connections too rapidly for direct pooling to be viable.",
+      "url": "https://khimananda.com/blog/database-connection-pooling-explained",
+      "title": "Database Connection Pooling Explained: Sizing & Config 2026",
+      "sub_questions": [
+        "In what specific scenarios or workloads does connection pooling become detrimental?"
+      ],
+      "confidence": "high",
+      "span_start": 948,
+      "span_end": 1040,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that serverless functions create/destroy connections too rapidly for direct pooling to be viable, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794041019.361482,
+      "verified": true
+    },
+    {
+      "id": "ev_80259346",
+      "claim": "Session mode pooling defeats the purpose of pooling for most web workloads.",
+      "quote": "Session mode defeats the purpose of pooling for most web workloads.",
+      "url": "https://khimananda.com/blog/database-connection-pooling-explained",
+      "title": "Database Connection Pooling Explained: Sizing & Config 2026",
+      "sub_questions": [
+        "In what specific scenarios or workloads does connection pooling become detrimental?"
+      ],
+      "confidence": "high",
+      "span_start": 1234,
+      "span_end": 1301,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote states that session mode defeats the purpose of pooling, but it does not mention the specific phrase \"Session mode pooling\" used in the claim.",
+      "trust": "unknown",
+      "created_at": 1794041019.3618474,
+      "verified": true
+    },
+    {
+      "id": "ev_a75796bf",
+      "claim": "Legacy applications that require temp tables or cursors provide no benefit from connection reuse and should avoid pooling.",
+      "quote": "Legacy apps requiring temp tables/cursors | No connection reuse benefit; avoid if possible | Same as no pooling",
+      "url": "https://khimananda.com/blog/database-connection-pooling-explained",
+      "title": "Database Connection Pooling Explained: Sizing & Config 2026",
+      "sub_questions": [
+        "In what specific scenarios or workloads does connection pooling become detrimental?"
+      ],
+      "confidence": "high",
+      "span_start": 1461,
+      "span_end": 1572,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that legacy apps requiring temp tables/cursors have no connection reuse benefit, should be avoided if possible, and are equivalent to no pooling, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794041019.3620293,
+      "verified": true
+    },
+    {
+      "id": "ev_cd3adc04",
+      "claim": "Reusing established connections can still offer performance benefits in high-throughput scenarios by avoiding the overhead of connection creation.",
+      "quote": "though reusing established connections can still offer performance benefits in high-throughput scenarios by avoiding the overhead of connection creation.",
+      "url": "https://en.wikipedia.org/wiki/Connection_pool",
+      "title": "Connection pool - Wikipedia",
+      "sub_questions": [
+        "How can a developer decide whether to use a connection pool for a particular web service?"
+      ],
+      "confidence": "high",
+      "span_start": 1108,
+      "span_end": 1261,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote literally states that reusing established connections can still offer performance benefits in high‑throughput scenarios by avoiding the overhead of connection creation.",
+      "trust": "unknown",
+      "created_at": 1794041019.3623621,
+      "verified": true
+    },
+    {
+      "id": "ev_78d6ada7",
+      "claim": "Over-provisioned pools can overwhelm server resources, causing increased latency and degraded system performance.",
+      "quote": "Over-provisioned pools can overwhelm server resources, causing increased latency and degraded system performance.",
+      "url": "https://en.wikipedia.org/wiki/Connection_pool",
+      "title": "Connection pool - Wikipedia",
+      "sub_questions": [
+        "How can a developer decide whether to use a connection pool for a particular web service?"
+      ],
+      "confidence": "high",
+      "span_start": 2268,
+      "span_end": 2381,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794041019.3625138,
+      "verified": true
+    }
+  ]
+}

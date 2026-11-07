@@ -1,0 +1,31 @@
+{
+  "restated": "What does contextlib.contextmanager require of the function it decorates?",
+  "sub_questions": [
+    {
+      "question": "What type of function must be decorated by contextlib.contextmanager?",
+      "search_query": "contextlib.contextmanager generator function",
+      "why": "This search will reveal that the decorator expects a generator function, not a regular function."
+    },
+    {
+      "question": "What must the decorated function yield?",
+      "search_query": "contextlib.contextmanager yield value",
+      "why": "It explains that the generator must yield a value that becomes the context variable after the 'as' clause."
+    },
+    {
+      "question": "What code must the function execute before and after the yield?",
+      "search_query": "contextlib.contextmanager setup cleanup code",
+      "why": "This will show that code before the yield is setup, and code after the yield is cleanup, handling resource acquisition and release."
+    },
+    {
+      "question": "How does contextlib.contextmanager handle exceptions thrown into the context?",
+      "search_query": "contextlib.contextmanager exception handling",
+      "why": "It details that exceptions are passed to the generator's throw method, allowing the generator to perform cleanup or re-raise."
+    },
+    {
+      "question": "Are there restrictions on the number of yields in the decorated function?",
+      "search_query": "contextlib.contextmanager multiple yields",
+      "why": "This will confirm that the generator should yield exactly once; multiple yields are not supported."
+    }
+  ],
+  "assumptions": []
+}

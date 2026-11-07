@@ -1,0 +1,45 @@
+{
+  "item_id": "asyncio-cancelled-error",
+  "category": "asyncio",
+  "question": "Why does asyncio.CancelledError inherit from BaseException rather than Exception in Python 3.8+?",
+  "ok": true,
+  "error": null,
+  "duration_s": 112.39,
+  "stage_errors": {},
+  "evidence_total": 2,
+  "evidence_verified": 2,
+  "evidence_citable": 2,
+  "evidence_cited": 2,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 2
+  },
+  "contradictions": 1,
+  "citations": 2,
+  "cited_ids": [
+    "ev_06319c6e",
+    "ev_16177178"
+  ],
+  "unsupported_citations": 0,
+  "words": 233,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "BaseException"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 15453,
+  "tokens_completion": 11707,
+  "tokens_total": 27160,
+  "cost_usd": 0.0019855,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 8.51,
+    "research": 66.49,
+    "evidence": 0.0,
+    "verify": 4.75,
+    "write": 32.65
+  }
+}

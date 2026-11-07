@@ -1,0 +1,26 @@
+{
+  "restated": "Why do parameterized queries prevent SQL injection while manually escaping strings does not?",
+  "sub_questions": [
+    {
+      "question": "What is SQL injection and how does it exploit concatenated SQL strings?",
+      "search_query": "SQL injection concatenated queries example",
+      "why": "Provides the fundamental mechanism of how injection works when user input is directly concatenated into SQL statements."
+    },
+    {
+      "question": "How do parameterized queries separate data from code to prevent injection?",
+      "search_query": "parameterized queries separate data from code",
+      "why": "Explains the technical process by which parameterized queries bind values as data, preventing them from being interpreted as executable SQL."
+    },
+    {
+      "question": "Why can manual escaping of strings fail to prevent injection?",
+      "search_query": "manual escaping SQL injection failure",
+      "why": "Shows specific scenarios and edge cases where simple escaping does not cover all malicious inputs, leading to vulnerabilities."
+    },
+    {
+      "question": "What common mistakes in manual escaping lead to vulnerabilities?",
+      "search_query": "common mistakes manual string escaping SQL injection",
+      "why": "Highlights typical pitfalls (e.g., incorrect escape characters, language-specific nuances) that cause manual escaping to be ineffective."
+    }
+  ],
+  "assumptions": []
+}

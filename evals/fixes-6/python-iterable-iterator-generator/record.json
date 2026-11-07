@@ -1,0 +1,51 @@
+{
+  "item_id": "python-iterable-iterator-generator",
+  "category": "python",
+  "question": "What is the difference between an iterable, an iterator, and a generator in Python?",
+  "ok": true,
+  "error": null,
+  "duration_s": 91.55,
+  "stage_errors": {},
+  "evidence_total": 7,
+  "evidence_verified": 7,
+  "evidence_citable": 7,
+  "evidence_cited": 7,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 7
+  },
+  "contradictions": 0,
+  "citations": 7,
+  "cited_ids": [
+    "ev_2a739c6e",
+    "ev_512ae709",
+    "ev_1f108868",
+    "ev_d3b55a6d",
+    "ev_0dee7505",
+    "ev_67a6025a",
+    "ev_6e32ffa9"
+  ],
+  "unsupported_citations": 0,
+  "words": 536,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "__iter__",
+    "__next__"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 19612,
+  "tokens_completion": 10806,
+  "tokens_total": 30418,
+  "cost_usd": 0.00199314,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 7.26,
+    "research": 60.73,
+    "evidence": 0.0,
+    "verify": 11.94,
+    "write": 11.61
+  }
+}

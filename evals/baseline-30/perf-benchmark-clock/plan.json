@@ -1,0 +1,30 @@
+{
+  "restated": "Why is Python's time.time() unsuitable for benchmarking short code paths, and what alternative timing functions should be used instead?",
+  "sub_questions": [
+    {
+      "question": "What is the resolution and accuracy of time.time() on common operating systems?",
+      "search_query": "time.time resolution python",
+      "why": "Provides the fundamental limitation of time.time() by showing its typical granularity (often 1 ms or worse), which is the basis for its inadequacy in fine-grained measurements."
+    },
+    {
+      "question": "Why does the limited resolution of time.time() make it unsuitable for benchmarking short code paths?",
+      "search_query": "time.time precision short benchmark issues",
+      "why": "Explains how measurement noise and clock granularity can dominate the observed runtime of very fast code, leading to unreliable or misleading results."
+    },
+    {
+      "question": "Which high‑resolution timing functions are available in Python for accurate benchmarking?",
+      "search_query": "Python high resolution timer",
+      "why": "Identifies the recommended alternatives (e.g., time.perf_counter, time.process_time) and their characteristics, giving the user options for precise measurement."
+    },
+    {
+      "question": "How should time.perf_counter be used to benchmark short code paths effectively?",
+      "search_query": "time.perf_counter benchmark example",
+      "why": "Shows a concrete usage pattern (start/stop, averaging, warm‑up) that mitigates noise and yields reliable timings for short code segments."
+    }
+  ],
+  "assumptions": [
+    "The user is working in Python.",
+    "The code paths to benchmark are short enough that time.time() resolution is a limiting factor.",
+    "Typical operating systems (Linux, Windows, macOS) are being used."
+  ]
+}

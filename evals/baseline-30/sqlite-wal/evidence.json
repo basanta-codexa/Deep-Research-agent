@@ -1,0 +1,166 @@
+{
+  "generated_at": 1794041053.1929505,
+  "stats": {
+    "findings_seen": 8,
+    "evidence_kept": 8,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 2,
+    "outside_window": 0,
+    "sources": 5
+  },
+  "evidence": [
+    {
+      "id": "ev_9c6699f6",
+      "claim": "WAL is a new journaling mode available since SQLite 3.7.0.",
+      "quote": "Beginning with version 3.7.0 (2010-07-21), a new 'Write-Ahead Log' option (hereafter referred to as 'WAL') is available.",
+      "url": "https://sqlite.org/wal.html",
+      "title": "Write-Ahead Logging",
+      "sub_questions": [
+        "What is SQLite's WAL mode and how does its concurrency model differ from the default rollback journal mode?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794038371.553988,
+      "verified": false
+    },
+    {
+      "id": "ev_7ab1f542",
+      "claim": "WAL provides more concurrency as readers do not block writers and a writer does not block readers.",
+      "quote": "WAL provides more concurrency as readers do not block writers and a writer does not block readers.",
+      "url": "https://sqlite.org/wal.html",
+      "title": "Write-Ahead Logging",
+      "sub_questions": [
+        "What is SQLite's WAL mode and how does its concurrency model differ from the default rollback journal mode?"
+      ],
+      "confidence": "high",
+      "span_start": 353,
+      "span_end": 451,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794038371.554063,
+      "verified": true
+    },
+    {
+      "id": "ev_f9842191",
+      "claim": "WAL mode allows readers to continue while a writer commits changes by writing to a separate log file.",
+      "quote": "WAL provides more concurrency as readers do not block writers and a writer does not block readers. Reading and writing can proceed concurrently.",
+      "url": "https://sqlite.org/wal.html",
+      "title": "Write-Ahead Logging",
+      "sub_questions": [
+        "How does WAL mode allow concurrent readers while a writer is active?"
+      ],
+      "confidence": "high",
+      "span_start": 1699,
+      "span_end": 1843,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote confirms readers can continue while a writer commits changes, but does not mention the separate log file aspect.",
+      "trust": "unknown",
+      "created_at": 1794038371.5541346,
+      "verified": true
+    },
+    {
+      "id": "ev_6fa84bc3",
+      "claim": "Readers can keep operating from the original unaltered database while changes are committed into the WAL.",
+      "quote": "Thus a COMMIT can happen without ever writing to the original database, which allows readers to continue operating from the original unaltered database while changes are simultaneously being committed into the WAL.",
+      "url": "https://sqlite.org/wal.html",
+      "title": "Write-Ahead Logging",
+      "sub_questions": [
+        "How does WAL mode allow concurrent readers while a writer is active?"
+      ],
+      "confidence": "high",
+      "span_start": 2067,
+      "span_end": 2281,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that readers can continue operating from the original unaltered database while changes are simultaneously being committed into the WAL.",
+      "trust": "unknown",
+      "created_at": 1794038371.554224,
+      "verified": true
+    },
+    {
+      "id": "ev_19d23e78",
+      "claim": "Readers can usually continue while a writer commits changes, but WAL does not make SQLite a multi-writer database.",
+      "quote": "Readers can usually continue while a writer commits changes, but WAL does not turn SQLite into a multi-writer database.",
+      "url": "https://nalar.dev/sqlite-wal-mode-concurrency-checkpoints-and-operational-pitfalls/",
+      "title": "SQLite WAL Mode: Concurrency, Checkpoints, and Operational Pitfalls",
+      "sub_questions": [
+        "How does WAL mode allow concurrent readers while a writer is active?"
+      ],
+      "confidence": "high",
+      "span_start": 805,
+      "span_end": 924,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that WAL does not turn SQLite into a multi-writer database, which is equivalent to the claim that WAL does not make SQLite a multi-writer database.",
+      "trust": "unknown",
+      "created_at": 1794038371.5542698,
+      "verified": true
+    },
+    {
+      "id": "ev_bd4ff9aa",
+      "claim": "Only one writer can write at a time in WAL mode.",
+      "quote": "However, since there is only one WAL file, there can only be one writer at a time.",
+      "url": "https://sqlite.org/wal.html",
+      "title": "Write-Ahead Logging",
+      "sub_questions": [
+        "Does WAL mode permit multiple writers to operate concurrently, or are writes still serialized?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794038371.55505,
+      "verified": false
+    },
+    {
+      "id": "ev_887e43ab",
+      "claim": "WAL mode allows concurrent readers and one writer, eliminating reader‑writer contention.",
+      "quote": "PRAGMA journal_mode = WAL;          -- concurrent readers + one writer; the whole point",
+      "url": "https://productionhardening.org/wal-optimization-concurrency-tuning/",
+      "title": "WAL Optimization & Concurrency Tuning",
+      "sub_questions": [
+        "What are the performance implications of using WAL mode for concurrent read and write workloads?"
+      ],
+      "confidence": "high",
+      "span_start": 2037,
+      "span_end": 2124,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "Quote states concurrent readers + one writer but does not mention contention elimination",
+      "trust": "unknown",
+      "created_at": 1794038371.555094,
+      "verified": true
+    },
+    {
+      "id": "ev_6a1fea8a",
+      "claim": "A high wal_autocheckpoint value causes the WAL to bloat during write bursts, whereas a low value can thrash flash endurance.",
+      "quote": "wal_autocheckpoint governs how many pages accumulate before SQLite triggers a passive checkpoint; set it too high and the WAL bloats during write bursts, too low and you thrash flash endurance — the balance point is workload-specific and covered under thresho",
+      "url": "https://productionhardening.org/wal-optimization-concurrency-tuning/",
+      "title": "WAL Optimization & Concurrency Tuning",
+      "sub_questions": [
+        "What are the performance implications of using WAL mode for concurrent read and write workloads?"
+      ],
+      "confidence": "high",
+      "span_start": 2185,
+      "span_end": 2444,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that a high wal_autocheckpoint causes WAL bloat during write bursts, while a low value thrashes flash endurance.",
+      "trust": "unknown",
+      "created_at": 1794038371.5551782,
+      "verified": true
+    }
+  ]
+}

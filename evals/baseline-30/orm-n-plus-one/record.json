@@ -1,0 +1,48 @@
+{
+  "item_id": "orm-n-plus-one",
+  "category": "databases",
+  "question": "What is the N+1 query problem in an ORM, and how do I detect it?",
+  "ok": true,
+  "error": null,
+  "duration_s": 117.61,
+  "stage_errors": {},
+  "evidence_total": 9,
+  "evidence_verified": 4,
+  "evidence_citable": 4,
+  "evidence_cited": 4,
+  "evidence_unused": 0,
+  "support": {
+    "partial": 1,
+    "supported": 3
+  },
+  "contradictions": 0,
+  "citations": 4,
+  "cited_ids": [
+    "ev_ee738915",
+    "ev_cfee8429",
+    "ev_7d231740",
+    "ev_7eb9291b"
+  ],
+  "unsupported_citations": 0,
+  "words": 435,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "N+1"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 15495,
+  "tokens_completion": 9602,
+  "tokens_total": 25097,
+  "cost_usd": 0.00171311,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 8.41,
+    "research": 89.4,
+    "evidence": 0.02,
+    "verify": 6.86,
+    "write": 12.93
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "item_id": "asyncio-taskgroup",
+  "category": "asyncio",
+  "question": "How does asyncio.TaskGroup differ from asyncio.gather() when one child task fails?",
+  "ok": true,
+  "error": null,
+  "duration_s": 108.62,
+  "stage_errors": {},
+  "evidence_total": 7,
+  "evidence_verified": 5,
+  "evidence_citable": 5,
+  "evidence_cited": 5,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 3,
+    "partial": 2
+  },
+  "contradictions": 0,
+  "citations": 5,
+  "cited_ids": [
+    "ev_bf05479d",
+    "ev_d0d93af5",
+    "ev_5e2df81a",
+    "ev_9ba0f598",
+    "ev_2386c228"
+  ],
+  "unsupported_citations": 0,
+  "words": 398,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "TaskGroup",
+    "ExceptionGroup"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 21561,
+  "tokens_completion": 16090,
+  "tokens_total": 37651,
+  "cost_usd": 0.00273853,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 9.42,
+    "research": 75.28,
+    "evidence": 0.0,
+    "verify": 12.72,
+    "write": 11.2
+  }
+}

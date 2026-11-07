@@ -1,0 +1,50 @@
+{
+  "item_id": "k8s-probe-types",
+  "category": "containers",
+  "question": "What is the difference between a Kubernetes readiness probe and a liveness probe?",
+  "ok": false,
+  "error": null,
+  "duration_s": 45.49,
+  "stage_errors": {},
+  "evidence_total": 6,
+  "evidence_verified": 6,
+  "evidence_citable": 6,
+  "evidence_cited": 0,
+  "evidence_unused": 6,
+  "support": {
+    "supported": 6
+  },
+  "contradictions": 0,
+  "citations": 0,
+  "cited_ids": [],
+  "unsupported_citations": 0,
+  "words": 0,
+  "report_ok": false,
+  "writer_repaired": false,
+  "writer_errors": [
+    "no_citations: the draft cites no evidence id",
+    "missing_title: draft must start with a level-1 title",
+    "missing_section: no '## Summary' section",
+    "missing_section: no '## Limitations' section",
+    "missing_section: need at least 2 content sections, found 0",
+    "empty_draft: the writer returned no markdown after a retry with a larger budget"
+  ],
+  "keyword_hits": [],
+  "keyword_misses": [
+    "readiness",
+    "liveness"
+  ],
+  "misconception_hits": [],
+  "tokens_prompt": 11063,
+  "tokens_completion": 10564,
+  "tokens_total": 21627,
+  "cost_usd": 0.00170521,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 4.37,
+    "research": 25.08,
+    "evidence": 0.0,
+    "verify": 8.31,
+    "write": 7.72
+  }
+}

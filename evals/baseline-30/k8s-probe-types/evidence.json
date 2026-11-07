@@ -1,0 +1,128 @@
+{
+  "generated_at": 1794041053.8452795,
+  "stats": {
+    "findings_seen": 6,
+    "evidence_kept": 6,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 2
+  },
+  "evidence": [
+    {
+      "id": "ev_e9b6a63a",
+      "claim": "Kubernetes provides liveness probes to detect and remedy such situations.",
+      "quote": "Kubernetes provides liveness probes to detect and remedy such situations.",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "title": "Configure Liveness, Readiness and Startup Probes",
+      "sub_questions": [
+        "What is a Kubernetes liveness probe?"
+      ],
+      "confidence": "high",
+      "span_start": 655,
+      "span_end": 728,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote directly states the claim.",
+      "trust": "primary",
+      "created_at": 1794040728.452849,
+      "verified": true
+    },
+    {
+      "id": "ev_b36a352c",
+      "claim": "A liveness probe can be implemented using an HTTP GET request.",
+      "quote": "Another kind of liveness probe uses an HTTP GET request.",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "title": "Configure Liveness, Readiness and Startup Probes",
+      "sub_questions": [
+        "What is a Kubernetes liveness probe?"
+      ],
+      "confidence": "high",
+      "span_start": 1274,
+      "span_end": 1330,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that a liveness probe uses an HTTP GET request.",
+      "trust": "primary",
+      "created_at": 1794040728.4529567,
+      "verified": true
+    },
+    {
+      "id": "ev_41fe013b",
+      "claim": "A liveness probe can be implemented using a TCP socket.",
+      "quote": "A third type of liveness probe uses a TCP socket.",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "title": "Configure Liveness, Readiness and Startup Probes",
+      "sub_questions": [
+        "What is a Kubernetes liveness probe?"
+      ],
+      "confidence": "high",
+      "span_start": 1654,
+      "span_end": 1703,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that a liveness probe uses a TCP socket.",
+      "trust": "primary",
+      "created_at": 1794040728.4538743,
+      "verified": true
+    },
+    {
+      "id": "ev_e68e5888",
+      "claim": "Liveness probes cause Kubernetes to restart a container when the probe fails.",
+      "quote": "Based on the probe results, Kubernetes can restart unhealthy containers",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "title": "Liveness, Readiness, and Startup Probes",
+      "sub_questions": [
+        "How do readiness and liveness probes differ in purpose and behavior?"
+      ],
+      "confidence": "high",
+      "span_start": 278,
+      "span_end": 349,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that Kubernetes can restart unhealthy containers based on probe results, which aligns with liveness probes causing restarts when they fail.",
+      "trust": "primary",
+      "created_at": 1794040728.4540064,
+      "verified": true
+    },
+    {
+      "id": "ev_899fc8a6",
+      "claim": "Readiness probes control when a pod starts receiving traffic; traffic is sent only after the readiness probe succeeds.",
+      "quote": "To start sending traffic to a Pod only when a probe succeeds, specify a readiness probe.",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "title": "Liveness, Readiness, and Startup Probes",
+      "sub_questions": [
+        "How do readiness and liveness probes differ in purpose and behavior?"
+      ],
+      "confidence": "high",
+      "span_start": 1283,
+      "span_end": 1371,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that specifying a readiness probe causes traffic to be sent to a pod only after the probe succeeds, matching the claim.",
+      "trust": "primary",
+      "created_at": 1794040728.4541206,
+      "verified": true
+    },
+    {
+      "id": "ev_cdc5077a",
+      "claim": "Liveness probes do not wait for readiness probes to succeed.",
+      "quote": "Liveness probes do not wait for readiness probes to succeed.",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "title": "Liveness, Readiness, and Startup Probes",
+      "sub_questions": [
+        "How do readiness and liveness probes differ in purpose and behavior?"
+      ],
+      "confidence": "high",
+      "span_start": 1207,
+      "span_end": 1267,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "exact match",
+      "trust": "primary",
+      "created_at": 1794040728.4542124,
+      "verified": true
+    }
+  ]
+}

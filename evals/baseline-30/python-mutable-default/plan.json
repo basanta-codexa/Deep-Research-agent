@@ -1,0 +1,29 @@
+{
+  "restated": "Why does Python use the same mutable default argument object across separate calls to a function?",
+  "sub_questions": [
+    {
+      "question": "How are default argument values handled when a Python function is defined?",
+      "search_query": "Python default argument evaluated once",
+      "why": "This explains that default values are evaluated at function definition time and stored in the function object, establishing the basis for shared objects."
+    },
+    {
+      "question": "Why does a mutable default argument become shared between separate function calls?",
+      "search_query": "Python mutable default argument shared",
+      "why": "This clarifies that the same object reference is reused because the default value is stored once, leading to shared state across calls."
+    },
+    {
+      "question": "What is a concrete example of a mutable default argument being shared in Python?",
+      "search_query": "Python list default argument example",
+      "why": "An example demonstrates the effect of modifying the default list and seeing the change persist in subsequent calls."
+    },
+    {
+      "question": "How can developers avoid unintended sharing of mutable default arguments in Python?",
+      "search_query": "Python mutable default argument workaround",
+      "why": "This provides practical solutions (e.g., using None and creating a new object inside the function) to prevent shared mutable defaults."
+    }
+  ],
+  "assumptions": [
+    "The question refers to CPython's standard behavior for default arguments.",
+    "The user is interested in understanding the mechanism and practical implications."
+  ]
+}

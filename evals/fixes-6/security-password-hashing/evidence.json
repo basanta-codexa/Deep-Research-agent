@@ -1,0 +1,185 @@
+{
+  "generated_at": 1794042274.2901344,
+  "stats": {
+    "findings_seen": 9,
+    "evidence_kept": 9,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 2,
+    "outside_window": 0,
+    "sources": 6
+  },
+  "evidence": [
+    {
+      "id": "ev_94bf6c9c",
+      "claim": "Argon2 consumes a configurable amount of memory for each operation, requiring attackers to supply that memory and bandwidth for every parallel guess, increasing cost.",
+      "quote": "Argon2 consumes a configurable amount of memory for each operation. Large-scale attackers must provide that memory and its bandwidth for every parallel guess, increasing cost.",
+      "url": "https://md5-encryption.com/blogs/argon2id-password-hashing-guide.html",
+      "title": "Argon2id Password Hashing Guide for Developers",
+      "sub_questions": [
+        "What are the key features of Argon2id and bcrypt that make them suitable for password hashing?"
+      ],
+      "confidence": "high",
+      "span_start": 1786,
+      "span_end": 1961,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that Argon2 consumes configurable memory per operation and that attackers must supply that memory and bandwidth for each parallel guess, thereby increasing cost.",
+      "trust": "unknown",
+      "created_at": 1794042173.6484265,
+      "verified": true
+    },
+    {
+      "id": "ev_6523b248",
+      "claim": "Argon2id balances resistance to side‑channel attacks with resistance to time‑memory trade‑offs.",
+      "quote": "Argon2id is a password-hashing and key-derivation function designed to make offline guessing expensive. It combines features of Argon2i and Argon2d to balance resistance to side-channel attacks with resistance to time-memory trade-offs.",
+      "url": "https://md5-encryption.com/blogs/argon2id-password-hashing-guide.html",
+      "title": "Argon2id Password Hashing Guide for Developers",
+      "sub_questions": [
+        "What are the key features of Argon2id and bcrypt that make them suitable for password hashing?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 587,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that Argon2id balances resistance to side‑channel attacks with resistance to time‑memory trade‑offs.",
+      "trust": "unknown",
+      "created_at": 1794042173.6487384,
+      "verified": true
+    },
+    {
+      "id": "ev_b488c979",
+      "claim": "Bcrypt’s adaptive hashing uses a work factor that makes hashing take longer time and more computation power, exponentially increasing brute‑force cost.",
+      "quote": "Bcrypt not just another hashing function, it has two key features that make it stand out: Adaptive hashing (a.k.a. slowing things down on purpose). You can tweak a parameter called the work factor, which makes hashing take longer time and more computation power.",
+      "url": "https://dev.to/nesniv/understanding-bcrypts-work-factor-and-choosing-the-right-value-103m",
+      "title": "Understanding Bcrypt's Work Factor and Choosing the Right Value",
+      "sub_questions": [
+        "What are the key features of Argon2id and bcrypt that make them suitable for password hashing?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794042173.6508825,
+      "verified": false
+    },
+    {
+      "id": "ev_0625e3b4",
+      "claim": "SHA‑256 is fast, making it unsuitable for password hashing because attackers can compute billions of hashes per second.",
+      "quote": "It’s wrong for passwords for a different reason entirely: it was designed to be fast, and password hashing is the one job where speed works for the attacker.",
+      "url": "https://devholster.com/blog/password-hashing-guide/",
+      "title": "Password Hashing — why SHA-256 fails, and what to use instead",
+      "sub_questions": [
+        "Why is a single round of SHA-256 insufficient for secure password storage?"
+      ],
+      "confidence": "high",
+      "span_start": 143,
+      "span_end": 300,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote says SHA‑256 was designed to be fast and that speed works for attackers in password hashing, but it does not mention billions of hashes per second.",
+      "trust": "unknown",
+      "created_at": 1794042173.6509757,
+      "verified": true
+    },
+    {
+      "id": "ev_71e0bc6e",
+      "claim": "Attackers can compute about 21 billion SHA‑256 hashes per second on a single RTX 4090, enabling offline brute‑force attacks.",
+      "quote": "A single RTX 4090 computes about 21 billion SHA‑256 hashes per second in hashcat, so an attacker with a stolen database can test enormous chunks of the realistic password space offline.",
+      "url": "https://devholster.com/blog/password-hashing-guide/",
+      "title": "Password Hashing — why SHA-256 fails, and what to use instead",
+      "sub_questions": [
+        "Why is a single round of SHA-256 insufficient for secure password storage?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794042173.6518173,
+      "verified": false
+    },
+    {
+      "id": "ev_fe02f354",
+      "claim": "Salting does not mitigate the speed issue of SHA‑256.",
+      "quote": "Salting stops precomputed rainbow tables but does nothing about that raw speed.",
+      "url": "https://devholster.com/blog/password-hashing-guide/",
+      "title": "Password Hashing — why SHA-256 fails, and what to use instead",
+      "sub_questions": [
+        "Why is a single round of SHA-256 insufficient for secure password storage?"
+      ],
+      "confidence": "high",
+      "span_start": 1757,
+      "span_end": 1836,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that salting does nothing about raw speed, matching the claim that it does not mitigate SHA‑256’s speed issue.",
+      "trust": "unknown",
+      "created_at": 1794042173.6519494,
+      "verified": true
+    },
+    {
+      "id": "ev_98dc42d8",
+      "claim": "Argon2id is memory‑hard, requiring dedicated RAM bandwidth per hash calculation, which effectively paralyzes GPU and ASIC parallel brute‑force clusters.",
+      "quote": "Argon2id is the gold standard for modern applications. It is memory-hard, requiring dedicated RAM bandwidth per hash calculation, which effectively paralyzes GPU and ASIC parallel brute-force clusters.",
+      "url": "https://www.devutils.run/guides/cryptographic-hashing-sha256-vs-bcrypt",
+      "title": "Cryptographic Hashing vs Password Hashing: SHA-256 vs bcrypt & Argon2 | DevUtils",
+      "sub_questions": [
+        "How does the computational cost and memory hardness of Argon2id or bcrypt protect against brute-force attacks compared to SHA-256?"
+      ],
+      "confidence": "high",
+      "span_start": 418,
+      "span_end": 619,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that Argon2id is memory‑hard, requires dedicated RAM bandwidth per hash calculation, and effectively paralyzes GPU and ASIC parallel brute‑force clusters, exactly matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794042173.6521065,
+      "verified": true
+    },
+    {
+      "id": "ev_ee006dc3",
+      "claim": "bcrypt uses a configurable work factor that controls how slow the hashing is.",
+      "quote": "bcrypt was designed in 1999 specifically for password hashing. Its key feature is a configurable work factor (cost factor) — a parameter that controls how slow the hashing is.",
+      "url": "https://freeutil.app/blog/sha256-vs-bcrypt-vs-argon2/",
+      "title": "SHA-256 vs bcrypt vs Argon2: Password Hashing Compared",
+      "sub_questions": [
+        "How does the computational cost and memory hardness of Argon2id or bcrypt protect against brute-force attacks compared to SHA-256?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 526,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that bcrypt’s key feature is a configurable work factor that controls how slow the hashing is.",
+      "trust": "unknown",
+      "created_at": 1794042173.6522393,
+      "verified": true
+    },
+    {
+      "id": "ev_2e6464de",
+      "claim": "SHA‑256 is extremely fast, with modern GPUs able to compute over 20 billion hashes per second.",
+      "quote": "Modern consumer GPUs (like an NVIDIA RTX 4090) can calculate over 20 billion SHA-256 hashes per second.",
+      "url": "https://www.devutils.run/guides/cryptographic-hashing-sha256-vs-bcrypt",
+      "title": "Cryptographic Hashing vs Password Hashing: SHA-256 vs bcrypt & Argon2 | DevUtils",
+      "sub_questions": [
+        "How does the computational cost and memory hardness of Argon2id or bcrypt protect against brute-force attacks compared to SHA-256?"
+      ],
+      "confidence": "high",
+      "span_start": 904,
+      "span_end": 1007,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that modern consumer GPUs can calculate over 20 billion SHA‑256 hashes per second, matching the claim that modern GPUs compute over 20 billion hashes per second.",
+      "trust": "unknown",
+      "created_at": 1794042173.6523733,
+      "verified": true
+    }
+  ]
+}

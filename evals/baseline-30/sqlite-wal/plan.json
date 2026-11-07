@@ -1,0 +1,28 @@
+{
+  "restated": "How does enabling WAL mode in SQLite affect the ability of multiple readers and writers to access the database concurrently?",
+  "sub_questions": [
+    {
+      "question": "What is SQLite's WAL mode and how does its concurrency model differ from the default rollback journal mode?",
+      "search_query": "SQLite WAL mode concurrency model",
+      "why": "Provides foundational understanding of WAL mode, including its use of a write-ahead log and how it changes locking behavior compared to rollback journal."
+    },
+    {
+      "question": "How does WAL mode allow concurrent readers while a writer is active?",
+      "search_query": "SQLite WAL readers during write",
+      "why": "Shows that readers can continue accessing the old committed data without blocking, which is a key change in concurrency behavior."
+    },
+    {
+      "question": "Does WAL mode permit multiple writers to operate concurrently, or are writes still serialized?",
+      "search_query": "SQLite WAL concurrent writers",
+      "why": "Clarifies that while WAL reduces write contention, writes are still serialized by a single writer lock, affecting concurrent write scenarios."
+    },
+    {
+      "question": "What are the performance implications of using WAL mode for concurrent read and write workloads?",
+      "search_query": "SQLite WAL performance impact",
+      "why": "Summarizes how WAL can improve read throughput and reduce lock contention, but may introduce overhead for writes, completing the answer to the original question."
+    }
+  ],
+  "assumptions": [
+    "The user refers to SQLite's default rollback journal mode versus WAL mode."
+  ]
+}

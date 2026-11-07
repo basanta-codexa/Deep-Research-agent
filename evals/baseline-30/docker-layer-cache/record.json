@@ -1,0 +1,48 @@
+{
+  "item_id": "docker-layer-cache",
+  "category": "containers",
+  "question": "What causes a Docker build layer cache to be invalidated?",
+  "ok": true,
+  "error": null,
+  "duration_s": 140.73,
+  "stage_errors": {},
+  "evidence_total": 4,
+  "evidence_verified": 4,
+  "evidence_citable": 4,
+  "evidence_cited": 4,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 2,
+    "partial": 2
+  },
+  "contradictions": 0,
+  "citations": 4,
+  "cited_ids": [
+    "ev_5511add9",
+    "ev_9cf0325e",
+    "ev_9fafe087",
+    "ev_438edf1d"
+  ],
+  "unsupported_citations": 0,
+  "words": 203,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "layer"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 17996,
+  "tokens_completion": 13981,
+  "tokens_total": 31977,
+  "cost_usd": 0.00235741,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 6.74,
+    "research": 78.0,
+    "evidence": 0.0,
+    "verify": 13.58,
+    "write": 42.4
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "generated_at": 1794041053.6944988,
+  "stats": {
+    "findings_seen": 8,
+    "evidence_kept": 8,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 2,
+    "outside_window": 0,
+    "sources": 4
+  },
+  "evidence": [
+    {
+      "id": "ev_305ca1c6",
+      "claim": "Server‑Side Request Forgery (SSRF) is a vulnerability where attackers trick a server into making HTTP(S) requests on their behalf.",
+      "quote": "Server‑Side Request Forgery (SSRF) is a vulnerability where attackers trick a server into making HTTP(S) requests on their behalf.",
+      "url": "https://www.geeksforgeeks.org/ethical-hacking/server-side-request-forgery-ssrf/",
+      "title": "Server Side Request Forgery (SSRF) - GeeksforGeeks",
+      "sub_questions": [
+        "What is SSRF and how does it exploit HTTP fetch endpoints?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794039994.9833946,
+      "verified": false
+    },
+    {
+      "id": "ev_a6cbb65f",
+      "claim": "SSRF can expose internal services, metadata or sensitive systems that are usually protected from external access.",
+      "quote": "This can expose internal services, metadata or sensitive systems that are usually protected from external access.",
+      "url": "https://www.geeksforgeeks.org/ethical-hacking/server-side-request-forgery-ssrf/",
+      "title": "Server Side Request Forgery (SSRF) - GeeksforGeeks",
+      "sub_questions": [
+        "What is SSRF and how does it exploit HTTP fetch endpoints?"
+      ],
+      "confidence": "high",
+      "span_start": 131,
+      "span_end": 244,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote states that something can expose internal services, metadata or sensitive systems that are usually protected from external access, but it does not explicitly mention SSRF.",
+      "trust": "aggregator",
+      "created_at": 1794039994.9836981,
+      "verified": true
+    },
+    {
+      "id": "ev_f42dcdba",
+      "claim": "SSRF lets attackers access internal resources by exploiting the server as a proxy.",
+      "quote": "SSRF lets attackers access internal resources by exploiting the server as a proxy.",
+      "url": "https://www.geeksforgeeks.org/ethical-hacking/server-side-request-forgery-ssrf/",
+      "title": "Server Side Request Forgery (SSRF) - GeeksforGeeks",
+      "sub_questions": [
+        "What is SSRF and how does it exploit HTTP fetch endpoints?"
+      ],
+      "confidence": "high",
+      "span_start": 247,
+      "span_end": 329,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "aggregator",
+      "created_at": 1794039994.9838994,
+      "verified": true
+    },
+    {
+      "id": "ev_0f9bec4b",
+      "claim": "SSRF defenses commonly block the private IPv4 ranges 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, and 169.254.169.254.",
+      "quote": "verify the resolved IP is not in private/reserved ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 169.254.169.254) before making the request.",
+      "url": "https://knowledgelib.io/software/security/ssrf-prevention/2026",
+      "title": "SSRF Prevention: Server-Side Request Forgery | knowledgelib.io",
+      "sub_questions": [
+        "Which IP address ranges are commonly blocked to mitigate SSRF?"
+      ],
+      "confidence": "high",
+      "span_start": 619,
+      "span_end": 763,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that the defense verifies the resolved IP is not in the listed private/reserved ranges before making the request.",
+      "trust": "unknown",
+      "created_at": 1794039994.9840758,
+      "verified": true
+    },
+    {
+      "id": "ev_9f60e45f",
+      "claim": "SSRF defenses commonly block the loopback address 127.0.0.1.",
+      "quote": "Block 127.0.0.1 string only",
+      "url": "https://knowledgelib.io/software/security/ssrf-prevention/2026",
+      "title": "SSRF Prevention: Server-Side Request Forgery | knowledgelib.io",
+      "sub_questions": [
+        "Which IP address ranges are commonly blocked to mitigate SSRF?"
+      ],
+      "confidence": "high",
+      "span_start": 1197,
+      "span_end": 1224,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that the defense blocks the 127.0.0.1 address.",
+      "trust": "unknown",
+      "created_at": 1794039994.9841719,
+      "verified": true
+    },
+    {
+      "id": "ev_67cb0dd7",
+      "claim": "ssrf blocks RFC 1918 private, loopback, link-local, multicast and unspecified addresses",
+      "quote": "- RFC 1918 private, loopback, link-local, multicast and unspecified addresses",
+      "url": "https://github.com/cplieger/ssrf/blob/dev/docs/blocked-ranges.md",
+      "title": "ssrf/docs/blocked-ranges.md at dev · cplieger/ssrf",
+      "sub_questions": [
+        "Are there additional address ranges or protocols that should be blocked for SSRF protection?"
+      ],
+      "confidence": "high",
+      "span_start": 259,
+      "span_end": 336,
+      "match": "exact",
+      "support": "unsupported",
+      "support_reason": "The quote only lists address types; it does not state that ssrf blocks them.",
+      "trust": "community",
+      "created_at": 1794039994.984289,
+      "verified": true
+    },
+    {
+      "id": "ev_3e69e363",
+      "claim": "ssrf blocks the 100.64.0.0/10 shared address space for carrier‑grade NAT, RFC 6598",
+      "quote": "- 100.64.0.0/10, shared address space for carrier‑grade NAT, RFC 6598",
+      "url": "https://github.com/cplieger/ssrf/blob/dev/docs/blocked-ranges.md",
+      "title": "ssrf/docs/blocked-ranges.md at dev · cplieger/ssrf",
+      "sub_questions": [
+        "Are there additional address ranges or protocols that should be blocked for SSRF protection?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "community",
+      "created_at": 1794039994.9859881,
+      "verified": false
+    },
+    {
+      "id": "ev_db839f6f",
+      "claim": "ssrf blocks the 2002::/16 6to4, RFC 3056",
+      "quote": "- 2002::/16, 6to4, RFC 3056",
+      "url": "https://github.com/cplieger/ssrf/blob/dev/docs/blocked-ranges.md",
+      "title": "ssrf/docs/blocked-ranges.md at dev · cplieger/ssrf",
+      "sub_questions": [
+        "Are there additional address ranges or protocols that should be blocked for SSRF protection?"
+      ],
+      "confidence": "high",
+      "span_start": 1311,
+      "span_end": 1338,
+      "match": "exact",
+      "support": "unsupported",
+      "support_reason": "The quote only lists the 2002::/16 block, 6to4, and RFC 3056; it does not mention ssrf or blocking.",
+      "trust": "community",
+      "created_at": 1794039994.986158,
+      "verified": true
+    }
+  ]
+}

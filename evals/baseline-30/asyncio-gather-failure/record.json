@@ -1,0 +1,47 @@
+{
+  "item_id": "asyncio-gather-failure",
+  "category": "asyncio",
+  "question": "When one coroutine passed to asyncio.gather() raises an exception, are the other coroutines cancelled?",
+  "ok": true,
+  "error": null,
+  "duration_s": 120.22,
+  "stage_errors": {},
+  "evidence_total": 5,
+  "evidence_verified": 3,
+  "evidence_citable": 3,
+  "evidence_cited": 3,
+  "evidence_unused": 0,
+  "support": {
+    "partial": 2,
+    "supported": 1
+  },
+  "contradictions": 0,
+  "citations": 3,
+  "cited_ids": [
+    "ev_d0d93af5",
+    "ev_202fc44f",
+    "ev_bf05479d"
+  ],
+  "unsupported_citations": 0,
+  "words": 242,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [],
+  "keyword_misses": [
+    "return_exceptions"
+  ],
+  "misconception_hits": [],
+  "tokens_prompt": 21719,
+  "tokens_completion": 13270,
+  "tokens_total": 34989,
+  "cost_usd": 0.00237667,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 19.17,
+    "research": 65.32,
+    "evidence": 0.0,
+    "verify": 7.43,
+    "write": 28.29
+  }
+}

@@ -1,0 +1,1459 @@
+{
+  "trace_id": "baf8ee8f4621",
+  "name": "Does the CPython GIL prevent all parallelism, or only parallel execution of Python bytecode?",
+  "started_at": "2026-11-07T08:07:40.442175+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "239e06d3",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.13,
+      "duration_ms": 242138.37,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "da01f903",
+      "parent_id": "239e06d3",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.2,
+      "duration_ms": 22258.71,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "Does the CPython Global Interpreter Lock (GIL) prevent all parallelism, or does it only restrict parallel execution of Python bytecode?",
+        "questions": [
+          {
+            "question": "What is the CPython Global Interpreter Lock and how does it affect the execution of Python bytecode in multiple threads?",
+            "search_query": "CPython GIL execution of Python bytecode threads"
+          },
+          {
+            "question": "Under what circumstances does the CPython GIL get released, allowing other threads to run concurrently?",
+            "search_query": "CPython GIL released during I/O blocking calls"
+          },
+          {
+            "question": "How do C extensions and the multiprocessing module interact with the CPython GIL to enable parallel execution?",
+            "search_query": "C extensions release GIL multiprocessing CPython"
+          },
+          {
+            "question": "Does the CPython GIL prevent all forms of parallelism, or only the parallel execution of Python bytecode?",
+            "search_query": "CPython GIL parallelism all forms"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "99b984ca",
+      "parent_id": "da01f903",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 8.73,
+      "duration_ms": 9877.24,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 9877.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 572,
+        "completion": 1200,
+        "total": 1772,
+        "cost_usd": 0.00017316
+      }
+    },
+    {
+      "id": "94f610ed",
+      "parent_id": "da01f903",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 9886.2,
+      "duration_ms": 12368.35,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 12368.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 572,
+        "completion": 1522,
+        "total": 2094,
+        "cost_usd": 0.00021502
+      }
+    },
+    {
+      "id": "49e7a5a9",
+      "parent_id": "239e06d3",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 22259.29,
+      "duration_ms": 192319.5,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 4,
+        "findings": 7,
+        "sources": 4
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "e7d08cfd",
+      "parent_id": "49e7a5a9",
+      "name": "What is the CPython Global Interpreter Lock and how does it affect the",
+      "kind": "subagent",
+      "start_ms": 22259.97,
+      "duration_ms": 95569.66,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "CPython GIL execution of Python bytecode threads",
+        "findings": 3,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://buglyst.com/learn/guides/python-global-interpreter-lock-debug",
+          "https://docs.python.org/3/c-api/threads.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "fb3ca66b",
+      "parent_id": "e7d08cfd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 22261.51,
+      "duration_ms": 1640.06,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1639.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 431,
+        "completion": 70,
+        "total": 501,
+        "cost_usd": 2.203e-05
+      }
+    },
+    {
+      "id": "9a9af399",
+      "parent_id": "49e7a5a9",
+      "name": "Under what circumstances does the CPython GIL get released, allowing o",
+      "kind": "subagent",
+      "start_ms": 22266.07,
+      "duration_ms": 169648.37,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "CPython GIL released during I/O blocking calls",
+        "findings": 1,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://salivity.github.io/python/article/python-gil-release-mechanism-in-blocking-i-o"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "90db951f",
+      "parent_id": "9a9af399",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 22266.19,
+      "duration_ms": 2231.67,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2231.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 484,
+        "completion": 76,
+        "total": 560,
+        "cost_usd": 2.44e-05
+      }
+    },
+    {
+      "id": "06a8ee51",
+      "parent_id": "e7d08cfd",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 23902.08,
+      "duration_ms": 26330.55,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"CPython GIL execution of Python bytecode threads\", \"focus\": \"GIL serializes bytecode execution across threads\", \"max_chars\": 2000}",
+        "output_chars": 2005
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "5ee295f6",
+      "parent_id": "9a9af399",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 24498.19,
+      "duration_ms": 25763.26,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"CPython GIL released during I/O blocking calls\", \"max_chars\": 600, \"query\": \"CPython GIL released during I/O blocking calls\"}",
+        "output_chars": 767
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "bbd7f598",
+      "parent_id": "e7d08cfd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 50234.02,
+      "duration_ms": 13553.74,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 13553.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 916,
+        "completion": 131,
+        "total": 1047,
+        "cost_usd": 4.451e-05
+      }
+    },
+    {
+      "id": "1c046b46",
+      "parent_id": "9a9af399",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 50261.6,
+      "duration_ms": 124432.41,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 124432.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 706,
+        "completion": 181,
+        "total": 887,
+        "cost_usd": 4.471e-05
+      }
+    },
+    {
+      "id": "99d95fe8",
+      "parent_id": "e7d08cfd",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 63788.17,
+      "duration_ms": 38380.18,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"CPython GIL serializes bytecode execution across threads\", \"focus\": \"GIL serializes bytecode execution across threads\", \"max_chars\": 2000}",
+        "output_chars": 2030
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "12679e96",
+      "parent_id": "e7d08cfd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 102169.05,
+      "duration_ms": 5411.31,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5410.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1461,
+        "completion": 365,
+        "total": 1826,
+        "cost_usd": 9.128e-05
+      }
+    },
+    {
+      "id": "bdc686ed",
+      "parent_id": "e7d08cfd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 107581.57,
+      "duration_ms": 2155.29,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 2155.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1232,
+        "completion": 1000,
+        "total": 2232,
+        "cost_usd": 0.00016696
+      }
+    },
+    {
+      "id": "2ca65b7f",
+      "parent_id": "e7d08cfd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 109737.04,
+      "duration_ms": 8091.52,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8091.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1235,
+        "completion": 912,
+        "total": 2147,
+        "cost_usd": 0.00015561
+      }
+    },
+    {
+      "id": "7d9f9a08",
+      "parent_id": "49e7a5a9",
+      "name": "How do C extensions and the multiprocessing module interact with the C",
+      "kind": "subagent",
+      "start_ms": 117830.39,
+      "duration_ms": 48202.17,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "C extensions release GIL multiprocessing CPython",
+        "findings": 2,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://sudonull.com/gil-cpython-how-it-works-and-how-to-bypass-senior"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "61c61ef2",
+      "parent_id": "7d9f9a08",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 117831.12,
+      "duration_ms": 1190.0,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1189.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 429,
+        "completion": 51,
+        "total": 480,
+        "cost_usd": 1.95e-05
+      }
+    },
+    {
+      "id": "bd26dad3",
+      "parent_id": "7d9f9a08",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 119021.34,
+      "duration_ms": 23201.93,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"C extensions release GIL multiprocessing CPython\", \"focus\": \"C extensions release GIL multiprocessing CPython\", \"max_chars\": 800}",
+        "output_chars": 896
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "7b9aebcf",
+      "parent_id": "7d9f9a08",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 142223.45,
+      "duration_ms": 4633.55,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 4633.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 716,
+        "completion": 104,
+        "total": 820,
+        "cost_usd": 3.5e-05
+      }
+    },
+    {
+      "id": "28320b4d",
+      "parent_id": "7d9f9a08",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 146858.78,
+      "duration_ms": 39.86,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"C extensions release GIL multiprocessing CPython\", \"focus\": \"C extensions release GIL multiprocessing CPython\", \"max_chars\": 2000}",
+        "output_chars": 1257
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "9aecee2d",
+      "parent_id": "7d9f9a08",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 146898.86,
+      "duration_ms": 2439.65,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2439.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1121,
+        "completion": 113,
+        "total": 1234,
+        "cost_usd": 4.832e-05
+      }
+    },
+    {
+      "id": "b723fd2c",
+      "parent_id": "7d9f9a08",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 149338.71,
+      "duration_ms": 6.78,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"C extensions release GIL multiprocessing CPython\", \"focus\": \"C extensions release GIL\", \"max_chars\": 2000}",
+        "output_chars": 712
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "a3c8a997",
+      "parent_id": "7d9f9a08",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 149345.8,
+      "duration_ms": 9062.08,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 9062.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1069,
+        "completion": 1000,
+        "total": 2069,
+        "cost_usd": 0.00016207
+      }
+    },
+    {
+      "id": "e39dbd08",
+      "parent_id": "7d9f9a08",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 158407.99,
+      "duration_ms": 7624.35,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7624.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1085,
+        "completion": 881,
+        "total": 1966,
+        "cost_usd": 0.00014708
+      }
+    },
+    {
+      "id": "33c0407e",
+      "parent_id": "49e7a5a9",
+      "name": "Does the CPython GIL prevent all forms of parallelism, or only the par",
+      "kind": "subagent",
+      "start_ms": 166032.8,
+      "duration_ms": 48545.19,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "CPython GIL parallelism all forms",
+        "findings": 1,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://sudonull.com/gil-cpython-how-it-works-and-how-to-bypass-senior"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "ad636d7a",
+      "parent_id": "33c0407e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 166033.02,
+      "duration_ms": 1755.89,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1755.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 432,
+        "completion": 77,
+        "total": 509,
+        "cost_usd": 2.297e-05
+      }
+    },
+    {
+      "id": "d6802923",
+      "parent_id": "33c0407e",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 167789.19,
+      "duration_ms": 5992.64,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"CPython GIL parallelism all forms\", \"focus\": \"GIL prevent all forms of parallelism\", \"max_chars\": 2000}",
+        "output_chars": 665
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "e662932b",
+      "parent_id": "33c0407e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 173782.55,
+      "duration_ms": 1941.96,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1941.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 663,
+        "completion": 123,
+        "total": 786,
+        "cost_usd": 3.588e-05
+      }
+    },
+    {
+      "id": "3fb2ec9a",
+      "parent_id": "9a9af399",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 174694.33,
+      "duration_ms": 14379.93,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"GIL released during blocking I/O\", \"max_chars\": 800, \"query\": \"Python GIL Release Mechanism in Blocking I/O\"}",
+        "output_chars": 956
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "a0e9e7e3",
+      "parent_id": "33c0407e",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 175724.73,
+      "duration_ms": 17097.47,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > No connection could be made b",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"GIL restricts only Python bytecode execution\", \"focus\": \"restricts only Python bytecode\", \"max_chars\": 2000}",
+        "output_chars": 265
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "13a97289",
+      "parent_id": "9a9af399",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 189074.45,
+      "duration_ms": 1412.81,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1412.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 989,
+        "completion": 271,
+        "total": 1260,
+        "cost_usd": 6.49e-05
+      }
+    },
+    {
+      "id": "df327c20",
+      "parent_id": "9a9af399",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 190487.45,
+      "duration_ms": 1426.82,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1426.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 717,
+        "completion": 456,
+        "total": 1173,
+        "cost_usd": 8.079e-05
+      }
+    },
+    {
+      "id": "5730ad43",
+      "parent_id": "33c0407e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 192822.55,
+      "duration_ms": 1982.56,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1982.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 817,
+        "completion": 106,
+        "total": 923,
+        "cost_usd": 3.829e-05
+      }
+    },
+    {
+      "id": "19a7f2cf",
+      "parent_id": "33c0407e",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 194805.33,
+      "duration_ms": 17813.5,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > No connection could be made b",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"sudonull.com/gil-cpython-how-it-works-and-how-to-bypass-senior\", \"focus\": \"GIL blocks parallelism\", \"max_chars\": 2000}",
+        "output_chars": 265
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "158010f9",
+      "parent_id": "33c0407e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 212619.17,
+      "duration_ms": 1958.69,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1958.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 655,
+        "completion": 696,
+        "total": 1351,
+        "cost_usd": 0.00011013
+      }
+    },
+    {
+      "id": "69c37c94",
+      "parent_id": "239e06d3",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 214579.23,
+      "duration_ms": 3.04,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 7,
+        "evidence_kept": 7,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 1,
+        "outside_window": 0,
+        "sources": 4
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "9c74a1f1",
+      "parent_id": "239e06d3",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 214582.72,
+      "duration_ms": 16987.46,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 5,
+          "partial": 1,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "cf54135d",
+      "parent_id": "9c74a1f1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 214583.56,
+      "duration_ms": 3971.3,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 3971.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 322,
+        "completion": 400,
+        "total": 722,
+        "cost_usd": 6.166e-05
+      }
+    },
+    {
+      "id": "d7d178a7",
+      "parent_id": "9c74a1f1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 214587.76,
+      "duration_ms": 1964.03,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1963.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 317,
+        "completion": 124,
+        "total": 441,
+        "cost_usd": 2.563e-05
+      }
+    },
+    {
+      "id": "7f4e04e6",
+      "parent_id": "9c74a1f1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 214591.96,
+      "duration_ms": 2223.48,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2223.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 320,
+        "completion": 114,
+        "total": 434,
+        "cost_usd": 2.442e-05
+      }
+    },
+    {
+      "id": "68cad7d1",
+      "parent_id": "9c74a1f1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 214597.41,
+      "duration_ms": 2406.55,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2406.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 306,
+        "completion": 136,
+        "total": 442,
+        "cost_usd": 2.686e-05
+      }
+    },
+    {
+      "id": "4dc415fc",
+      "parent_id": "9c74a1f1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 216552.06,
+      "duration_ms": 2435.53,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2435.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 324,
+        "completion": 192,
+        "total": 516,
+        "cost_usd": 3.468e-05
+      }
+    },
+    {
+      "id": "2e5e80c5",
+      "parent_id": "9c74a1f1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 216815.95,
+      "duration_ms": 2172.86,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2172.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 315,
+        "completion": 164,
+        "total": 479,
+        "cost_usd": 3.077e-05
+      }
+    },
+    {
+      "id": "5406b23c",
+      "parent_id": "9c74a1f1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 218554.94,
+      "duration_ms": 4412.35,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4412.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 338,
+        "completion": 417,
+        "total": 755,
+        "cost_usd": 6.435e-05
+      }
+    },
+    {
+      "id": "9b5b0105",
+      "parent_id": "9c74a1f1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 222967.87,
+      "duration_ms": 4605.82,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 4605.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 376,
+        "completion": 500,
+        "total": 876,
+        "cost_usd": 7.628e-05
+      }
+    },
+    {
+      "id": "3b25e093",
+      "parent_id": "9c74a1f1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 227573.83,
+      "duration_ms": 3995.9,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3995.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 392,
+        "completion": 421,
+        "total": 813,
+        "cost_usd": 6.649e-05
+      }
+    },
+    {
+      "id": "8ba84657",
+      "parent_id": "239e06d3",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 231570.33,
+      "duration_ms": 10567.98,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 397,
+        "citations": 6,
+        "cited_sources": 4,
+        "repaired": false
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "f4273dcf",
+      "parent_id": "8ba84657",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 231570.84,
+      "duration_ms": 10563.64,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 10563.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 945,
+        "completion": 1252,
+        "total": 2197,
+        "cost_usd": 0.00019111
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 2192934.3,
+    "span_count": 50,
+    "llm_calls": 30,
+    "tool_calls": 10,
+    "errors": 2,
+    "tokens": {
+      "prompt": 20257,
+      "completion": 13055,
+      "total": 33312
+    },
+    "cost_usd": 0.00230486,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 30,
+        "prompt": 20257,
+        "completion": 13055,
+        "total": 33312,
+        "cost_usd": 0.00230486,
+        "priced": true,
+        "duration_ms": 253941.4
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 2,
+        "prompt": 1144,
+        "completion": 2722,
+        "total": 3866,
+        "cost_usd": 0.00038818
+      },
+      "research": {
+        "calls": 18,
+        "prompt": 15158,
+        "completion": 6613,
+        "total": 21771,
+        "cost_usd": 0.00131443
+      },
+      "verify": {
+        "calls": 9,
+        "prompt": 3010,
+        "completion": 2468,
+        "total": 5478,
+        "cost_usd": 0.00041114
+      },
+      "write": {
+        "calls": 1,
+        "prompt": 945,
+        "completion": 1252,
+        "total": 2197,
+        "cost_usd": 0.00019111
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 242138.4,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 242136.7,
+        "errors": 0
+      },
+      "llm": {
+        "count": 30,
+        "duration_ms": 253941.4,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 4,
+        "duration_ms": 361965.4,
+        "errors": 0
+      },
+      "tool": {
+        "count": 10,
+        "duration_ms": 169006.1,
+        "errors": 2
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 124432.4
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 13553.7
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 12368.4
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 10563.6
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 9877.2
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "239e06d3",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 242138.4
+      },
+      {
+        "id": "8ba84657",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 10568.0
+      },
+      {
+        "id": "f4273dcf",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 10563.6
+      }
+    ]
+  }
+}

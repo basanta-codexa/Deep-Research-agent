@@ -60,7 +60,9 @@ def test_apply_judgements_replaces_support_and_rescores_cited_claims():
     assert verdicts == {alpha.id: "supported", beta.id: "contradicted"}
     assert rejudged.support == {"supported": 1, "contradicted": 1}
     assert rejudged.unsupported_citations == 1
-    assert rejudged.evidence_citable == 1
+    # Coverage is a generation-time property; a stricter judge must not make
+    # the denominator smaller than the cited set.
+    assert rejudged.evidence_citable == 2
     # The original record is not mutated.
     assert record.support == {"supported": 2}
 
@@ -76,7 +78,7 @@ def test_apply_judgements_fails_closed_on_judge_errors():
     assert verdicts[beta.id] == "unjudged"
     assert rejudged.support == {"unjudged": 2}
     assert rejudged.unsupported_citations == 2
-    assert rejudged.evidence_citable == 0
+    assert rejudged.evidence_citable == 2
 
 
 def test_apply_judgements_counts_a_missing_cited_id_as_unsupported():

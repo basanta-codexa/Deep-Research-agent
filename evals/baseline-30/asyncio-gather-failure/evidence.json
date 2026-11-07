@@ -1,0 +1,109 @@
+{
+  "generated_at": 1794041052.7418077,
+  "stats": {
+    "findings_seen": 5,
+    "evidence_kept": 5,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 2,
+    "outside_window": 0,
+    "sources": 5
+  },
+  "evidence": [
+    {
+      "id": "ev_d0d93af5",
+      "claim": "asyncio.gather propagates an unhandled exception to the caller immediately",
+      "quote": "By default, if a coroutine is executed by asyncio.gather() fails with an unhandled exception, it will be propagated to the caller.",
+      "url": "https://superfastpython.com/asyncio-gather-exception/",
+      "title": "Asyncio gather() Handle Exceptions",
+      "sub_questions": [
+        "What is the default behavior of asyncio.gather when one of its coroutines raises an exception?"
+      ],
+      "confidence": "high",
+      "span_start": 171,
+      "span_end": 301,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "Quote says gather propagates unhandled exception to caller, but does not mention immediacy.",
+      "trust": "aggregator",
+      "created_at": 1794036877.5489342,
+      "verified": true
+    },
+    {
+      "id": "ev_202fc44f",
+      "claim": "asyncio.gather propagates an unhandled exception to the caller immediately",
+      "quote": "By default, an exception in asyncio.gather() will be propagated to the caller immediately.",
+      "url": "https://superfastpython.com/asyncio-gather-exception-not-cancel/",
+      "title": "Asyncio gather() Exception in Task Does Not Cancel",
+      "sub_questions": [
+        "What is the default behavior of asyncio.gather when one of its coroutines raises an exception?"
+      ],
+      "confidence": "high",
+      "span_start": 113,
+      "span_end": 203,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that an exception in asyncio.gather() is propagated to the caller immediately, matching the claim.",
+      "trust": "aggregator",
+      "created_at": 1794036877.549024,
+      "verified": true
+    },
+    {
+      "id": "ev_a2037333",
+      "claim": "asyncio.gather does not automatically cancel remaining coroutines when one fails",
+      "quote": "For asyncio.gather(...) with default arguments (return_exceptions=False), this means the first encountered exception is immediately re‑raised to the awaiting code, and gathering stops there.",
+      "url": "https://www.refontelearning.com/blog/asyncio-gather-exception-sibling-task-lifecycle",
+      "title": "asyncio.gather Exceptions: Check Which Tasks Still Run",
+      "sub_questions": [
+        "Does asyncio.gather cancel the remaining coroutines when one fails?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794036877.5504954,
+      "verified": false
+    },
+    {
+      "id": "ev_bf05479d",
+      "claim": "To cancel all tasks when one fails, you must manually cancel them or cancel the gather future",
+      "quote": "You can cancel all tasks when one task fails when using asyncio.gather() by manually traversing the list of tasks can cancel them manually.",
+      "url": "https://superfastpython.com/asyncio-gather-cancel-all-if-one-fails/",
+      "title": "Asyncio gather() Cancel All Tasks if One Task Fails",
+      "sub_questions": [
+        "Does asyncio.gather cancel the remaining coroutines when one fails?"
+      ],
+      "confidence": "high",
+      "span_start": 52,
+      "span_end": 191,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote confirms that you can cancel all tasks by manually traversing and canceling them, but it does not mention canceling the gather future.",
+      "trust": "aggregator",
+      "created_at": 1794036877.5505831,
+      "verified": true
+    },
+    {
+      "id": "ev_e5048ccd",
+      "claim": "Setting return_exceptions=True causes asyncio.gather to trap unhandled exceptions and return them as results instead of propagating them.",
+      "quote": "Setting the 'return_exceptions' argument to True will trap any unhandled exceptions and provide them as return values, allowing all other tasks in the group to complete.",
+      "url": "https://superfastpython.com/asyncio-gather-exception/",
+      "title": "Asyncio gather() Handle Exceptions",
+      "sub_questions": [
+        "What does the return_exceptions parameter do in asyncio.gather?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794036877.5517154,
+      "verified": false
+    }
+  ]
+}

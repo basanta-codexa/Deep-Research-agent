@@ -1,0 +1,53 @@
+{
+  "generated_at": 1794041052.855343,
+  "stats": {
+    "findings_seen": 3,
+    "evidence_kept": 2,
+    "duplicates_exact": 0,
+    "duplicates_near": 1,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 3
+  },
+  "evidence": [
+    {
+      "id": "ev_06319c6e",
+      "claim": "asyncio.CancelledError is a subclass of Exception, which inherits from BaseException",
+      "quote": "asyncio.CancelledError is a subclass of Exception (and BaseException) specifically designed to signal task cancellation in asyncio.",
+      "url": "https://www.ancisoft.com/blog/weird-behaviour-of-asyncio-cancellederror-and-gatheringfuture-exception-was-never-retrieved/",
+      "title": "Weird Behavior of asyncio.CancelledError and '_GatheringFuture exception was never retrieved' in Python AsyncIO: Understanding and Fixing Unhandled Exceptions",
+      "sub_questions": [
+        "What is the class definition and inheritance hierarchy of asyncio.CancelledError in Python 3.8+?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 482,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that asyncio.CancelledError is a subclass of Exception (and BaseException), matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794037096.9106786,
+      "verified": true
+    },
+    {
+      "id": "ev_16177178",
+      "claim": "`CancelledError` is a subclass of `BaseException` rather than `Exception`.",
+      "quote": "CancelledError is now a subclass of BaseException rather than Exception.",
+      "url": "https://docs.python.org/3/library/asyncio-exceptions.html",
+      "title": "Exceptions",
+      "sub_questions": [
+        "How does inheriting from BaseException affect exception handling and propagation in asyncio tasks?",
+        "What changes were introduced to asyncio.CancelledError in Python 3.8 compared to earlier versions?"
+      ],
+      "confidence": "high",
+      "span_start": 499,
+      "span_end": 571,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that CancelledError is a subclass of BaseException rather than Exception.",
+      "trust": "primary",
+      "created_at": 1794037096.9107425,
+      "verified": true
+    }
+  ]
+}

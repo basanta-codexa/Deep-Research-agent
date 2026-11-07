@@ -1,0 +1,1286 @@
+{
+  "trace_id": "c5987fa27032",
+  "name": "What does switching a SQLite database to WAL mode change about concurrent readers and writers?",
+  "started_at": "2026-11-07T07:58:26.143554+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "7688e80a",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.05,
+      "duration_ms": 105852.45,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8ed0bd76",
+      "parent_id": "7688e80a",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.16,
+      "duration_ms": 8752.06,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "How does enabling WAL mode in SQLite affect the ability of multiple readers and writers to access the database concurrently?",
+        "questions": [
+          {
+            "question": "What is SQLite's WAL mode and how does its concurrency model differ from the default rollback journal mode?",
+            "search_query": "SQLite WAL mode concurrency model"
+          },
+          {
+            "question": "How does WAL mode allow concurrent readers while a writer is active?",
+            "search_query": "SQLite WAL readers during write"
+          },
+          {
+            "question": "Does WAL mode permit multiple writers to operate concurrently, or are writes still serialized?",
+            "search_query": "SQLite WAL concurrent writers"
+          },
+          {
+            "question": "What are the performance implications of using WAL mode for concurrent read and write workloads?",
+            "search_query": "SQLite WAL performance impact"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8df480ba",
+      "parent_id": "8ed0bd76",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 4.59,
+      "duration_ms": 8747.33,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8747.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 568,
+        "completion": 854,
+        "total": 1422,
+        "cost_usd": 0.00012806
+      }
+    },
+    {
+      "id": "60747d5c",
+      "parent_id": "7688e80a",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 8752.28,
+      "duration_ms": 56656.6,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 4,
+        "findings": 8,
+        "sources": 5
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "770ee18e",
+      "parent_id": "60747d5c",
+      "name": "What is SQLite's WAL mode and how does its concurrency model differ fr",
+      "kind": "subagent",
+      "start_ms": 8752.46,
+      "duration_ms": 23117.86,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "SQLite WAL mode concurrency model",
+        "findings": 2,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://sqlite.org/wal.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "19585d8a",
+      "parent_id": "770ee18e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 8752.66,
+      "duration_ms": 1793.5,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1793.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 434,
+        "completion": 57,
+        "total": 491,
+        "cost_usd": 2.043e-05
+      }
+    },
+    {
+      "id": "0fa2f4df",
+      "parent_id": "60747d5c",
+      "name": "How does WAL mode allow concurrent readers while a writer is active?",
+      "kind": "subagent",
+      "start_ms": 8753.65,
+      "duration_ms": 15495.43,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "SQLite WAL readers during write",
+        "findings": 3,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://nalar.dev/sqlite-wal-mode-concurrency-checkpoints-and-operational-pitfalls/",
+          "https://sqlite.org/wal.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "87956080",
+      "parent_id": "0fa2f4df",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 8753.7,
+      "duration_ms": 2008.94,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2008.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 411,
+        "completion": 52,
+        "total": 463,
+        "cost_usd": 1.909e-05
+      }
+    },
+    {
+      "id": "c4a8d80c",
+      "parent_id": "770ee18e",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 10546.33,
+      "duration_ms": 6404.31,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"SQLite WAL mode concurrency model\", \"focus\": \"WAL mode concurrency\", \"max_chars\": 4000}",
+        "output_chars": 3860
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "070760f3",
+      "parent_id": "0fa2f4df",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 10762.72,
+      "duration_ms": 4331.6,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"SQLite WAL readers during write\", \"focus\": \"WAL mode allow concurrent readers while a writer is active\", \"max_chars\": 4000}",
+        "output_chars": 3847
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "f6465c91",
+      "parent_id": "0fa2f4df",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 15094.42,
+      "duration_ms": 1043.34,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1043.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1044,
+        "completion": 122,
+        "total": 1166,
+        "cost_usd": 4.718e-05
+      }
+    },
+    {
+      "id": "cb17c449",
+      "parent_id": "0fa2f4df",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 16137.85,
+      "duration_ms": 5198.31,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"concurrent readers while writer active\", \"max_chars\": 2000, \"query\": \"WAL mode allow concurrent readers while a writer is active\"}",
+        "output_chars": 2101
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "99e61546",
+      "parent_id": "770ee18e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 16950.74,
+      "duration_ms": 4115.69,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4115.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1046,
+        "completion": 278,
+        "total": 1324,
+        "cost_usd": 6.752e-05
+      }
+    },
+    {
+      "id": "fdf376b2",
+      "parent_id": "770ee18e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 21066.66,
+      "duration_ms": 8589.58,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 8589.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 907,
+        "completion": 1000,
+        "total": 1907,
+        "cost_usd": 0.00015721
+      }
+    },
+    {
+      "id": "c57f91db",
+      "parent_id": "0fa2f4df",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 21336.21,
+      "duration_ms": 1439.68,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1439.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1517,
+        "completion": 214,
+        "total": 1731,
+        "cost_usd": 7.333e-05
+      }
+    },
+    {
+      "id": "9b6e7b88",
+      "parent_id": "0fa2f4df",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 22776.01,
+      "duration_ms": 1472.92,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1472.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1258,
+        "completion": 878,
+        "total": 2136,
+        "cost_usd": 0.00015188
+      }
+    },
+    {
+      "id": "c6436583",
+      "parent_id": "60747d5c",
+      "name": "Does WAL mode permit multiple writers to operate concurrently, or are ",
+      "kind": "subagent",
+      "start_ms": 24249.13,
+      "duration_ms": 13909.96,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "SQLite WAL concurrent writers",
+        "findings": 1,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://sqlite.org/wal.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "336e121c",
+      "parent_id": "c6436583",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 24249.16,
+      "duration_ms": 1656.11,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1656.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 415,
+        "completion": 68,
+        "total": 483,
+        "cost_usd": 2.129e-05
+      }
+    },
+    {
+      "id": "fd806126",
+      "parent_id": "c6436583",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 25905.35,
+      "duration_ms": 4888.98,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"SQLite WAL concurrent writers\", \"focus\": \"concurrent writers\", \"max_chars\": 2000}",
+        "output_chars": 1990
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8b9674c0",
+      "parent_id": "770ee18e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 29656.28,
+      "duration_ms": 2213.81,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2213.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 936,
+        "completion": 1826,
+        "total": 2762,
+        "cost_usd": 0.00026546
+      }
+    },
+    {
+      "id": "751928b5",
+      "parent_id": "c6436583",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 30794.49,
+      "duration_ms": 1032.39,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1032.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 926,
+        "completion": 141,
+        "total": 1067,
+        "cost_usd": 4.611e-05
+      }
+    },
+    {
+      "id": "975d7bd7",
+      "parent_id": "c6436583",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 31827.03,
+      "duration_ms": 6331.92,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 6331.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 753,
+        "completion": 781,
+        "total": 1534,
+        "cost_usd": 0.00012412
+      }
+    },
+    {
+      "id": "f4c3a14e",
+      "parent_id": "60747d5c",
+      "name": "What are the performance implications of using WAL mode for concurrent",
+      "kind": "subagent",
+      "start_ms": 31870.44,
+      "duration_ms": 33538.26,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "SQLite WAL performance impact",
+        "findings": 2,
+        "sources": 3,
+        "steps": 3,
+        "urls": [
+          "https://en.wikipedia.org/wiki/Transaction_processing",
+          "https://productionhardening.org/wal-optimization-concurrency-tuning/",
+          "https://www.dbisoftware.com/products?msclkid=e17806cde047118147036c233a0a0f22"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "a92a4465",
+      "parent_id": "f4c3a14e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 31870.53,
+      "duration_ms": 3326.22,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 3326.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 420,
+        "completion": 66,
+        "total": 486,
+        "cost_usd": 2.118e-05
+      }
+    },
+    {
+      "id": "9f16f2a7",
+      "parent_id": "f4c3a14e",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 35196.89,
+      "duration_ms": 3721.84,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"SQLite WAL performance impact concurrent read write workloads\", \"focus\": \"WAL performance impact concurrent read write workloads\", \"max_chars\": 4000}",
+        "output_chars": 3964
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "028b594c",
+      "parent_id": "f4c3a14e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 38918.78,
+      "duration_ms": 1666.11,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1666.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 973,
+        "completion": 128,
+        "total": 1101,
+        "cost_usd": 4.583e-05
+      }
+    },
+    {
+      "id": "6e5ebba1",
+      "parent_id": "f4c3a14e",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 40585.04,
+      "duration_ms": 7681.5,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"SQLite WAL concurrent read write performance overhead\", \"focus\": \"WAL concurrent read write performance\", \"max_chars\": 4000}",
+        "output_chars": 3306
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "a4355e28",
+      "parent_id": "f4c3a14e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 48266.59,
+      "duration_ms": 3239.69,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 3239.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1603,
+        "completion": 148,
+        "total": 1751,
+        "cost_usd": 6.733e-05
+      }
+    },
+    {
+      "id": "7a75b622",
+      "parent_id": "f4c3a14e",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 51506.4,
+      "duration_ms": 5863.33,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"WAL operates by appending committed transactions to a separate -wal file before those frames are ever applied to the main database file. Readers bypass the main file’s write locks by recons",
+        "output_chars": 486
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4655a76a",
+      "parent_id": "f4c3a14e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 57369.98,
+      "duration_ms": 8038.57,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8038.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1470,
+        "completion": 793,
+        "total": 2263,
+        "cost_usd": 0.00014719
+      }
+    },
+    {
+      "id": "ba6ecf9f",
+      "parent_id": "7688e80a",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 65408.98,
+      "duration_ms": 2.67,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 8,
+        "evidence_kept": 8,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 2,
+        "outside_window": 0,
+        "sources": 5
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "7395a11a",
+      "parent_id": "7688e80a",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 65411.71,
+      "duration_ms": 16300.92,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 4,
+          "partial": 2,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "1d40c2f2",
+      "parent_id": "7395a11a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 65411.98,
+      "duration_ms": 2331.82,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2331.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 313,
+        "completion": 103,
+        "total": 416,
+        "cost_usd": 2.278e-05
+      }
+    },
+    {
+      "id": "346caf87",
+      "parent_id": "7395a11a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 65413.19,
+      "duration_ms": 3412.7,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3412.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 321,
+        "completion": 256,
+        "total": 577,
+        "cost_usd": 4.291e-05
+      }
+    },
+    {
+      "id": "6252e942",
+      "parent_id": "7395a11a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 65414.0,
+      "duration_ms": 2611.73,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2611.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 333,
+        "completion": 163,
+        "total": 496,
+        "cost_usd": 3.118e-05
+      }
+    },
+    {
+      "id": "8f55f2f2",
+      "parent_id": "7395a11a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 65414.68,
+      "duration_ms": 2929.16,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2929.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 322,
+        "completion": 175,
+        "total": 497,
+        "cost_usd": 3.241e-05
+      }
+    },
+    {
+      "id": "dfa7c864",
+      "parent_id": "7395a11a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 67743.94,
+      "duration_ms": 3842.33,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 3842.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 310,
+        "completion": 400,
+        "total": 710,
+        "cost_usd": 6.13e-05
+      }
+    },
+    {
+      "id": "27b2e1dd",
+      "parent_id": "7395a11a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 68025.83,
+      "duration_ms": 2457.44,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2457.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 356,
+        "completion": 191,
+        "total": 547,
+        "cost_usd": 3.551e-05
+      }
+    },
+    {
+      "id": "3c3d9a8f",
+      "parent_id": "7395a11a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 71586.33,
+      "duration_ms": 3159.14,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3159.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 339,
+        "completion": 166,
+        "total": 505,
+        "cost_usd": 3.175e-05
+      }
+    },
+    {
+      "id": "b0d83322",
+      "parent_id": "7395a11a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 74745.68,
+      "duration_ms": 6966.81,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 6966.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 408,
+        "completion": 496,
+        "total": 904,
+        "cost_usd": 7.672e-05
+      }
+    },
+    {
+      "id": "288744fc",
+      "parent_id": "7688e80a",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 81712.69,
+      "duration_ms": 24139.74,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 365,
+        "citations": 6,
+        "cited_sources": 3,
+        "repaired": true
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "ae81b3cf",
+      "parent_id": "288744fc",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 81712.97,
+      "duration_ms": 13828.62,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 13828.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 959,
+        "completion": 1642,
+        "total": 2601,
+        "cost_usd": 0.00024223
+      }
+    },
+    {
+      "id": "95c3cdd7",
+      "parent_id": "288744fc",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 95542.77,
+      "duration_ms": 10308.4,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 3600,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 10308.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1610,
+        "completion": 1079,
+        "total": 2689,
+        "cost_usd": 0.00018857
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 2747062.2,
+    "span_count": 43,
+    "llm_calls": 26,
+    "tool_calls": 7,
+    "errors": 0,
+    "tokens": {
+      "prompt": 19952,
+      "completion": 12077,
+      "total": 32029
+    },
+    "cost_usd": 0.00216857,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 26,
+        "prompt": 19952,
+        "completion": 12077,
+        "total": 32029,
+        "cost_usd": 0.00216857,
+        "priced": true,
+        "duration_ms": 108564.0
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 1,
+        "prompt": 568,
+        "completion": 854,
+        "total": 1422,
+        "cost_usd": 0.00012806
+      },
+      "research": {
+        "calls": 15,
+        "prompt": 14113,
+        "completion": 6552,
+        "total": 20665,
+        "cost_usd": 0.00127515
+      },
+      "verify": {
+        "calls": 8,
+        "prompt": 2702,
+        "completion": 1950,
+        "total": 4652,
+        "cost_usd": 0.00033456
+      },
+      "write": {
+        "calls": 2,
+        "prompt": 2569,
+        "completion": 2721,
+        "total": 5290,
+        "cost_usd": 0.0004308
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 105852.5,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 105852.0,
+        "errors": 0
+      },
+      "llm": {
+        "count": 26,
+        "duration_ms": 108564.0,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 4,
+        "duration_ms": 86061.5,
+        "errors": 0
+      },
+      "tool": {
+        "count": 7,
+        "duration_ms": 38089.9,
+        "errors": 0
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 13828.6
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 10308.4
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 8747.3
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 8589.6
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 8038.6
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "7688e80a",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 105852.5
+      },
+      {
+        "id": "288744fc",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 24139.7
+      },
+      {
+        "id": "95c3cdd7",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 10308.4
+      }
+    ]
+  }
+}

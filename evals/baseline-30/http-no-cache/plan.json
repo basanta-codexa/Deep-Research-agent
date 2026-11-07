@@ -1,0 +1,29 @@
+{
+  "restated": "What does the HTTP Cache-Control: no-cache directive actually require a cache to do?",
+  "sub_questions": [
+    {
+      "question": "What is the formal definition of the Cache-Control: no-cache directive in the HTTP/1.1 specification?",
+      "search_query": "Cache-Control no-cache definition HTTP/1.1",
+      "why": "Provides the authoritative wording of the directive, establishing the baseline requirement for cache behavior."
+    },
+    {
+      "question": "How must a cache treat a response that includes Cache-Control: no-cache?",
+      "search_query": "Cache-Control no-cache cache behavior",
+      "why": "Explains the specific actions a cache must take (e.g., must revalidate before reuse) when encountering the directive."
+    },
+    {
+      "question": "What is the difference between Cache-Control: no-cache and Cache-Control: no-store?",
+      "search_query": "no-cache vs no-store HTTP",
+      "why": "Clarifies that no-cache does not prevent storage but requires validation, while no-store prohibits storage entirely."
+    },
+    {
+      "question": "Does Cache-Control: no-cache require a cache to revalidate the response with the origin server before serving it?",
+      "search_query": "no-cache revalidation requirement",
+      "why": "Confirms that the directive mandates revalidation, ensuring the cache does not serve stale data without checking with the origin."
+    }
+  ],
+  "assumptions": [
+    "The question refers to HTTP/1.1 caching semantics.",
+    "Standard cache implementations follow the RFC 7234 specification."
+  ]
+}

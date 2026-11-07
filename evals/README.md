@@ -96,6 +96,33 @@ usage separate from generation cost. It replays support only, not the conflict
 scan. If the re-judge model is the same as the generation model it warns: that
 is still a self-judgement.
 
+## Baseline
+
+The published baseline is in [`baseline-30/`](baseline-30/). It is the
+30-question run on `openai/gpt-oss-20b` via OpenRouter, with the in-run judge set
+to the same 20b model and an independent replay by `openai/gpt-oss-120b`.
+
+| metric | self-judged 20b | independent 120b | 95% CI (120b) |
+| --- | ---: | ---: | ---: |
+| success | 80.0% (24/30) | 80.0% | 66.7%-93.3% |
+| strict support | 81.1% | **73.1%** | 62.7%-82.2% |
+| lenient support | 95.6% | **94.0%** | 86.1%-99.0% |
+| citation coverage | 81.3% | 81.3% | 67.7%-93.0% |
+| judge-based citation precision | 100.0% (invariant) | 97.5% | 93.6%-100.0% |
+| keyword recall | 76.7% | 76.7% | 60.0%-90.0% |
+| cost / question | $0.0023 | — | — |
+
+The independent judge moved 13 claims from *supported* to *partial*, upgraded 4
+*partial* claims to *supported*, and dropped 4 more *partial* claims to
+*unsupported*; the strict number is the one to quote. Six questions failed: four
+empty writer drafts (hidden reasoning consumed the output budget), one 600 s
+research timeout (a tool call with no bound), and one report with unsupported
+prose. The writer now asks for low reasoning effort, every tool call has a
+60 s timeout, and the six failures were re-run separately: **6/6 published**,
+with independent strict support **86.8%** (73.5%-97.6% CI) over 36 claims. The
+repair artifacts are in [`fixes-6/`](fixes-6/). The baseline stays frozen so
+later runs can be compared against it.
+
 ## Ablations
 
 Step 12 compares the full pipeline with one component removed at a time. The

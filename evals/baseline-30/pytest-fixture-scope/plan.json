@@ -1,0 +1,29 @@
+{
+  "restated": "How do pytest fixture scopes affect test isolation and setup cost?",
+  "sub_questions": [
+    {
+      "question": "What are the different fixture scopes available in pytest?",
+      "search_query": "pytest fixture scope options",
+      "why": "Provides the list of scopes (function, class, module, package, session) that are relevant to isolation and cost."
+    },
+    {
+      "question": "How does fixture scope influence test isolation in pytest?",
+      "search_query": "pytest fixture scope test isolation",
+      "why": "Explains how each scope determines whether a fixture instance is shared across tests, affecting isolation."
+    },
+    {
+      "question": "What is the impact of fixture scope on setup and teardown cost?",
+      "search_query": "pytest fixture scope setup cost",
+      "why": "Shows how the frequency of fixture creation/teardown changes with scope, quantifying performance implications."
+    },
+    {
+      "question": "What best practices exist for choosing fixture scopes to balance isolation and performance?",
+      "search_query": "pytest fixture scope best practices",
+      "why": "Provides guidelines and trade‑off recommendations for selecting scopes in real projects."
+    }
+  ],
+  "assumptions": [
+    "The user is referring to standard pytest fixtures without custom plugins.",
+    "The tests are run in a typical pytest environment."
+  ]
+}

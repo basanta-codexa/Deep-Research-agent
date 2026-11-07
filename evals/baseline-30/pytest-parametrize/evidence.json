@@ -1,0 +1,166 @@
+{
+  "generated_at": 1794041053.6561778,
+  "stats": {
+    "findings_seen": 8,
+    "evidence_kept": 8,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 2,
+    "outside_window": 0,
+    "sources": 2
+  },
+  "evidence": [
+    {
+      "id": "ev_78cc8389",
+      "claim": "The @pytest.mark.parametrize decorator is used to define multiple sets of arguments for a test function.",
+      "quote": "The builtin pytest.mark.parametrize decorator enables parametrization of arguments for a test function.",
+      "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+      "title": "How to parametrize fixtures and test functions¶",
+      "sub_questions": [
+        "What is the syntax and basic usage of pytest.mark.parametrize?"
+      ],
+      "confidence": "high",
+      "span_start": 470,
+      "span_end": 573,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that the decorator enables parametrization of arguments for a test function, which means it defines multiple sets of arguments.",
+      "trust": "unknown",
+      "created_at": 1794039909.9854355,
+      "verified": true
+    },
+    {
+      "id": "ev_140fea37",
+      "claim": "The syntax for parametrize is @pytest.mark.parametrize(\"arg1,arg2\", [(val1,val2), ...]).",
+      "quote": "@pytest.mark.parametrize(\"test_input,expected\", [(\"3+5\", 8), (\"2+4\", 6), (\"6*9\", 42)])",
+      "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+      "title": "How to parametrize fixtures and test functions¶",
+      "sub_questions": [
+        "What is the syntax and basic usage of pytest.mark.parametrize?"
+      ],
+      "confidence": "high",
+      "span_start": 694,
+      "span_end": 780,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote shows the exact syntax @pytest.mark.parametrize(\"arg1,arg2\", [(val1,val2), ...]) with example arguments and values.",
+      "trust": "unknown",
+      "created_at": 1794039909.985545,
+      "verified": true
+    },
+    {
+      "id": "ev_45186d6a",
+      "claim": "Parametrize can be applied to a module by assigning to pytestmark.",
+      "quote": "pytestmark = pytest.mark.parametrize(\"n,expected\", [(1, 2), (3, 4)])",
+      "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+      "title": "How to parametrize fixtures and test functions¶",
+      "sub_questions": [
+        "What is the syntax and basic usage of pytest.mark.parametrize?"
+      ],
+      "confidence": "high",
+      "span_start": 956,
+      "span_end": 1024,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote assigns a parametrize mark to pytestmark, showing how to apply parametrize to a module.",
+      "trust": "unknown",
+      "created_at": 1794039909.9856415,
+      "verified": true
+    },
+    {
+      "id": "ev_7bcd3407",
+      "claim": "Pytest will build a string that is the test ID for each set of values in a",
+      "quote": "pytest will build a string that is the test ID for each set of values in a",
+      "url": "https://docs.pytest.org/en/7.1.x/example/parametrize.html",
+      "title": "Parametrizing tests¶",
+      "sub_questions": [
+        "How does pytest.generate test cases from parametrize arguments?"
+      ],
+      "confidence": "high",
+      "span_start": 966,
+      "span_end": 1040,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794039909.9857173,
+      "verified": true
+    },
+    {
+      "id": "ev_07c1c3d0",
+      "claim": "pytest_generate_tests generated two calls to the test_db_initialized during the collection phase",
+      "quote": "pytest_generate_tests generated two according calls to the test_db_initialized during the collection phase",
+      "url": "https://docs.pytest.org/en/7.1.x/example/parametrize.html",
+      "title": "Parametrizing tests¶",
+      "sub_questions": [
+        "How does pytest.generate test cases from parametrize arguments?"
+      ],
+      "confidence": "high",
+      "span_start": 1866,
+      "span_end": 1972,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that pytest_generate_tests generated two calls to test_db_initialized during the collection phase, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794039909.9858234,
+      "verified": true
+    },
+    {
+      "id": "ev_7d1a3744",
+      "claim": "Running pytest with --collect-only will show the generated IDs",
+      "quote": "Running pytest with --collect-only will show the generated IDs",
+      "url": "https://docs.pyptest.org/en/7.1.x/example/parametrize.html",
+      "title": "",
+      "sub_questions": [
+        "How does pytest.generate test cases from parametrize arguments?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794039909.9859421,
+      "verified": false
+    },
+    {
+      "id": "ev_45460b91",
+      "claim": "Pytest builds a string that is the test ID for each set of values in a parametrized test.",
+      "quote": "pytest will build a string that is the test ID for each set of values in a parametrized test.",
+      "url": "https://docs.pytest.org/en/7.1.x/example/parametrize.html",
+      "title": "Parametrizing tests¶",
+      "sub_questions": [
+        "How does pytest name and discover the individual parameterized test cases?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794039909.9882317,
+      "verified": false
+    },
+    {
+      "id": "ev_37dcff4b",
+      "claim": "Running pytest with --collect-only will show the generated IDs.",
+      "quote": "Running pytest with --collect-only will show the generated IDs.",
+      "url": "https://docs.pytest.org/en/7.1.x/example/parametrize.html",
+      "title": "Parametrizing tests¶",
+      "sub_questions": [
+        "How does pytest name and discover the individual parameterized test cases?"
+      ],
+      "confidence": "high",
+      "span_start": 1041,
+      "span_end": 1104,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794039909.988429,
+      "verified": true
+    }
+  ]
+}

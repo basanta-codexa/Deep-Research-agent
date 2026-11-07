@@ -1,0 +1,30 @@
+{
+  "restated": "Why can iterating over a two‑dimensional array row by row be faster than iterating column by column?",
+  "sub_questions": [
+    {
+      "question": "How are two‑dimensional arrays stored in memory in common programming languages?",
+      "search_query": "2D array memory layout row-major column-major",
+      "why": "This explains the underlying memory layout that determines whether rows or columns are stored contiguously, which is the basis for performance differences."
+    },
+    {
+      "question": "What is spatial locality and how does it relate to CPU cache lines during array traversal?",
+      "search_query": "CPU cache line spatial locality array traversal",
+      "why": "Understanding spatial locality clarifies why accessing contiguous memory elements (as in row‑major iteration) leads to better cache utilization than non‑contiguous accesses."
+    },
+    {
+      "question": "Why does iterating row by row in a row‑major array improve cache performance compared to column by column?",
+      "search_query": "row-major iteration cache performance",
+      "why": "This directly links the memory layout to cache behavior, showing why row‑by‑row access is typically faster."
+    },
+    {
+      "question": "What empirical benchmarks exist comparing row‑major versus column‑major iteration speeds?",
+      "search_query": "row major vs column major performance benchmark",
+      "why": "Benchmark results provide concrete evidence of the performance difference, confirming the theoretical explanation."
+    }
+  ],
+  "assumptions": [
+    "The array is stored in a row‑major order as in C/C++/Java.",
+    "The CPU uses a cache hierarchy with cache lines that favor spatial locality.",
+    "The benchmark results are representative of typical modern processors."
+  ]
+}

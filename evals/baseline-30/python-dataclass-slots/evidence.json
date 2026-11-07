@@ -1,0 +1,168 @@
+{
+  "generated_at": 1794041053.4100718,
+  "stats": {
+    "findings_seen": 10,
+    "evidence_kept": 8,
+    "duplicates_exact": 2,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 5
+  },
+  "evidence": [
+    {
+      "id": "ev_3ab01bde",
+      "claim": "__slots__ limits the attributes a class can have, reducing memory usage.",
+      "quote": "slots provide a special mechanism to reduce the size of objects.It is a concept of memory optimisation on objects.",
+      "url": "https://www.geeksforgeeks.org/python/python-use-of-__slots__/",
+      "title": "Python | Use of __slots__ - GeeksforGeeks",
+      "sub_questions": [
+        "What is the purpose of the __slots__ attribute in a Python class?"
+      ],
+      "confidence": "high",
+      "span_start": 202,
+      "span_end": 316,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote states that slots reduce object size and are a memory optimisation technique, but it does not mention that __slots__ limits the attributes a class can have.",
+      "trust": "aggregator",
+      "created_at": 1794039189.3946295,
+      "verified": true
+    },
+    {
+      "id": "ev_1dcbe154",
+      "claim": "__slots__ uses a fixed-width list to store attributes instead of a dictionary.",
+      "quote": "Instead, __slots__ uses something kind of like a fixed-width list (or like a mutable tuple) to store specifically three attributes: x, y, and z.",
+      "url": "https://www.pythonmorsels.com/__slots__/",
+      "title": "__slots__ for optimizing classes",
+      "sub_questions": [
+        "What is the purpose of the __slots__ attribute in a Python class?"
+      ],
+      "confidence": "high",
+      "span_start": 436,
+      "span_end": 580,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that __slots__ uses something like a fixed-width list to store attributes instead of a dictionary.",
+      "trust": "unknown",
+      "created_at": 1794039189.394788,
+      "verified": true
+    },
+    {
+      "id": "ev_177bfbd4",
+      "claim": "If slots is true, __slots__ attribute is added to the class.",
+      "quote": "- slots: If true (the default is False), __slots__ attribute",
+      "url": "https://docs.python.org/3/library/dataclasses.html",
+      "title": "dataclasses — Data Classes",
+      "sub_questions": [
+        "How does the dataclass decorator with slots=True modify the generated class?"
+      ],
+      "confidence": "high",
+      "span_start": 772,
+      "span_end": 832,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "Quote states that if slots is true, __slots__ attribute is present.",
+      "trust": "primary",
+      "created_at": 1794039189.3948836,
+      "verified": true
+    },
+    {
+      "id": "ev_3e7d1fe4",
+      "claim": "Using slots=True raises a TypeError if the class already defines __slots__",
+      "quote": "If __slots__ is already defined in the class, then TypeError is raised.",
+      "url": "https://docs.python.org/3/library/dataclasses.html",
+      "title": "dataclasses — Data Classes",
+      "sub_questions": [
+        "How does the dataclass decorator with slots=True modify the generated class?",
+        "What limitations or trade‑offs arise when using slots in dataclasses?"
+      ],
+      "confidence": "high",
+      "span_start": 833,
+      "span_end": 904,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote states that a TypeError is raised when __slots__ is already defined, but it does not mention the use of slots=True.",
+      "trust": "primary",
+      "created_at": 1794039189.3949995,
+      "verified": true
+    },
+    {
+      "id": "ev_1e4738d2",
+      "claim": "Passing parameters to a base class __init_subclass__() when using slots=True will result in a TypeError.",
+      "quote": "Warning Passing parameters to a base class __init_subclass__() when using slots=True will result in a TypeError.",
+      "url": "https://docs.python.org/3/library/dataclasses.html",
+      "title": "dataclasses — Data Classes",
+      "sub_questions": [
+        "How does the dataclass decorator with slots=True modify the generated class?",
+        "What limitations or trade‑offs arise when using slots in dataclasses?"
+      ],
+      "confidence": "high",
+      "span_start": 905,
+      "span_end": 1017,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that passing parameters to a base class __init_subclass__() when using slots=True will result in a TypeError.",
+      "trust": "primary",
+      "created_at": 1794039189.3951612,
+      "verified": true
+    },
+    {
+      "id": "ev_6ad47643",
+      "claim": "A conventional dataclass instance with a few attributes consumes around 150 to 200 bytes, while a slotted dataclass instance typically drops to 48 to 64 bytes.",
+      "quote": "A conventional dataclass instance with a few attributes often consumes around 150 to 200 bytes. With slots=True, that same instance typically drops to 48 to 64 bytes.",
+      "url": "https://salivity.github.io/python/article/python-dataclass-slots-true-memory-and-performance",
+      "title": "Python Dataclass slots=True Memory and Performance - python",
+      "sub_questions": [
+        "What is the memory impact of using slots on dataclass instances?"
+      ],
+      "confidence": "high",
+      "span_start": 1738,
+      "span_end": 1904,
+      "match": "normalized",
+      "support": "supported",
+      "support_reason": "The quote states the same byte ranges for conventional and slotted dataclass instances as the claim.",
+      "trust": "unknown",
+      "created_at": 1794039189.3987093,
+      "verified": true
+    },
+    {
+      "id": "ev_3f81c4ce",
+      "claim": "Enabling slots=True can reduce overall heap usage by 50% to 70% when dealing with millions of records.",
+      "quote": "enabling slots=True can reduce overall heap usage by 50% to 70%.",
+      "url": "https://salivity.github.io/python/article/python-dataclass-slots-true-memory-and-performance",
+      "title": "Python Dataclass slots=True Memory and Performance - python",
+      "sub_questions": [
+        "What is the memory impact of using slots on dataclass instances?"
+      ],
+      "confidence": "high",
+      "span_start": 2031,
+      "span_end": 2095,
+      "match": "normalized",
+      "support": "partial",
+      "support_reason": "The quote states that enabling slots=True can reduce heap usage by 50% to 70%, but it does not mention the context of dealing with millions of records.",
+      "trust": "unknown",
+      "created_at": 1794039189.401794,
+      "verified": true
+    },
+    {
+      "id": "ev_4c3cf10a",
+      "claim": "Field names already in a base class's __slots__ are omitted from the generated __slots__ to prevent overriding",
+      "quote": "Added in version 3.10. Changed in version 3.11: If a field name is already included in the __slots__ of a base class, it will not be included in the generated __slots__ to prevent overriding them.",
+      "url": "https://docs.python.org/3/library/dataclasses.html",
+      "title": "dataclasses — Data Classes",
+      "sub_questions": [
+        "What limitations or trade‑offs arise when using slots in dataclasses?"
+      ],
+      "confidence": "high",
+      "span_start": 1018,
+      "span_end": 1214,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that if a field name is already in a base class’s __slots__, it will not be included in the generated __slots__ to prevent overriding.",
+      "trust": "primary",
+      "created_at": 1794039189.402873,
+      "verified": true
+    }
+  ]
+}

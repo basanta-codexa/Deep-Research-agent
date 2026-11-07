@@ -1,0 +1,90 @@
+{
+  "generated_at": 1794041053.10323,
+  "stats": {
+    "findings_seen": 4,
+    "evidence_kept": 4,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 4
+  },
+  "evidence": [
+    {
+      "id": "ev_1904ff8a",
+      "claim": "The header value can be an HTTP-date.",
+      "quote": "A date after which to retry. See the Date header for more details on the HTTP date format.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Retry-After",
+      "title": "Retry-After header",
+      "sub_questions": [
+        "How does a client parse the Retry-After header value when it can be either a number of seconds or an HTTP-date?"
+      ],
+      "confidence": "high",
+      "span_start": 696,
+      "span_end": 786,
+      "match": "normalized",
+      "support": "supported",
+      "support_reason": "The quote states the header value is a date and refers to the HTTP date format.",
+      "trust": "primary",
+      "created_at": 1794037665.4200892,
+      "verified": true
+    },
+    {
+      "id": "ev_18773bd2",
+      "claim": "The header value can be a non-negative decimal integer indicating the seconds to delay after the response is received.",
+      "quote": "A non-negative decimal integer indicating the seconds to delay after the response is received.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Retry-After",
+      "title": "Retry-After header",
+      "sub_questions": [
+        "How does a client parse the Retry-After header value when it can be either a number of seconds or an HTTP-date?"
+      ],
+      "confidence": "high",
+      "span_start": 807,
+      "span_end": 901,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that the header value is a non-negative decimal integer indicating the seconds to delay after the response is received, matching the claim.",
+      "trust": "primary",
+      "created_at": 1794037665.4201257,
+      "verified": true
+    },
+    {
+      "id": "ev_89a827b7",
+      "claim": "Clients should wait exactly the duration specified in the Retry-After header before retrying.",
+      "quote": "buildRead `Retry-After` header (HTTP-date or seconds) and wait exactly that duration",
+      "url": "https://buglyst.com/learn/guides/api-rate-limit-429-debug",
+      "title": "API Rate Limit 429 Debugging Guide | Buglyst",
+      "sub_questions": [
+        "What best‑practice guidelines exist for HTTP clients when they receive a 429 response with a Retry-After header?"
+      ],
+      "confidence": "high",
+      "span_start": 578,
+      "span_end": 662,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states to wait exactly the duration specified in the Retry-After header.",
+      "trust": "unknown",
+      "created_at": 1794037665.420153,
+      "verified": true
+    },
+    {
+      "id": "ev_0c564141",
+      "claim": "Clients should not ignore the Retry-After header and retry immediately.",
+      "quote": "warningIgnoring Retry-After header and retrying immediately",
+      "url": "https://buglyst.com/learn/guides/api-rate-limit-429-debug",
+      "title": "API Rate Limit 429 Debugging Guide | Buglyst",
+      "sub_questions": [
+        "What best‑practice guidelines exist for HTTP clients when they receive a 429 response with a Retry-After header?"
+      ],
+      "confidence": "high",
+      "span_start": 665,
+      "span_end": 724,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote warns against ignoring the Retry-After header and retrying immediately, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794037665.420177,
+      "verified": true
+    }
+  ]
+}

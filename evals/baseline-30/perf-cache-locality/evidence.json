@@ -1,0 +1,166 @@
+{
+  "generated_at": 1794041053.8664618,
+  "stats": {
+    "findings_seen": 9,
+    "evidence_kept": 8,
+    "duplicates_exact": 1,
+    "duplicates_near": 0,
+    "unverified_quotes": 3,
+    "outside_window": 0,
+    "sources": 4
+  },
+  "evidence": [
+    {
+      "id": "ev_21838be9",
+      "claim": "Two‑dimensional arrays can also be stored in memory using column‑major order, where consecutive elements of a column are contiguous.",
+      "quote": "In row‑major order, the consecutive elements of a row reside next to each other, whereas the same holds true for consecutive elements of a column in column‑major order.",
+      "url": "https://en.wikipedia.org/wiki/Row-_and_column-major_order",
+      "title": "Row- and column-major order - Wikipedia",
+      "sub_questions": [
+        "How are two‑dimensional arrays stored in memory in common programming languages?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794040809.3305588,
+      "verified": false
+    },
+    {
+      "id": "ev_2a30bd88",
+      "claim": "Fortran stores arrays in column‑major order.",
+      "quote": "In Fortran, arrays are stored in column‑major order, while the array indexes are still written row-first (colexicographical access order).",
+      "url": "https://en.wikipedia.org/wiki/Row-_and_column-major_order",
+      "title": "Row- and column-major order - Wikipedia",
+      "sub_questions": [
+        "How are two‑dimensional arrays stored in memory in common programming languages?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794040809.3328354,
+      "verified": false
+    },
+    {
+      "id": "ev_ef78527a",
+      "claim": "Arrays benefit from spatial locality: sequential reads use cache lines and hardware prefetchers.",
+      "quote": "Arrays benefit from spatial locality: sequential reads use cache lines and hardware prefetchers.",
+      "url": "https://ankit-rana.com/logs/18-cpu-caches-spatial-locality/",
+      "title": "CPU Caches and Spatial Locality: Why an Array is 3x Faster Than a Linked List for the Exact Same Big-O Complexity | Ankit Rana",
+      "sub_questions": [
+        "What is spatial locality and how does it relate to CPU cache lines during array traversal?"
+      ],
+      "confidence": "high",
+      "span_start": 565,
+      "span_end": 661,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794040809.3329997,
+      "verified": true
+    },
+    {
+      "id": "ev_2a0dd3d0",
+      "claim": "An array can be ~3x faster than a linked list for the same traversal because of spatial locality and cache line behavior.",
+      "quote": "On modern CPUs, an array can be ~3x faster than a linked list for the same traversal because of spatial locality and cache line behavior.",
+      "url": "https://ankit-rana.com/logs/18-cpu-caches-spatial-locality/",
+      "title": "CPU Caches and Spatial Locality: Why an Array is 3x Faster Than a Linked List for the Exact Same Big-O Complexity | Ankit Rana",
+      "sub_questions": [
+        "What is spatial locality and how does it relate to CPU cache lines during array traversal?"
+      ],
+      "confidence": "high",
+      "span_start": 74,
+      "span_end": 211,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly that an array can be ~3x faster than a linked list for the same traversal because of spatial locality and cache line behavior.",
+      "trust": "unknown",
+      "created_at": 1794040809.3331769,
+      "verified": true
+    },
+    {
+      "id": "ev_07360363",
+      "claim": "Row‑major iteration consumes each cache line almost fully before moving to the next line, providing excellent locality.",
+      "quote": "Modern CPUs fetch memory in cache lines, commonly 64 bytes. With int at 4 bytes, one line holds 16 elements. Row-major iteration through matrix[i][j] with j inner means each fetched line is consumed almost fully before the next line. That is excellent locality.",
+      "url": "https://thelinuxcode.com/performance-analysis-of-row-major-and-column-major-iteration-in-c-what-actually-makes-one-loop-faster/",
+      "title": "Performance Analysis of Row-Major and Column-Major Iteration in C: What Actually Makes One Loop Faster – TheLinuxCode",
+      "sub_questions": [
+        "Why does iterating row by row in a row‑major array improve cache performance compared to column by column?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 612,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that row‑major iteration with j inner consumes each fetched cache line almost fully before moving to the next line, and that this provides excellent locality.",
+      "trust": "unknown",
+      "created_at": 1794040809.3334386,
+      "verified": true
+    },
+    {
+      "id": "ev_bf9cfee7",
+      "claim": "Column‑wise traversal on row‑major storage often touches one element per cache line, wasting most of the fetched data.",
+      "quote": "Column-wise traversal on row-major storage often touches one element per cache line and moves on. You pay for 64 bytes and use 4 bytes right away. The rest may be evicted before reuse.",
+      "url": "https://thelinuxcode.com/performance-analysis-of-row-major-and-column-major-iteration-in-c-what-actually-makes-one-loop-faster/",
+      "title": "Performance Analysis of Row-Major and Column-Major Iteration in C: What Actually Makes One Loop Faster – TheLinuxCode",
+      "sub_questions": [
+        "Why does iterating row by row in a row‑major array improve cache performance compared to column by column?"
+      ],
+      "confidence": "high",
+      "span_start": 1311,
+      "span_end": 1495,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that column‑wise traversal on row‑major storage often touches one element per cache line and wastes most of the fetched data.",
+      "trust": "unknown",
+      "created_at": 1794040809.333649,
+      "verified": true
+    },
+    {
+      "id": "ev_646b41c3",
+      "claim": "Column‑major ordering gives faster column‑wise reductions than row‑major ordering.",
+      "quote": "Reduction operations on columns using column‑major order matrices significantly outperform row‑major order matrices since reading column values from contiguous memory is faster than reading them with strides (hops across memory).",
+      "url": "https://www.modular.com/blog/row-major-vs-column-major-matrices-a-performance-analysis-in-mojo-and-numpy",
+      "title": "Modular: Row-major vs. Column-major Matrices: A Performance Analysis in Mojo and NumPy",
+      "sub_questions": [
+        "What empirical benchmarks exist comparing row‑major versus column‑major iteration speeds?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794040809.3361971,
+      "verified": false
+    },
+    {
+      "id": "ev_aa3124f8",
+      "claim": "Mojo outperforms NumPy in both row‑major and column‑major order on an M2 MacBook Pro.",
+      "quote": "In the red box below, you can see the performance difference on my M2 MacBook Pro using Mojo. In the purple box, you can see that Mojo also outperforms NumPy in both NumPy’s row-major order and column-maj",
+      "url": "https://www.modular.com/blog/row-major-vs-column-major-matrices-a-performance-analysis-in-mojo-and-numpy",
+      "title": "Modular: Row-major vs. Column-major Matrices: A Performance Analysis in Mojo and NumPy",
+      "sub_questions": [
+        "What empirical benchmarks exist comparing row‑major versus column‑major iteration speeds?"
+      ],
+      "confidence": "high",
+      "span_start": 2155,
+      "span_end": 2359,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states Mojo outperforms NumPy in both row‑major and column‑major order on an M2 MacBook Pro.",
+      "trust": "unknown",
+      "created_at": 1794040809.33654,
+      "verified": true
+    }
+  ]
+}

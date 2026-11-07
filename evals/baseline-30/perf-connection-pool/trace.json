@@ -1,0 +1,1623 @@
+{
+  "trace_id": "5f46c2587605",
+  "name": "What problem does a database connection pool solve for a web service, and when does it hurt?",
+  "started_at": "2026-11-07T08:42:03.093486+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "3d685086",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.07,
+      "duration_ms": 128646.14,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "fb99900c",
+      "parent_id": "3d685086",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.17,
+      "duration_ms": 1494.13,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "What problem does a database connection pool solve for a web service, and when does it hurt?",
+        "questions": [
+          {
+            "question": "What specific problem does a database connection pool solve for web services?",
+            "search_query": "database connection pool problem solved"
+          },
+          {
+            "question": "How does connection pooling improve performance and resource usage in web services?",
+            "search_query": "connection pooling performance benefits"
+          },
+          {
+            "question": "What are the main drawbacks or situations where connection pooling can hurt?",
+            "search_query": "connection pool disadvantages"
+          },
+          {
+            "question": "In what specific scenarios or workloads does connection pooling become detrimental?",
+            "search_query": "when not to use connection pool"
+          },
+          {
+            "question": "How can a developer decide whether to use a connection pool for a particular web service?",
+            "search_query": "deciding to use connection pool"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8b024c2b",
+      "parent_id": "fb99900c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 2.73,
+      "duration_ms": 1490.71,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1490.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 584,
+        "completion": 773,
+        "total": 1357,
+        "cost_usd": 0.00011801
+      }
+    },
+    {
+      "id": "d43a26fb",
+      "parent_id": "3d685086",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 1494.38,
+      "duration_ms": 94764.66,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 5,
+        "findings": 9,
+        "sources": 3
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4c4c4343",
+      "parent_id": "d43a26fb",
+      "name": "What specific problem does a database connection pool solve for web se",
+      "kind": "subagent",
+      "start_ms": 1494.48,
+      "duration_ms": 22651.4,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "database connection pool problem solved",
+        "findings": 1,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://www.supportpro.com/blog/database-connection-pool-exhaustion-causes-fixes/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "656618f1",
+      "parent_id": "4c4c4343",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 1494.55,
+      "duration_ms": 1188.9,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1188.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 408,
+        "completion": 74,
+        "total": 482,
+        "cost_usd": 2.186e-05
+      }
+    },
+    {
+      "id": "97332491",
+      "parent_id": "d43a26fb",
+      "name": "How does connection pooling improve performance and resource usage in ",
+      "kind": "subagent",
+      "start_ms": 1496.36,
+      "duration_ms": 29297.04,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "connection pooling performance benefits",
+        "findings": 2,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://en.wikipedia.org/wiki/Connection_pool",
+          "https://khimananda.com/blog/database-connection-pooling-explained"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "e6bde977",
+      "parent_id": "97332491",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 1496.44,
+      "duration_ms": 1865.52,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1865.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 409,
+        "completion": 62,
+        "total": 471,
+        "cost_usd": 2.033e-05
+      }
+    },
+    {
+      "id": "d599e771",
+      "parent_id": "4c4c4343",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 2683.6,
+      "duration_ms": 6708.61,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"database connection pool problem solved\", \"focus\": \"database connection pool problem solved\", \"max_chars\": 4000}",
+        "output_chars": 3917
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "f1933499",
+      "parent_id": "97332491",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 3362.16,
+      "duration_ms": 9419.73,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"connection pooling performance benefits\", \"focus\": \"connection pooling\", \"max_chars\": 2600}",
+        "output_chars": 2624
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "bee97717",
+      "parent_id": "4c4c4343",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 9392.41,
+      "duration_ms": 2274.87,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2274.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 886,
+        "completion": 135,
+        "total": 1021,
+        "cost_usd": 4.413e-05
+      }
+    },
+    {
+      "id": "cb6fe748",
+      "parent_id": "4c4c4343",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 11667.53,
+      "duration_ms": 3410.57,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"database connection pool solves slow connection establishment resource exhaustion\", \"focus\": \"database connection pool solves slow connection establishment resource exhaustion\", \"max_chars\"",
+        "output_chars": 3934
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "173d2fe7",
+      "parent_id": "97332491",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 12782.12,
+      "duration_ms": 1366.91,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1366.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 903,
+        "completion": 98,
+        "total": 1001,
+        "cost_usd": 3.983e-05
+      }
+    },
+    {
+      "id": "c34cf9c3",
+      "parent_id": "97332491",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 14149.29,
+      "duration_ms": 4794.69,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"connection pooling reduces latency CPU memory throughput\", \"focus\": \"connection pooling\", \"max_chars\": 2600}",
+        "output_chars": 2711
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "af21565d",
+      "parent_id": "4c4c4343",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 15078.32,
+      "duration_ms": 3385.24,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3385.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1405,
+        "completion": 255,
+        "total": 1660,
+        "cost_usd": 7.53e-05
+      }
+    },
+    {
+      "id": "880b684a",
+      "parent_id": "4c4c4343",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 18463.74,
+      "duration_ms": 5681.99,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5681.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1187,
+        "completion": 753,
+        "total": 1940,
+        "cost_usd": 0.0001335
+      }
+    },
+    {
+      "id": "205522b2",
+      "parent_id": "97332491",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 18944.16,
+      "duration_ms": 4841.84,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4841.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1486,
+        "completion": 578,
+        "total": 2064,
+        "cost_usd": 0.00011972
+      }
+    },
+    {
+      "id": "92dfbc30",
+      "parent_id": "97332491",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 23786.55,
+      "duration_ms": 7006.69,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7006.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1280,
+        "completion": 821,
+        "total": 2101,
+        "cost_usd": 0.00014513
+      }
+    },
+    {
+      "id": "e1bda87d",
+      "parent_id": "d43a26fb",
+      "name": "What are the main drawbacks or situations where connection pooling can",
+      "kind": "subagent",
+      "start_ms": 24145.99,
+      "duration_ms": 11873.39,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "connection pool disadvantages",
+        "findings": 0,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://en.wikipedia.org/wiki/Connection_pool"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "162183fe",
+      "parent_id": "e1bda87d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 24146.08,
+      "duration_ms": 892.01,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 891.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 405,
+        "completion": 53,
+        "total": 458,
+        "cost_usd": 1.904e-05
+      }
+    },
+    {
+      "id": "37707623",
+      "parent_id": "e1bda87d",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 25038.3,
+      "duration_ms": 5031.05,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"connection pool disadvantages\", \"focus\": \"connection pool disadvantages\", \"max_chars\": 800}",
+        "output_chars": 894
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "24d8c66b",
+      "parent_id": "e1bda87d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 30069.49,
+      "duration_ms": 1796.45,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1796.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 621,
+        "completion": 65,
+        "total": 686,
+        "cost_usd": 2.708e-05
+      }
+    },
+    {
+      "id": "b894e02e",
+      "parent_id": "d43a26fb",
+      "name": "In what specific scenarios or workloads does connection pooling become",
+      "kind": "subagent",
+      "start_ms": 30793.5,
+      "duration_ms": 29031.15,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "when not to use connection pool",
+        "findings": 3,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://en.wikipedia.org/wiki/Connection_pool",
+          "https://khimananda.com/blog/database-connection-pooling-explained"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "604ac704",
+      "parent_id": "b894e02e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 30793.58,
+      "duration_ms": 1546.25,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1546.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 414,
+        "completion": 73,
+        "total": 487,
+        "cost_usd": 2.191e-05
+      }
+    },
+    {
+      "id": "91dd0706",
+      "parent_id": "e1bda87d",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 31866.12,
+      "duration_ms": 5.72,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"connection pool disadvantages\", \"focus\": \"disadvantages\", \"max_chars\": 1200}",
+        "output_chars": 471
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "0c44e21f",
+      "parent_id": "e1bda87d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 31871.96,
+      "duration_ms": 3536.98,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3536.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 797,
+        "completion": 440,
+        "total": 1237,
+        "cost_usd": 8.111e-05
+      }
+    },
+    {
+      "id": "70686f1a",
+      "parent_id": "b894e02e",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 32340.0,
+      "duration_ms": 2829.66,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"when not to use connection pool\", \"focus\": \"connection pooling detrimental scenarios\", \"max_chars\": 4000}",
+        "output_chars": 3971
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "1d8dba92",
+      "parent_id": "b894e02e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 35169.86,
+      "duration_ms": 1732.85,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1732.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 924,
+        "completion": 66,
+        "total": 990,
+        "cost_usd": 3.63e-05
+      }
+    },
+    {
+      "id": "27b55392",
+      "parent_id": "e1bda87d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 35409.12,
+      "duration_ms": 610.12,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 610.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 613,
+        "completion": 264,
+        "total": 877,
+        "cost_usd": 5.271e-05
+      }
+    },
+    {
+      "id": "a9ae7f60",
+      "parent_id": "d43a26fb",
+      "name": "How can a developer decide whether to use a connection pool for a part",
+      "kind": "subagent",
+      "start_ms": 36019.49,
+      "duration_ms": 60239.21,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "deciding to use connection pool",
+        "findings": 3,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://en.wikipedia.org/wiki/Connection_pool"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "9f100e9b",
+      "parent_id": "a9ae7f60",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 36019.59,
+      "duration_ms": 1161.57,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1161.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 415,
+        "completion": 67,
+        "total": 482,
+        "cost_usd": 2.116e-05
+      }
+    },
+    {
+      "id": "a2d9f062",
+      "parent_id": "b894e02e",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 36902.93,
+      "duration_ms": 4729.78,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"connection pooling detrimental scenarios short-lived services low traffic\", \"focus\": \"connection pooling detrimental\", \"max_chars\": 4000}",
+        "output_chars": 3966
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "de87f538",
+      "parent_id": "a9ae7f60",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 37181.37,
+      "duration_ms": 16468.84,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: No results found.",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"deciding to use connection pool guidelines metrics connection latency request rate resource limits\", \"focus\": \"connection pool decision\", \"max_chars\": 4000}",
+        "output_chars": 54
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "7efc2c49",
+      "parent_id": "b894e02e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 41632.88,
+      "duration_ms": 3045.59,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3045.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1490,
+        "completion": 358,
+        "total": 1848,
+        "cost_usd": 9.124e-05
+      }
+    },
+    {
+      "id": "1633c2a0",
+      "parent_id": "b894e02e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 44678.75,
+      "duration_ms": 7916.0,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 7915.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1284,
+        "completion": 1000,
+        "total": 2284,
+        "cost_usd": 0.00016852
+      }
+    },
+    {
+      "id": "47aa421c",
+      "parent_id": "b894e02e",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 52594.86,
+      "duration_ms": 7229.6,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7229.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1287,
+        "completion": 943,
+        "total": 2230,
+        "cost_usd": 0.0001612
+      }
+    },
+    {
+      "id": "58dda6dc",
+      "parent_id": "a9ae7f60",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 53650.35,
+      "duration_ms": 1938.76,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1938.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 488,
+        "completion": 75,
+        "total": 563,
+        "cost_usd": 2.439e-05
+      }
+    },
+    {
+      "id": "1b18ab90",
+      "parent_id": "a9ae7f60",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 55589.31,
+      "duration_ms": 12330.58,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"when to use a connection pool for web service\", \"focus\": \"connection pool decision\", \"max_chars\": 4000}",
+        "output_chars": 3919
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "bab64650",
+      "parent_id": "a9ae7f60",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 67920.08,
+      "duration_ms": 3577.93,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 3577.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1032,
+        "completion": 126,
+        "total": 1158,
+        "cost_usd": 4.734e-05
+      }
+    },
+    {
+      "id": "56333b77",
+      "parent_id": "a9ae7f60",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 71498.31,
+      "duration_ms": 6201.48,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Connection pool decision factors\", \"focus\": \"connection pool decision\", \"max_chars\": 4000}",
+        "output_chars": 3919
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4e6725d2",
+      "parent_id": "a9ae7f60",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 77700.16,
+      "duration_ms": 7736.24,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 7736.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1276,
+        "completion": 1000,
+        "total": 2276,
+        "cost_usd": 0.00016828
+      }
+    },
+    {
+      "id": "670f1898",
+      "parent_id": "a9ae7f60",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 85436.52,
+      "duration_ms": 10821.96,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 10821.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1292,
+        "completion": 1051,
+        "total": 2343,
+        "cost_usd": 0.00017539
+      }
+    },
+    {
+      "id": "3115dc98",
+      "parent_id": "3d685086",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 96259.29,
+      "duration_ms": 9.74,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 9,
+        "evidence_kept": 8,
+        "duplicates_exact": 1,
+        "duplicates_near": 0,
+        "unverified_quotes": 1,
+        "outside_window": 0,
+        "sources": 3
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4ddd8c16",
+      "parent_id": "3d685086",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 96269.37,
+      "duration_ms": 16806.83,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 6,
+          "partial": 1,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 1,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "3568e408",
+      "parent_id": "4ddd8c16",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 96269.95,
+      "duration_ms": 4880.77,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4880.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 327,
+        "completion": 384,
+        "total": 711,
+        "cost_usd": 5.973e-05
+      }
+    },
+    {
+      "id": "6472917a",
+      "parent_id": "4ddd8c16",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 96275.43,
+      "duration_ms": 2683.94,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2683.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 330,
+        "completion": 206,
+        "total": 536,
+        "cost_usd": 3.668e-05
+      }
+    },
+    {
+      "id": "e2e7e8e4",
+      "parent_id": "4ddd8c16",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 96279.15,
+      "duration_ms": 2678.8,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2678.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 326,
+        "completion": 186,
+        "total": 512,
+        "cost_usd": 3.396e-05
+      }
+    },
+    {
+      "id": "e9b3dc2f",
+      "parent_id": "4ddd8c16",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 96282.24,
+      "duration_ms": 4619.22,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4619.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 315,
+        "completion": 387,
+        "total": 702,
+        "cost_usd": 5.976e-05
+      }
+    },
+    {
+      "id": "0dc0bfed",
+      "parent_id": "4ddd8c16",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 98959.57,
+      "duration_ms": 2027.61,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2027.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 318,
+        "completion": 188,
+        "total": 506,
+        "cost_usd": 3.398e-05
+      }
+    },
+    {
+      "id": "667c70ea",
+      "parent_id": "4ddd8c16",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 98962.1,
+      "duration_ms": 2548.2,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2548.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 335,
+        "completion": 157,
+        "total": 492,
+        "cost_usd": 3.046e-05
+      }
+    },
+    {
+      "id": "cc02e9ae",
+      "parent_id": "4ddd8c16",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 100901.78,
+      "duration_ms": 1310.86,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1310.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 326,
+        "completion": 89,
+        "total": 415,
+        "cost_usd": 2.135e-05
+      }
+    },
+    {
+      "id": "2255830b",
+      "parent_id": "4ddd8c16",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 102213.05,
+      "duration_ms": 3592.31,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 3592.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 407,
+        "completion": 500,
+        "total": 907,
+        "cost_usd": 7.721e-05
+      }
+    },
+    {
+      "id": "e6379917",
+      "parent_id": "4ddd8c16",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 105805.44,
+      "duration_ms": 7266.98,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7266.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 436,
+        "completion": 893,
+        "total": 1329,
+        "cost_usd": 0.00012917
+      }
+    },
+    {
+      "id": "f6ef61d4",
+      "parent_id": "3d685086",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 113076.46,
+      "duration_ms": 15569.1,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 504,
+        "citations": 7,
+        "cited_sources": 2,
+        "repaired": true
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "f5b38366",
+      "parent_id": "f6ef61d4",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 113077.11,
+      "duration_ms": 9211.34,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 9211.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 999,
+        "completion": 1231,
+        "total": 2230,
+        "cost_usd": 0.00019
+      }
+    },
+    {
+      "id": "b75609e4",
+      "parent_id": "f6ef61d4",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 122291.21,
+      "duration_ms": 6347.39,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 3600,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 6347.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1815,
+        "completion": 948,
+        "total": 2763,
+        "cost_usd": 0.00017769
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 130826.5,
+    "span_count": 56,
+    "llm_calls": 34,
+    "tool_calls": 11,
+    "errors": 1,
+    "tokens": {
+      "prompt": 26820,
+      "completion": 14299,
+      "total": 41119
+    },
+    "cost_usd": 0.00266347,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 34,
+        "prompt": 26820,
+        "completion": 14299,
+        "total": 41119,
+        "cost_usd": 0.00266347,
+        "priced": true,
+        "duration_ms": 129812.4
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 1,
+        "prompt": 584,
+        "completion": 773,
+        "total": 1357,
+        "cost_usd": 0.00011801
+      },
+      "research": {
+        "calls": 22,
+        "prompt": 20302,
+        "completion": 8357,
+        "total": 28659,
+        "cost_usd": 0.00169547
+      },
+      "verify": {
+        "calls": 9,
+        "prompt": 3120,
+        "completion": 2990,
+        "total": 6110,
+        "cost_usd": 0.0004823
+      },
+      "write": {
+        "calls": 2,
+        "prompt": 2814,
+        "completion": 2179,
+        "total": 4993,
+        "cost_usd": 0.00036769
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 128646.1,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 128644.5,
+        "errors": 0
+      },
+      "llm": {
+        "count": 34,
+        "duration_ms": 129812.4,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 5,
+        "duration_ms": 153092.2,
+        "errors": 0
+      },
+      "tool": {
+        "count": 11,
+        "duration_ms": 71930.7,
+        "errors": 1
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 10822.0
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 9211.3
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7916.0
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7736.2
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7267.0
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "3d685086",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 128646.1
+      },
+      {
+        "id": "f6ef61d4",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 15569.1
+      },
+      {
+        "id": "b75609e4",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 6347.4
+      }
+    ]
+  }
+}

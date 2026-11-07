@@ -1,0 +1,54 @@
+{
+  "item_id": "asyncio-run-entrypoint",
+  "category": "asyncio",
+  "question": "Why should new asyncio code call asyncio.run() instead of asyncio.get_event_loop()?",
+  "ok": true,
+  "error": null,
+  "duration_s": 103.83,
+  "stage_errors": {},
+  "evidence_total": 10,
+  "evidence_verified": 10,
+  "evidence_citable": 9,
+  "evidence_cited": 9,
+  "evidence_unused": 0,
+  "support": {
+    "unsupported": 1,
+    "supported": 7,
+    "partial": 2
+  },
+  "contradictions": 0,
+  "citations": 9,
+  "cited_ids": [
+    "ev_ebb8646e",
+    "ev_b256322c",
+    "ev_27bd95d0",
+    "ev_c98f52e2",
+    "ev_7f46420d",
+    "ev_efc75680",
+    "ev_98204b4c",
+    "ev_5a613ca2",
+    "ev_547f4aab"
+  ],
+  "unsupported_citations": 0,
+  "words": 506,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "event loop"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 25733,
+  "tokens_completion": 17703,
+  "tokens_total": 43436,
+  "cost_usd": 0.00307338,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 6.59,
+    "research": 63.01,
+    "evidence": 0.0,
+    "verify": 27.62,
+    "write": 6.59
+  }
+}

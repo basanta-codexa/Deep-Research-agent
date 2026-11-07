@@ -1,0 +1,53 @@
+{
+  "item_id": "postgres-index-not-used",
+  "category": "databases",
+  "question": "Why does PostgreSQL sometimes choose a sequential scan even when a B-tree index exists on the filtered column?",
+  "ok": true,
+  "error": null,
+  "duration_s": 200.98,
+  "stage_errors": {},
+  "evidence_total": 11,
+  "evidence_verified": 10,
+  "evidence_citable": 10,
+  "evidence_cited": 9,
+  "evidence_unused": 1,
+  "support": {
+    "supported": 6,
+    "partial": 4
+  },
+  "contradictions": 4,
+  "citations": 9,
+  "cited_ids": [
+    "ev_526be5ea",
+    "ev_a7c7ca31",
+    "ev_7f269052",
+    "ev_fcf88b9c",
+    "ev_3fe6aaa8",
+    "ev_928dfc6e",
+    "ev_c27220b5",
+    "ev_ff42cb8f",
+    "ev_94f07f31"
+  ],
+  "unsupported_citations": 0,
+  "words": 434,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "selectivity"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 28232,
+  "tokens_completion": 24332,
+  "tokens_total": 52564,
+  "cost_usd": 0.00401012,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 30.37,
+    "research": 103.43,
+    "evidence": 0.0,
+    "verify": 39.82,
+    "write": 27.36
+  }
+}

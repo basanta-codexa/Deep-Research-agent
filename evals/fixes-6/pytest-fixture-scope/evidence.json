@@ -1,0 +1,128 @@
+{
+  "generated_at": 1794042274.2719388,
+  "stats": {
+    "findings_seen": 6,
+    "evidence_kept": 6,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 2,
+    "outside_window": 0,
+    "sources": 3
+  },
+  "evidence": [
+    {
+      "id": "ev_2c190eb5",
+      "claim": "The possible fixture scopes are function, class, module, package, and session.",
+      "quote": "Possible values for scope are: function, class, module, package or session.",
+      "url": "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+      "title": "How to use fixtures¶",
+      "sub_questions": [
+        "What are the pytest fixture scopes and how do they function?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794042074.2634995,
+      "verified": false
+    },
+    {
+      "id": "ev_edae4567",
+      "claim": "A function‑scoped fixture is destroyed at the end of the test.",
+      "quote": "function: the default scope, the fixture is destroyed at the end of the test.",
+      "url": "https://docs.pyptest.org/en/stable/how-to/fixtures.html",
+      "title": "",
+      "sub_questions": [
+        "What are the pytest fixture scopes and how do they function?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794042074.2635484,
+      "verified": false
+    },
+    {
+      "id": "ev_543e6ff7",
+      "claim": "Pytest caches one instance of a fixture per scope, so a fixture may be invoked more than once in a given scope when parametrized.",
+      "quote": "Pytest only caches one instance of a fixture at a time, which means that when using a parametrized fixture, pytest may invoke a fixture more than once in the given scope.",
+      "url": "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+      "title": "How to use fixtures¶",
+      "sub_questions": [
+        "What are the pytest fixture scopes and how do they function?"
+      ],
+      "confidence": "medium",
+      "span_start": 351,
+      "span_end": 521,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that pytest caches only one instance of a fixture at a time and that a parametrized fixture may be invoked more than once in the given scope, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794042074.2636242,
+      "verified": true
+    },
+    {
+      "id": "ev_55352f27",
+      "claim": "Fixture scope determines how long a fixture’s setup and teardown code is executed in relation to your test functions.",
+      "quote": "The scope determines how long a fixture’s setup and teardown code is executed in relation to your test functions.",
+      "url": "https://pytest-with-eric.com/fixtures/pytest-fixture-scope/",
+      "title": "What Are Pytest Fixture Scopes? (How To Choose The Best Scope For Your Test)",
+      "sub_questions": [
+        "How does fixture scope affect setup cost?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 464,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states the same as the claim.",
+      "trust": "unknown",
+      "created_at": 1794042074.2637155,
+      "verified": true
+    },
+    {
+      "id": "ev_ffb16a47",
+      "claim": "Function scope gives isolation by destroying the fixture after each test.",
+      "quote": "- function: the default scope, the fixture is destroyed at the end of the test.",
+      "url": "https://docs.pytest.org/en/6.2.x/fixture.html",
+      "title": "pytest fixtures: explicit, modular, scalable¶",
+      "sub_questions": [
+        "What are best practices for choosing fixture scopes to balance isolation and setup cost?"
+      ],
+      "confidence": "high",
+      "span_start": 766,
+      "span_end": 845,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that for function scope the fixture is destroyed at the end of the test, which implies isolation after each test.",
+      "trust": "unknown",
+      "created_at": 1794042074.2637415,
+      "verified": true
+    },
+    {
+      "id": "ev_7109c099",
+      "claim": "Using a larger scope such as module or session can reduce setup cost for expensive fixtures like Docker containers.",
+      "quote": "In some cases, you might want to change the scope of the fixture without changing the code. This can be especially useful when dealing with fixtures that need time for setup, like spawning a docker container.",
+      "url": "https://docs.pytest.org/en/6.2.x/fixture.html",
+      "title": "pytest fixtures: explicit, modular, scalable¶",
+      "sub_questions": [
+        "What are best practices for choosing fixture scopes to balance isolation and setup cost?"
+      ],
+      "confidence": "high",
+      "span_start": 1017,
+      "span_end": 1225,
+      "match": "normalized",
+      "support": "partial",
+      "support_reason": "Quote says changing the scope of a fixture is especially useful for time‑consuming setups like Docker containers, but it does not explicitly state that a larger scope reduces setup cost.",
+      "trust": "unknown",
+      "created_at": 1794042074.2650778,
+      "verified": true
+    }
+  ]
+}

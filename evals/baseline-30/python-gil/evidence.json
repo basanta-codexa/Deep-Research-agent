@@ -1,0 +1,147 @@
+{
+  "generated_at": 1794041053.3605795,
+  "stats": {
+    "findings_seen": 7,
+    "evidence_kept": 7,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 1,
+    "outside_window": 0,
+    "sources": 4
+  },
+  "evidence": [
+    {
+      "id": "ev_6d012628",
+      "claim": "The GIL is a mutex that must be held by a thread before accessing Python objects.",
+      "quote": "there’s a global lock, called the global interpreter lock or GIL, that must be held by a thread before accessing Python objects.",
+      "url": "https://docs.python.org/3/c-api/threads.html",
+      "title": "Thread states and the global interpreter lock",
+      "sub_questions": [
+        "What is the CPython Global Interpreter Lock and how does it affect the execution of Python bytecode in multiple threads?"
+      ],
+      "confidence": "high",
+      "span_start": 196,
+      "span_end": 324,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote confirms the GIL must be held before accessing Python objects, but does not explicitly state it is a mutex.",
+      "trust": "primary",
+      "created_at": 1794039075.0222256,
+      "verified": true
+    },
+    {
+      "id": "ev_e5fcb18f",
+      "claim": "The GIL prevents multiple native threads from executing Python bytecode simultaneously.",
+      "quote": "The Global Interpreter Lock (GIL) is a mutex inside CPython that prevents multiple native threads from executing Python bytecode simultaneously.",
+      "url": "https://buglyst.com/learn/guides/python-global-interpreter-lock-debug",
+      "title": "Python GIL Debugging Guide | Buglyst",
+      "sub_questions": [
+        "What is the CPython Global Interpreter Lock and how does it affect the execution of Python bytecode in multiple threads?"
+      ],
+      "confidence": "high",
+      "span_start": 24,
+      "span_end": 168,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that the GIL prevents multiple native threads from executing Python bytecode simultaneously.",
+      "trust": "unknown",
+      "created_at": 1794039075.0223763,
+      "verified": true
+    },
+    {
+      "id": "ev_2afb994f",
+      "claim": "The GIL is released periodically to allow other threads to run.",
+      "quote": "The CPython interpreter releases the GIL periodically (every sys.getswitchinterval() seconds, default 5 ms) to allow other threads to run.",
+      "url": "https://buglyst.com/learn/guides/python-global-interpreter-lock-debug",
+      "title": "Python GIL Debugging Guide | Buglyst",
+      "sub_questions": [
+        "What is the CPython Global Interpreter Lock and how does it affect the execution of Python bytecode in multiple threads?"
+      ],
+      "confidence": "high",
+      "span_start": 1192,
+      "span_end": 1330,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that the CPython interpreter releases the GIL periodically to allow other threads to run.",
+      "trust": "unknown",
+      "created_at": 1794039075.022544,
+      "verified": true
+    },
+    {
+      "id": "ev_b58d6bda",
+      "claim": "The GIL releases itself during blocking input/output (I/O) operations.",
+      "quote": "but it releases itself during blocking input/output (I/O) operations.",
+      "url": "https://salivity.github.io/python/article/python-gil-release-mechanism-in-blocking-i-o",
+      "title": "Python GIL Release Mechanism in Blocking I/O - python",
+      "sub_questions": [
+        "Under what circumstances does the CPython GIL get released, allowing other threads to run concurrently?"
+      ],
+      "confidence": "high",
+      "span_start": 170,
+      "span_end": 239,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that the GIL releases itself during blocking I/O operations.",
+      "trust": "unknown",
+      "created_at": 1794039075.0226238,
+      "verified": true
+    },
+    {
+      "id": "ev_e29a39d8",
+      "claim": "The GIL is released during system calls (read/write) to allow I/O‑bound concurrency.",
+      "quote": "I/O-bound (network/disk): The GIL is released during system calls (read/write). threading/asyncio provide concurrency.",
+      "url": "https://sudonull.com/gil-cpython-how-it-works-and-how-to-bypass-senior",
+      "title": "GIL CPython: how it works and how to bypass senior",
+      "sub_questions": [
+        "How do C extensions and the multiprocessing module interact with the CPython GIL to enable parallel execution?"
+      ],
+      "confidence": "high",
+      "span_start": 802,
+      "span_end": 920,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that the GIL is released during system calls (read/write), which is exactly what the claim asserts.",
+      "trust": "unknown",
+      "created_at": 1794039075.0227363,
+      "verified": true
+    },
+    {
+      "id": "ev_3ab64d95",
+      "claim": "The GIL blocks parallelism for CPU‑bound computations, so multiprocessing can be used to achieve parallel execution.",
+      "quote": "CPU-bound (computations): The GIL blocks parallelism. Use multiprocessing.",
+      "url": "https://sudonull.com/gil-cpython-how-it-works-and-how-to-bypass-senior",
+      "title": "GIL CPython: how it works and how to bypass senior",
+      "sub_questions": [
+        "How do C extensions and the multiprocessing module interact with the CPython GIL to enable parallel execution?"
+      ],
+      "confidence": "high",
+      "span_start": 921,
+      "span_end": 995,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that for CPU‑bound computations the GIL blocks parallelism and recommends using multiprocessing.",
+      "trust": "unknown",
+      "created_at": 1794039075.022834,
+      "verified": true
+    },
+    {
+      "id": "ev_829080dd",
+      "claim": "The GIL blocks parallel execution of Python bytecode but allows parallelism in C extensions such as NumPy.",
+      "quote": "CPU-bound (computations): The GIL blocks parallelism. Use multiprocessing. threading + NumPy = true parallelism. Pure Python in threads does not.",
+      "url": "https://sudonull.com/gil-cpython-how-it-works-and-how-to-bypass-senior",
+      "title": "GIL CPython: how it works and how to bypass senior",
+      "sub_questions": [
+        "Does the CPython GIL prevent all forms of parallelism, or only the parallel execution of Python bytecode?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794039075.0243242,
+      "verified": false
+    }
+  ]
+}

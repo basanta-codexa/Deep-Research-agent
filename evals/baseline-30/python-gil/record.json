@@ -1,0 +1,50 @@
+{
+  "item_id": "python-gil",
+  "category": "python",
+  "question": "Does the CPython GIL prevent all parallelism, or only parallel execution of Python bytecode?",
+  "ok": true,
+  "error": null,
+  "duration_s": 242.14,
+  "stage_errors": {},
+  "evidence_total": 7,
+  "evidence_verified": 6,
+  "evidence_citable": 6,
+  "evidence_cited": 6,
+  "evidence_unused": 0,
+  "support": {
+    "partial": 1,
+    "supported": 5
+  },
+  "contradictions": 0,
+  "citations": 6,
+  "cited_ids": [
+    "ev_6d012628",
+    "ev_e5fcb18f",
+    "ev_2afb994f",
+    "ev_b58d6bda",
+    "ev_e29a39d8",
+    "ev_3ab64d95"
+  ],
+  "unsupported_citations": 0,
+  "words": 397,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "GIL"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 20257,
+  "tokens_completion": 13055,
+  "tokens_total": 33312,
+  "cost_usd": 0.00230486,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 22.26,
+    "research": 192.32,
+    "evidence": 0.0,
+    "verify": 16.99,
+    "write": 10.57
+  }
+}

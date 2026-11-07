@@ -1,0 +1,28 @@
+{
+  "restated": "Explain the distinctions and relationships among iterable, iterator, and generator in Python.",
+  "sub_questions": [
+    {
+      "question": "What is an iterable in Python?",
+      "search_query": "Python iterable definition",
+      "why": "Provides the formal definition, required methods, and typical examples of iterable objects."
+    },
+    {
+      "question": "What is an iterator in Python?",
+      "search_query": "Python iterator definition",
+      "why": "Explains the iterator protocol, the __iter__ and __next__ methods, and how iterators are used."
+    },
+    {
+      "question": "What is a generator in Python?",
+      "search_query": "Python generator definition",
+      "why": "Describes generator functions, generator objects, and how they yield values lazily."
+    },
+    {
+      "question": "How do iterable, iterator, and generator differ and relate to each other?",
+      "search_query": "difference iterable iterator generator",
+      "why": "Summarizes the key distinctions, shows the relationships, and clarifies that generators are a specific type of iterator."
+    }
+  ],
+  "assumptions": [
+    "Python 3.x is being used."
+  ]
+}

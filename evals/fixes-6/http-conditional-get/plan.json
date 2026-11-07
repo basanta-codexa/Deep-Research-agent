@@ -1,0 +1,35 @@
+{
+  "restated": "Explain how the ETag header and the If-None-Match request header enable a client to skip downloading a response body it already has.",
+  "sub_questions": [
+    {
+      "question": "What is the purpose of the ETag header in HTTP responses?",
+      "search_query": "HTTP ETag header purpose",
+      "why": "Provides a unique identifier for a specific version of a resource, which the client can use to detect changes."
+    },
+    {
+      "question": "How does a client use the ETag value in subsequent requests?",
+      "search_query": "client uses ETag in If-None-Match header",
+      "why": "Shows that the client sends the ETag back in an If-None-Match header to ask the server whether the resource has changed."
+    },
+    {
+      "question": "What response does the server send when the ETag matches the current resource?",
+      "search_query": "HTTP 304 Not Modified response",
+      "why": "Indicates that the server returns a 304 status with no body because the cached version is still valid."
+    },
+    {
+      "question": "How does the client interpret a 304 Not Modified response to avoid downloading the body?",
+      "search_query": "HTTP 304 Not Modified client behavior",
+      "why": "Explains that the client uses the cached body and does not request or receive a new response body."
+    },
+    {
+      "question": "Are there any caveats or additional headers involved in this caching mechanism?",
+      "search_query": "ETag If-None-Match caching caveats",
+      "why": "Highlights conditions such as Cache-Control directives, weak vs. strong validators, and situations where the server may still send a body."
+    }
+  ],
+  "assumptions": [
+    "The client has previously cached the resource and stored its ETag.",
+    "The server includes an ETag header in its responses.",
+    "The client follows standard HTTP caching semantics."
+  ]
+}

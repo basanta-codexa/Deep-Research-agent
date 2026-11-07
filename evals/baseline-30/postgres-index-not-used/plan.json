@@ -1,0 +1,30 @@
+{
+  "restated": "Why does PostgreSQL sometimes choose a sequential scan even when a B-tree index exists on the filtered column?",
+  "sub_questions": [
+    {
+      "question": "How does PostgreSQL's query planner decide between performing a sequential scan and using an index scan?",
+      "search_query": "PostgreSQL planner sequential scan vs index scan decision",
+      "why": "Provides an overview of the planner's decision logic and the basic criteria it uses to choose between a sequential scan and an index scan."
+    },
+    {
+      "question": "What factors does the PostgreSQL planner consider when estimating the cost of an index scan versus a sequential scan?",
+      "search_query": "PostgreSQL index scan cost estimation factors",
+      "why": "Explains the cost components (e.g., page fetches, random I/O, selectivity, statistics) that influence the planner's cost calculation for each scan type."
+    },
+    {
+      "question": "What common situations cause PostgreSQL to choose a sequential scan even though a B-tree index exists on the filtered column?",
+      "search_query": "PostgreSQL chooses sequential scan despite index",
+      "why": "Lists typical scenarios such as low selectivity, outdated statistics, functions or expressions on the column, or planner cost parameters that make a sequential scan cheaper."
+    },
+    {
+      "question": "How can a user influence PostgreSQL to use an index scan instead of a sequential scan when appropriate?",
+      "search_query": "PostgreSQL force index scan instead of sequential scan",
+      "why": "Provides practical techniques (e.g., updating statistics, adjusting cost constants, using enable_seqscan, rewriting queries) to steer the planner toward using the index."
+    }
+  ],
+  "assumptions": [
+    "The user is referring to a standard PostgreSQL installation (not a specific fork or extension).",
+    "The B-tree index is on a column directly used in a filter condition (equality or range).",
+    "The query is a typical SELECT statement without complex expressions that would require an expression index."
+  ]
+}

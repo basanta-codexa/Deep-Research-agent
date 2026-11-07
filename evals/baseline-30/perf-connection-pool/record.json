@@ -1,0 +1,51 @@
+{
+  "item_id": "perf-connection-pool",
+  "category": "performance",
+  "question": "What problem does a database connection pool solve for a web service, and when does it hurt?",
+  "ok": true,
+  "error": null,
+  "duration_s": 128.65,
+  "stage_errors": {},
+  "evidence_total": 8,
+  "evidence_verified": 7,
+  "evidence_citable": 7,
+  "evidence_cited": 7,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 6,
+    "partial": 1
+  },
+  "contradictions": 1,
+  "citations": 7,
+  "cited_ids": [
+    "ev_a4113402",
+    "ev_05fe7851",
+    "ev_cd3adc04",
+    "ev_78d6ada7",
+    "ev_80259346",
+    "ev_a75796bf",
+    "ev_bcaf4e02"
+  ],
+  "unsupported_citations": 0,
+  "words": 504,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "connection pool"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 26820,
+  "tokens_completion": 14299,
+  "tokens_total": 41119,
+  "cost_usd": 0.00266347,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 1.49,
+    "research": 94.76,
+    "evidence": 0.01,
+    "verify": 16.81,
+    "write": 15.57
+  }
+}

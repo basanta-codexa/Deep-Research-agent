@@ -1,0 +1,30 @@
+{
+  "restated": "Does the CPython Global Interpreter Lock (GIL) prevent all parallelism, or does it only restrict parallel execution of Python bytecode?",
+  "sub_questions": [
+    {
+      "question": "What is the CPython Global Interpreter Lock and how does it affect the execution of Python bytecode in multiple threads?",
+      "search_query": "CPython GIL execution of Python bytecode threads",
+      "why": "Provides the definition of the GIL and explains that it serializes bytecode execution across threads, establishing the baseline for parallelism restrictions."
+    },
+    {
+      "question": "Under what circumstances does the CPython GIL get released, allowing other threads to run concurrently?",
+      "search_query": "CPython GIL released during I/O blocking calls",
+      "why": "Shows that the GIL is not permanently held; it is released during blocking I/O or long-running C operations, enabling some concurrent activity."
+    },
+    {
+      "question": "How do C extensions and the multiprocessing module interact with the CPython GIL to enable parallel execution?",
+      "search_query": "C extensions release GIL multiprocessing CPython",
+      "why": "Explains that C extensions can explicitly release the GIL and that multiprocessing spawns separate interpreter instances, both providing true parallelism beyond bytecode execution."
+    },
+    {
+      "question": "Does the CPython GIL prevent all forms of parallelism, or only the parallel execution of Python bytecode?",
+      "search_query": "CPython GIL parallelism all forms",
+      "why": "Summarizes the overall impact, confirming that the GIL restricts only Python bytecode execution in threads, while other mechanisms still allow parallelism."
+    }
+  ],
+  "assumptions": [
+    "The question refers to the CPython implementation of Python.",
+    "Parallelism is considered in the context of CPU-bound and I/O-bound operations.",
+    "The user is interested in both thread-based and process-based concurrency."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "restated": "How can I apply a timeout to an awaitable in Python 3.11 without using asyncio.wait_for()?",
+  "sub_questions": [
+    {
+      "question": "What is the asyncio.timeout context manager introduced in Python 3.11 and how is it used to apply a timeout to an awaitable?",
+      "search_query": "asyncio.timeout context manager 3.11",
+      "why": "Provides the official, built‑in mechanism for timing out awaitables in Python 3.11, showing syntax and behavior."
+    },
+    {
+      "question": "How can I use asyncio.wait with a timeout to limit the execution time of an awaitable?",
+      "search_query": "asyncio.wait timeout awaitable example",
+      "why": "Demonstrates an alternative approach that does not rely on asyncio.wait_for(), illustrating how to wait for a single task with a timeout."
+    },
+    {
+      "question": "What is the pattern for creating an asyncio task and cancelling it after a timeout to enforce a timeout on an awaitable?",
+      "search_query": "asyncio create_task cancel after timeout",
+      "why": "Shows a manual method of applying a timeout by scheduling the task and cancelling it when the timeout expires, useful when other methods are unavailable."
+    }
+  ],
+  "assumptions": [
+    "The user is working in a Python 3.11 environment.",
+    "The user wants to avoid using asyncio.wait_for()."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "restated": "Why should passwords be stored with Argon2id or bcrypt instead of a single round of SHA-256?",
+  "sub_questions": [
+    {
+      "question": "What are Argon2id and bcrypt, and how do they differ from SHA-256 in the context of password hashing?",
+      "search_query": "Argon2id bcrypt vs SHA-256 password hashing",
+      "why": "Provides a foundational understanding of the design goals and mechanisms of Argon2id and bcrypt compared to a plain SHA-256 hash."
+    },
+    {
+      "question": "What specific security advantages do Argon2id and bcrypt offer over a single round of SHA-256 for password storage?",
+      "search_query": "security advantages bcrypt Argon2 over SHA-256",
+      "why": "Highlights the resistance to brute‑force, GPU/ASIC, and side‑channel attacks that these functions provide, which SHA‑256 lacks."
+    },
+    {
+      "question": "How do the cost parameters and memory hardness of Argon2id and bcrypt slow down brute‑force attacks compared to a single SHA-256 round?",
+      "search_query": "Argon2 cost parameter memory hardness brute force",
+      "why": "Explains the computational and memory penalties that make password cracking significantly more expensive for attackers."
+    },
+    {
+      "question": "What are the practical implementation guidelines or best practices for using Argon2id or bcrypt in password storage?",
+      "search_query": "implementing Argon2 bcrypt best practices",
+      "why": "Offers actionable advice on configuring parameters, using libraries, and avoiding common pitfalls when deploying these algorithms."
+    }
+  ],
+  "assumptions": [
+    "The user is interested in password storage best practices.",
+    "The comparison is specifically between Argon2id/bcrypt and a single round of SHA-256, not other hash functions."
+  ]
+}

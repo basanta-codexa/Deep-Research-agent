@@ -1,0 +1,204 @@
+{
+  "generated_at": 1794042274.2137566,
+  "stats": {
+    "findings_seen": 10,
+    "evidence_kept": 10,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 7
+  },
+  "evidence": [
+    {
+      "id": "ev_66862de2",
+      "claim": "asyncio.run() is the standard entry point for asynchronous Python programs.",
+      "quote": "asyncio.run() abstracts the complexity of manually managing event loops by handling their creation, execution, and cleanup in a single call.",
+      "url": "https://salivity.github.io/python/article/understanding-asyncio-run-in-python",
+      "title": "Understanding asyncio.run in Python - python",
+      "sub_questions": [
+        "What does the Python documentation recommend for running asyncio programs in Python 3.7 and later?"
+      ],
+      "confidence": "high",
+      "span_start": 175,
+      "span_end": 315,
+      "match": "normalized",
+      "support": "unsupported",
+      "support_reason": "The quote explains that asyncio.run() simplifies event‑loop handling, but it does not state that it is the standard entry point for async programs.",
+      "trust": "unknown",
+      "created_at": 1794041636.5437875,
+      "verified": true
+    },
+    {
+      "id": "ev_27bd95d0",
+      "claim": "asyncio.get_event_loop() is the most common reason an asyncio codebase breaks on Python 3.14.",
+      "quote": "asyncio.get_event_loop() is the most common reason an asyncio codebase breaks on Python 3.14.",
+      "url": "https://www.async-concurrency.com/asyncio-fundamentals-event-loop-architecture/asyncio-version-migration/replacing-get-event-loop-deprecation-warnings/",
+      "title": "Replacing get_event_loop Deprecation Warnings | Python Async",
+      "sub_questions": [
+        "What problems can arise when using asyncio.get_event_loop() in new code?"
+      ],
+      "confidence": "high",
+      "span_start": 47,
+      "span_end": 140,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states the claim verbatim.",
+      "trust": "unknown",
+      "created_at": 1794041636.543855,
+      "verified": true
+    },
+    {
+      "id": "ev_5a613ca2",
+      "claim": "Its behaviour depends on where it is called: inside a running coroutine it returns the running loop on every version, which is why most code never notices.",
+      "quote": "Its behaviour depends on where it is called: inside a running coroutine it returns the running loop on every version, which is why most code never notices.",
+      "url": "https://www.async-concurrency.com/asyncio-fundamentals-event-loop-architecture/asyncio-version-migration/replacing-get-event-loop-deprecation-warnings/",
+      "title": "Replacing get_event_loop Deprecation Warnings | Python Async",
+      "sub_questions": [
+        "What problems can arise when using asyncio.get_event_loop() in new code?"
+      ],
+      "confidence": "high",
+      "span_start": 141,
+      "span_end": 296,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote exactly matches the claim.",
+      "trust": "unknown",
+      "created_at": 1794041636.543923,
+      "verified": true
+    },
+    {
+      "id": "ev_98204b4c",
+      "claim": "asyncio.get_running_loop() strictly raises an error if no loop is running, preventing subtle bugs.",
+      "quote": "Use asyncio.get_running_loop(). This strictly raises an error if no loop is running, preventing subtle bugs.",
+      "url": "https://runebook.dev/en/docs/python/library/asyncio-llapi-index/event-loop-policies",
+      "title": "python - Navigating Asyncio's Low-Level Event Loop Policies: Deprecation and the Path to loop_factory",
+      "sub_questions": [
+        "What problems can arise when using asyncio.get_event_loop() in new code?"
+      ],
+      "confidence": "high",
+      "span_start": 676,
+      "span_end": 784,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that asyncio.get_running_loop() strictly raises an error if no loop is running, preventing subtle bugs.",
+      "trust": "aggregator",
+      "created_at": 1794041636.5439634,
+      "verified": true
+    },
+    {
+      "id": "ev_ebb8646e",
+      "claim": "asyncio.run() owns the loop lifecycle end to end",
+      "quote": "asyncio.run() owns the loop lifecycle end to end",
+      "url": "https://async-concurrency.com/asyncio-fundamentals-event-loop-architecture/event-loop-configuration/when-to-use-asynciorun-vs-looprun_until_complete/",
+      "title": "asyncio.run() vs loop.run_until_complete(): When to Use Each | Python Async",
+      "sub_questions": [
+        "How does asyncio.run handle event loop creation, execution, and cleanup compared to asyncio.get_event_loop()?"
+      ],
+      "confidence": "high",
+      "span_start": 1067,
+      "span_end": 1115,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote literally states that asyncio.run() owns the loop lifecycle end to end.",
+      "trust": "unknown",
+      "created_at": 1794041636.5439897,
+      "verified": true
+    },
+    {
+      "id": "ev_c98f52e2",
+      "claim": "On 3.10+ get_event_loop() without a running loop is deprecated and creates orphaned loops",
+      "quote": "On 3.10+ get_event_loop() without a running loop is deprecated and creates orphaned loops",
+      "url": "https://async-concurrency.com/asyncio-fundamentals-event-loop-architecture/event-loop-configuration/when-to-use-asynciorun-vs-looprun_until_complete/",
+      "title": "asyncio.run() vs loop.run_until_complete(): When to Use Each | Python Async",
+      "sub_questions": [
+        "How does asyncio.run handle event loop creation, execution, and cleanup compared to asyncio.get_event_loop()?"
+      ],
+      "confidence": "high",
+      "span_start": 1494,
+      "span_end": 1583,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly that on 3.10+ get_event_loop() without a running loop is deprecated and creates orphaned loops.",
+      "trust": "unknown",
+      "created_at": 1794041636.5440292,
+      "verified": true
+    },
+    {
+      "id": "ev_b256322c",
+      "claim": "After each asyncio.run() or manual run, loop.is_closed() is True and asyncio.all_tasks(loop) is empty",
+      "quote": "Deterministic cleanup: after each asyncio.run() or manual run, loop.is_closed() is True and asyncio.all_tasks(loop) is empty",
+      "url": "https://async-concurrency.com/asyncio-fundamentals-event-loop-architecture/event-loop-configuration/when-to-use-asynciorun-vs-looprun_until_complete/",
+      "title": "asyncio.run() vs loop.run_until_complete(): When to Use Each | Python Async",
+      "sub_questions": [
+        "How does asyncio.run handle event loop creation, execution, and cleanup compared to asyncio.get_event_loop()?"
+      ],
+      "confidence": "high",
+      "span_start": 1811,
+      "span_end": 1935,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly that after each asyncio.run() or manual run, loop.is_closed() is True and asyncio.all_tasks(loop) is empty.",
+      "trust": "unknown",
+      "created_at": 1794041636.544081,
+      "verified": true
+    },
+    {
+      "id": "ev_7f46420d",
+      "claim": "Using asyncio.get_event_loop() may return a loop that is incompatible with libraries expecting SelectorEventLoop on Windows.",
+      "quote": "If you try to perform certain operations (like running asyncio subprocesses) or use specific third-party libraries that expect the SelectorEventLoop on Windows, you might encounter NotImplementedError or other unexpected behavior.",
+      "url": "https://runebook.dev/en/docs/python/library/asyncio-platforms/all-platforms",
+      "title": "python - Solving Asyncio's Platform Support Issues with Executors and Aiofiles",
+      "sub_questions": [
+        "Are there platform or compatibility concerns with using asyncio.get_event_loop() in modern Python?"
+      ],
+      "confidence": "high",
+      "span_start": 511,
+      "span_end": 741,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote indicates that using libraries expecting SelectorEventLoop on Windows can lead to errors, implying incompatibility.",
+      "trust": "aggregator",
+      "created_at": 1794041636.5441484,
+      "verified": true
+    },
+    {
+      "id": "ev_efc75680",
+      "claim": "The default event loop on Windows changed to ProactorEventLoop in Python 3.8, replacing SelectorEventLoop.",
+      "quote": "This is the default on Windows starting with Python 3.8 (before that, SelectorEventLoop was the default).",
+      "url": "https://runebook.dev/en/docs/python/library/asyncio-platforms/all-platforms",
+      "title": "python - Solving Asyncio's Platform Support Issues with Executors and Aiofiles",
+      "sub_questions": [
+        "Are there platform or compatibility concerns with using asyncio.get_event_loop() in modern Python?"
+      ],
+      "confidence": "high",
+      "span_start": 1720,
+      "span_end": 1825,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "Quote indicates the default changed on Windows starting with Python 3.8, but does not explicitly name ProactorEventLoop.",
+      "trust": "aggregator",
+      "created_at": 1794041636.544197,
+      "verified": true
+    },
+    {
+      "id": "ev_547f4aab",
+      "claim": "Using a selector loop on Windows may cause issues with high‑performance networking.",
+      "quote": "However, be aware this may cause issues with high-performance networking on Windows.",
+      "url": "https://runebook.dev/en/docs/python/library/asyncio-platforms/all-platforms",
+      "title": "python - Solving Asyncio's Platform Support Issues with Executors and Aiofiles",
+      "sub_questions": [
+        "Are there platform or compatibility concerns with using asyncio.get_event_loop() in modern Python?"
+      ],
+      "confidence": "high",
+      "span_start": 962,
+      "span_end": 1046,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote states that something may cause high‑performance networking issues on Windows, but it does not explicitly mention a selector loop or the act of using one.",
+      "trust": "aggregator",
+      "created_at": 1794041636.544245,
+      "verified": true
+    }
+  ]
+}

@@ -1,0 +1,1302 @@
+{
+  "trace_id": "9723e0c7f51e",
+  "name": "What is the difference between a Kubernetes readiness probe and a liveness probe?",
+  "started_at": "2026-11-07T09:11:11.220300+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "2fff2ab5",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.05,
+      "duration_ms": 84029.13,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "68b92be4",
+      "parent_id": "2fff2ab5",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.1,
+      "duration_ms": 8300.98,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "What is the difference between a Kubernetes readiness probe and a liveness probe?",
+        "questions": [
+          {
+            "question": "What is a Kubernetes readiness probe and what is its purpose?",
+            "search_query": "kubernetes readiness probe purpose"
+          },
+          {
+            "question": "What is a Kubernetes liveness probe and what is its purpose?",
+            "search_query": "kubernetes liveness probe purpose"
+          },
+          {
+            "question": "How do readiness and liveness probes differ in terms of behavior and impact on pod lifecycle?",
+            "search_query": "readiness vs liveness probe difference"
+          },
+          {
+            "question": "What are typical configuration differences and common use cases for readiness and liveness probes?",
+            "search_query": "kubernetes readiness liveness probe configuration examples"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4f2fd51f",
+      "parent_id": "68b92be4",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 1.0,
+      "duration_ms": 8299.95,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8299.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 567,
+        "completion": 996,
+        "total": 1563,
+        "cost_usd": 0.00014649
+      }
+    },
+    {
+      "id": "1a81b799",
+      "parent_id": "2fff2ab5",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 8301.27,
+      "duration_ms": 60800.16,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 4,
+        "findings": 9,
+        "sources": 2
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "08f8d8b1",
+      "parent_id": "1a81b799",
+      "name": "What is a Kubernetes readiness probe and what is its purpose?",
+      "kind": "subagent",
+      "start_ms": 8301.49,
+      "duration_ms": 10429.34,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "kubernetes readiness probe purpose",
+        "findings": 2,
+        "sources": 1,
+        "steps": 2,
+        "urls": [
+          "https://kubernetes.io/docs/concepts/workloads/pods/probes/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "75ccf243",
+      "parent_id": "08f8d8b1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 8301.61,
+      "duration_ms": 1007.81,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1007.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 421,
+        "completion": 69,
+        "total": 490,
+        "cost_usd": 2.16e-05
+      }
+    },
+    {
+      "id": "a4595e34",
+      "parent_id": "1a81b799",
+      "name": "What is a Kubernetes liveness probe and what is its purpose?",
+      "kind": "subagent",
+      "start_ms": 8303.12,
+      "duration_ms": 39356.26,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "kubernetes liveness probe purpose",
+        "findings": 2,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+          "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "d852a2d5",
+      "parent_id": "a4595e34",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 8303.2,
+      "duration_ms": 879.89,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 879.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 473,
+        "completion": 70,
+        "total": 543,
+        "cost_usd": 2.329e-05
+      }
+    },
+    {
+      "id": "59edc3b5",
+      "parent_id": "a4595e34",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 9183.26,
+      "duration_ms": 2725.29,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"liveness probe\", \"max_chars\": 300, \"query\": \"kubernetes liveness probe purpose\"}",
+        "output_chars": 497
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "e23cddcb",
+      "parent_id": "08f8d8b1",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 9309.57,
+      "duration_ms": 3359.4,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"kubernetes readiness probe purpose\", \"focus\": \"readiness probe\", \"max_chars\": 2000}",
+        "output_chars": 2035
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "81a44f19",
+      "parent_id": "a4595e34",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 11908.65,
+      "duration_ms": 750.14,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 750.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 627,
+        "completion": 81,
+        "total": 708,
+        "cost_usd": 2.934e-05
+      }
+    },
+    {
+      "id": "0260a107",
+      "parent_id": "a4595e34",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 12659.18,
+      "duration_ms": 8661.46,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"liveness probe purpose\", \"max_chars\": 300, \"query\": \"liveness probe purpose kubernetes\"}",
+        "output_chars": 549
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "67150975",
+      "parent_id": "08f8d8b1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 12669.17,
+      "duration_ms": 1501.56,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1501.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 858,
+        "completion": 179,
+        "total": 1037,
+        "cost_usd": 4.901e-05
+      }
+    },
+    {
+      "id": "6f0caaf9",
+      "parent_id": "08f8d8b1",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 14170.94,
+      "duration_ms": 4559.72,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4559.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 738,
+        "completion": 590,
+        "total": 1328,
+        "cost_usd": 9.884e-05
+      }
+    },
+    {
+      "id": "9f6ab37d",
+      "parent_id": "1a81b799",
+      "name": "How do readiness and liveness probes differ in terms of behavior and i",
+      "kind": "subagent",
+      "start_ms": 18730.9,
+      "duration_ms": 28929.58,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "readiness vs liveness probe difference",
+        "findings": 2,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://kubernetes.io/docs/concepts/workloads/pods/probes/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "0ca369e9",
+      "parent_id": "9f6ab37d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 18730.96,
+      "duration_ms": 1057.16,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1057.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 437,
+        "completion": 51,
+        "total": 488,
+        "cost_usd": 1.974e-05
+      }
+    },
+    {
+      "id": "8dcb98dd",
+      "parent_id": "9f6ab37d",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 19788.21,
+      "duration_ms": 10322.62,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: No results found.",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"readiness vs liveness probe difference\", \"focus\": \"readiness vs liveness probe difference\", \"max_chars\": 4000}",
+        "output_chars": 54
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "2ecbcb63",
+      "parent_id": "a4595e34",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 21320.71,
+      "duration_ms": 573.61,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 573.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 832,
+        "completion": 201,
+        "total": 1033,
+        "cost_usd": 5.109e-05
+      }
+    },
+    {
+      "id": "79f1e074",
+      "parent_id": "a4595e34",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 21894.42,
+      "duration_ms": 8880.37,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"liveness probe\", \"max_chars\": 300, \"query\": \"liveness probe kubernetes liveness probe purpose\"}",
+        "output_chars": 497
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "62804c1c",
+      "parent_id": "9f6ab37d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 30110.91,
+      "duration_ms": 1085.75,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1085.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 547,
+        "completion": 68,
+        "total": 615,
+        "cost_usd": 2.525e-05
+      }
+    },
+    {
+      "id": "9309e4b8",
+      "parent_id": "a4595e34",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 30774.94,
+      "duration_ms": 7480.22,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 7480.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 690,
+        "completion": 1000,
+        "total": 1690,
+        "cost_usd": 0.0001507
+      }
+    },
+    {
+      "id": "d781d85e",
+      "parent_id": "9f6ab37d",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 31196.75,
+      "duration_ms": 7868.35,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"readiness probe vs liveness probe Kubernetes difference\", \"max_chars\": 4000, \"query\": \"readiness probe vs liveness probe Kubernetes difference\"}",
+        "output_chars": 3830
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "85f24d42",
+      "parent_id": "a4595e34",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 38255.26,
+      "duration_ms": 9404.01,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 9403.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 693,
+        "completion": 1076,
+        "total": 1769,
+        "cost_usd": 0.00016067
+      }
+    },
+    {
+      "id": "bde3e896",
+      "parent_id": "9f6ab37d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 39065.17,
+      "duration_ms": 966.48,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 966.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1156,
+        "completion": 233,
+        "total": 1389,
+        "cost_usd": 6.497e-05
+      }
+    },
+    {
+      "id": "c2c4da54",
+      "parent_id": "9f6ab37d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 40031.73,
+      "duration_ms": 7628.33,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 7628.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 875,
+        "completion": 865,
+        "total": 1740,
+        "cost_usd": 0.0001387
+      }
+    },
+    {
+      "id": "ff62b44d",
+      "parent_id": "1a81b799",
+      "name": "What are typical configuration differences and common use cases for re",
+      "kind": "subagent",
+      "start_ms": 47660.59,
+      "duration_ms": 21440.64,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "kubernetes readiness liveness probe configuration examples",
+        "findings": 3,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "3321240b",
+      "parent_id": "ff62b44d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 47660.65,
+      "duration_ms": 1596.3,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1596.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 425,
+        "completion": 57,
+        "total": 482,
+        "cost_usd": 2.016e-05
+      }
+    },
+    {
+      "id": "f5f5ceab",
+      "parent_id": "ff62b44d",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 49257.03,
+      "duration_ms": 1952.31,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"kubernetes readiness liveness probe configuration examples\", \"focus\": \"readiness liveness probe configuration examples\", \"max_chars\": 4000}",
+        "output_chars": 3918
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "73cef0e2",
+      "parent_id": "ff62b44d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 51209.42,
+      "duration_ms": 696.52,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 696.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1087,
+        "completion": 87,
+        "total": 1174,
+        "cost_usd": 4.392e-05
+      }
+    },
+    {
+      "id": "4cb1ace5",
+      "parent_id": "ff62b44d",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 51906.02,
+      "duration_ms": 6486.48,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"readiness probe initial delay timeout failure threshold\", \"max_chars\": 4000, \"query\": \"readiness probe initial delay timeout failure threshold\"}",
+        "output_chars": 3965
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "fce04caa",
+      "parent_id": "ff62b44d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 58392.66,
+      "duration_ms": 1725.4,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1725.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1724,
+        "completion": 434,
+        "total": 2158,
+        "cost_usd": 0.00010814
+      }
+    },
+    {
+      "id": "a969db0f",
+      "parent_id": "ff62b44d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 60118.14,
+      "duration_ms": 6835.9,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 6835.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1443,
+        "completion": 1000,
+        "total": 2443,
+        "cost_usd": 0.00017329
+      }
+    },
+    {
+      "id": "ccd7efbb",
+      "parent_id": "ff62b44d",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 66954.08,
+      "duration_ms": 2147.06,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2147.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1472,
+        "completion": 1474,
+        "total": 2946,
+        "cost_usd": 0.00023578
+      }
+    },
+    {
+      "id": "64d00845",
+      "parent_id": "2fff2ab5",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 69101.53,
+      "duration_ms": 3.4,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 9,
+        "evidence_kept": 9,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 5,
+        "outside_window": 0,
+        "sources": 2
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "e410c768",
+      "parent_id": "2fff2ab5",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 69104.98,
+      "duration_ms": 4816.68,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 4,
+          "partial": 0,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8d419620",
+      "parent_id": "e410c768",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 69105.28,
+      "duration_ms": 960.97,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 960.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 320,
+        "completion": 85,
+        "total": 405,
+        "cost_usd": 2.065e-05
+      }
+    },
+    {
+      "id": "336d4f42",
+      "parent_id": "e410c768",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 69106.04,
+      "duration_ms": 2870.95,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2870.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 337,
+        "completion": 192,
+        "total": 529,
+        "cost_usd": 3.507e-05
+      }
+    },
+    {
+      "id": "48f24729",
+      "parent_id": "e410c768",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 69106.72,
+      "duration_ms": 1152.13,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1152.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 345,
+        "completion": 134,
+        "total": 479,
+        "cost_usd": 2.777e-05
+      }
+    },
+    {
+      "id": "5bc3bcd7",
+      "parent_id": "e410c768",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 69107.24,
+      "duration_ms": 1515.93,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1515.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 326,
+        "completion": 109,
+        "total": 435,
+        "cost_usd": 2.395e-05
+      }
+    },
+    {
+      "id": "ef76da40",
+      "parent_id": "e410c768",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 71977.27,
+      "duration_ms": 1944.22,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1944.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 345,
+        "completion": 313,
+        "total": 658,
+        "cost_usd": 5.104e-05
+      }
+    },
+    {
+      "id": "fe410cff",
+      "parent_id": "2fff2ab5",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 73921.73,
+      "duration_ms": 10107.36,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 486,
+        "citations": 4,
+        "cited_sources": 2,
+        "repaired": true
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "a7bdcfdf",
+      "parent_id": "fe410cff",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 73922.07,
+      "duration_ms": 5094.04,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "reasoning_effort": "low",
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5094.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 968,
+        "completion": 787,
+        "total": 1755,
+        "cost_usd": 0.00013135
+      }
+    },
+    {
+      "id": "4cddbd93",
+      "parent_id": "fe410cff",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 79016.72,
+      "duration_ms": 5010.7,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 3600,
+        "reasoning_effort": "low",
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5010.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1826,
+        "completion": 793,
+        "total": 2619,
+        "cost_usd": 0.00015787
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 84107.5,
+    "span_count": 43,
+    "llm_calls": 25,
+    "tool_calls": 8,
+    "errors": 1,
+    "tokens": {
+      "prompt": 19532,
+      "completion": 10944,
+      "total": 30476
+    },
+    "cost_usd": 0.00200868,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 25,
+        "prompt": 19532,
+        "completion": 10944,
+        "total": 30476,
+        "cost_usd": 0.00200868,
+        "priced": true,
+        "duration_ms": 76744.7
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 1,
+        "prompt": 567,
+        "completion": 996,
+        "total": 1563,
+        "cost_usd": 0.00014649
+      },
+      "research": {
+        "calls": 17,
+        "prompt": 14498,
+        "completion": 7535,
+        "total": 22033,
+        "cost_usd": 0.00141449
+      },
+      "verify": {
+        "calls": 5,
+        "prompt": 1673,
+        "completion": 833,
+        "total": 2506,
+        "cost_usd": 0.00015848
+      },
+      "write": {
+        "calls": 2,
+        "prompt": 2794,
+        "completion": 1580,
+        "total": 4374,
+        "cost_usd": 0.00028922
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 84029.1,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 84028.6,
+        "errors": 0
+      },
+      "llm": {
+        "count": 25,
+        "duration_ms": 76744.7,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 4,
+        "duration_ms": 100155.8,
+        "errors": 0
+      },
+      "tool": {
+        "count": 8,
+        "duration_ms": 50256.3,
+        "errors": 1
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 9404.0
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 8300.0
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7628.3
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 7480.2
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 6835.9
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "2fff2ab5",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 84029.1
+      },
+      {
+        "id": "fe410cff",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 10107.4
+      },
+      {
+        "id": "4cddbd93",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 5010.7
+      }
+    ]
+  }
+}

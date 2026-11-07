@@ -1,0 +1,52 @@
+{
+  "item_id": "python-dataclass-slots",
+  "category": "python",
+  "question": "What does @dataclass(slots=True) change about a class and the memory of its instances?",
+  "ok": true,
+  "error": null,
+  "duration_s": 123.34,
+  "stage_errors": {},
+  "evidence_total": 8,
+  "evidence_verified": 8,
+  "evidence_citable": 8,
+  "evidence_cited": 8,
+  "evidence_unused": 0,
+  "support": {
+    "partial": 3,
+    "supported": 5
+  },
+  "contradictions": 0,
+  "citations": 8,
+  "cited_ids": [
+    "ev_177bfbd4",
+    "ev_4c3cf10a",
+    "ev_3e7d1fe4",
+    "ev_1e4738d2",
+    "ev_6ad47643",
+    "ev_3f81c4ce",
+    "ev_3ab01bde",
+    "ev_1dcbe154"
+  ],
+  "unsupported_citations": 0,
+  "words": 371,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "__slots__"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 21223,
+  "tokens_completion": 15703,
+  "tokens_total": 36926,
+  "cost_usd": 0.00267808,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 1.36,
+    "research": 85.41,
+    "evidence": 0.01,
+    "verify": 26.85,
+    "write": 9.7
+  }
+}

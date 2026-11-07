@@ -1,0 +1,30 @@
+{
+  "restated": "How should an HTTP client handle a 429 response that includes a Retry-After header?",
+  "sub_questions": [
+    {
+      "question": "What is the official meaning of HTTP status code 429 and the Retry-After header?",
+      "search_query": "HTTP 429 Retry-After header semantics",
+      "why": "Provides the RFC-defined purpose of 429 and the Retry-After header, establishing the baseline for client behavior."
+    },
+    {
+      "question": "How does a client parse the Retry-After header value when it can be either a number of seconds or an HTTP-date?",
+      "search_query": "Parsing Retry-After header format seconds date",
+      "why": "Explains the exact parsing rules needed to convert the header into a wait time, which is essential for implementing the wait logic."
+    },
+    {
+      "question": "What best‑practice guidelines exist for HTTP clients when they receive a 429 response with a Retry-After header?",
+      "search_query": "Client best practices handling 429 Retry-After",
+      "why": "Summarizes recommended actions such as respecting the wait time, retrying after the delay, and limiting retry attempts, directly informing the client’s strategy."
+    },
+    {
+      "question": "What should a client do if the Retry-After header is missing, malformed, or indicates a time in the past?",
+      "search_query": "Handling missing or invalid Retry-After header",
+      "why": "Provides fallback strategies (e.g., default backoff, exponential backoff, or giving up) that the client can use when the header cannot be relied upon."
+    }
+  ],
+  "assumptions": [
+    "The client operates over HTTP/1.1 or HTTP/2 and follows RFC 6585.",
+    "The client can parse HTTP headers and perform time calculations.",
+    "The client is allowed to retry requests after the specified delay."
+  ]
+}

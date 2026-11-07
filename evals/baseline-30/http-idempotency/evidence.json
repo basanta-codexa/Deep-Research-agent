@@ -1,0 +1,71 @@
+{
+  "generated_at": 1794041053.064465,
+  "stats": {
+    "findings_seen": 3,
+    "evidence_kept": 3,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 5
+  },
+  "evidence": [
+    {
+      "id": "ev_eb071542",
+      "claim": "An HTTP method is idempotent if the intended effect on the server of making a single request is the same as the effect of making several identical requests.",
+      "quote": "An HTTP method is idempotent if the intended effect on the server of making a single request is the same as the effect of making several identical requests.",
+      "url": "https://developer.mozilla.org/en-US/docs/Glossary/Idempotent",
+      "title": "Idempotent",
+      "sub_questions": [
+        "What does it mean for an HTTP method to be idempotent?"
+      ],
+      "confidence": "high",
+      "span_start": 11,
+      "span_end": 167,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "primary",
+      "created_at": 1794037553.8194473,
+      "verified": true
+    },
+    {
+      "id": "ev_8063d67a",
+      "claim": "All safe methods are idempotent, as well as PUT and DELETE.",
+      "quote": "All safe methods are idempotent, as well as PUT and DELETE.",
+      "url": "https://developer.mozilla.org/en-US/docs/Glossary/Idempotent",
+      "title": "Idempotent",
+      "sub_questions": [
+        "What does it mean for an HTTP method to be idempotent?"
+      ],
+      "confidence": "high",
+      "span_start": 632,
+      "span_end": 691,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states the claim verbatim.",
+      "trust": "primary",
+      "created_at": 1794037553.8194723,
+      "verified": true
+    },
+    {
+      "id": "ev_e4f9e2c6",
+      "claim": "Idempotency is one of the most important concepts when designing reliable HTTP APIs.",
+      "quote": "Idempotency is one of the most important concepts when designing reliable HTTP APIs. It describes what happens when the same request is performed more than once and is especially import",
+      "url": "https://devtoolshub.net/blog/idempotent-http-requests",
+      "title": "DevToolsHub — Free Developer Tools",
+      "sub_questions": [
+        "Why is idempotency important when a client retries a request?"
+      ],
+      "confidence": "high",
+      "span_start": 165,
+      "span_end": 350,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote repeats the claim verbatim.",
+      "trust": "unknown",
+      "created_at": 1794037553.8195124,
+      "verified": true
+    }
+  ]
+}

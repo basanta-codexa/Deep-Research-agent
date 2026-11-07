@@ -1,0 +1,166 @@
+{
+  "generated_at": 1794041052.9551344,
+  "stats": {
+    "findings_seen": 8,
+    "evidence_kept": 8,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 5
+  },
+  "evidence": [
+    {
+      "id": "ev_e83cf6e5",
+      "claim": "asyncio.run() is a high-level asyncio function that developers should typically use.",
+      "quote": "Application developers should typically use the high-level asyncio functions, such as asyncio.run(), and sh",
+      "url": "https://docs.python.org/3/library/asyncio-eventloop.html",
+      "title": "Event loop",
+      "sub_questions": [
+        "What is asyncio.run() and how does it manage the event loop lifecycle?"
+      ],
+      "confidence": "high",
+      "span_start": 243,
+      "span_end": 350,
+      "match": "normalized",
+      "support": "supported",
+      "support_reason": "The quote states that developers should typically use high‑level asyncio functions, such as asyncio.run(), matching the claim.",
+      "trust": "primary",
+      "created_at": 1794037340.0740304,
+      "verified": true
+    },
+    {
+      "id": "ev_6e96f44f",
+      "claim": "Using asyncio.get_event_loop() can lead to errors such as attempting to run an already closed loop.",
+      "quote": "This was prone to errors, like trying to run an already closed loop.",
+      "url": "https://runebook.dev/en/docs/python/library/asyncio-eventloop/event-loop-methods",
+      "title": "Event Loop Essentials: Pitfalls, Alternatives, and Best Practices for Python Asyncio",
+      "sub_questions": [
+        "What problems can arise when using asyncio.get_event_loop() in new code?"
+      ],
+      "confidence": "high",
+      "span_start": 693,
+      "span_end": 761,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "Quote mentions errors such as trying to run an already closed loop, but does not explicitly refer to asyncio.get_event_loop()",
+      "trust": "aggregator",
+      "created_at": 1794037340.0741658,
+      "verified": true
+    },
+    {
+      "id": "ev_70eeb46f",
+      "claim": "asyncio.get_event_loop() is deprecated since Python 3.10 and will raise a RuntimeError if no loop is running.",
+      "quote": "asyncio.get_event_loop() is now deprecated since Python 3.10 when called without a running loop, and is planned to become an alias for get_running_loop() in the future, meaning it will raise a RuntimeError if no loop is running.",
+      "url": "https://runebook.dev/en/docs/python/library/asyncio-llapi-index/obtaining-the-event-loop",
+      "title": "python - Avoiding RuntimeError: Safe Ways to Get the Asyncio Event Loop",
+      "sub_questions": [
+        "What problems can arise when using asyncio.get_event_loop() in new code?"
+      ],
+      "confidence": "high",
+      "span_start": 728,
+      "span_end": 956,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that asyncio.get_event_loop() is deprecated since Python 3.10 and will raise a RuntimeError if no loop is running.",
+      "trust": "aggregator",
+      "created_at": 1794037340.0743244,
+      "verified": true
+    },
+    {
+      "id": "ev_e85cc7c7",
+      "claim": "The implicit creation behavior of asyncio.get_event_loop() is confusing and can cause issues when managing loop lifecycle manually, especially when using asyncio.run().",
+      "quote": "This implicit creation was confusing and often led to issues when trying to manage loop lifecycle manually, especially if another function (like asyncio.run()) was used later.",
+      "url": "https://runebook.dev/en/docs/python/library/asyncio-llapi-index/obtaining-the-event-loop",
+      "title": "python - Avoiding RuntimeError: Safe Ways to Get the Asyncio Event Loop",
+      "sub_questions": [
+        "What problems can arise when using asyncio.get_event_loop() in new code?"
+      ],
+      "confidence": "high",
+      "span_start": 1208,
+      "span_end": 1383,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that the implicit creation was confusing, caused issues when managing loop lifecycle manually, and especially when another function like asyncio.run() was used later.",
+      "trust": "aggregator",
+      "created_at": 1794037340.0744755,
+      "verified": true
+    },
+    {
+      "id": "ev_269648aa",
+      "claim": "Enable asyncio debug mode to ease development.",
+      "quote": "In order to ease the development asyncio has a debug mode.",
+      "url": "https://docs.python.org/3.10/library/asyncio-dev.html",
+      "title": "Developing with asyncio¶",
+      "sub_questions": [
+        "What are the recommended best practices for creating and running asyncio code in Python 3.10+?"
+      ],
+      "confidence": "high",
+      "span_start": 232,
+      "span_end": 290,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that asyncio has a debug mode to ease development, which directly supports the claim that enabling it eases development.",
+      "trust": "primary",
+      "created_at": 1794037340.0745418,
+      "verified": true
+    },
+    {
+      "id": "ev_03870e59",
+      "claim": "Avoid calling blocking CPU‑bound code directly in asyncio.",
+      "quote": "Blocking (CPU-bound) code should not be called directly.",
+      "url": "https://docs.python.org/3.10/library/asyncio-dev.html",
+      "title": "Developing with asyncio¶",
+      "sub_questions": [
+        "What are the recommended best practices for creating and running asyncio code in Python 3.10+?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 407,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that blocking (CPU‑bound) code should not be called directly, matching the claim.",
+      "trust": "primary",
+      "created_at": 1794037340.074616,
+      "verified": true
+    },
+    {
+      "id": "ev_3a361fec",
+      "claim": "Ensure coroutines are awaited to avoid forgotten await pitfalls.",
+      "quote": "asyncio checks for coroutines that were not awaited and logs them; this mitigates the “forgotten await” pitfall.",
+      "url": "https://docs.python.org/3.10/library/asyncio-dev.html",
+      "title": "Developing with asyncio¶",
+      "sub_questions": [
+        "What are the recommended best practices for creating and running asyncio code in Python 3.10+?"
+      ],
+      "confidence": "high",
+      "span_start": 736,
+      "span_end": 848,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that asyncio checks for unawaited coroutines and logs them, mitigating the forgotten‑await pitfall, which supports the claim that ensuring coroutines are awaited avoids such pitfalls.",
+      "trust": "primary",
+      "created_at": 1794037340.07473,
+      "verified": true
+    },
+    {
+      "id": "ev_6d872bae",
+      "claim": "asyncio.get_event_loop() is appropriate when called inside a running coroutine",
+      "quote": "inside a running coroutine it returns the running loop on every version, which is why most code never notices.",
+      "url": "https://www.async-concurrency.com/asyncio-fundamentals-event-loop-architecture/asyncio-version-migration/replacing-get-event-loop-deprecation-warnings/",
+      "title": "Replacing get_event_loop Deprecation Warnings | Python Async",
+      "sub_questions": [
+        "Are there any contexts where asyncio.get_event_loop() remains appropriate?"
+      ],
+      "confidence": "high",
+      "span_start": 186,
+      "span_end": 296,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that inside a running coroutine it returns the running loop on every version, implying it is appropriate to call it there.",
+      "trust": "unknown",
+      "created_at": 1794037340.0748186,
+      "verified": true
+    }
+  ]
+}

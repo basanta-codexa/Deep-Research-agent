@@ -1,0 +1,128 @@
+{
+  "generated_at": 1794041053.5749378,
+  "stats": {
+    "findings_seen": 6,
+    "evidence_kept": 6,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 3,
+    "outside_window": 0,
+    "sources": 5
+  },
+  "evidence": [
+    {
+      "id": "ev_38a7981d",
+      "claim": "Fixture scopes include class, module, package, and session.",
+      "quote": "Scope: sharing fixtures across classes, modules, packages or session",
+      "url": "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+      "title": "How to use fixtures¶",
+      "sub_questions": [
+        "What are the different fixture scopes available in pytest?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 419,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote lists the same fixture scopes—class, module, package, and session—matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794039634.9171054,
+      "verified": true
+    },
+    {
+      "id": "ev_2fa42902",
+      "claim": "The default fixture scope is function, meaning the fixture is destroyed at the end of each test.",
+      "quote": "- function: the default scope, the fixture is destroyed at the end of the test.",
+      "url": "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+      "title": "How to use fixtures¶",
+      "sub_questions": [
+        "What are the different fixture scopes available in pytest?"
+      ],
+      "confidence": "high",
+      "span_start": 514,
+      "span_end": 593,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that the default scope is function and the fixture is destroyed at the end of the test, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794039634.9172149,
+      "verified": true
+    },
+    {
+      "id": "ev_55352f27",
+      "claim": "Fixture scope determines how long a fixture’s setup and teardown code is executed in relation to your test functions.",
+      "quote": "The scope determines how long a fixture’s setup and teardown code is executed in relation to your test functions.",
+      "url": "https://pytest-with-eric.com/fixtures/pytest-fixture-scope/",
+      "title": "What Are Pytest Fixture Scopes? (How To Choose The Best Scope For Your Test)",
+      "sub_questions": [
+        "What is the impact of fixture scope on setup and teardown cost?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 464,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states the same as the claim.",
+      "trust": "unknown",
+      "created_at": 1794039634.917341,
+      "verified": true
+    },
+    {
+      "id": "ev_5bc15d1d",
+      "claim": "Running setup for every test causes a session‑level resource to be rebuilt hundreds of times, increasing cost.",
+      "quote": "First, setUp runs for every test regardless of whether that test needs a fresh database. A session‑level resource (like a database schema) gets rebuilt hundreds of times.",
+      "url": "https://testland.io/blog/pytest-fixtures-guide",
+      "title": "pytest Fixtures: Scopes, Teardown, and Setup",
+      "sub_questions": [
+        "What is the impact of fixture scope on setup and teardown cost?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794039634.919313,
+      "verified": false
+    },
+    {
+      "id": "ev_30f50c8a",
+      "claim": "Fixtures can be shared across classes, modules, packages, or sessions.",
+      "quote": "Scope: sharing fixtures across classes, modules, packages or session¶",
+      "url": "https://docs.pytest.org/en/6.2.x/fixture.html",
+      "title": "pytest fixtures: explicit, modular, scalable¶",
+      "sub_questions": [
+        "What best practices exist for choosing fixture scopes to balance isolation and performance?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794039634.9199574,
+      "verified": false
+    },
+    {
+      "id": "ev_ffb16a47",
+      "claim": "The default fixture scope is function, and the fixture is destroyed at the end of the test.",
+      "quote": "- function: the default scope, the fixture is destroyed at the end of the test.",
+      "url": "https://docs.pytest.org/en/6.2.x/fixture.html",
+      "title": "pytest fixtures: explicit, modular, scalable¶",
+      "sub_questions": [
+        "What best practices exist for choosing fixture scopes to balance isolation and performance?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794039634.9203815,
+      "verified": false
+    }
+  ]
+}

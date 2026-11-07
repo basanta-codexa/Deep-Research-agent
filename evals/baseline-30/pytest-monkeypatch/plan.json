@@ -1,0 +1,29 @@
+{
+  "restated": "When should a pytest test use the monkeypatch fixture instead of unittest.mock.patch?",
+  "sub_questions": [
+    {
+      "question": "What are the key functional differences between pytest's monkeypatch fixture and unittest.mock.patch?",
+      "search_query": "pytest monkeypatch vs unittest.mock.patch difference",
+      "why": "Understanding the core distinctions (e.g., scope, syntax, cleanup) informs when each tool is appropriate."
+    },
+    {
+      "question": "In what typical testing scenarios is pytest's monkeypatch preferred over unittest.mock.patch?",
+      "search_query": "pytest monkeypatch use cases vs mock.patch",
+      "why": "Identifying common use cases (e.g., patching builtins, environment variables, or modules) clarifies practical advantages."
+    },
+    {
+      "question": "What limitations or drawbacks does the pytest monkeypatch fixture have compared to unittest.mock.patch?",
+      "search_query": "limitations of pytest monkeypatch fixture",
+      "why": "Knowing the constraints (e.g., lack of context manager, less fine‑grained control) helps decide when patch is safer."
+    },
+    {
+      "question": "How does the cleanup and scope handling of pytest monkeypatch differ from unittest.mock.patch?",
+      "search_query": "pytest monkeypatch cleanup behavior compared to mock.patch",
+      "why": "Understanding cleanup mechanics ensures tests remain isolated and prevents side effects."
+    }
+  ],
+  "assumptions": [
+    "The user is familiar with both pytest and unittest.mock.",
+    "The question refers to the standard monkeypatch fixture provided by pytest."
+  ]
+}

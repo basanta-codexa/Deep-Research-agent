@@ -22,7 +22,7 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 11b | Live web UI (FastAPI + SSE, citation spotlight) | done |
 | 12 | Ablations | next |
 | 13 | Packaging + CI | |
-| 14 | README with real numbers | |
+| 14 | README with real numbers | done |
 
 See [ROADMAP.md](ROADMAP.md) for the full plan.
 
@@ -92,12 +92,13 @@ env vars win). `.env.example` documents the minimum.
 
 | Var | Default | Meaning |
 | --- | --- | --- |
-| `RA_PROVIDER` | `ollama` | `ollama`, `groq`, or `openai` |
+| `RA_PROVIDER` | `ollama` | `ollama`, `groq`, `openai`, or `openrouter` |
 | `RA_MODEL` | per provider | model name |
 | `RA_JUDGE_MODEL` | per provider | cheaper model for classification calls (support judging); empty = same as `RA_MODEL` |
 | `RA_BASE_URL` | per provider | server URL |
 | `RA_API_KEY` | – | key for hosted providers |
 | `GROQ_API_KEY` | – | used automatically when `RA_PROVIDER=groq` |
+| `OPENROUTER_API_KEY` | – | used automatically when `RA_PROVIDER=openrouter` |
 | `RA_TEMPERATURE` | `0.2` | sampling temperature |
 | `RA_MAX_TOKENS` | provider default | output cap |
 | `RA_THINK` | `false` | stream reasoning tokens (Ollama) |
@@ -141,24 +142,46 @@ Support verdicts are self-judged by default. Before quoting them, replay them
 with a different model: `python -m evals.rejudge evals/runs/<run> --judge-model <model>`.
 It writes a separate `<run>/rejudge/` summary and leaves the original untouched.
 
-### Last run: 10-question sample (`--sample 10 --seed 7`)
+### Baseline: 30 questions (`--all`)
+
+Published artifacts: [`evals/baseline-30/`](evals/baseline-30/).
 
 | | |
 | --- | --- |
-| published | 9/10 reports, 0 errors |
-| claim support (lenient) | 61/61 judged (44 supported, 17 partial, 0 unsupported, 0 contradicted, 1 unjudged) |
-| strict claim support | 44/61 = 72% (partial does not count as supported) |
-| citations | 56, every one citable (precision 1.0) |
-| citation coverage | 90% of citable evidence used |
-| keyword recall | 90% (one report never used the term `Retry-After`) |
+| generation | `openai/gpt-oss-20b` via OpenRouter |
+| published | **24/30** reports, 6 failures |
+| self-judged support (20b) | 95.6% lenient / 81.1% strict |
+| independent re-judge (120b) | **94.0% lenient / 73.1% strict** |
+| 95% CI, strict (120b) | 62.7%-82.2% |
+| verdicts (120b) | 113 supported, 31 partial, 6 unsupported, 0 contradicted |
+| citations | 150 cited claims; 6 judged unsupported by 120b; judge-based precision 97.5% |
+| keyword recall / coverage | 76.7% / 81.3% |
 | misconception hits | 0 |
-| budget | 22,419 tokens and 126 s per question (224,190 total, 21 minutes) |
+| budget | 32,678 tokens, 142 s, $0.0023 per question (71 min, $0.069 total) |
 
-The tenth report is why the eval exists. It typeset citations with full-width
-brackets (`【ev_…】`); the ASCII extractor saw no ids, so it published with zero
-machine-readable citations while every check still passed. Citations are now
-normalised at the boundary and a draft with no ids is a hard `no_citations`
-error, with regression tests on both.
+The independent judge is the headline: **73.1%** of claims were strictly
+supported by the quote the report cited, not the 81.1% the run reports about
+itself. The wide interval is honest: 30 questions can show a large regression,
+not a two-point one.
+
+Six questions failed, and all six are documented rather than dropped: four
+writer empty drafts caused by hidden reasoning consuming the output budget, one
+600 s research timeout caused by an unbounded tool call, and one report whose
+prose went beyond its evidence. The writer now requests low reasoning effort,
+every tool call has a 60 s bound, and `evals.rejudge` skips records with no
+evidence instead of aborting the run.
+
+A targeted rerun of those six with the fixes published **6/6** reports
+([`evals/fixes-6/`](evals/fixes-6/)). The independent 120b judge put strict
+support on that repair set at **86.8%** (73.5%-97.6% CI) over 36 claims, with 2
+unsupported. The repair set is a check that the fixes worked, not a replacement
+for the frozen 30-question baseline.
+
+The earlier 10-question sample is still useful for one reason: it caught the
+full-width-bracket bug. One report typeset `【ev_…】`, the ASCII extractor saw no
+ids, and it shipped with zero machine-readable citations while every check
+passed. Citations are now normalised at the boundary and a draft with no ids is
+a hard `no_citations` error, with regression tests on both.
 
 Reported per run:
 

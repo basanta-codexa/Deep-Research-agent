@@ -1,0 +1,1340 @@
+{
+  "generated_at": "2026-11-07T14:46:14",
+  "source_run": "evals\\runs\\baseline-30",
+  "judge_model": "openai/gpt-oss-120b",
+  "original_summary": {
+    "n": 30,
+    "success_rate": 0.8,
+    "error_rate": 0.2,
+    "support_rate": 0.9555555555555556,
+    "strict_support_rate": 0.810978835978836,
+    "verified_rate": 0.7886604136604137,
+    "citation_precision": 1.0,
+    "citation_coverage": 0.8133333333333332,
+    "keyword_recall": 0.7666666666666667,
+    "misconception_rate": 0.0,
+    "repair_rate": 0.4,
+    "mean_words": 294.23333333333335,
+    "mean_tokens": 32678.466666666667,
+    "p50_tokens": 31512.5,
+    "p90_tokens": 45013.7,
+    "mean_seconds": 141.932,
+    "total_tokens": 980354,
+    "total_seconds": 4258.0,
+    "total_cost_usd": 0.069338,
+    "mean_cost_usd": 0.0023112706666666666,
+    "unpriced_models": [],
+    "unsupported_citations": 0,
+    "contradictions": 7,
+    "verdicts": {
+      "supported": 122,
+      "partial": 26,
+      "unsupported": 2,
+      "contradicted": 0,
+      "unjudged": 0
+    },
+    "by_category": {
+      "asyncio": {
+        "n": 5,
+        "success_rate": 0.8,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.7616666666666666,
+        "mean_tokens": 34135.4
+      },
+      "containers": {
+        "n": 3,
+        "success_rate": 0.6666666666666666,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.7777777777777778,
+        "mean_tokens": 33153.666666666664
+      },
+      "databases": {
+        "n": 4,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.7041666666666666,
+        "mean_tokens": 37819.25
+      },
+      "http": {
+        "n": 4,
+        "success_rate": 0.75,
+        "support_rate": 0.75,
+        "strict_support_rate": 0.75,
+        "mean_tokens": 25323.0
+      },
+      "performance": {
+        "n": 3,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.9523809523809524,
+        "mean_tokens": 31960.666666666668
+      },
+      "python": {
+        "n": 5,
+        "success_rate": 0.8,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.8916666666666666,
+        "mean_tokens": 30485.4
+      },
+      "security": {
+        "n": 3,
+        "success_rate": 0.6666666666666666,
+        "support_rate": 0.8888888888888888,
+        "strict_support_rate": 0.6851851851851851,
+        "mean_tokens": 40174.0
+      },
+      "testing": {
+        "n": 3,
+        "success_rate": 0.6666666666666666,
+        "support_rate": 1.0,
+        "strict_support_rate": 1.0,
+        "mean_tokens": 29605.333333333332
+      }
+    },
+    "ci95": {
+      "success_rate": [
+        0.6667,
+        0.9333
+      ],
+      "support_rate": [
+        0.8778,
+        1.0
+      ],
+      "strict_support_rate": [
+        0.718,
+        0.8922
+      ],
+      "verified_rate": [
+        0.7001,
+        0.8698
+      ],
+      "citation_precision": [
+        1.0,
+        1.0
+      ],
+      "citation_coverage": [
+        0.6767,
+        0.9301
+      ],
+      "keyword_recall": [
+        0.6,
+        0.9
+      ],
+      "misconception_rate": [
+        0.0,
+        0.0
+      ],
+      "mean_tokens": [
+        29242.3608,
+        36521.4092
+      ],
+      "mean_seconds": [
+        114.0634,
+        181.7792
+      ]
+    },
+    "ci": {
+      "method": "cluster bootstrap over questions",
+      "level": 0.95,
+      "iterations": 2000,
+      "seed": 7
+    },
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "timeout_s": 600.0,
+    "resumed": 0,
+    "verify": true,
+    "single_agent": false,
+    "cache": true
+  },
+  "summary": {
+    "n": 30,
+    "success_rate": 0.8,
+    "error_rate": 0.2,
+    "support_rate": 0.9396296296296297,
+    "strict_support_rate": 0.7306613756613757,
+    "verified_rate": 0.7886604136604137,
+    "citation_precision": 0.9745762711864406,
+    "citation_coverage": 0.8133333333333332,
+    "keyword_recall": 0.7666666666666667,
+    "misconception_rate": 0.0,
+    "repair_rate": 0.4,
+    "mean_words": 294.23333333333335,
+    "mean_tokens": 32678.466666666667,
+    "p50_tokens": 31512.5,
+    "p90_tokens": 45013.7,
+    "mean_seconds": 141.932,
+    "total_tokens": 980354,
+    "total_seconds": 4258.0,
+    "total_cost_usd": 0.069338,
+    "mean_cost_usd": 0.0023112706666666666,
+    "unpriced_models": [],
+    "unsupported_citations": 3,
+    "contradictions": 7,
+    "verdicts": {
+      "supported": 113,
+      "partial": 31,
+      "unsupported": 6,
+      "contradicted": 0,
+      "unjudged": 0
+    },
+    "by_category": {
+      "asyncio": {
+        "n": 5,
+        "success_rate": 0.8,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.5966666666666667,
+        "mean_tokens": 34135.4
+      },
+      "containers": {
+        "n": 3,
+        "success_rate": 0.6666666666666666,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.7222222222222223,
+        "mean_tokens": 33153.666666666664
+      },
+      "databases": {
+        "n": 4,
+        "success_rate": 1.0,
+        "support_rate": 0.95,
+        "strict_support_rate": 0.7708333333333334,
+        "mean_tokens": 37819.25
+      },
+      "http": {
+        "n": 4,
+        "success_rate": 0.75,
+        "support_rate": 0.75,
+        "strict_support_rate": 0.6875,
+        "mean_tokens": 25323.0
+      },
+      "performance": {
+        "n": 3,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.9047619047619048,
+        "mean_tokens": 31960.666666666668
+      },
+      "python": {
+        "n": 5,
+        "success_rate": 0.8,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.7,
+        "mean_tokens": 30485.4
+      },
+      "security": {
+        "n": 3,
+        "success_rate": 0.6666666666666666,
+        "support_rate": 0.7962962962962963,
+        "strict_support_rate": 0.6296296296296297,
+        "mean_tokens": 40174.0
+      },
+      "testing": {
+        "n": 3,
+        "success_rate": 0.6666666666666666,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.9444444444444445,
+        "mean_tokens": 29605.333333333332
+      }
+    },
+    "ci95": {
+      "success_rate": [
+        0.6667,
+        0.9333
+      ],
+      "support_rate": [
+        0.8607,
+        0.9896
+      ],
+      "strict_support_rate": [
+        0.6266,
+        0.8221
+      ],
+      "verified_rate": [
+        0.7001,
+        0.8698
+      ],
+      "citation_precision": [
+        0.9358,
+        1.0
+      ],
+      "citation_coverage": [
+        0.6767,
+        0.9301
+      ],
+      "keyword_recall": [
+        0.6,
+        0.9
+      ],
+      "misconception_rate": [
+        0.0,
+        0.0
+      ],
+      "mean_tokens": [
+        29242.3608,
+        36521.4092
+      ],
+      "mean_seconds": [
+        114.0634,
+        181.7792
+      ]
+    },
+    "ci": {
+      "method": "cluster bootstrap over questions",
+      "level": 0.95,
+      "iterations": 2000,
+      "seed": 7
+    },
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-120b",
+    "rejudged_from": "evals\\runs\\baseline-30",
+    "rejudge_usage": {
+      "prompt": 52825,
+      "completion": 30728,
+      "total": 83553
+    },
+    "rejudge_errors": {
+      "http-conditional-get": {
+        "evidence": "missing evidence, record left unchanged: evals\\runs\\baseline-30\\http-conditional-get\\evidence.json"
+      }
+    }
+  },
+  "details": {
+    "asyncio-gather-failure": {
+      "cited_ids": [
+        "ev_d0d93af5",
+        "ev_202fc44f",
+        "ev_bf05479d"
+      ],
+      "support": {
+        "partial": 2,
+        "supported": 1
+      },
+      "verdicts": {
+        "ev_202fc44f": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that an exception in asyncio.gather is propagated to the caller immediately, matching the claim."
+        },
+        "ev_bf05479d": {
+          "verdict": "partial",
+          "reason": "Quote mentions manual cancellation of tasks but does not mention canceling the gather future, so it only supports part of the claim."
+        },
+        "ev_d0d93af5": {
+          "verdict": "partial",
+          "reason": "The quote states that an unhandled exception from a coroutine run by asyncio.gather is propagated to the caller, but it does not specify that this propagation occurs immediately."
+        }
+      },
+      "errors": {}
+    },
+    "asyncio-taskgroup": {
+      "cited_ids": [
+        "ev_bf05479d",
+        "ev_d0d93af5",
+        "ev_5e2df81a",
+        "ev_9ba0f598",
+        "ev_2386c228"
+      ],
+      "support": {
+        "partial": 3,
+        "supported": 2
+      },
+      "verdicts": {
+        "ev_d0d93af5": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that by default asyncio.gather propagates unhandled exceptions to the caller."
+        },
+        "ev_bf05479d": {
+          "verdict": "partial",
+          "reason": "The quote mentions manually cancelling tasks after a failure, supporting the claim that manual cancellation is needed, but it does not state that asyncio.gather() does not automatically cancel remaining tasks."
+        },
+        "ev_5e2df81a": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that after a child task fails, the TaskGroup cancels the remaining workers, waits for them to finish their cleanup, and then raises an ExceptionGroup."
+        },
+        "ev_2386c228": {
+          "verdict": "partial",
+          "reason": "The quote confirms that finally blocks run whether a task returns, raises, or is cancelled, but it does not mention TaskGroup using them."
+        },
+        "ev_9ba0f598": {
+          "verdict": "partial",
+          "reason": "The quote says exceptions are combined into a single group and need not be handled individually, matching the claim's idea, but it does not mention TaskGroup or ExceptionGroup specifically."
+        }
+      },
+      "errors": {}
+    },
+    "asyncio-cancelled-error": {
+      "cited_ids": [
+        "ev_06319c6e",
+        "ev_16177178"
+      ],
+      "support": {
+        "supported": 2
+      },
+      "verdicts": {
+        "ev_16177178": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that CancelledError is a subclass of BaseException rather than Exception, matching the claim."
+        },
+        "ev_06319c6e": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that asyncio.CancelledError is a subclass of Exception (and BaseException), matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "asyncio-timeout-311": {
+      "cited_ids": [
+        "ev_121e7bbb",
+        "ev_780b2ca8"
+      ],
+      "support": {
+        "partial": 1,
+        "supported": 3
+      },
+      "verdicts": {
+        "ev_780b2ca8": {
+          "verdict": "supported",
+          "reason": "The quote exactly matches the claim's example of using asyncio.timeout in an async with block"
+        },
+        "ev_3263573c": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that asyncio.wait_for() waits with a timeout and cancels the task if the timeout elapses, matching the claim."
+        },
+        "ev_8742c0ca": {
+          "verdict": "supported",
+          "reason": "The quote repeats the claim verbatim, stating that if the timeout elapses before completion the task is canceled and an asyncio.TimeoutError is raised (with an extra note about handling)."
+        },
+        "ev_121e7bbb": {
+          "verdict": "partial",
+          "reason": "The quote describes returning an asynchronous context manager that limits waiting time, matching the functionality, but it does not explicitly identify it as asyncio.timeout."
+        }
+      },
+      "errors": {}
+    },
+    "asyncio-run-entrypoint": {
+      "cited_ids": [],
+      "support": {
+        "supported": 4,
+        "partial": 4
+      },
+      "verdicts": {
+        "ev_e83cf6e5": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that asyncio.run() is a high-level asyncio function and that developers should typically use it."
+        },
+        "ev_70eeb46f": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that asyncio.get_event_loop() is deprecated since Python 3.10 when called without a running loop and will raise a RuntimeError if no loop is running."
+        },
+        "ev_e85cc7c7": {
+          "verdict": "supported",
+          "reason": "The quote directly states that the implicit creation was confusing and often caused issues when managing the loop lifecycle manually, especially when another function like asyncio.run() was used later, matching the claim."
+        },
+        "ev_6e96f44f": {
+          "verdict": "partial",
+          "reason": "The quote mentions errors like trying to run an already closed loop, matching part of the claim, but it does not specify asyncio.get_event_loop() as the cause."
+        },
+        "ev_269648aa": {
+          "verdict": "partial",
+          "reason": "The quote states asyncio has a debug mode to ease development, but does not explicitly say that enabling it eases development."
+        },
+        "ev_03870e59": {
+          "verdict": "partial",
+          "reason": "The quote states that blocking (CPU‑bound) code should not be called directly, matching the claim's advice, but it does not mention asyncio, so it only partially supports the claim."
+        },
+        "ev_3a361fec": {
+          "verdict": "supported",
+          "reason": "The quote states that asyncio checks for un-awaited coroutines and logs them, mitigating the forgotten await pitfall, which directly supports the claim to ensure coroutines are awaited."
+        },
+        "ev_6d872bae": {
+          "verdict": "partial",
+          "reason": "The quote describes that get_event_loop returns the running loop inside a coroutine, but does not explicitly state it is appropriate, only implying it works."
+        }
+      },
+      "errors": {}
+    },
+    "http-no-cache": {
+      "cited_ids": [
+        "ev_51efb12f",
+        "ev_b7192485",
+        "ev_3f1b9e90",
+        "ev_a9cecaef"
+      ],
+      "support": {
+        "supported": 4
+      },
+      "verdicts": {
+        "ev_3f1b9e90": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim word for word."
+        },
+        "ev_a9cecaef": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly states that no-cache does not prevent storage, matching the claim."
+        },
+        "ev_b7192485": {
+          "verdict": "supported",
+          "reason": "The quote repeats the claim verbatim, stating that no-cache allows storage with revalidation before each reuse and no-store forbids storage."
+        },
+        "ev_51efb12f": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that a no‑cache response must not be used to satisfy another request without forwarding it for validation, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "http-idempotency": {
+      "cited_ids": [
+        "ev_eb071542",
+        "ev_8063d67a",
+        "ev_e4f9e2c6"
+      ],
+      "support": {
+        "supported": 3
+      },
+      "verdicts": {
+        "ev_e4f9e2c6": {
+          "verdict": "supported",
+          "reason": "The quote contains the exact sentence asserting that idempotency is one of the most important concepts when designing reliable HTTP APIs."
+        },
+        "ev_8063d67a": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that all safe methods are idempotent and that PUT and DELETE are also idempotent."
+        },
+        "ev_eb071542": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim's definition of an idempotent HTTP method."
+        }
+      },
+      "errors": {}
+    },
+    "http-retry-after": {
+      "cited_ids": [
+        "ev_18773bd2",
+        "ev_1904ff8a",
+        "ev_89a827b7",
+        "ev_0c564141"
+      ],
+      "support": {
+        "supported": 3,
+        "partial": 1
+      },
+      "verdicts": {
+        "ev_89a827b7": {
+          "verdict": "supported",
+          "reason": "The quote explicitly says to wait exactly the duration specified in the Retry-After header, matching the claim."
+        },
+        "ev_0c564141": {
+          "verdict": "supported",
+          "reason": "The quote warns against ignoring the Retry-After header and retrying immediately, matching the claim."
+        },
+        "ev_1904ff8a": {
+          "verdict": "supported",
+          "reason": "The quote says the header’s value is a date and refers to the HTTP date format, confirming it can be an HTTP-date."
+        },
+        "ev_18773bd2": {
+          "verdict": "partial",
+          "reason": "Quote defines the integer type but does not mention the header value, so it only partially supports the claim"
+        }
+      },
+      "errors": {}
+    },
+    "http-conditional-get": {
+      "skipped": "missing evidence"
+    },
+    "sqlite-wal": {
+      "cited_ids": [
+        "ev_7ab1f542",
+        "ev_6fa84bc3",
+        "ev_f9842191",
+        "ev_19d23e78",
+        "ev_887e43ab",
+        "ev_6a1fea8a"
+      ],
+      "support": {
+        "supported": 5,
+        "partial": 1
+      },
+      "verdicts": {
+        "ev_7ab1f542": {
+          "verdict": "supported",
+          "reason": "The quoted sentence is identical to the claim, directly stating that WAL provides more concurrency because readers do not block writers and writers do not block readers."
+        },
+        "ev_19d23e78": {
+          "verdict": "supported",
+          "reason": "The quote states exactly the same points as the claim about readers continuing during writer commits and WAL not making SQLite multi-writer"
+        },
+        "ev_6fa84bc3": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that readers can continue operating from the original unaltered database while changes are being committed into the WAL, matching the claim."
+        },
+        "ev_f9842191": {
+          "verdict": "partial",
+          "reason": "The quote confirms that readers and writers do not block each other and can proceed concurrently, supporting the claim's concurrency aspect, but it does not mention the separate log file mechanism."
+        },
+        "ev_6a1fea8a": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that a high wal_autocheckpoint value bloats the WAL during write bursts and a low value thrashes flash endurance, matching the claim."
+        },
+        "ev_887e43ab": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that WAL mode provides concurrent readers and one writer, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "postgres-index-not-used": {
+      "cited_ids": [
+        "ev_526be5ea",
+        "ev_a7c7ca31",
+        "ev_7f269052",
+        "ev_fcf88b9c",
+        "ev_3fe6aaa8",
+        "ev_928dfc6e",
+        "ev_c27220b5",
+        "ev_ff42cb8f",
+        "ev_94f07f31"
+      ],
+      "support": {
+        "supported": 7,
+        "partial": 1,
+        "unsupported": 2
+      },
+      "verdicts": {
+        "ev_526be5ea": {
+          "verdict": "supported",
+          "reason": "The quote explicitly says the decision is deliberate and made by PostgreSQL’s cost‑based query planner, matching the claim."
+        },
+        "ev_7f269052": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that PostgreSQL considers table statistics, cardinality, storage characteristics, and different access methods (including sequential and index scans), matching the claim."
+        },
+        "ev_b495ee7e": {
+          "verdict": "supported",
+          "reason": "The quoted sentence explicitly states that the database will use an Index Scan instead of a Sequential Scan, matching the claim exactly."
+        },
+        "ev_a7c7ca31": {
+          "verdict": "supported",
+          "reason": "The quote states that amcostestimate returns estimates of index access cost and WHERE clause selectivity, which directly matches the claim that the planner uses it for those estimates."
+        },
+        "ev_fcf88b9c": {
+          "verdict": "partial",
+          "reason": "The quote confirms that startup cost is always 0, but it does not address the claim that the planner assumes all pages are read from storage regardless of buffer cache."
+        },
+        "ev_928dfc6e": {
+          "verdict": "supported",
+          "reason": "The quote states that if a table fits in a handful of pages, PostgreSQL will almost always choose a sequential scan, which aligns with the claim that it chooses a sequential scan in that case."
+        },
+        "ev_ff42cb8f": {
+          "verdict": "unsupported",
+          "reason": "The quote says outdated or inaccurate statistics lead to poor planner decisions, but it does not specifically state that PostgreSQL may choose a sequential scan."
+        },
+        "ev_c27220b5": {
+          "verdict": "unsupported",
+          "reason": "The quote only says an index provides little benefit for low‑cardinality columns, but it does not state that PostgreSQL chooses a sequential scan in that case."
+        },
+        "ev_3fe6aaa8": {
+          "verdict": "supported",
+          "reason": "The quote directly states that for small tables or queries returning a large percentage of rows, a sequential scan is preferred, matching the claim that the planner may choose a sequential scan in those cases."
+        },
+        "ev_94f07f31": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that making sequential scans more expensive encourages index usage, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "postgres-mvcc": {
+      "cited_ids": [
+        "ev_c2bd0e63",
+        "ev_43b0c095",
+        "ev_22739613",
+        "ev_cb360b65",
+        "ev_2657dcec",
+        "ev_a9b0c01d",
+        "ev_3cde6fc9",
+        "ev_d476065e",
+        "ev_517387b8",
+        "ev_0937ac2f"
+      ],
+      "support": {
+        "supported": 8,
+        "partial": 2
+      },
+      "verdicts": {
+        "ev_a9b0c01d": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that snapshots determine tuple visibility in a transaction."
+        },
+        "ev_43b0c095": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that in MVCC reading never blocks writing and writing never blocks reading, matching the claim."
+        },
+        "ev_cb360b65": {
+          "verdict": "partial",
+          "reason": "The quote describes the visibility routine but does not mention storing transaction IDs in tuple headers, so it only partially supports the claim."
+        },
+        "ev_2657dcec": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim's wording, stating that tuples have xmin and xmax attributes determining visibility in snapshots and transactions."
+        },
+        "ev_3cde6fc9": {
+          "verdict": "supported",
+          "reason": "The quoted sentence is identical to the claim, directly stating that writers create new row versions that become visible only after the writing transaction commits."
+        },
+        "ev_c2bd0e63": {
+          "verdict": "supported",
+          "reason": "The quote states that each SQL statement sees a snapshot of the database as it existed at a past point in time, matching the claim."
+        },
+        "ev_d476065e": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim word for word."
+        },
+        "ev_517387b8": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that readers see a consistent snapshot of the data as it existed when their transaction began."
+        },
+        "ev_0937ac2f": {
+          "verdict": "partial",
+          "reason": "The quote describes MVCC generally preventing read/write lock conflicts, matching the claim's effect, but it does not mention PostgreSQL specifically, so it only partially supports the claim."
+        },
+        "ev_22739613": {
+          "verdict": "supported",
+          "reason": "The quote states that PostgreSQL maintains the guarantee even at the strictest isolation level using SSI, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "orm-n-plus-one": {
+      "cited_ids": [
+        "ev_ee738915",
+        "ev_cfee8429",
+        "ev_7d231740",
+        "ev_7eb9291b"
+      ],
+      "support": {
+        "partial": 1,
+        "supported": 3
+      },
+      "verdicts": {
+        "ev_7d231740": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that static analysis tools often miss N+1 regressions because they infer execution paths instead of observing runtime behavior."
+        },
+        "ev_cfee8429": {
+          "verdict": "supported",
+          "reason": "The quote states that N+1 select statements are easy to detect in runtime data using traces that Digma automatically collects via OpenTelemetry, directly matching the claim."
+        },
+        "ev_ee738915": {
+          "verdict": "partial",
+          "reason": "The quote states that lazy loading is the root cause of the N+1 problem, matching the claim's cause, but it does not mention the deferral of fetching or the per‑parent query loop detail."
+        },
+        "ev_7eb9291b": {
+          "verdict": "supported",
+          "reason": "The quote explicitly says Digma provides endpoint insights that allow detection and fixing of N+1 queries related to specific endpoints."
+        }
+      },
+      "errors": {}
+    },
+    "python-gil": {
+      "cited_ids": [
+        "ev_6d012628",
+        "ev_e5fcb18f",
+        "ev_2afb994f",
+        "ev_b58d6bda",
+        "ev_e29a39d8",
+        "ev_3ab64d95"
+      ],
+      "support": {
+        "supported": 6
+      },
+      "verdicts": {
+        "ev_e5fcb18f": {
+          "verdict": "supported",
+          "reason": "The quote explicitly says the GIL prevents multiple native threads from executing Python bytecode simultaneously, matching the claim."
+        },
+        "ev_b58d6bda": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that it releases itself during blocking input/output (I/O) operations, matching the claim."
+        },
+        "ev_2afb994f": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that the CPython interpreter releases the GIL periodically to allow other threads to run, matching the claim."
+        },
+        "ev_e29a39d8": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that the GIL is released during system calls (read/write), matching the claim."
+        },
+        "ev_6d012628": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that the GIL is a global lock that must be held by a thread before accessing Python objects, matching the claim."
+        },
+        "ev_3ab64d95": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that the GIL blocks parallelism for CPU‑bound computations and recommends using multiprocessing, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "python-dataclass-slots": {
+      "cited_ids": [
+        "ev_177bfbd4",
+        "ev_4c3cf10a",
+        "ev_3e7d1fe4",
+        "ev_1e4738d2",
+        "ev_6ad47643",
+        "ev_3f81c4ce",
+        "ev_3ab01bde",
+        "ev_1dcbe154"
+      ],
+      "support": {
+        "partial": 4,
+        "supported": 4
+      },
+      "verdicts": {
+        "ev_177bfbd4": {
+          "verdict": "supported",
+          "reason": "The quote states that when slots is true, a __slots__ attribute is present, matching the claim that it is added to the class."
+        },
+        "ev_1dcbe154": {
+          "verdict": "partial",
+          "reason": "The quote says __slots__ uses something like a fixed-width list, supporting the claim about using a fixed-width list, but it does not mention that it replaces a dictionary."
+        },
+        "ev_3ab01bde": {
+          "verdict": "partial",
+          "reason": "The quote mentions that slots reduce object size and are for memory optimisation, but it does not state that __slots__ limits the attributes a class can have."
+        },
+        "ev_3e7d1fe4": {
+          "verdict": "partial",
+          "reason": "Quote says a TypeError is raised if __slots__ is already defined, but it does not mention using slots=True, so it only partially supports the claim."
+        },
+        "ev_1e4738d2": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that passing parameters to a base class __init_subclass__() with slots=True will raise a TypeError, matching the claim."
+        },
+        "ev_6ad47643": {
+          "verdict": "supported",
+          "reason": "The quote directly states the same memory usage ranges for conventional and slotted dataclass instances as the claim."
+        },
+        "ev_3f81c4ce": {
+          "verdict": "partial",
+          "reason": "The quote matches the reduction claim but does not include the condition about dealing with millions of records."
+        },
+        "ev_4c3cf10a": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that field names already in a base class's __slots__ are omitted from the generated __slots__ to prevent overriding, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "python-mutable-default": {
+      "cited_ids": [
+        "ev_9a3fbf47",
+        "ev_49b6147f",
+        "ev_37170da3",
+        "ev_2acbbe67"
+      ],
+      "support": {
+        "supported": 4
+      },
+      "verdicts": {
+        "ev_49b6147f": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim's statement."
+        },
+        "ev_9a3fbf47": {
+          "verdict": "supported",
+          "reason": "The quote explicitly defines default arguments as parameters with predefined values, matching the claim."
+        },
+        "ev_2acbbe67": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that the same list is used for single-argument calls because the default list is modified each time, matching the claim."
+        },
+        "ev_37170da3": {
+          "verdict": "supported",
+          "reason": "The quote directly states that mutable default values can be modified within a function and those modifications will persist across function calls, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "python-iterable-iterator-generator": {
+      "cited_ids": [],
+      "support": {
+        "supported": 4
+      },
+      "verdicts": {
+        "ev_278b6412": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly states that all generators are iterators, matching the claim word for word."
+        },
+        "ev_196cf5eb": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that a generator is another way to create iterators, but in a simpler and more readable manner."
+        },
+        "ev_1f108868": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that a Python iterator is an object used to traverse all elements of a collection one at a time."
+        },
+        "ev_78adf343": {
+          "verdict": "supported",
+          "reason": "The quote exactly matches the claim, stating that an iterator is an object that lets you access items in a sequence one at a time."
+        }
+      },
+      "errors": {}
+    },
+    "python-contextmanager": {
+      "cited_ids": [
+        "ev_e899ed53"
+      ],
+      "support": {
+        "partial": 1
+      },
+      "verdicts": {
+        "ev_e899ed53": {
+          "verdict": "partial",
+          "reason": "Quote states an iterator must yield exactly one value, matching the yield requirement but does not mention @contextmanager, so it only partially supports the claim."
+        }
+      },
+      "errors": {}
+    },
+    "pytest-fixture-scope": {
+      "cited_ids": [
+        "ev_38a7981d",
+        "ev_2fa42902",
+        "ev_55352f27"
+      ],
+      "support": {
+        "supported": 3
+      },
+      "verdicts": {
+        "ev_55352f27": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim that scope determines how long a fixture’s setup and teardown code runs relative to test functions."
+        },
+        "ev_2fa42902": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that 'function' is the default scope and that the fixture is destroyed at the end of the test, matching the claim."
+        },
+        "ev_38a7981d": {
+          "verdict": "supported",
+          "reason": "The quote lists sharing fixtures across classes, modules, packages, or session, matching the claim that fixture scopes include class, module, package, and session."
+        }
+      },
+      "errors": {}
+    },
+    "pytest-monkeypatch": {
+      "cited_ids": [
+        "ev_2a5319f8"
+      ],
+      "support": {
+        "supported": 1
+      },
+      "verdicts": {
+        "ev_2a5319f8": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that monkeypatch.context applies patches only in a specific scope and helps with complex fixtures or stdlib patches, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "pytest-parametrize": {
+      "cited_ids": [
+        "ev_78cc8389",
+        "ev_140fea37",
+        "ev_7bcd3407",
+        "ev_45186d6a",
+        "ev_07c1c3d0",
+        "ev_37dcff4b"
+      ],
+      "support": {
+        "supported": 5,
+        "partial": 1
+      },
+      "verdicts": {
+        "ev_78cc8389": {
+          "verdict": "supported",
+          "reason": "The quote states that pytest.mark.parametrize enables parametrization of arguments for a test function, matching the claim that it defines multiple argument sets."
+        },
+        "ev_45186d6a": {
+          "verdict": "supported",
+          "reason": "The quote shows assigning a parametrize mark to pytestmark, directly demonstrating that parametrize can be applied to a module via pytestmark."
+        },
+        "ev_140fea37": {
+          "verdict": "supported",
+          "reason": "The quote shows the @pytest.mark.parametrize decorator with a comma‑separated argument string and a list of value tuples, matching the claimed syntax pattern."
+        },
+        "ev_7bcd3407": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that pytest will build a string that is the test ID for each set of values."
+        },
+        "ev_37dcff4b": {
+          "verdict": "supported",
+          "reason": "The quote exactly matches the claim, stating that running pytest with --collect-only will show the generated IDs."
+        },
+        "ev_07c1c3d0": {
+          "verdict": "partial",
+          "reason": "The quote says “two according calls” instead of the claim’s “two calls,” so it does not exactly match the claim"
+        }
+      },
+      "errors": {}
+    },
+    "security-ssrf": {
+      "cited_ids": [
+        "ev_f42dcdba",
+        "ev_a6cbb65f",
+        "ev_0f9bec4b",
+        "ev_9f60e45f"
+      ],
+      "support": {
+        "partial": 2,
+        "supported": 2,
+        "unsupported": 2
+      },
+      "verdicts": {
+        "ev_f42dcdba": {
+          "verdict": "supported",
+          "reason": "The quote exactly matches the claim's wording, stating that SSRF lets attackers access internal resources by exploiting the server as a proxy."
+        },
+        "ev_9f60e45f": {
+          "verdict": "partial",
+          "reason": "The quote states that 127.0.0.1 is blocked, supporting the claim's content, but it does not address how common this practice is."
+        },
+        "ev_67cb0dd7": {
+          "verdict": "unsupported",
+          "reason": "The quote only lists the address categories and does not state that ssrf blocks them."
+        },
+        "ev_0f9bec4b": {
+          "verdict": "supported",
+          "reason": "The quote explicitly lists the same private IPv4 ranges and advises rejecting requests to them, matching the claim that SSRF defenses block those ranges."
+        },
+        "ev_db839f6f": {
+          "verdict": "unsupported",
+          "reason": "The quote only lists \"2002::/16, 6to4, RFC 3056\" and does not mention ssrf or any blocking behavior."
+        },
+        "ev_a6cbb65f": {
+          "verdict": "partial",
+          "reason": "Quote repeats the exposure statement but does not specify SSRF as the cause"
+        }
+      },
+      "errors": {}
+    },
+    "security-sql-injection": {
+      "cited_ids": [
+        "ev_1af23e38",
+        "ev_f494c88e",
+        "ev_5011bec3",
+        "ev_e95992d6",
+        "ev_a96ecd98",
+        "ev_8db027f5"
+      ],
+      "support": {
+        "unsupported": 1,
+        "supported": 4,
+        "partial": 1
+      },
+      "verdicts": {
+        "ev_f494c88e": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that the core idea of parameterized queries is to separate SQL statements from parameter values, matching the claim."
+        },
+        "ev_1af23e38": {
+          "verdict": "unsupported",
+          "reason": "The quote only mentions generic string concatenation and does not reference SQL injection attacks or malicious queries."
+        },
+        "ev_5011bec3": {
+          "verdict": "supported",
+          "reason": "The quote explicitly says that user input is treated as a plain string value, preventing additional SQL execution, which matches the claim."
+        },
+        "ev_e95992d6": {
+          "verdict": "partial",
+          "reason": "The quote calls manual escaping fragile but does not state it can fail to prevent injection."
+        },
+        "ev_8db027f5": {
+          "verdict": "supported",
+          "reason": "The quote explicitly says escaping should never be treated as equivalent to parameterization for security, matching the claim."
+        },
+        "ev_a96ecd98": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that manual escaping is fragile and error‑prone, cites different databases and contexts with subtle rules, and notes it’s easy to miss edge cases that attackers can exploit, matching the claim exactly."
+        }
+      },
+      "errors": {}
+    },
+    "security-password-hashing": {
+      "cited_ids": [],
+      "support": {
+        "supported": 8,
+        "unsupported": 1
+      },
+      "verdicts": {
+        "ev_603beedd": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim word for word."
+        },
+        "ev_0b19ddc2": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly repeats the claim word for word."
+        },
+        "ev_192c85fd": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly states the claim."
+        },
+        "ev_c424046d": {
+          "verdict": "supported",
+          "reason": "The quote explicitly describes bcrypt and Argon2id as slow, adaptive password‑hashing algorithms, matching the claim."
+        },
+        "ev_24f12587": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that bcrypt’s security relies on the work factor and that verification time doubles with each increment, matching the claim."
+        },
+        "ev_3047cc1f": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim."
+        },
+        "ev_d604b2ab": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that 2–3 iterations typically translate to ~100–200 ms on a modern CPU."
+        },
+        "ev_77075579": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that memory hardness limits GPU parallelism, allowing far fewer concurrent Argon2id hashes than bcrypt, which directly supports the claim that Argon2id’s memory hardness makes brute‑force slower than bcrypt."
+        },
+        "ev_9f7dc079": {
+          "verdict": "unsupported",
+          "reason": "The quote only shows code calling bcrypt.hash with a cost factor of 12, but does not state that 12 is a recommended cost factor."
+        }
+      },
+      "errors": {}
+    },
+    "docker-layer-cache": {
+      "cited_ids": [
+        "ev_5511add9",
+        "ev_9cf0325e",
+        "ev_9fafe087",
+        "ev_438edf1d"
+      ],
+      "support": {
+        "supported": 2,
+        "partial": 2
+      },
+      "verdicts": {
+        "ev_9cf0325e": {
+          "verdict": "partial",
+          "reason": "Quote mentions differing build args causing cache misses, but does not address env variables, so only part of the claim is supported."
+        },
+        "ev_9fafe087": {
+          "verdict": "partial",
+          "reason": "The quote confirms that a new base image invalidates all downstream layers, but it does not explicitly state that this forces the Dockerfile to rebuild from scratch."
+        },
+        "ev_438edf1d": {
+          "verdict": "supported",
+          "reason": "The quote states that pinning freezes the base image until the digest changes, causing updates to occur on the scheduled bump rather than the next build, matching the claim."
+        },
+        "ev_5511add9": {
+          "verdict": "supported",
+          "reason": "The quote states that a COPY . . early in the Dockerfile changes every build and forces later steps to re-execute, which means it invalidates the cache each build."
+        }
+      },
+      "errors": {}
+    },
+    "docker-multi-stage": {
+      "cited_ids": [
+        "ev_5edd9658",
+        "ev_1a2bf49f",
+        "ev_8b507319",
+        "ev_f5964c3c",
+        "ev_98f9a93e",
+        "ev_ff84d663"
+      ],
+      "support": {
+        "supported": 5,
+        "partial": 1
+      },
+      "verdicts": {
+        "ev_98f9a93e": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that a complete multi-stage Dockerfile for a Create React App React application is provided."
+        },
+        "ev_1a2bf49f": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states the final image contains only what the application needs to run and nothing else, matching the claim."
+        },
+        "ev_8b507319": {
+          "verdict": "supported",
+          "reason": "The quote explicitly repeats the claim's percentages and Node.js size example."
+        },
+        "ev_5edd9658": {
+          "verdict": "supported",
+          "reason": "The quoted sentence is identical to the claim, stating exactly the same information."
+        },
+        "ev_ff84d663": {
+          "verdict": "partial",
+          "reason": "The quote mentions separating build dependencies to ensure only necessary components reach the runtime image, but it does not explicitly state that this reduces size."
+        },
+        "ev_f5964c3c": {
+          "verdict": "supported",
+          "reason": "The quote states Docker caches the dependency layer and that when only code changes, only the application layer (usually <1MB) is rebuilt, matching the claim's assertion."
+        }
+      },
+      "errors": {}
+    },
+    "k8s-probe-types": {
+      "cited_ids": [],
+      "support": {
+        "supported": 5,
+        "partial": 1
+      },
+      "verdicts": {
+        "ev_e9b6a63a": {
+          "verdict": "supported",
+          "reason": "The quote exactly states the claim."
+        },
+        "ev_b36a352c": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that a liveness probe uses an HTTP GET request, directly matching the claim."
+        },
+        "ev_e68e5888": {
+          "verdict": "partial",
+          "reason": "The quote says Kubernetes can restart unhealthy containers based on probe results, which aligns with liveness probes causing restarts, but it does not explicitly mention liveness probes."
+        },
+        "ev_41fe013b": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that a liveness probe uses a TCP socket, matching the claim that it can be implemented using one."
+        },
+        "ev_cdc5077a": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that liveness probes do not wait for readiness probes to succeed."
+        },
+        "ev_899fc8a6": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that traffic is sent to a pod only after a probe succeeds by specifying a readiness probe, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "perf-cache-locality": {
+      "cited_ids": [
+        "ev_07360363",
+        "ev_aa3124f8",
+        "ev_ef78527a",
+        "ev_2a0dd3d0",
+        "ev_bf9cfee7"
+      ],
+      "support": {
+        "supported": 5
+      },
+      "verdicts": {
+        "ev_ef78527a": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that arrays benefit from spatial locality with sequential reads using cache lines and hardware prefetchers."
+        },
+        "ev_2a0dd3d0": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that an array can be ~3x faster than a linked list for the same traversal due to spatial locality and cache line behavior, matching the claim."
+        },
+        "ev_07360363": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that row‑major iteration consumes each fetched cache line almost fully before moving to the next line and calls this excellent locality, matching the claim."
+        },
+        "ev_bf9cfee7": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that column-wise traversal on row-major storage often touches one element per cache line, using only a small part of the fetched 64‑byte line and discarding the rest, which matches the claim about wasting most of the fetched data."
+        },
+        "ev_aa3124f8": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that Mojo outperforms NumPy in both row‑major and column‑major order on an M2 MacBook Pro."
+        }
+      },
+      "errors": {}
+    },
+    "perf-benchmark-clock": {
+      "cited_ids": [
+        "ev_56b95061",
+        "ev_8a6ce41b",
+        "ev_8a22f902",
+        "ev_7354fbfd",
+        "ev_1d3064da"
+      ],
+      "support": {
+        "supported": 5
+      },
+      "verdicts": {
+        "ev_8a22f902": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that it provides the highest available resolution for performance measurement, matching the claim."
+        },
+        "ev_56b95061": {
+          "verdict": "supported",
+          "reason": "The quoted sentence states exactly the same claim about time.time() providing seconds and fractions of a second and being possibly insufficient for profiling very short code segments."
+        },
+        "ev_8a6ce41b": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that time.time() is appropriate for longer execution times (seconds) and not suitable for short execution times less than a second or 500 ms, matching the claim."
+        },
+        "ev_1d3064da": {
+          "verdict": "supported",
+          "reason": "The quote states that perf_counter() is called before and after the loop, matching the claim that it should be called before and after a code block to measure execution time."
+        },
+        "ev_7354fbfd": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that it is accurate for short durations, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "perf-connection-pool": {
+      "cited_ids": [
+        "ev_a4113402",
+        "ev_05fe7851",
+        "ev_cd3adc04",
+        "ev_78d6ada7",
+        "ev_80259346",
+        "ev_a75796bf",
+        "ev_bcaf4e02"
+      ],
+      "support": {
+        "partial": 2,
+        "supported": 5
+      },
+      "verdicts": {
+        "ev_05fe7851": {
+          "verdict": "supported",
+          "reason": "The quote states exactly that reusing existing TCP sessions eliminates handshake overhead and enforces a hard concurrency ceiling that protects the backend."
+        },
+        "ev_bcaf4e02": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that serverless functions create/destroy connections too rapidly for direct pooling to be viable, matching the claim."
+        },
+        "ev_a4113402": {
+          "verdict": "partial",
+          "reason": "The quote states the same effect—reducing overhead and improving performance and scalability—but does not mention connection pooling, the subject of the claim."
+        },
+        "ev_cd3adc04": {
+          "verdict": "supported",
+          "reason": "The quote directly repeats the claim that reusing established connections can still offer performance benefits in high-throughput scenarios by avoiding connection creation overhead."
+        },
+        "ev_78d6ada7": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim word for word."
+        },
+        "ev_a75796bf": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that legacy apps needing temp tables or cursors get no connection reuse benefit and should avoid pooling, matching the claim."
+        },
+        "ev_80259346": {
+          "verdict": "partial",
+          "reason": "Quote says 'Session mode defeats the purpose of pooling...' but omits the word 'pooling' after 'Session mode' as in the claim"
+        }
+      },
+      "errors": {}
+    }
+  },
+  "errors": {
+    "http-conditional-get": {
+      "evidence": "missing evidence, record left unchanged: evals\\runs\\baseline-30\\http-conditional-get\\evidence.json"
+    }
+  }
+}

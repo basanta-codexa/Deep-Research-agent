@@ -1,0 +1,30 @@
+{
+  "restated": "Why should new asyncio code use asyncio.run() instead of asyncio.get_event_loop()?",
+  "sub_questions": [
+    {
+      "question": "What does the Python documentation recommend for running asyncio programs in Python 3.7 and later?",
+      "search_query": "asyncio.run recommended usage",
+      "why": "Provides the official recommendation that asyncio.run is the preferred entry point for asyncio programs."
+    },
+    {
+      "question": "What problems can arise when using asyncio.get_event_loop() in new code?",
+      "search_query": "asyncio.get_event_loop deprecation issues",
+      "why": "Highlights the pitfalls, deprecation warnings, and potential bugs associated with get_event_loop in modern Python."
+    },
+    {
+      "question": "How does asyncio.run handle event loop creation, execution, and cleanup compared to asyncio.get_event_loop()?",
+      "search_query": "asyncio.run event loop lifecycle",
+      "why": "Explains the differences in lifecycle management, ensuring proper cleanup and avoiding resource leaks."
+    },
+    {
+      "question": "Are there platform or compatibility concerns with using asyncio.get_event_loop() in modern Python?",
+      "search_query": "asyncio.get_event_loop cross platform issues",
+      "why": "Shows how get_event_loop can behave inconsistently across platforms, leading to hard‑to‑debug issues."
+    }
+  ],
+  "assumptions": [
+    "The question refers to Python 3.7 and newer.",
+    "New asyncio code means code written after the introduction of asyncio.run.",
+    "The discussion focuses on the standard library, not third‑party event loop implementations."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "restated": "Which HTTP methods are idempotent, and why does idempotency matter when a client retries a request?",
+  "sub_questions": [
+    {
+      "question": "What does it mean for an HTTP method to be idempotent?",
+      "search_query": "HTTP method idempotent definition",
+      "why": "Provides the formal definition of idempotency in the context of HTTP, explaining that repeated identical requests produce the same result without additional side effects."
+    },
+    {
+      "question": "Which HTTP methods are considered idempotent according to the HTTP specification?",
+      "search_query": "idempotent HTTP methods list",
+      "why": "Gives the specific methods (GET, HEAD, PUT, DELETE, OPTIONS, TRACE) that are defined as idempotent, allowing the answer to list them."
+    },
+    {
+      "question": "Why is idempotency important when a client retries a request?",
+      "search_query": "idempotency importance retry HTTP",
+      "why": "Explains how idempotent methods enable safe retries without unintended side effects, ensuring consistent client-server state."
+    }
+  ],
+  "assumptions": [
+    "Assuming the HTTP/1.1 specification as the reference for idempotent methods."
+  ]
+}

@@ -1,0 +1,519 @@
+{
+  "generated_at": "2026-11-07T14:45:05",
+  "source_run": "evals\\runs\\fixes-6",
+  "judge_model": "openai/gpt-oss-120b",
+  "original_summary": {
+    "n": 6,
+    "success_rate": 1.0,
+    "error_rate": 0.0,
+    "support_rate": 0.9833333333333334,
+    "strict_support_rate": 0.8845238095238095,
+    "verified_rate": 0.8148148148148149,
+    "citation_precision": 1.0,
+    "citation_coverage": 1.0,
+    "keyword_recall": 1.0,
+    "misconception_rate": 0.0,
+    "repair_rate": 0.5,
+    "mean_words": 496.0,
+    "mean_tokens": 34553.0,
+    "p50_tokens": 30846.0,
+    "p90_tokens": 43637.5,
+    "mean_seconds": 123.64166666666667,
+    "total_tokens": 207318,
+    "total_seconds": 741.9,
+    "total_cost_usd": 0.014272,
+    "mean_cost_usd": 0.0023787066666666667,
+    "unpriced_models": [],
+    "unsupported_citations": 0,
+    "contradictions": 0,
+    "verdicts": {
+      "supported": 31,
+      "partial": 4,
+      "unsupported": 1,
+      "contradicted": 0,
+      "unjudged": 0
+    },
+    "by_category": {
+      "asyncio": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 0.9,
+        "strict_support_rate": 0.7,
+        "mean_tokens": 43436.0
+      },
+      "containers": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 1.0,
+        "mean_tokens": 30476.0
+      },
+      "http": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 1.0,
+        "mean_tokens": 31216.0
+      },
+      "python": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 1.0,
+        "mean_tokens": 30418.0
+      },
+      "security": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.8571428571428571,
+        "mean_tokens": 43839.0
+      },
+      "testing": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.75,
+        "mean_tokens": 27933.0
+      }
+    },
+    "ci95": {
+      "success_rate": [
+        1.0,
+        1.0
+      ],
+      "support_rate": [
+        0.95,
+        1.0
+      ],
+      "strict_support_rate": [
+        0.775,
+        0.9762
+      ],
+      "verified_rate": [
+        0.6296,
+        0.963
+      ],
+      "citation_precision": [
+        1.0,
+        1.0
+      ],
+      "citation_coverage": [
+        1.0,
+        1.0
+      ],
+      "keyword_recall": [
+        1.0,
+        1.0
+      ],
+      "misconception_rate": [
+        0.0,
+        0.0
+      ],
+      "mean_tokens": [
+        29865.0917,
+        39373.6667
+      ],
+      "mean_seconds": [
+        82.43,
+        189.1317
+      ]
+    },
+    "ci": {
+      "method": "cluster bootstrap over questions",
+      "level": 0.95,
+      "iterations": 2000,
+      "seed": 7
+    },
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "timeout_s": 600.0,
+    "resumed": 5,
+    "verify": true,
+    "single_agent": false,
+    "cache": true
+  },
+  "summary": {
+    "n": 6,
+    "success_rate": 1.0,
+    "error_rate": 0.0,
+    "support_rate": 0.9666666666666667,
+    "strict_support_rate": 0.8678571428571429,
+    "verified_rate": 0.8148148148148149,
+    "citation_precision": 0.9714285714285714,
+    "citation_coverage": 1.0,
+    "keyword_recall": 1.0,
+    "misconception_rate": 0.0,
+    "repair_rate": 0.5,
+    "mean_words": 496.0,
+    "mean_tokens": 34553.0,
+    "p50_tokens": 30846.0,
+    "p90_tokens": 43637.5,
+    "mean_seconds": 123.64166666666667,
+    "total_tokens": 207318,
+    "total_seconds": 741.9,
+    "total_cost_usd": 0.014272,
+    "mean_cost_usd": 0.0023787066666666667,
+    "unpriced_models": [],
+    "unsupported_citations": 1,
+    "contradictions": 0,
+    "verdicts": {
+      "supported": 30,
+      "partial": 4,
+      "unsupported": 2,
+      "contradicted": 0,
+      "unjudged": 0
+    },
+    "by_category": {
+      "asyncio": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 0.8,
+        "strict_support_rate": 0.6,
+        "mean_tokens": 43436.0
+      },
+      "containers": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 1.0,
+        "mean_tokens": 30476.0
+      },
+      "http": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 1.0,
+        "mean_tokens": 31216.0
+      },
+      "python": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 1.0,
+        "mean_tokens": 30418.0
+      },
+      "security": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.8571428571428571,
+        "mean_tokens": 43839.0
+      },
+      "testing": {
+        "n": 1,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.75,
+        "mean_tokens": 27933.0
+      }
+    },
+    "ci95": {
+      "success_rate": [
+        1.0,
+        1.0
+      ],
+      "support_rate": [
+        0.9,
+        1.0
+      ],
+      "strict_support_rate": [
+        0.7345,
+        0.9762
+      ],
+      "verified_rate": [
+        0.6296,
+        0.963
+      ],
+      "citation_precision": [
+        0.9286,
+        1.0
+      ],
+      "citation_coverage": [
+        1.0,
+        1.0
+      ],
+      "keyword_recall": [
+        1.0,
+        1.0
+      ],
+      "misconception_rate": [
+        0.0,
+        0.0
+      ],
+      "mean_tokens": [
+        29865.0917,
+        39373.6667
+      ],
+      "mean_seconds": [
+        82.43,
+        189.1317
+      ]
+    },
+    "ci": {
+      "method": "cluster bootstrap over questions",
+      "level": 0.95,
+      "iterations": 2000,
+      "seed": 7
+    },
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-120b",
+    "rejudged_from": "evals\\runs\\fixes-6",
+    "rejudge_usage": {
+      "prompt": 12623,
+      "completion": 6846,
+      "total": 19469
+    },
+    "rejudge_errors": {}
+  },
+  "details": {
+    "asyncio-run-entrypoint": {
+      "cited_ids": [
+        "ev_ebb8646e",
+        "ev_b256322c",
+        "ev_27bd95d0",
+        "ev_c98f52e2",
+        "ev_7f46420d",
+        "ev_efc75680",
+        "ev_98204b4c",
+        "ev_5a613ca2",
+        "ev_547f4aab"
+      ],
+      "support": {
+        "unsupported": 2,
+        "supported": 6,
+        "partial": 2
+      },
+      "verdicts": {
+        "ev_98204b4c": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that asyncio.get_running_loop() strictly raises an error if no loop is running, preventing subtle bugs, matching the claim."
+        },
+        "ev_27bd95d0": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly repeats the claim word for word."
+        },
+        "ev_5a613ca2": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim word for word."
+        },
+        "ev_66862de2": {
+          "verdict": "unsupported",
+          "reason": "The quote explains what asyncio.run() does but does not state that it is the standard entry point for asynchronous programs."
+        },
+        "ev_ebb8646e": {
+          "verdict": "supported",
+          "reason": "The quoted sentence is identical to the claim, directly stating that asyncio.run() owns the loop lifecycle end to end."
+        },
+        "ev_c98f52e2": {
+          "verdict": "supported",
+          "reason": "The quoted sentence is identical to the claim, directly stating that on Python 3.10+ get_event_loop() without a running loop is deprecated and creates orphaned loops."
+        },
+        "ev_b256322c": {
+          "verdict": "supported",
+          "reason": "The quote explicitly repeats the claim that after each asyncio.run() or manual run, loop.is_closed() is True and asyncio.all_tasks(loop) is empty."
+        },
+        "ev_efc75680": {
+          "verdict": "partial",
+          "reason": "Quote notes the default changed on Windows in Python 3.8 and that SelectorEventLoop was previously default, but it does not explicitly state that the new default is ProactorEventLoop."
+        },
+        "ev_7f46420d": {
+          "verdict": "unsupported",
+          "reason": "The quote mentions errors when using libraries that expect SelectorEventLoop on Windows, but it does not state that asyncio.get_event_loop() may return an incompatible loop."
+        },
+        "ev_547f4aab": {
+          "verdict": "partial",
+          "reason": "The quote warns of possible high‑performance networking issues on Windows, but it does not mention a selector loop, which is required to fully support the claim."
+        }
+      },
+      "errors": {}
+    },
+    "http-conditional-get": {
+      "cited_ids": [
+        "ev_50d59a27",
+        "ev_d23a0014",
+        "ev_b07458c6",
+        "ev_53389b72"
+      ],
+      "support": {
+        "supported": 4
+      },
+      "verdicts": {
+        "ev_50d59a27": {
+          "verdict": "supported",
+          "reason": "The quote says that because the ETag matches, a 304 response is returned, directly matching the claim."
+        },
+        "ev_d23a0014": {
+          "verdict": "supported",
+          "reason": "The quote states the response has no body and tells the client to reuse its stored representation, matching the claim."
+        },
+        "ev_53389b72": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating the same condition and required headers for a 304 response."
+        },
+        "ev_b07458c6": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that a 304 response includes the Cache‑Control, Content‑Location, Date, ETag, Expires, and Vary headers, matching the claim."
+        }
+      },
+      "errors": {}
+    },
+    "python-iterable-iterator-generator": {
+      "cited_ids": [
+        "ev_2a739c6e",
+        "ev_512ae709",
+        "ev_1f108868",
+        "ev_d3b55a6d",
+        "ev_0dee7505",
+        "ev_67a6025a",
+        "ev_6e32ffa9"
+      ],
+      "support": {
+        "supported": 7
+      },
+      "verdicts": {
+        "ev_2a739c6e": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim, stating that an iterable is an object whose elements can be accessed one at a time."
+        },
+        "ev_512ae709": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim word for word."
+        },
+        "ev_1f108868": {
+          "verdict": "supported",
+          "reason": "The quote exactly repeats the claim's wording, stating that a Python iterator is an object used to traverse all elements of a collection one at a time."
+        },
+        "ev_d3b55a6d": {
+          "verdict": "supported",
+          "reason": "The quote directly states that a generator function returns an iterator object, uses yield to produce a series of results over time, pauses after each yield, and maintains its state between iterations, matching the claim exactly."
+        },
+        "ev_0dee7505": {
+          "verdict": "supported",
+          "reason": "The quoted sentence is identical to the claim, stating exactly the same information."
+        },
+        "ev_6e32ffa9": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim's wording."
+        },
+        "ev_67a6025a": {
+          "verdict": "supported",
+          "reason": "The quoted sentence directly repeats the claim word for word, stating that every iterator is an iterable but not every iterable is an iterator in Python."
+        }
+      },
+      "errors": {}
+    },
+    "pytest-fixture-scope": {
+      "cited_ids": [
+        "ev_55352f27",
+        "ev_ffb16a47",
+        "ev_7109c099",
+        "ev_543e6ff7"
+      ],
+      "support": {
+        "supported": 3,
+        "partial": 1
+      },
+      "verdicts": {
+        "ev_55352f27": {
+          "verdict": "supported",
+          "reason": "The quote directly states that the scope determines how long a fixture’s setup and teardown code runs relative to test functions, matching the claim word for word."
+        },
+        "ev_ffb16a47": {
+          "verdict": "supported",
+          "reason": "The quote states that the function scope destroys the fixture at the end of the test, matching the claim that it provides isolation by destroying the fixture after each test."
+        },
+        "ev_543e6ff7": {
+          "verdict": "supported",
+          "reason": "The quote explicitly says pytest caches one fixture instance at a time, leading to multiple invocations per scope when parametrized, matching the claim."
+        },
+        "ev_7109c099": {
+          "verdict": "partial",
+          "reason": "The quote says changing a fixture's scope can be useful for time‑intensive fixtures like Docker containers, but it does not explicitly state that using a larger scope reduces setup cost."
+        }
+      },
+      "errors": {}
+    },
+    "security-password-hashing": {
+      "cited_ids": [
+        "ev_94bf6c9c",
+        "ev_98dc42d8",
+        "ev_ee006dc3",
+        "ev_2e6464de",
+        "ev_6523b248",
+        "ev_fe02f354",
+        "ev_0625e3b4"
+      ],
+      "support": {
+        "supported": 6,
+        "partial": 1
+      },
+      "verdicts": {
+        "ev_6523b248": {
+          "verdict": "supported",
+          "reason": "The quote explicitly says Argon2id balances resistance to side‑channel attacks with resistance to time‑memory trade‑offs, matching the claim."
+        },
+        "ev_fe02f354": {
+          "verdict": "supported",
+          "reason": "The quote states that salting does nothing about raw speed, directly supporting the claim that salting does not mitigate SHA‑256's speed issue."
+        },
+        "ev_94bf6c9c": {
+          "verdict": "supported",
+          "reason": "The quote directly states that Argon2 uses configurable memory per operation and that attackers must supply that memory and bandwidth for each parallel guess, increasing cost, matching the claim exactly."
+        },
+        "ev_0625e3b4": {
+          "verdict": "partial",
+          "reason": "The quote states SHA‑256 was designed to be fast and that speed benefits attackers, supporting the claim’s core point, but it does not mention the specific claim that attackers can compute billions of hashes per second."
+        },
+        "ev_ee006dc3": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that bcrypt's key feature is a configurable work factor that controls how slow the hashing is, matching the claim."
+        },
+        "ev_98dc42d8": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that Argon2id is memory-hard, requires dedicated RAM bandwidth per hash, and effectively paralyzes GPU and ASIC parallel brute-force clusters, matching the claim."
+        },
+        "ev_2e6464de": {
+          "verdict": "supported",
+          "reason": "The quote directly states that modern GPUs can calculate over 20 billion SHA‑256 hashes per second, matching the claim’s performance assertion."
+        }
+      },
+      "errors": {}
+    },
+    "k8s-probe-types": {
+      "cited_ids": [
+        "ev_f8f62343",
+        "ev_d6c3c347",
+        "ev_76ce46c3",
+        "ev_4a1ba020"
+      ],
+      "support": {
+        "supported": 4
+      },
+      "verdicts": {
+        "ev_f8f62343": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that a probe is a diagnostic performed periodically by the kubelet on a container."
+        },
+        "ev_76ce46c3": {
+          "verdict": "supported",
+          "reason": "The quote explicitly states that readiness probes are configured similarly to liveness probes and that the only difference is using the readinessProbe field instead of the livenessProbe field, matching the claim."
+        },
+        "ev_d6c3c347": {
+          "verdict": "supported",
+          "reason": "The quote says the kubelet keeps the container running and sets the pod's Ready condition to false, matching the claim that a failed readiness probe does not restart the container but marks the pod as not ready."
+        },
+        "ev_4a1ba020": {
+          "verdict": "supported",
+          "reason": "The quoted sentence exactly matches the claim, stating that a pod with containers not ready does not receive traffic through Services."
+        }
+      },
+      "errors": {}
+    }
+  },
+  "errors": {}
+}

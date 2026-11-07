@@ -1,0 +1,48 @@
+{
+  "item_id": "pytest-fixture-scope",
+  "category": "testing",
+  "question": "How do pytest fixture scopes affect test isolation and setup cost?",
+  "ok": true,
+  "error": null,
+  "duration_s": 67.63,
+  "stage_errors": {},
+  "evidence_total": 6,
+  "evidence_verified": 4,
+  "evidence_citable": 4,
+  "evidence_cited": 4,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 3,
+    "partial": 1
+  },
+  "contradictions": 0,
+  "citations": 4,
+  "cited_ids": [
+    "ev_55352f27",
+    "ev_ffb16a47",
+    "ev_7109c099",
+    "ev_543e6ff7"
+  ],
+  "unsupported_citations": 0,
+  "words": 543,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "scope"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 18771,
+  "tokens_completion": 9162,
+  "tokens_total": 27933,
+  "cost_usd": 0.00175419,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 6.0,
+    "research": 41.43,
+    "evidence": 0.0,
+    "verify": 8.1,
+    "write": 12.1
+  }
+}

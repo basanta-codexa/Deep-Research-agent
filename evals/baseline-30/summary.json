@@ -1,0 +1,1922 @@
+{
+  "summary": {
+    "n": 30,
+    "success_rate": 0.8,
+    "error_rate": 0.2,
+    "support_rate": 0.9555555555555556,
+    "strict_support_rate": 0.810978835978836,
+    "verified_rate": 0.7886604136604137,
+    "citation_precision": 1.0,
+    "citation_coverage": 0.8133333333333332,
+    "keyword_recall": 0.7666666666666667,
+    "misconception_rate": 0.0,
+    "repair_rate": 0.4,
+    "mean_words": 294.23333333333335,
+    "mean_tokens": 32678.466666666667,
+    "p50_tokens": 31512.5,
+    "p90_tokens": 45013.7,
+    "mean_seconds": 141.932,
+    "total_tokens": 980354,
+    "total_seconds": 4258.0,
+    "total_cost_usd": 0.069338,
+    "mean_cost_usd": 0.0023112706666666666,
+    "unpriced_models": [],
+    "unsupported_citations": 0,
+    "contradictions": 7,
+    "verdicts": {
+      "supported": 122,
+      "partial": 26,
+      "unsupported": 2,
+      "contradicted": 0,
+      "unjudged": 0
+    },
+    "by_category": {
+      "asyncio": {
+        "n": 5,
+        "success_rate": 0.8,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.7616666666666666,
+        "mean_tokens": 34135.4
+      },
+      "containers": {
+        "n": 3,
+        "success_rate": 0.6666666666666666,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.7777777777777778,
+        "mean_tokens": 33153.666666666664
+      },
+      "databases": {
+        "n": 4,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.7041666666666666,
+        "mean_tokens": 37819.25
+      },
+      "http": {
+        "n": 4,
+        "success_rate": 0.75,
+        "support_rate": 0.75,
+        "strict_support_rate": 0.75,
+        "mean_tokens": 25323.0
+      },
+      "performance": {
+        "n": 3,
+        "success_rate": 1.0,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.9523809523809524,
+        "mean_tokens": 31960.666666666668
+      },
+      "python": {
+        "n": 5,
+        "success_rate": 0.8,
+        "support_rate": 1.0,
+        "strict_support_rate": 0.8916666666666666,
+        "mean_tokens": 30485.4
+      },
+      "security": {
+        "n": 3,
+        "success_rate": 0.6666666666666666,
+        "support_rate": 0.8888888888888888,
+        "strict_support_rate": 0.6851851851851851,
+        "mean_tokens": 40174.0
+      },
+      "testing": {
+        "n": 3,
+        "success_rate": 0.6666666666666666,
+        "support_rate": 1.0,
+        "strict_support_rate": 1.0,
+        "mean_tokens": 29605.333333333332
+      }
+    },
+    "ci95": {
+      "success_rate": [
+        0.6667,
+        0.9333
+      ],
+      "support_rate": [
+        0.8778,
+        1.0
+      ],
+      "strict_support_rate": [
+        0.718,
+        0.8922
+      ],
+      "verified_rate": [
+        0.7001,
+        0.8698
+      ],
+      "citation_precision": [
+        1.0,
+        1.0
+      ],
+      "citation_coverage": [
+        0.6767,
+        0.9301
+      ],
+      "keyword_recall": [
+        0.6,
+        0.9
+      ],
+      "misconception_rate": [
+        0.0,
+        0.0
+      ],
+      "mean_tokens": [
+        29242.3608,
+        36521.4092
+      ],
+      "mean_seconds": [
+        114.0634,
+        181.7792
+      ]
+    },
+    "ci": {
+      "method": "cluster bootstrap over questions",
+      "level": 0.95,
+      "iterations": 2000,
+      "seed": 7
+    },
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "timeout_s": 600.0,
+    "resumed": 0,
+    "verify": true,
+    "single_agent": false,
+    "cache": true
+  },
+  "records": [
+    {
+      "item_id": "asyncio-gather-failure",
+      "category": "asyncio",
+      "question": "When one coroutine passed to asyncio.gather() raises an exception, are the other coroutines cancelled?",
+      "ok": true,
+      "error": null,
+      "duration_s": 120.22,
+      "stage_errors": {},
+      "evidence_total": 5,
+      "evidence_verified": 3,
+      "evidence_citable": 3,
+      "evidence_cited": 3,
+      "evidence_unused": 0,
+      "support": {
+        "partial": 2,
+        "supported": 1
+      },
+      "contradictions": 0,
+      "citations": 3,
+      "cited_ids": [
+        "ev_d0d93af5",
+        "ev_202fc44f",
+        "ev_bf05479d"
+      ],
+      "unsupported_citations": 0,
+      "words": 242,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [],
+      "keyword_misses": [
+        "return_exceptions"
+      ],
+      "misconception_hits": [],
+      "tokens_prompt": 21719,
+      "tokens_completion": 13270,
+      "tokens_total": 34989,
+      "cost_usd": 0.00237667,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 19.17,
+        "research": 65.32,
+        "evidence": 0.0,
+        "verify": 7.43,
+        "write": 28.29
+      }
+    },
+    {
+      "item_id": "asyncio-taskgroup",
+      "category": "asyncio",
+      "question": "How does asyncio.TaskGroup differ from asyncio.gather() when one child task fails?",
+      "ok": true,
+      "error": null,
+      "duration_s": 108.62,
+      "stage_errors": {},
+      "evidence_total": 7,
+      "evidence_verified": 5,
+      "evidence_citable": 5,
+      "evidence_cited": 5,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 3,
+        "partial": 2
+      },
+      "contradictions": 0,
+      "citations": 5,
+      "cited_ids": [
+        "ev_bf05479d",
+        "ev_d0d93af5",
+        "ev_5e2df81a",
+        "ev_9ba0f598",
+        "ev_2386c228"
+      ],
+      "unsupported_citations": 0,
+      "words": 398,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "TaskGroup",
+        "ExceptionGroup"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 21561,
+      "tokens_completion": 16090,
+      "tokens_total": 37651,
+      "cost_usd": 0.00273853,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 9.42,
+        "research": 75.28,
+        "evidence": 0.0,
+        "verify": 12.72,
+        "write": 11.2
+      }
+    },
+    {
+      "item_id": "asyncio-cancelled-error",
+      "category": "asyncio",
+      "question": "Why does asyncio.CancelledError inherit from BaseException rather than Exception in Python 3.8+?",
+      "ok": true,
+      "error": null,
+      "duration_s": 112.39,
+      "stage_errors": {},
+      "evidence_total": 2,
+      "evidence_verified": 2,
+      "evidence_citable": 2,
+      "evidence_cited": 2,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 2
+      },
+      "contradictions": 1,
+      "citations": 2,
+      "cited_ids": [
+        "ev_06319c6e",
+        "ev_16177178"
+      ],
+      "unsupported_citations": 0,
+      "words": 233,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "BaseException"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 15453,
+      "tokens_completion": 11707,
+      "tokens_total": 27160,
+      "cost_usd": 0.0019855,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 8.51,
+        "research": 66.49,
+        "evidence": 0.0,
+        "verify": 4.75,
+        "write": 32.65
+      }
+    },
+    {
+      "item_id": "asyncio-timeout-311",
+      "category": "asyncio",
+      "question": "How do I apply a timeout to an awaitable in Python 3.11 without asyncio.wait_for()?",
+      "ok": true,
+      "error": null,
+      "duration_s": 104.63,
+      "stage_errors": {},
+      "evidence_total": 4,
+      "evidence_verified": 4,
+      "evidence_citable": 4,
+      "evidence_cited": 2,
+      "evidence_unused": 2,
+      "support": {
+        "supported": 4
+      },
+      "contradictions": 0,
+      "citations": 2,
+      "cited_ids": [
+        "ev_121e7bbb",
+        "ev_780b2ca8"
+      ],
+      "unsupported_citations": 0,
+      "words": 303,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [
+        "asyncio.timeout"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 15944,
+      "tokens_completion": 10013,
+      "tokens_total": 25957,
+      "cost_usd": 0.00178001,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 18.79,
+        "research": 56.48,
+        "evidence": 0.0,
+        "verify": 7.32,
+        "write": 22.04
+      }
+    },
+    {
+      "item_id": "asyncio-run-entrypoint",
+      "category": "asyncio",
+      "question": "Why should new asyncio code call asyncio.run() instead of asyncio.get_event_loop()?",
+      "ok": false,
+      "error": null,
+      "duration_s": 156.83,
+      "stage_errors": {},
+      "evidence_total": 8,
+      "evidence_verified": 8,
+      "evidence_citable": 8,
+      "evidence_cited": 0,
+      "evidence_unused": 8,
+      "support": {
+        "supported": 7,
+        "partial": 1
+      },
+      "contradictions": 0,
+      "citations": 0,
+      "cited_ids": [],
+      "unsupported_citations": 0,
+      "words": 0,
+      "report_ok": false,
+      "writer_repaired": false,
+      "writer_errors": [
+        "no_citations: the draft cites no evidence id",
+        "missing_title: draft must start with a level-1 title",
+        "missing_section: no '## Summary' section",
+        "missing_section: no '## Limitations' section",
+        "missing_section: need at least 2 content sections, found 0",
+        "empty_draft: the writer returned no markdown after a retry with a larger budget"
+      ],
+      "keyword_hits": [],
+      "keyword_misses": [
+        "event loop"
+      ],
+      "misconception_hits": [],
+      "tokens_prompt": 25545,
+      "tokens_completion": 19375,
+      "tokens_total": 44920,
+      "cost_usd": 0.0032851,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 1.54,
+        "research": 99.57,
+        "evidence": 0.0,
+        "verify": 12.86,
+        "write": 42.86
+      }
+    },
+    {
+      "item_id": "http-no-cache",
+      "category": "http",
+      "question": "What does the HTTP Cache-Control: no-cache directive actually require a cache to do?",
+      "ok": true,
+      "error": null,
+      "duration_s": 97.25,
+      "stage_errors": {},
+      "evidence_total": 5,
+      "evidence_verified": 4,
+      "evidence_citable": 4,
+      "evidence_cited": 4,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 4
+      },
+      "contradictions": 0,
+      "citations": 4,
+      "cited_ids": [
+        "ev_51efb12f",
+        "ev_b7192485",
+        "ev_3f1b9e90",
+        "ev_a9cecaef"
+      ],
+      "unsupported_citations": 0,
+      "words": 438,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "revalidate"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 16439,
+      "tokens_completion": 11171,
+      "tokens_total": 27610,
+      "cost_usd": 0.0019454,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 8.13,
+        "research": 67.73,
+        "evidence": 0.0,
+        "verify": 7.15,
+        "write": 14.24
+      }
+    },
+    {
+      "item_id": "http-idempotency",
+      "category": "http",
+      "question": "Which HTTP methods are idempotent, and why does idempotency matter when a client retries a request?",
+      "ok": true,
+      "error": null,
+      "duration_s": 66.43,
+      "stage_errors": {},
+      "evidence_total": 3,
+      "evidence_verified": 3,
+      "evidence_citable": 3,
+      "evidence_cited": 3,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 3
+      },
+      "contradictions": 0,
+      "citations": 3,
+      "cited_ids": [
+        "ev_eb071542",
+        "ev_8063d67a",
+        "ev_e4f9e2c6"
+      ],
+      "unsupported_citations": 0,
+      "words": 354,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "PUT"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 9948,
+      "tokens_completion": 5524,
+      "tokens_total": 15472,
+      "cost_usd": 0.00101656,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 5.11,
+        "research": 55.64,
+        "evidence": 0.0,
+        "verify": 3.52,
+        "write": 2.16
+      }
+    },
+    {
+      "item_id": "http-retry-after",
+      "category": "http",
+      "question": "How should an HTTP client handle a 429 response that includes a Retry-After header?",
+      "ok": true,
+      "error": null,
+      "duration_s": 146.59,
+      "stage_errors": {},
+      "evidence_total": 4,
+      "evidence_verified": 4,
+      "evidence_citable": 4,
+      "evidence_cited": 4,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 4
+      },
+      "contradictions": 0,
+      "citations": 4,
+      "cited_ids": [
+        "ev_18773bd2",
+        "ev_1904ff8a",
+        "ev_89a827b7",
+        "ev_0c564141"
+      ],
+      "unsupported_citations": 0,
+      "words": 172,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [
+        "Retry-After"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 23213,
+      "tokens_completion": 18217,
+      "tokens_total": 41430,
+      "cost_usd": 0.0030646,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 1.51,
+        "research": 104.39,
+        "evidence": 0.0,
+        "verify": 6.08,
+        "write": 34.6
+      }
+    },
+    {
+      "item_id": "http-conditional-get",
+      "category": "http",
+      "question": "How do ETag and If-None-Match let a client avoid downloading a response body it already has?",
+      "ok": false,
+      "error": "timeout after 600s",
+      "duration_s": 600.02,
+      "stage_errors": {
+        "pipeline": "timeout after 600s"
+      },
+      "evidence_total": 0,
+      "evidence_verified": 0,
+      "evidence_citable": 0,
+      "evidence_cited": 0,
+      "evidence_unused": 0,
+      "support": {},
+      "contradictions": 0,
+      "citations": 0,
+      "cited_ids": [],
+      "unsupported_citations": 0,
+      "words": 0,
+      "report_ok": false,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [],
+      "keyword_misses": [
+        "ETag",
+        "304"
+      ],
+      "misconception_hits": [],
+      "tokens_prompt": 11240,
+      "tokens_completion": 5540,
+      "tokens_total": 16780,
+      "cost_usd": 0.0010574,
+      "unpriced_models": [],
+      "timings": {}
+    },
+    {
+      "item_id": "sqlite-wal",
+      "category": "databases",
+      "question": "What does switching a SQLite database to WAL mode change about concurrent readers and writers?",
+      "ok": true,
+      "error": null,
+      "duration_s": 105.85,
+      "stage_errors": {},
+      "evidence_total": 8,
+      "evidence_verified": 6,
+      "evidence_citable": 6,
+      "evidence_cited": 6,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 4,
+        "partial": 2
+      },
+      "contradictions": 0,
+      "citations": 6,
+      "cited_ids": [
+        "ev_7ab1f542",
+        "ev_6fa84bc3",
+        "ev_f9842191",
+        "ev_19d23e78",
+        "ev_887e43ab",
+        "ev_6a1fea8a"
+      ],
+      "unsupported_citations": 0,
+      "words": 365,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [
+        "WAL"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 19952,
+      "tokens_completion": 12077,
+      "tokens_total": 32029,
+      "cost_usd": 0.00216857,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 8.75,
+        "research": 56.66,
+        "evidence": 0.0,
+        "verify": 16.3,
+        "write": 24.14
+      }
+    },
+    {
+      "item_id": "postgres-index-not-used",
+      "category": "databases",
+      "question": "Why does PostgreSQL sometimes choose a sequential scan even when a B-tree index exists on the filtered column?",
+      "ok": true,
+      "error": null,
+      "duration_s": 200.98,
+      "stage_errors": {},
+      "evidence_total": 11,
+      "evidence_verified": 10,
+      "evidence_citable": 10,
+      "evidence_cited": 9,
+      "evidence_unused": 1,
+      "support": {
+        "supported": 6,
+        "partial": 4
+      },
+      "contradictions": 4,
+      "citations": 9,
+      "cited_ids": [
+        "ev_526be5ea",
+        "ev_a7c7ca31",
+        "ev_7f269052",
+        "ev_fcf88b9c",
+        "ev_3fe6aaa8",
+        "ev_928dfc6e",
+        "ev_c27220b5",
+        "ev_ff42cb8f",
+        "ev_94f07f31"
+      ],
+      "unsupported_citations": 0,
+      "words": 434,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "selectivity"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 28232,
+      "tokens_completion": 24332,
+      "tokens_total": 52564,
+      "cost_usd": 0.00401012,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 30.37,
+        "research": 103.43,
+        "evidence": 0.0,
+        "verify": 39.82,
+        "write": 27.36
+      }
+    },
+    {
+      "item_id": "postgres-mvcc",
+      "category": "databases",
+      "question": "How does PostgreSQL MVCC allow readers and writers to work concurrently without blocking each other?",
+      "ok": true,
+      "error": null,
+      "duration_s": 129.76,
+      "stage_errors": {},
+      "evidence_total": 10,
+      "evidence_verified": 10,
+      "evidence_citable": 10,
+      "evidence_cited": 10,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 8,
+        "partial": 2
+      },
+      "contradictions": 0,
+      "citations": 10,
+      "cited_ids": [
+        "ev_c2bd0e63",
+        "ev_43b0c095",
+        "ev_22739613",
+        "ev_cb360b65",
+        "ev_2657dcec",
+        "ev_a9b0c01d",
+        "ev_3cde6fc9",
+        "ev_d476065e",
+        "ev_517387b8",
+        "ev_0937ac2f"
+      ],
+      "unsupported_citations": 0,
+      "words": 502,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "MVCC"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 26355,
+      "tokens_completion": 15232,
+      "tokens_total": 41587,
+      "cost_usd": 0.00277081,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 7.66,
+        "research": 98.93,
+        "evidence": 0.0,
+        "verify": 20.5,
+        "write": 2.67
+      }
+    },
+    {
+      "item_id": "orm-n-plus-one",
+      "category": "databases",
+      "question": "What is the N+1 query problem in an ORM, and how do I detect it?",
+      "ok": true,
+      "error": null,
+      "duration_s": 117.61,
+      "stage_errors": {},
+      "evidence_total": 9,
+      "evidence_verified": 4,
+      "evidence_citable": 4,
+      "evidence_cited": 4,
+      "evidence_unused": 0,
+      "support": {
+        "partial": 1,
+        "supported": 3
+      },
+      "contradictions": 0,
+      "citations": 4,
+      "cited_ids": [
+        "ev_ee738915",
+        "ev_cfee8429",
+        "ev_7d231740",
+        "ev_7eb9291b"
+      ],
+      "unsupported_citations": 0,
+      "words": 435,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "N+1"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 15495,
+      "tokens_completion": 9602,
+      "tokens_total": 25097,
+      "cost_usd": 0.00171311,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 8.41,
+        "research": 89.4,
+        "evidence": 0.02,
+        "verify": 6.86,
+        "write": 12.93
+      }
+    },
+    {
+      "item_id": "python-gil",
+      "category": "python",
+      "question": "Does the CPython GIL prevent all parallelism, or only parallel execution of Python bytecode?",
+      "ok": true,
+      "error": null,
+      "duration_s": 242.14,
+      "stage_errors": {},
+      "evidence_total": 7,
+      "evidence_verified": 6,
+      "evidence_citable": 6,
+      "evidence_cited": 6,
+      "evidence_unused": 0,
+      "support": {
+        "partial": 1,
+        "supported": 5
+      },
+      "contradictions": 0,
+      "citations": 6,
+      "cited_ids": [
+        "ev_6d012628",
+        "ev_e5fcb18f",
+        "ev_2afb994f",
+        "ev_b58d6bda",
+        "ev_e29a39d8",
+        "ev_3ab64d95"
+      ],
+      "unsupported_citations": 0,
+      "words": 397,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "GIL"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 20257,
+      "tokens_completion": 13055,
+      "tokens_total": 33312,
+      "cost_usd": 0.00230486,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 22.26,
+        "research": 192.32,
+        "evidence": 0.0,
+        "verify": 16.99,
+        "write": 10.57
+      }
+    },
+    {
+      "item_id": "python-dataclass-slots",
+      "category": "python",
+      "question": "What does @dataclass(slots=True) change about a class and the memory of its instances?",
+      "ok": true,
+      "error": null,
+      "duration_s": 123.34,
+      "stage_errors": {},
+      "evidence_total": 8,
+      "evidence_verified": 8,
+      "evidence_citable": 8,
+      "evidence_cited": 8,
+      "evidence_unused": 0,
+      "support": {
+        "partial": 3,
+        "supported": 5
+      },
+      "contradictions": 0,
+      "citations": 8,
+      "cited_ids": [
+        "ev_177bfbd4",
+        "ev_4c3cf10a",
+        "ev_3e7d1fe4",
+        "ev_1e4738d2",
+        "ev_6ad47643",
+        "ev_3f81c4ce",
+        "ev_3ab01bde",
+        "ev_1dcbe154"
+      ],
+      "unsupported_citations": 0,
+      "words": 371,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "__slots__"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 21223,
+      "tokens_completion": 15703,
+      "tokens_total": 36926,
+      "cost_usd": 0.00267808,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 1.36,
+        "research": 85.41,
+        "evidence": 0.01,
+        "verify": 26.85,
+        "write": 9.7
+      }
+    },
+    {
+      "item_id": "python-mutable-default",
+      "category": "python",
+      "question": "Why is a mutable default argument in Python shared between separate calls to the function?",
+      "ok": true,
+      "error": null,
+      "duration_s": 104.73,
+      "stage_errors": {},
+      "evidence_total": 6,
+      "evidence_verified": 4,
+      "evidence_citable": 4,
+      "evidence_cited": 4,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 4
+      },
+      "contradictions": 0,
+      "citations": 4,
+      "cited_ids": [
+        "ev_9a3fbf47",
+        "ev_49b6147f",
+        "ev_37170da3",
+        "ev_2acbbe67"
+      ],
+      "unsupported_citations": 0,
+      "words": 483,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "default argument"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 19063,
+      "tokens_completion": 13241,
+      "tokens_total": 32304,
+      "cost_usd": 0.00229322,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 8.97,
+        "research": 57.04,
+        "evidence": 0.0,
+        "verify": 4.07,
+        "write": 34.65
+      }
+    },
+    {
+      "item_id": "python-iterable-iterator-generator",
+      "category": "python",
+      "question": "What is the difference between an iterable, an iterator, and a generator in Python?",
+      "ok": false,
+      "error": null,
+      "duration_s": 100.42,
+      "stage_errors": {},
+      "evidence_total": 4,
+      "evidence_verified": 4,
+      "evidence_citable": 4,
+      "evidence_cited": 0,
+      "evidence_unused": 4,
+      "support": {
+        "supported": 4
+      },
+      "contradictions": 0,
+      "citations": 0,
+      "cited_ids": [],
+      "unsupported_citations": 0,
+      "words": 0,
+      "report_ok": false,
+      "writer_repaired": false,
+      "writer_errors": [
+        "no_citations: the draft cites no evidence id",
+        "missing_title: draft must start with a level-1 title",
+        "missing_section: no '## Summary' section",
+        "missing_section: no '## Limitations' section",
+        "missing_section: need at least 2 content sections, found 0",
+        "empty_draft: the writer returned no markdown after a retry with a larger budget"
+      ],
+      "keyword_hits": [],
+      "keyword_misses": [
+        "__iter__",
+        "__next__"
+      ],
+      "misconception_hits": [],
+      "tokens_prompt": 10531,
+      "tokens_completion": 9389,
+      "tokens_total": 19920,
+      "cost_usd": 0.0015365,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 6.85,
+        "research": 48.81,
+        "evidence": 0.0,
+        "verify": 4.8,
+        "write": 39.95
+      }
+    },
+    {
+      "item_id": "python-contextmanager",
+      "category": "python",
+      "question": "What does contextlib.contextmanager require of the function it decorates?",
+      "ok": true,
+      "error": null,
+      "duration_s": 145.68,
+      "stage_errors": {},
+      "evidence_total": 2,
+      "evidence_verified": 1,
+      "evidence_citable": 1,
+      "evidence_cited": 1,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 1
+      },
+      "contradictions": 0,
+      "citations": 1,
+      "cited_ids": [
+        "ev_e899ed53"
+      ],
+      "unsupported_citations": 0,
+      "words": 192,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "generator"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 16348,
+      "tokens_completion": 13617,
+      "tokens_total": 29965,
+      "cost_usd": 0.00226065,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 19.94,
+        "research": 97.58,
+        "evidence": 0.0,
+        "verify": 1.23,
+        "write": 26.94
+      }
+    },
+    {
+      "item_id": "pytest-fixture-scope",
+      "category": "testing",
+      "question": "How do pytest fixture scopes affect test isolation and setup cost?",
+      "ok": false,
+      "error": null,
+      "duration_s": 78.93,
+      "stage_errors": {},
+      "evidence_total": 6,
+      "evidence_verified": 3,
+      "evidence_citable": 3,
+      "evidence_cited": 3,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 3
+      },
+      "contradictions": 0,
+      "citations": 3,
+      "cited_ids": [
+        "ev_38a7981d",
+        "ev_2fa42902",
+        "ev_55352f27"
+      ],
+      "unsupported_citations": 0,
+      "words": 262,
+      "report_ok": false,
+      "writer_repaired": true,
+      "writer_errors": [
+        "uncited_paragraph: no citation in: \"The evidence does not discuss how fixture scope influences test isolat...\"",
+        "uncited_paragraph: no citation in: \"Because the available documentation does not recommend a specific bala...\""
+      ],
+      "keyword_hits": [
+        "scope"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 15272,
+      "tokens_completion": 7383,
+      "tokens_total": 22655,
+      "cost_usd": 0.00141795,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 1.43,
+        "research": 56.61,
+        "evidence": 0.0,
+        "verify": 3.14,
+        "write": 17.75
+      }
+    },
+    {
+      "item_id": "pytest-monkeypatch",
+      "category": "testing",
+      "question": "When should a pytest test use monkeypatch instead of unittest.mock.patch?",
+      "ok": true,
+      "error": null,
+      "duration_s": 112.11,
+      "stage_errors": {},
+      "evidence_total": 2,
+      "evidence_verified": 1,
+      "evidence_citable": 1,
+      "evidence_cited": 1,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 1
+      },
+      "contradictions": 0,
+      "citations": 1,
+      "cited_ids": [
+        "ev_2a5319f8"
+      ],
+      "unsupported_citations": 0,
+      "words": 201,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [
+        "monkeypatch"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 17599,
+      "tokens_completion": 13114,
+      "tokens_total": 30713,
+      "cost_usd": 0.00223279,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 7.58,
+        "research": 85.5,
+        "evidence": 0.0,
+        "verify": 2.53,
+        "write": 16.49
+      }
+    },
+    {
+      "item_id": "pytest-parametrize",
+      "category": "testing",
+      "question": "How does pytest.mark.parametrize turn one test function into several independent test cases?",
+      "ok": true,
+      "error": null,
+      "duration_s": 158.7,
+      "stage_errors": {},
+      "evidence_total": 8,
+      "evidence_verified": 6,
+      "evidence_citable": 6,
+      "evidence_cited": 6,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 6
+      },
+      "contradictions": 0,
+      "citations": 6,
+      "cited_ids": [
+        "ev_78cc8389",
+        "ev_140fea37",
+        "ev_7bcd3407",
+        "ev_45186d6a",
+        "ev_07c1c3d0",
+        "ev_37dcff4b"
+      ],
+      "unsupported_citations": 0,
+      "words": 381,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "parametrize"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 23001,
+      "tokens_completion": 12447,
+      "tokens_total": 35448,
+      "cost_usd": 0.00230814,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 14.92,
+        "research": 127.1,
+        "evidence": 0.0,
+        "verify": 8.71,
+        "write": 7.98
+      }
+    },
+    {
+      "item_id": "security-ssrf",
+      "category": "security",
+      "question": "What makes an HTTP fetch endpoint vulnerable to SSRF, and which address ranges must be blocked?",
+      "ok": true,
+      "error": null,
+      "duration_s": 100.63,
+      "stage_errors": {},
+      "evidence_total": 8,
+      "evidence_verified": 6,
+      "evidence_citable": 4,
+      "evidence_cited": 4,
+      "evidence_unused": 0,
+      "support": {
+        "partial": 1,
+        "supported": 3,
+        "unsupported": 2
+      },
+      "contradictions": 0,
+      "citations": 4,
+      "cited_ids": [
+        "ev_f42dcdba",
+        "ev_a6cbb65f",
+        "ev_0f9bec4b",
+        "ev_9f60e45f"
+      ],
+      "unsupported_citations": 0,
+      "words": 450,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [
+        "SSRF"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 18576,
+      "tokens_completion": 12472,
+      "tokens_total": 31048,
+      "cost_usd": 0.00217864,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 8.57,
+        "research": 59.71,
+        "evidence": 0.01,
+        "verify": 11.24,
+        "write": 21.1
+      }
+    },
+    {
+      "item_id": "security-sql-injection",
+      "category": "security",
+      "question": "Why do parameterized queries prevent SQL injection while manually escaping strings does not?",
+      "ok": true,
+      "error": null,
+      "duration_s": 127.77,
+      "stage_errors": {},
+      "evidence_total": 6,
+      "evidence_verified": 6,
+      "evidence_citable": 6,
+      "evidence_cited": 6,
+      "evidence_unused": 0,
+      "support": {
+        "partial": 2,
+        "supported": 4
+      },
+      "contradictions": 1,
+      "citations": 6,
+      "cited_ids": [
+        "ev_1af23e38",
+        "ev_f494c88e",
+        "ev_5011bec3",
+        "ev_e95992d6",
+        "ev_a96ecd98",
+        "ev_8db027f5"
+      ],
+      "unsupported_citations": 0,
+      "words": 439,
+      "report_ok": true,
+      "writer_repaired": false,
+      "writer_errors": [],
+      "keyword_hits": [
+        "parameterized"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 17588,
+      "tokens_completion": 11809,
+      "tokens_total": 29397,
+      "cost_usd": 0.00206281,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 6.72,
+        "research": 94.74,
+        "evidence": 0.0,
+        "verify": 13.82,
+        "write": 12.49
+      }
+    },
+    {
+      "item_id": "security-password-hashing",
+      "category": "security",
+      "question": "Why should passwords be stored with Argon2id or bcrypt instead of a single round of SHA-256?",
+      "ok": false,
+      "error": null,
+      "duration_s": 206.94,
+      "stage_errors": {},
+      "evidence_total": 11,
+      "evidence_verified": 9,
+      "evidence_citable": 9,
+      "evidence_cited": 0,
+      "evidence_unused": 9,
+      "support": {
+        "supported": 8,
+        "partial": 1
+      },
+      "contradictions": 0,
+      "citations": 0,
+      "cited_ids": [],
+      "unsupported_citations": 0,
+      "words": 0,
+      "report_ok": false,
+      "writer_repaired": false,
+      "writer_errors": [
+        "no_citations: the draft cites no evidence id",
+        "missing_title: draft must start with a level-1 title",
+        "missing_section: no '## Summary' section",
+        "missing_section: no '## Limitations' section",
+        "missing_section: need at least 2 content sections, found 0",
+        "empty_draft: the writer returned no markdown after a retry with a larger budget"
+      ],
+      "keyword_hits": [],
+      "keyword_misses": [
+        "salt",
+        "bcrypt"
+      ],
+      "misconception_hits": [],
+      "tokens_prompt": 32875,
+      "tokens_completion": 27202,
+      "tokens_total": 60077,
+      "cost_usd": 0.00452251,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 7.84,
+        "research": 142.04,
+        "evidence": 0.0,
+        "verify": 13.61,
+        "write": 43.45
+      }
+    },
+    {
+      "item_id": "docker-layer-cache",
+      "category": "containers",
+      "question": "What causes a Docker build layer cache to be invalidated?",
+      "ok": true,
+      "error": null,
+      "duration_s": 140.73,
+      "stage_errors": {},
+      "evidence_total": 4,
+      "evidence_verified": 4,
+      "evidence_citable": 4,
+      "evidence_cited": 4,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 2,
+        "partial": 2
+      },
+      "contradictions": 0,
+      "citations": 4,
+      "cited_ids": [
+        "ev_5511add9",
+        "ev_9cf0325e",
+        "ev_9fafe087",
+        "ev_438edf1d"
+      ],
+      "unsupported_citations": 0,
+      "words": 203,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [
+        "layer"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 17996,
+      "tokens_completion": 13981,
+      "tokens_total": 31977,
+      "cost_usd": 0.00235741,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 6.74,
+        "research": 78.0,
+        "evidence": 0.0,
+        "verify": 13.58,
+        "write": 42.4
+      }
+    },
+    {
+      "item_id": "docker-multi-stage",
+      "category": "containers",
+      "question": "How does a multi-stage Docker build reduce the size of the final image?",
+      "ok": true,
+      "error": null,
+      "duration_s": 196.04,
+      "stage_errors": {},
+      "evidence_total": 10,
+      "evidence_verified": 6,
+      "evidence_citable": 6,
+      "evidence_cited": 6,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 5,
+        "partial": 1
+      },
+      "contradictions": 0,
+      "citations": 6,
+      "cited_ids": [
+        "ev_5edd9658",
+        "ev_1a2bf49f",
+        "ev_8b507319",
+        "ev_f5964c3c",
+        "ev_98f9a93e",
+        "ev_ff84d663"
+      ],
+      "unsupported_citations": 0,
+      "words": 403,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [],
+      "keyword_misses": [
+        "multi-stage"
+      ],
+      "misconception_hits": [],
+      "tokens_prompt": 27307,
+      "tokens_completion": 18550,
+      "tokens_total": 45857,
+      "cost_usd": 0.00323071,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 7.03,
+        "research": 136.41,
+        "evidence": 0.01,
+        "verify": 12.11,
+        "write": 40.48
+      }
+    },
+    {
+      "item_id": "k8s-probe-types",
+      "category": "containers",
+      "question": "What is the difference between a Kubernetes readiness probe and a liveness probe?",
+      "ok": false,
+      "error": null,
+      "duration_s": 45.49,
+      "stage_errors": {},
+      "evidence_total": 6,
+      "evidence_verified": 6,
+      "evidence_citable": 6,
+      "evidence_cited": 0,
+      "evidence_unused": 6,
+      "support": {
+        "supported": 6
+      },
+      "contradictions": 0,
+      "citations": 0,
+      "cited_ids": [],
+      "unsupported_citations": 0,
+      "words": 0,
+      "report_ok": false,
+      "writer_repaired": false,
+      "writer_errors": [
+        "no_citations: the draft cites no evidence id",
+        "missing_title: draft must start with a level-1 title",
+        "missing_section: no '## Summary' section",
+        "missing_section: no '## Limitations' section",
+        "missing_section: need at least 2 content sections, found 0",
+        "empty_draft: the writer returned no markdown after a retry with a larger budget"
+      ],
+      "keyword_hits": [],
+      "keyword_misses": [
+        "readiness",
+        "liveness"
+      ],
+      "misconception_hits": [],
+      "tokens_prompt": 11063,
+      "tokens_completion": 10564,
+      "tokens_total": 21627,
+      "cost_usd": 0.00170521,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 4.37,
+        "research": 25.08,
+        "evidence": 0.0,
+        "verify": 8.31,
+        "write": 7.72
+      }
+    },
+    {
+      "item_id": "perf-cache-locality",
+      "category": "performance",
+      "question": "Why can iterating a two-dimensional array row by row be faster than column by column?",
+      "ok": true,
+      "error": null,
+      "duration_s": 87.25,
+      "stage_errors": {},
+      "evidence_total": 8,
+      "evidence_verified": 5,
+      "evidence_citable": 5,
+      "evidence_cited": 5,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 5
+      },
+      "contradictions": 0,
+      "citations": 5,
+      "cited_ids": [
+        "ev_07360363",
+        "ev_aa3124f8",
+        "ev_ef78527a",
+        "ev_2a0dd3d0",
+        "ev_bf9cfee7"
+      ],
+      "unsupported_citations": 0,
+      "words": 325,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [
+        "cache"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 16518,
+      "tokens_completion": 10372,
+      "tokens_total": 26890,
+      "cost_usd": 0.0018439,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 6.72,
+        "research": 58.07,
+        "evidence": 0.01,
+        "verify": 5.15,
+        "write": 17.3
+      }
+    },
+    {
+      "item_id": "perf-benchmark-clock",
+      "category": "performance",
+      "question": "Why is time.time() a poor clock for benchmarking short code paths, and what should I use instead?",
+      "ok": true,
+      "error": null,
+      "duration_s": 91.23,
+      "stage_errors": {},
+      "evidence_total": 5,
+      "evidence_verified": 5,
+      "evidence_citable": 5,
+      "evidence_cited": 5,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 5
+      },
+      "contradictions": 0,
+      "citations": 5,
+      "cited_ids": [
+        "ev_56b95061",
+        "ev_8a6ce41b",
+        "ev_8a22f902",
+        "ev_7354fbfd",
+        "ev_1d3064da"
+      ],
+      "unsupported_citations": 0,
+      "words": 340,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [
+        "perf_counter"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 17946,
+      "tokens_completion": 9927,
+      "tokens_total": 27873,
+      "cost_usd": 0.00182889,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 6.71,
+        "research": 62.36,
+        "evidence": 0.0,
+        "verify": 5.3,
+        "write": 16.84
+      }
+    },
+    {
+      "item_id": "perf-connection-pool",
+      "category": "performance",
+      "question": "What problem does a database connection pool solve for a web service, and when does it hurt?",
+      "ok": true,
+      "error": null,
+      "duration_s": 128.65,
+      "stage_errors": {},
+      "evidence_total": 8,
+      "evidence_verified": 7,
+      "evidence_citable": 7,
+      "evidence_cited": 7,
+      "evidence_unused": 0,
+      "support": {
+        "supported": 6,
+        "partial": 1
+      },
+      "contradictions": 1,
+      "citations": 7,
+      "cited_ids": [
+        "ev_a4113402",
+        "ev_05fe7851",
+        "ev_cd3adc04",
+        "ev_78d6ada7",
+        "ev_80259346",
+        "ev_a75796bf",
+        "ev_bcaf4e02"
+      ],
+      "unsupported_citations": 0,
+      "words": 504,
+      "report_ok": true,
+      "writer_repaired": true,
+      "writer_errors": [],
+      "keyword_hits": [
+        "connection pool"
+      ],
+      "keyword_misses": [],
+      "misconception_hits": [],
+      "tokens_prompt": 26820,
+      "tokens_completion": 14299,
+      "tokens_total": 41119,
+      "cost_usd": 0.00266347,
+      "unpriced_models": [],
+      "timings": {
+        "plan": 1.49,
+        "research": 94.76,
+        "evidence": 0.01,
+        "verify": 16.81,
+        "write": 15.57
+      }
+    }
+  ],
+  "dataset": [
+    {
+      "id": "asyncio-gather-failure",
+      "question": "When one coroutine passed to asyncio.gather() raises an exception, are the other coroutines cancelled?",
+      "category": "asyncio",
+      "must_include": [
+        "return_exceptions"
+      ],
+      "must_not_include": [
+        "all tasks are cancelled"
+      ],
+      "notes": "The canonical misconception: gather propagates the first exception but does not cancel siblings."
+    },
+    {
+      "id": "asyncio-taskgroup",
+      "question": "How does asyncio.TaskGroup differ from asyncio.gather() when one child task fails?",
+      "category": "asyncio",
+      "must_include": [
+        "TaskGroup",
+        "ExceptionGroup"
+      ],
+      "must_not_include": [],
+      "notes": "TaskGroup cancels siblings and raises an ExceptionGroup; gather does neither by default."
+    },
+    {
+      "id": "asyncio-cancelled-error",
+      "question": "Why does asyncio.CancelledError inherit from BaseException rather than Exception in Python 3.8+?",
+      "category": "asyncio",
+      "must_include": [
+        "BaseException"
+      ],
+      "must_not_include": [
+        "inherits from Exception"
+      ],
+      "notes": "The change was made so bare `except Exception` cannot swallow cancellation."
+    },
+    {
+      "id": "asyncio-timeout-311",
+      "question": "How do I apply a timeout to an awaitable in Python 3.11 without asyncio.wait_for()?",
+      "category": "asyncio",
+      "must_include": [
+        "asyncio.timeout"
+      ],
+      "must_not_include": [],
+      "notes": "asyncio.timeout() is the context-manager form added in 3.11."
+    },
+    {
+      "id": "asyncio-run-entrypoint",
+      "question": "Why should new asyncio code call asyncio.run() instead of asyncio.get_event_loop()?",
+      "category": "asyncio",
+      "must_include": [
+        "event loop"
+      ],
+      "must_not_include": [],
+      "notes": "Deprecation of implicit loop creation and the lifecycle guarantees of run()."
+    },
+    {
+      "id": "http-no-cache",
+      "question": "What does the HTTP Cache-Control: no-cache directive actually require a cache to do?",
+      "category": "http",
+      "must_include": [
+        "revalidate"
+      ],
+      "must_not_include": [
+        "never store",
+        "does not store the response"
+      ],
+      "notes": "no-cache means revalidate before reuse, not 'do not store'. no-store is the other one."
+    },
+    {
+      "id": "http-idempotency",
+      "question": "Which HTTP methods are idempotent, and why does idempotency matter when a client retries a request?",
+      "category": "http",
+      "must_include": [
+        "PUT"
+      ],
+      "must_not_include": [],
+      "notes": "GET, HEAD, PUT, DELETE and (by spec) OPTIONS/TRACE; POST is not."
+    },
+    {
+      "id": "http-retry-after",
+      "question": "How should an HTTP client handle a 429 response that includes a Retry-After header?",
+      "category": "http",
+      "must_include": [
+        "Retry-After"
+      ],
+      "must_not_include": [],
+      "notes": "Retry-After is either delta-seconds or an HTTP date; ignoring it causes retry storms."
+    },
+    {
+      "id": "http-conditional-get",
+      "question": "How do ETag and If-None-Match let a client avoid downloading a response body it already has?",
+      "category": "http",
+      "must_include": [
+        "ETag",
+        "304"
+      ],
+      "must_not_include": [],
+      "notes": "304 Not Modified with no body; the client reuses its cached copy."
+    },
+    {
+      "id": "sqlite-wal",
+      "question": "What does switching a SQLite database to WAL mode change about concurrent readers and writers?",
+      "category": "databases",
+      "must_include": [
+        "WAL"
+      ],
+      "must_not_include": [
+        "only one connection"
+      ],
+      "notes": "Readers do not block the writer and the writer does not block readers, but there is still one writer."
+    },
+    {
+      "id": "postgres-index-not-used",
+      "question": "Why does PostgreSQL sometimes choose a sequential scan even when a B-tree index exists on the filtered column?",
+      "category": "databases",
+      "must_include": [
+        "selectivity"
+      ],
+      "must_not_include": [],
+      "notes": "Low selectivity, small tables, or stale statistics make the index more expensive than a scan."
+    },
+    {
+      "id": "postgres-mvcc",
+      "question": "How does PostgreSQL MVCC allow readers and writers to work concurrently without blocking each other?",
+      "category": "databases",
+      "must_include": [
+        "MVCC"
+      ],
+      "must_not_include": [
+        "readers block writers"
+      ],
+      "notes": "Each query sees a snapshot; writers create new row versions instead of overwriting in place."
+    },
+    {
+      "id": "orm-n-plus-one",
+      "question": "What is the N+1 query problem in an ORM, and how do I detect it?",
+      "category": "databases",
+      "must_include": [
+        "N+1"
+      ],
+      "must_not_include": [],
+      "notes": "One query for the parents plus one per child; detect by logging query counts per request."
+    },
+    {
+      "id": "python-gil",
+      "question": "Does the CPython GIL prevent all parallelism, or only parallel execution of Python bytecode?",
+      "category": "python",
+      "must_include": [
+        "GIL"
+      ],
+      "must_not_include": [
+        "prevents all parallelism",
+        "no parallelism at all"
+      ],
+      "notes": "I/O and many C extensions release the GIL; the limit is parallel Python bytecode."
+    },
+    {
+      "id": "python-dataclass-slots",
+      "question": "What does @dataclass(slots=True) change about a class and the memory of its instances?",
+      "category": "python",
+      "must_include": [
+        "__slots__"
+      ],
+      "must_not_include": [],
+      "notes": "It generates __slots__, removing the per-instance __dict__ and blocking new attributes."
+    },
+    {
+      "id": "python-mutable-default",
+      "question": "Why is a mutable default argument in Python shared between separate calls to the function?",
+      "category": "python",
+      "must_include": [
+        "default argument"
+      ],
+      "must_not_include": [],
+      "notes": "Defaults are evaluated once at definition time and stored on the function object."
+    },
+    {
+      "id": "python-iterable-iterator-generator",
+      "question": "What is the difference between an iterable, an iterator, and a generator in Python?",
+      "category": "python",
+      "must_include": [
+        "__iter__",
+        "__next__"
+      ],
+      "must_not_include": [],
+      "notes": "Iterable has __iter__; iterator has __next__; a generator is a function-produced iterator."
+    },
+    {
+      "id": "python-contextmanager",
+      "question": "What does contextlib.contextmanager require of the function it decorates?",
+      "category": "python",
+      "must_include": [
+        "generator"
+      ],
+      "must_not_include": [],
+      "notes": "A generator that yields exactly once; code before yield is __enter__, after is __exit__."
+    },
+    {
+      "id": "pytest-fixture-scope",
+      "question": "How do pytest fixture scopes affect test isolation and setup cost?",
+      "category": "testing",
+      "must_include": [
+        "scope"
+      ],
+      "must_not_include": [],
+      "notes": "function/class/module/package/session; wider scope means fewer setups and more shared state."
+    },
+    {
+      "id": "pytest-monkeypatch",
+      "question": "When should a pytest test use monkeypatch instead of unittest.mock.patch?",
+      "category": "testing",
+      "must_include": [
+        "monkeypatch"
+      ],
+      "must_not_include": [],
+      "notes": "monkeypatch is function-scoped and auto-undone; mock.patch is better for asserting calls."
+    },
+    {
+      "id": "pytest-parametrize",
+      "question": "How does pytest.mark.parametrize turn one test function into several independent test cases?",
+      "category": "testing",
+      "must_include": [
+        "parametrize"
+      ],
+      "must_not_include": [],
+      "notes": "Each parameter set becomes a separate test id and reports failures independently."
+    },
+    {
+      "id": "security-ssrf",
+      "question": "What makes an HTTP fetch endpoint vulnerable to SSRF, and which address ranges must be blocked?",
+      "category": "security",
+      "must_include": [
+        "SSRF"
+      ],
+      "must_not_include": [],
+      "notes": "Block loopback, link-local (169.254.0.0/16), private ranges, and re-check after DNS resolution."
+    },
+    {
+      "id": "security-sql-injection",
+      "question": "Why do parameterized queries prevent SQL injection while manually escaping strings does not?",
+      "category": "security",
+      "must_include": [
+        "parameterized"
+      ],
+      "must_not_include": [],
+      "notes": "Placeholders keep data out of the SQL grammar; escaping only patches known syntax."
+    },
+    {
+      "id": "security-password-hashing",
+      "question": "Why should passwords be stored with Argon2id or bcrypt instead of a single round of SHA-256?",
+      "category": "security",
+      "must_include": [
+        "salt",
+        "bcrypt"
+      ],
+      "must_not_include": [],
+      "notes": "Salted, deliberately slow, memory-hard hashing defeats rainbow tables and GPU cracking."
+    },
+    {
+      "id": "docker-layer-cache",
+      "question": "What causes a Docker build layer cache to be invalidated?",
+      "category": "containers",
+      "must_include": [
+        "layer"
+      ],
+      "must_not_include": [],
+      "notes": "Any change to the instruction or its inputs, and every later layer, is rebuilt."
+    },
+    {
+      "id": "docker-multi-stage",
+      "question": "How does a multi-stage Docker build reduce the size of the final image?",
+      "category": "containers",
+      "must_include": [
+        "multi-stage"
+      ],
+      "must_not_include": [],
+      "notes": "Only artifacts copied into the final stage ship; build tools stay in earlier stages."
+    },
+    {
+      "id": "k8s-probe-types",
+      "question": "What is the difference between a Kubernetes readiness probe and a liveness probe?",
+      "category": "containers",
+      "must_include": [
+        "readiness",
+        "liveness"
+      ],
+      "must_not_include": [],
+      "notes": "Readiness removes the pod from Service endpoints; liveness restarts the container."
+    },
+    {
+      "id": "perf-cache-locality",
+      "question": "Why can iterating a two-dimensional array row by row be faster than column by column?",
+      "category": "performance",
+      "must_include": [
+        "cache"
+      ],
+      "must_not_include": [],
+      "notes": "Row-major layout keeps consecutive accesses on the same cache lines."
+    },
+    {
+      "id": "perf-benchmark-clock",
+      "question": "Why is time.time() a poor clock for benchmarking short code paths, and what should I use instead?",
+      "category": "performance",
+      "must_include": [
+        "perf_counter"
+      ],
+      "must_not_include": [],
+      "notes": "Wall-clock can jump; perf_counter is monotonic and high-resolution."
+    },
+    {
+      "id": "perf-connection-pool",
+      "question": "What problem does a database connection pool solve for a web service, and when does it hurt?",
+      "category": "performance",
+      "must_include": [
+        "connection pool"
+      ],
+      "must_not_include": [],
+      "notes": "Reuses expensive connections; too small starves requests, too large exhausts the database."
+    }
+  ]
+}

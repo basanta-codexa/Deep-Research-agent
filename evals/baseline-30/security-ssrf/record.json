@@ -1,0 +1,49 @@
+{
+  "item_id": "security-ssrf",
+  "category": "security",
+  "question": "What makes an HTTP fetch endpoint vulnerable to SSRF, and which address ranges must be blocked?",
+  "ok": true,
+  "error": null,
+  "duration_s": 100.63,
+  "stage_errors": {},
+  "evidence_total": 8,
+  "evidence_verified": 6,
+  "evidence_citable": 4,
+  "evidence_cited": 4,
+  "evidence_unused": 0,
+  "support": {
+    "partial": 1,
+    "supported": 3,
+    "unsupported": 2
+  },
+  "contradictions": 0,
+  "citations": 4,
+  "cited_ids": [
+    "ev_f42dcdba",
+    "ev_a6cbb65f",
+    "ev_0f9bec4b",
+    "ev_9f60e45f"
+  ],
+  "unsupported_citations": 0,
+  "words": 450,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "SSRF"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 18576,
+  "tokens_completion": 12472,
+  "tokens_total": 31048,
+  "cost_usd": 0.00217864,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 8.57,
+    "research": 59.71,
+    "evidence": 0.01,
+    "verify": 11.24,
+    "write": 21.1
+  }
+}

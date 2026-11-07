@@ -1,0 +1,147 @@
+{
+  "generated_at": 1794041052.7979276,
+  "stats": {
+    "findings_seen": 7,
+    "evidence_kept": 7,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 2,
+    "outside_window": 0,
+    "sources": 5
+  },
+  "evidence": [
+    {
+      "id": "ev_bf05479d",
+      "claim": "asyncio.gather() does not automatically cancel remaining tasks when one task fails; you must manually cancel them.",
+      "quote": "You can cancel all tasks when one task fails when using asyncio.gather() by manually traversing the list of tasks can cancel them manually.",
+      "url": "https://superfastpython.com/asyncio-gather-cancel-all-if-one-fails/",
+      "title": "Asyncio gather() Cancel All Tasks if One Task Fails",
+      "sub_questions": [
+        "What happens when a child task fails while using asyncio.gather()? Does gather cancel the remaining tasks and how does it propagate the exception?"
+      ],
+      "confidence": "high",
+      "span_start": 52,
+      "span_end": 191,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that you must manually cancel tasks when one fails using asyncio.gather(), implying gather does not automatically cancel them.",
+      "trust": "aggregator",
+      "created_at": 1794036997.9830673,
+      "verified": true
+    },
+    {
+      "id": "ev_d0d93af5",
+      "claim": "asyncio.gather propagates unhandled exceptions to the caller by default.",
+      "quote": "By default, if a coroutine is executed by asyncio.gather() fails with an unhandled exception, it will be propagated to the caller.",
+      "url": "https://superfastpython.com/asyncio-gather-exception/",
+      "title": "Asyncio gather() Handle Exceptions",
+      "sub_questions": [
+        "How do asyncio.gather and asyncio.TaskGroup differ in reporting exceptions from failed child tasks?"
+      ],
+      "confidence": "high",
+      "span_start": 171,
+      "span_end": 301,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that by default, unhandled exceptions from a coroutine executed by asyncio.gather() are propagated to the caller.",
+      "trust": "aggregator",
+      "created_at": 1794036997.983117,
+      "verified": true
+    },
+    {
+      "id": "ev_e5048ccd",
+      "claim": "asyncio.gather can return unhandled exceptions as values when return_exceptions=True.",
+      "quote": "Setting the 'return_exceptions' argument to True will trap any unhandled exceptions and provide them as return values, allowing all other tasks in the group to complete.",
+      "url": "https://superfastpython.com/asyncio-gather-exception/",
+      "title": "Asyncio gather() Handle Exceptions",
+      "sub_questions": [
+        "How do asyncio.gather and asyncio.TaskGroup differ in reporting exceptions from failed child tasks?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "aggregator",
+      "created_at": 1794036997.983796,
+      "verified": false
+    },
+    {
+      "id": "ev_9ba0f598",
+      "claim": "TaskGroup reports multiple exceptions as a single ExceptionGroup, allowing structured handling of all exceptions together.",
+      "quote": "All exceptions became part of a Single Group and we didn't need to handle them one by one by using the traditional except keyword.",
+      "url": "https://www.geeksforgeeks.org/python/python-taskgroups-with-asyncio/",
+      "title": "Python Taskgroups with asyncIO - GeeksforGeeks",
+      "sub_questions": [
+        "How do asyncio.gather and asyncio.TaskGroup differ in reporting exceptions from failed child tasks?"
+      ],
+      "confidence": "high",
+      "span_start": 2040,
+      "span_end": 2170,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote states that all exceptions became part of a single group, but it does not mention TaskGroup or the ExceptionGroup type.",
+      "trust": "aggregator",
+      "created_at": 1794036997.9838357,
+      "verified": true
+    },
+    {
+      "id": "ev_5e2df81a",
+      "claim": "TaskGroup cancels remaining tasks after a child fails and waits for their cleanup before raising an ExceptionGroup",
+      "quote": "After beta finishes its cleanup, the TaskGroup sees that failure and cancels the waiting workers. Their CancelledError handlers re-raise the cancellation, and their finally blocks close their connections. The group waits for both workers to finish before raising an ExceptionGroup containing beta’s error.",
+      "url": "https://www.phenomic.io/handling-cancellation-in-python-asyncio/",
+      "title": "Cancellation and Cleanup in asyncio TaskGroup – Phenomic",
+      "sub_questions": [
+        "What cleanup or finalization differences exist between asyncio.gather and asyncio.TaskGroup after a child task fails?"
+      ],
+      "confidence": "high",
+      "span_start": 785,
+      "span_end": 1090,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that after a child task fails, the TaskGroup cancels the remaining workers, waits for them to finish (their cleanup), and then raises an ExceptionGroup containing the error.",
+      "trust": "unknown",
+      "created_at": 1794036997.983907,
+      "verified": true
+    },
+    {
+      "id": "ev_2386c228",
+      "claim": "TaskGroup uses finally blocks as the cleanup mechanism, running them whether the task returns, raises, or is cancelled",
+      "quote": "The finally block is the cleanup mechanism: it runs whether the task returns, raises, or is cancelled.",
+      "url": "https://www.phenomic.io/handling-cancellation-in-python-asyncio/",
+      "title": "Cancellation and Cleanup in asyncio TaskGroup – Phenomic",
+      "sub_questions": [
+        "What cleanup or finalization differences exist between asyncio.gather and asyncio.TaskGroup after a child task fails?"
+      ],
+      "confidence": "high",
+      "span_start": 1358,
+      "span_end": 1460,
+      "match": "normalized",
+      "support": "partial",
+      "support_reason": "The quote states that the finally block is the cleanup mechanism and runs whether the task returns, raises, or is cancelled, but it does not mention TaskGroup specifically.",
+      "trust": "unknown",
+      "created_at": 1794036997.984542,
+      "verified": true
+    },
+    {
+      "id": "ev_03fc4ea2",
+      "claim": "asyncio.gather does not cancel sibling tasks automatically when a child fails; they must be cancelled manually",
+      "quote": "gather does not cancel siblings automatically; you need to explicitly cancel them.",
+      "url": "https://www.refontelearning.com/blog/asyncio-gather-exception-sibling-task-lifecycle",
+      "title": "asyncio.gather Exceptions: Check Which Tasks Still Run",
+      "sub_questions": [
+        "What cleanup or finalization differences exist between asyncio.gather and asyncio.TaskGroup after a child task fails?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794036997.984997,
+      "verified": false
+    }
+  ]
+}

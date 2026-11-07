@@ -1,0 +1,204 @@
+{
+  "generated_at": 1794041053.2844477,
+  "stats": {
+    "findings_seen": 10,
+    "evidence_kept": 10,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 7
+  },
+  "evidence": [
+    {
+      "id": "ev_c2bd0e63",
+      "claim": "MVCC is a multiversion model that gives each SQL statement a snapshot of the database as it existed at a point in time.",
+      "quote": "This means that each SQL statement sees a snapshot of data (a database version) as it was some time ago, regardless of the current state of the underlying data.",
+      "url": "https://www.postgresql.org/docs/current/mvcc-intro.html",
+      "title": "13.1. Introduction",
+      "sub_questions": [
+        "What is MVCC and how is it implemented in PostgreSQL?"
+      ],
+      "confidence": "high",
+      "span_start": 254,
+      "span_end": 414,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote says each SQL statement sees a snapshot of data as it was some time ago, which matches the claim that MVCC gives each statement a snapshot of the database at a point in time.",
+      "trust": "primary",
+      "created_at": 1794038719.613613,
+      "verified": true
+    },
+    {
+      "id": "ev_cb360b65",
+      "claim": "PostgreSQL implements MVCC by storing the transaction IDs of the inserting and deleting transactions in each tuple header and using a visibility routine to determine visibility.",
+      "quote": "When a query executes, the database engine passes each candidate tuple through a deterministic mathematical predicate—the Visibility Routine—which evaluates the tuple's creation and deletion metadata against the active transaction's point-in-time Snapshot.",
+      "url": "https://www.initnode.dev/signal/postgresql-mvcc-internals-tuple-visibility-vacuum-isolation",
+      "title": "PostgreSQL MVCC Internals & Tuple Visibility Demystified | InitNode",
+      "sub_questions": [
+        "What is MVCC and how is it implemented in PostgreSQL?"
+      ],
+      "confidence": "high",
+      "span_start": 656,
+      "span_end": 912,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote confirms the use of a visibility routine but does not mention storing transaction IDs in tuple headers.",
+      "trust": "unknown",
+      "created_at": 1794038719.613909,
+      "verified": true
+    },
+    {
+      "id": "ev_43b0c095",
+      "claim": "MVCC allows reads to never block writes and writes to never block reads.",
+      "quote": "The main advantage of using the MVCC model of concurrency control rather than locking is that in MVCC locks acquired for querying (reading) data do not conflict with locks acquired for writing data, and so reading never blocks writing and writing never blocks reading.",
+      "url": "https://www.postgresql.org/docs/current/mvcc-intro.html",
+      "title": "13.1. Introduction",
+      "sub_questions": [
+        "What is MVCC and how is it implemented in PostgreSQL?"
+      ],
+      "confidence": "high",
+      "span_start": 784,
+      "span_end": 1052,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that reading never blocks writing and writing never blocks reading in MVCC.",
+      "trust": "primary",
+      "created_at": 1794038719.614174,
+      "verified": true
+    },
+    {
+      "id": "ev_a9b0c01d",
+      "claim": "Snapshots are used to determine which version of a tuple is visible in a given transaction.",
+      "quote": "Snapshots are used to determine which version of a tuple is visible in a given transaction.",
+      "url": "https://jnidzwetzki.github.io/2024/04/03/postgres-and-snapshots.html",
+      "title": "Introduction to Snapshots and Tuple Visibility in PostgreSQL",
+      "sub_questions": [
+        "How does PostgreSQL determine which tuple version is visible to a reader?"
+      ],
+      "confidence": "high",
+      "span_start": 162,
+      "span_end": 253,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794038719.6142957,
+      "verified": true
+    },
+    {
+      "id": "ev_2657dcec",
+      "claim": "Tuples are stored with two attributes (xmin, xmax) that determine in which snapshots (and transactions) they are visible.",
+      "quote": "Tuples are stored with two attributes (xmin, xmax) that determine in which snapshots (and transactions) they are visible.",
+      "url": "https://jnidzwetzki.github.io/2024/04/03/postgres-and-snapshots.html",
+      "title": "Introduction to Snapshots and Tuple Visibility in PostgreSQL",
+      "sub_questions": [
+        "How does PostgreSQL determine which tuple version is visible to a reader?"
+      ],
+      "confidence": "high",
+      "span_start": 902,
+      "span_end": 1023,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "unknown",
+      "created_at": 1794038719.6144378,
+      "verified": true
+    },
+    {
+      "id": "ev_3cde6fc9",
+      "claim": "Writers create new row versions that only become visible once the writing transaction commits.",
+      "quote": "Writers create new row versions that only become visible once the writing transaction commits.",
+      "url": "https://www.praneshnikhar.site/posts/postgres-mvcc",
+      "title": "How PostgreSQL MVCC Works — Multi-Version Concurrency Control Deep Dive — Pranesh Nikhar",
+      "sub_questions": [
+        "How do writers create new tuple versions without blocking readers, and how are old versions handled?"
+      ],
+      "confidence": "high",
+      "span_start": 572,
+      "span_end": 666,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "exact match",
+      "trust": "unknown",
+      "created_at": 1794038719.614542,
+      "verified": true
+    },
+    {
+      "id": "ev_517387b8",
+      "claim": "Readers see a consistent snapshot of the data as it existed when their transaction began.",
+      "quote": "Readers see a consistent snapshot of the data as it existed when their transaction began.",
+      "url": "https://www.praneshnikhar.site/posts/postgres-mvcc",
+      "title": "How PostgreSQL MVCC Works — Multi-Version Concurrency Control Deep Dive — Pranesh Nikhar",
+      "sub_questions": [
+        "How do writers create new tuple versions without blocking readers, and how are old versions handled?"
+      ],
+      "confidence": "high",
+      "span_start": 482,
+      "span_end": 571,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states the claim verbatim.",
+      "trust": "unknown",
+      "created_at": 1794038719.6146483,
+      "verified": true
+    },
+    {
+      "id": "ev_d476065e",
+      "claim": "An UPDATE writes a new version of the row and keeps the old one until no snapshot can still see it.",
+      "quote": "An UPDATE writes a new version of the row and keeps the old one until no snapshot can still see it.",
+      "url": "https://thesev1database.com/lessons/mvcc-internals-row-versions",
+      "title": "MVCC Internals: How PostgreSQL Stores Row Versions",
+      "sub_questions": [
+        "How do writers create new tuple versions without blocking readers, and how are old versions handled?"
+      ],
+      "confidence": "high",
+      "span_start": 190,
+      "span_end": 289,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote exactly matches the claim.",
+      "trust": "unknown",
+      "created_at": 1794038719.6147435,
+      "verified": true
+    },
+    {
+      "id": "ev_0937ac2f",
+      "claim": "In PostgreSQL, MVCC ensures that read locks do not conflict with write locks, so readers never block writers and writers never block readers.",
+      "quote": "the MVCC model of concurrency control rather than locking is that in MVCC locks acquired for querying (reading) data do not conflict with locks acquired for writing data, and so reading never blocks writing and writing never blocks reading.",
+      "url": "https://www.postgresql.org/docs/current/mvcc-intro.html",
+      "title": "13.1. Introduction",
+      "sub_questions": [
+        "How does PostgreSQL prevent readers from blocking writers and vice versa during concurrent transactions?"
+      ],
+      "confidence": "high",
+      "span_start": 812,
+      "span_end": 1052,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote does not mention PostgreSQL, so it does not fully support the claim that this applies specifically to PostgreSQL.",
+      "trust": "primary",
+      "created_at": 1794038719.6150794,
+      "verified": true
+    },
+    {
+      "id": "ev_22739613",
+      "claim": "PostgreSQL maintains the no‑blocking guarantee even at the strictest isolation level, Serializable Snapshot Isolation (SSI).",
+      "quote": "PostgreSQL maintains this guarantee even when providing the strictest level of transaction isolation through the use of an innovative Serializable Snapshot Isolation (SSI) level.",
+      "url": "https://www.postgresql.org/docs/current/mvcc-intro.html",
+      "title": "13.1. Introduction",
+      "sub_questions": [
+        "How does PostgreSQL prevent readers from blocking writers and vice versa during concurrent transactions?"
+      ],
+      "confidence": "high",
+      "span_start": 1053,
+      "span_end": 1231,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that PostgreSQL maintains the guarantee even when providing the strictest level of transaction isolation through SSI.",
+      "trust": "primary",
+      "created_at": 1794038719.615391,
+      "verified": true
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "item_id": "pytest-parametrize",
+  "category": "testing",
+  "question": "How does pytest.mark.parametrize turn one test function into several independent test cases?",
+  "ok": true,
+  "error": null,
+  "duration_s": 158.7,
+  "stage_errors": {},
+  "evidence_total": 8,
+  "evidence_verified": 6,
+  "evidence_citable": 6,
+  "evidence_cited": 6,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 6
+  },
+  "contradictions": 0,
+  "citations": 6,
+  "cited_ids": [
+    "ev_78cc8389",
+    "ev_140fea37",
+    "ev_7bcd3407",
+    "ev_45186d6a",
+    "ev_07c1c3d0",
+    "ev_37dcff4b"
+  ],
+  "unsupported_citations": 0,
+  "words": 381,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "parametrize"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 23001,
+  "tokens_completion": 12447,
+  "tokens_total": 35448,
+  "cost_usd": 0.00230814,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 14.92,
+    "research": 127.1,
+    "evidence": 0.0,
+    "verify": 8.71,
+    "write": 7.98
+  }
+}

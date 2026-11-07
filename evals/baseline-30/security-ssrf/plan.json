@@ -1,0 +1,30 @@
+{
+  "restated": "What makes an HTTP fetch endpoint vulnerable to SSRF, and which address ranges must be blocked?",
+  "sub_questions": [
+    {
+      "question": "What is SSRF and how does it exploit HTTP fetch endpoints?",
+      "search_query": "SSRF definition and HTTP fetch vulnerability",
+      "why": "Provides a clear definition of SSRF and explains the basic mechanism by which an HTTP fetch endpoint can be abused."
+    },
+    {
+      "question": "What endpoint design factors make an HTTP fetch endpoint vulnerable to SSRF?",
+      "search_query": "HTTP fetch endpoint SSRF vulnerability factors",
+      "why": "Identifies specific characteristics such as lack of input validation, unrestricted URL handling, and absence of network restrictions that lead to SSRF risk."
+    },
+    {
+      "question": "Which IP address ranges are commonly blocked to mitigate SSRF?",
+      "search_query": "SSRF mitigation blocked IP ranges",
+      "why": "Lists the standard private, loopback, link‑local, and other internal ranges (e.g., 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 127.0.0.0/8, 169.254.0.0/16) that should be blocked."
+    },
+    {
+      "question": "Are there additional address ranges or protocols that should be blocked for SSRF protection?",
+      "search_query": "SSRF additional blocked address ranges",
+      "why": "Highlights other ranges or protocols (e.g., 0.0.0.0/8, 224.0.0.0/4, IPv6 equivalents, and local network services) that are often recommended to block."
+    }
+  ],
+  "assumptions": [
+    "The fetch endpoint is a server‑side HTTP client used to retrieve external resources.",
+    "The user is interested in standard mitigation practices for SSRF.",
+    "The answer should focus on IP address ranges commonly blocked in production environments."
+  ]
+}

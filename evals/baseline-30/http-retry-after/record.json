@@ -1,0 +1,47 @@
+{
+  "item_id": "http-retry-after",
+  "category": "http",
+  "question": "How should an HTTP client handle a 429 response that includes a Retry-After header?",
+  "ok": true,
+  "error": null,
+  "duration_s": 146.59,
+  "stage_errors": {},
+  "evidence_total": 4,
+  "evidence_verified": 4,
+  "evidence_citable": 4,
+  "evidence_cited": 4,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 4
+  },
+  "contradictions": 0,
+  "citations": 4,
+  "cited_ids": [
+    "ev_18773bd2",
+    "ev_1904ff8a",
+    "ev_89a827b7",
+    "ev_0c564141"
+  ],
+  "unsupported_citations": 0,
+  "words": 172,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "Retry-After"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 23213,
+  "tokens_completion": 18217,
+  "tokens_total": 41430,
+  "cost_usd": 0.0030646,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 1.51,
+    "research": 104.39,
+    "evidence": 0.0,
+    "verify": 6.08,
+    "write": 34.6
+  }
+}

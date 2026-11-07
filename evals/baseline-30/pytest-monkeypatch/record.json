@@ -1,0 +1,44 @@
+{
+  "item_id": "pytest-monkeypatch",
+  "category": "testing",
+  "question": "When should a pytest test use monkeypatch instead of unittest.mock.patch?",
+  "ok": true,
+  "error": null,
+  "duration_s": 112.11,
+  "stage_errors": {},
+  "evidence_total": 2,
+  "evidence_verified": 1,
+  "evidence_citable": 1,
+  "evidence_cited": 1,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 1
+  },
+  "contradictions": 0,
+  "citations": 1,
+  "cited_ids": [
+    "ev_2a5319f8"
+  ],
+  "unsupported_citations": 0,
+  "words": 201,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "monkeypatch"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 17599,
+  "tokens_completion": 13114,
+  "tokens_total": 30713,
+  "cost_usd": 0.00223279,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 7.58,
+    "research": 85.5,
+    "evidence": 0.0,
+    "verify": 2.53,
+    "write": 16.49
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "restated": "Explain how using a multi-stage Docker build reduces the final image size.",
+  "sub_questions": [
+    {
+      "question": "What is a multi-stage Docker build and how does it differ from a single-stage build?",
+      "search_query": "multi-stage docker build explanation",
+      "why": "Provides foundational understanding of the technique and its basic mechanics, which is necessary to explain subsequent size reductions."
+    },
+    {
+      "question": "How does a multi-stage Docker build separate build-time dependencies from runtime dependencies?",
+      "search_query": "docker multi-stage build runtime dependencies",
+      "why": "Shows the key mechanism—copying only necessary artifacts—by which unnecessary files are omitted from the final image."
+    },
+    {
+      "question": "What impact does this separation have on Docker image layers and overall size?",
+      "search_query": "docker image size multi-stage build",
+      "why": "Quantifies the reduction in layers and file count, directly linking the separation to a smaller image."
+    },
+    {
+      "question": "Can you provide a concrete example of a multi-stage Dockerfile and the size difference compared to a single-stage build?",
+      "search_query": "example multi-stage dockerfile size comparison",
+      "why": "Illustrates the concept with real numbers, reinforcing how the technique reduces size in practice."
+    },
+    {
+      "question": "What best practices should be followed to maximize size savings when using multi-stage builds?",
+      "search_query": "best practices multi-stage docker build",
+      "why": "Offers actionable guidance to ensure the size reduction is achieved effectively."
+    }
+  ],
+  "assumptions": [
+    "The user is interested in a general explanation applicable to most Docker projects.",
+    "The user has basic familiarity with Docker and Dockerfiles."
+  ]
+}

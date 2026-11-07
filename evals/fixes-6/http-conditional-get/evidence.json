@@ -1,0 +1,90 @@
+{
+  "generated_at": 1794042274.2338479,
+  "stats": {
+    "findings_seen": 4,
+    "evidence_kept": 4,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 6
+  },
+  "evidence": [
+    {
+      "id": "ev_50d59a27",
+      "claim": "The server sends a 304 Not Modified response when the ETag matches the current resource.",
+      "quote": "Because the etag value matches at the time of the request, the entity tag fails the condition, and a 304 response is returned:",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/304",
+      "title": "304 Not Modified",
+      "sub_questions": [
+        "What response does the server send when the ETag matches the current resource?"
+      ],
+      "confidence": "high",
+      "span_start": 878,
+      "span_end": 1004,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that when the etag value matches, a 304 response is returned.",
+      "trust": "primary",
+      "created_at": 1794041726.1343114,
+      "verified": true
+    },
+    {
+      "id": "ev_d23a0014",
+      "claim": "The client reuses its cached representation and does not download the response body when receiving a 304 Not Modified.",
+      "quote": "The response carries no message body and instructs the client to reuse its stored representation.",
+      "url": "https://http.dev/304",
+      "title": "304 Not Modified",
+      "sub_questions": [
+        "How does the client interpret a 304 Not Modified response to avoid downloading the body?"
+      ],
+      "confidence": "high",
+      "span_start": 162,
+      "span_end": 259,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states the response has no message body and instructs reuse of the stored representation, matching the claim that the client does not download a body and reuses the cache.",
+      "trust": "unknown",
+      "created_at": 1794041726.1345184,
+      "verified": true
+    },
+    {
+      "id": "ev_b07458c6",
+      "claim": "When a 304 Not Modified is returned, the response must include Cache‑Control, Content‑Location, Date, ETag, Expires, and Vary headers.",
+      "quote": "When the server returns 304, the response includes headers from the original successful response: Cache-Control, Content-Location, Date, ETag, Expires, and Vary.",
+      "url": "https://http.dev/if-none-match",
+      "title": "If-None-Match",
+      "sub_questions": [
+        "Are there any caveats or additional headers involved in this caching mechanism?"
+      ],
+      "confidence": "high",
+      "span_start": 616,
+      "span_end": 777,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote lists the same headers and states they are included in a 304 response, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794041726.1347604,
+      "verified": true
+    },
+    {
+      "id": "ev_53389b72",
+      "claim": "When the condition fails for GET and HEAD methods, the server must return a 304 Not Modified and any of the following header fields that would have been sent in a 200 response to the same request: Cache‑Control, Content‑Location, Date, ETag, Expires, and Vary.",
+      "quote": "When the condition fails for GET and HEAD methods, the server must return a 304 Not Modified and any of the following header fields that would have been sent in a 200 response to the same request: Cache-Control, Content-Location, Date, ETag, Expires, and Vary.",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/If-None-Match",
+      "title": "If-None-Match header",
+      "sub_questions": [
+        "Are there any caveats or additional headers involved in this caching mechanism?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 611,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the same conditions and header fields as the claim.",
+      "trust": "primary",
+      "created_at": 1794041726.1351666,
+      "verified": true
+    }
+  ]
+}

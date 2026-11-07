@@ -1,0 +1,35 @@
+{
+  "restated": "Explain how the pytest.mark.parametrize decorator transforms a single test function into multiple independent test cases.",
+  "sub_questions": [
+    {
+      "question": "What is the syntax and basic usage of pytest.mark.parametrize?",
+      "search_query": "pytest mark parametrize syntax examples",
+      "why": "Provides the foundational definition and examples of how the decorator is applied to a test function."
+    },
+    {
+      "question": "How does pytest.generate test cases from parametrize arguments?",
+      "search_query": "how pytest parametrize creates test cases",
+      "why": "Shows the mechanism by which pytest expands the decorated function into separate test instances for each argument set."
+    },
+    {
+      "question": "In what way are the generated test cases independent of each other?",
+      "search_query": "pytest parametrize test independence",
+      "why": "Explains isolation guarantees, such as separate function calls and no shared state between parameterized runs."
+    },
+    {
+      "question": "How does pytest name and discover the individual parameterized test cases?",
+      "search_query": "pytest parametrize test naming convention",
+      "why": "Describes the naming scheme (e.g., test_func[param1-param2]) that allows each case to be identified and reported separately."
+    },
+    {
+      "question": "What impact does parametrize have on test execution order and isolation?",
+      "search_query": "pytest parametrize execution order isolation",
+      "why": "Clarifies whether parameterized tests run sequentially, in parallel, or with any specific ordering, and how isolation is maintained."
+    }
+  ],
+  "assumptions": [
+    "The user is using a recent version of pytest (>=6.0).",
+    "The parametrize decorator is applied to a single test function.",
+    "The user is interested in the conceptual and practical aspects of test case generation, not the internal pytest source code."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "restated": "Why does asyncio.CancelledError inherit from BaseException rather than Exception in Python 3.8 and later?",
+  "sub_questions": [
+    {
+      "question": "What is the class definition and inheritance hierarchy of asyncio.CancelledError in Python 3.8+?",
+      "search_query": "asyncio.CancelledError class definition Python 3.8",
+      "why": "Provides the exact inheritance chain, confirming that CancelledError subclasses BaseException."
+    },
+    {
+      "question": "What was the rationale for making asyncio.CancelledError inherit from BaseException instead of Exception?",
+      "search_query": "why asyncio CancelledError inherits BaseException",
+      "why": "Explains the design decision and its intended behavior in the asyncio framework."
+    },
+    {
+      "question": "How does inheriting from BaseException affect exception handling and propagation in asyncio tasks?",
+      "search_query": "asyncio CancelledError handling BaseException",
+      "why": "Shows the practical impact on try/except blocks and task cancellation semantics."
+    },
+    {
+      "question": "What changes were introduced to asyncio.CancelledError in Python 3.8 compared to earlier versions?",
+      "search_query": "Python 3.8 asyncio CancelledError changes",
+      "why": "Contextualizes the inheritance change within the broader Python 3.8 release notes."
+    },
+    {
+      "question": "What are the implications of this inheritance choice for developers writing asyncio code?",
+      "search_query": "asyncio CancelledError implications for developers",
+      "why": "Highlights best practices and potential pitfalls when handling CancelledError in user code."
+    }
+  ],
+  "assumptions": [
+    "The user refers to the asyncio module in Python 3.8 and newer.",
+    "Relevant documentation and discussion posts are available online.",
+    "The inheritance change is documented in Python's official release notes or PEPs."
+  ]
+}

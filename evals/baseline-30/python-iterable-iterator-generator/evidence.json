@@ -1,0 +1,90 @@
+{
+  "generated_at": 1794041053.5089226,
+  "stats": {
+    "findings_seen": 4,
+    "evidence_kept": 4,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 2
+  },
+  "evidence": [
+    {
+      "id": "ev_1f108868",
+      "claim": "An iterator in Python is an object used to traverse through all the elements of a collection (like lists, tuples or dictionaries) one element at a time.",
+      "quote": "An iterator in Python is an object used to traverse through all the elements of a collection (like lists, tuples or dictionaries) one element at a time.",
+      "url": "https://www.geeksforgeeks.org/python/iterators-in-python/",
+      "title": "Iterators in Python - GeeksforGeeks",
+      "sub_questions": [
+        "What is an iterator in Python?"
+      ],
+      "confidence": "high",
+      "span_start": 0,
+      "span_end": 152,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "aggregator",
+      "created_at": 1794039386.4084845,
+      "verified": true
+    },
+    {
+      "id": "ev_78adf343",
+      "claim": "An iterator is an object that lets you access items in a sequence one at a time.",
+      "quote": "An iterator is an object that lets you access items in a sequence one at a time.",
+      "url": "https://www.geeksforgeeks.org/python/difference-between-iterator-vs-generator/",
+      "title": "Difference Between Iterator vs Generator - GeeksforGeeks",
+      "sub_questions": [
+        "How do iterable, iterator, and generator differ and relate to each other?"
+      ],
+      "confidence": "high",
+      "span_start": 920,
+      "span_end": 1000,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "aggregator",
+      "created_at": 1794039386.4085474,
+      "verified": true
+    },
+    {
+      "id": "ev_196cf5eb",
+      "claim": "A generator is another way to create iterators, but in a simpler and more readable manner.",
+      "quote": "A generator is another way to create iterators, but in a simpler and more readable manner.",
+      "url": "https://www.geeksforgeeks.org/python/difference-between-iterator-vs-generator/",
+      "title": "Difference Between Iterator vs Generator - GeeksforGeeks",
+      "sub_questions": [
+        "How do iterable, iterator, and generator differ and relate to each other?"
+      ],
+      "confidence": "high",
+      "span_start": 640,
+      "span_end": 730,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "aggregator",
+      "created_at": 1794039386.4086146,
+      "verified": true
+    },
+    {
+      "id": "ev_278b6412",
+      "claim": "All generators are iterators.",
+      "quote": "All generators are iterators",
+      "url": "https://www.geeksforgeeks.org/python/difference-between-iterator-vs-generator/",
+      "title": "Difference Between Iterator vs Generator - GeeksforGeeks",
+      "sub_questions": [
+        "How do iterable, iterator, and generator differ and relate to each other?"
+      ],
+      "confidence": "high",
+      "span_start": 889,
+      "span_end": 917,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "quote states the claim",
+      "trust": "aggregator",
+      "created_at": 1794039386.408661,
+      "verified": true
+    }
+  ]
+}

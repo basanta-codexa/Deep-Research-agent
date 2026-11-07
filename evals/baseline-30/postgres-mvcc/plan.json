@@ -1,0 +1,28 @@
+{
+  "restated": "Explain how PostgreSQL’s Multi-Version Concurrency Control (MVCC) enables readers and writers to operate concurrently without blocking each other.",
+  "sub_questions": [
+    {
+      "question": "What is MVCC and how is it implemented in PostgreSQL?",
+      "search_query": "PostgreSQL MVCC implementation details",
+      "why": "Provides foundational understanding of MVCC concepts, data structures (tuple headers, transaction IDs), and how PostgreSQL stores multiple versions of a row."
+    },
+    {
+      "question": "How does PostgreSQL determine which tuple version is visible to a reader?",
+      "search_query": "PostgreSQL tuple visibility rules",
+      "why": "Explains the visibility predicates (xmin, xmax, transaction IDs, snapshot) that allow a reader to see a consistent snapshot while other writers modify data."
+    },
+    {
+      "question": "How do writers create new tuple versions without blocking readers, and how are old versions handled?",
+      "search_query": "PostgreSQL concurrent writes MVCC",
+      "why": "Shows that writers insert new tuples and mark old ones as dead, enabling readers to continue accessing old versions without waiting for locks."
+    },
+    {
+      "question": "How does PostgreSQL prevent readers from blocking writers and vice versa during concurrent transactions?",
+      "search_query": "PostgreSQL readers writers concurrency MVCC",
+      "why": "Describes lock-free reads, the use of MVCC snapshots, and how write locks are limited to the modified tuples, ensuring minimal interference between readers and writers."
+    }
+  ],
+  "assumptions": [
+    "The user is interested in PostgreSQL’s MVCC mechanism specifically, not generic MVCC concepts."
+  ]
+}

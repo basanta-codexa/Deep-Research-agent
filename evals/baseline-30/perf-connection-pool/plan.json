@@ -1,0 +1,34 @@
+{
+  "restated": "What problem does a database connection pool solve for a web service, and when does it hurt?",
+  "sub_questions": [
+    {
+      "question": "What specific problem does a database connection pool solve for web services?",
+      "search_query": "database connection pool problem solved",
+      "why": "Provides a clear explanation of the core issue—slow connection establishment and resource exhaustion—that pooling addresses."
+    },
+    {
+      "question": "How does connection pooling improve performance and resource usage in web services?",
+      "search_query": "connection pooling performance benefits",
+      "why": "Shows evidence of reduced latency, lower CPU/memory usage, and higher throughput due to reusing connections."
+    },
+    {
+      "question": "What are the main drawbacks or situations where connection pooling can hurt?",
+      "search_query": "connection pool disadvantages",
+      "why": "Lists common downsides such as stale connections, increased complexity, and potential for resource leaks."
+    },
+    {
+      "question": "In what specific scenarios or workloads does connection pooling become detrimental?",
+      "search_query": "when not to use connection pool",
+      "why": "Identifies workloads (e.g., very short-lived services, low traffic, or highly dynamic schemas) where pooling adds overhead."
+    },
+    {
+      "question": "How can a developer decide whether to use a connection pool for a particular web service?",
+      "search_query": "deciding to use connection pool",
+      "why": "Provides guidelines and metrics (e.g., connection latency, request rate, resource limits) to inform the decision."
+    }
+  ],
+  "assumptions": [
+    "The question refers to relational database systems commonly used with web services.",
+    "The web service follows a typical request-response model where database access is a bottleneck."
+  ]
+}

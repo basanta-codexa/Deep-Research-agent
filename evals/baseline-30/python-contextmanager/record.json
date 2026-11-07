@@ -1,0 +1,44 @@
+{
+  "item_id": "python-contextmanager",
+  "category": "python",
+  "question": "What does contextlib.contextmanager require of the function it decorates?",
+  "ok": true,
+  "error": null,
+  "duration_s": 145.68,
+  "stage_errors": {},
+  "evidence_total": 2,
+  "evidence_verified": 1,
+  "evidence_citable": 1,
+  "evidence_cited": 1,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 1
+  },
+  "contradictions": 0,
+  "citations": 1,
+  "cited_ids": [
+    "ev_e899ed53"
+  ],
+  "unsupported_citations": 0,
+  "words": 192,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "generator"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 16348,
+  "tokens_completion": 13617,
+  "tokens_total": 29965,
+  "cost_usd": 0.00226065,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 19.94,
+    "research": 97.58,
+    "evidence": 0.0,
+    "verify": 1.23,
+    "write": 26.94
+  }
+}

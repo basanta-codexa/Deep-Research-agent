@@ -1,0 +1,29 @@
+{
+  "restated": "What causes a Docker build layer cache to be invalidated?",
+  "sub_questions": [
+    {
+      "question": "Which Dockerfile instructions cause a build layer cache to be invalidated?",
+      "search_query": "dockerfile instructions cache invalidation",
+      "why": "This search will retrieve documentation and articles that list the specific Dockerfile commands (e.g., RUN, COPY, ADD, ENV, ARG, etc.) that trigger cache invalidation when they change."
+    },
+    {
+      "question": "How does changing the build context affect Docker layer cache validity?",
+      "search_query": "docker build context cache invalidation",
+      "why": "The result will explain how modifications to files in the build context or the context directory itself cause the corresponding COPY/ADD layers to be rebuilt, invalidating the cache."
+    },
+    {
+      "question": "What impact does updating the base image or its tag have on the Docker build cache?",
+      "search_query": "docker base image tag change cache invalidation",
+      "why": "This query will provide information on how pulling a newer base image or changing the image tag forces the first layer (the FROM instruction) to be rebuilt, thereby invalidating subsequent layers."
+    },
+    {
+      "question": "How do build arguments and environment variables influence Docker layer cache invalidation?",
+      "search_query": "docker build args cache invalidation",
+      "why": "The search will return explanations of how changes to ARG or ENV values alter the cache key for subsequent layers, causing those layers to be rebuilt."
+    }
+  ],
+  "assumptions": [
+    "Using Docker's default build cache behavior (no --no-cache flag).",
+    "Docker version 20.10 or later, where the cache mechanism is documented."
+  ]
+}

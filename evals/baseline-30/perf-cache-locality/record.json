@@ -1,0 +1,48 @@
+{
+  "item_id": "perf-cache-locality",
+  "category": "performance",
+  "question": "Why can iterating a two-dimensional array row by row be faster than column by column?",
+  "ok": true,
+  "error": null,
+  "duration_s": 87.25,
+  "stage_errors": {},
+  "evidence_total": 8,
+  "evidence_verified": 5,
+  "evidence_citable": 5,
+  "evidence_cited": 5,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 5
+  },
+  "contradictions": 0,
+  "citations": 5,
+  "cited_ids": [
+    "ev_07360363",
+    "ev_aa3124f8",
+    "ev_ef78527a",
+    "ev_2a0dd3d0",
+    "ev_bf9cfee7"
+  ],
+  "unsupported_citations": 0,
+  "words": 325,
+  "report_ok": true,
+  "writer_repaired": true,
+  "writer_errors": [],
+  "keyword_hits": [
+    "cache"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 16518,
+  "tokens_completion": 10372,
+  "tokens_total": 26890,
+  "cost_usd": 0.0018439,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 6.72,
+    "research": 58.07,
+    "evidence": 0.01,
+    "verify": 5.15,
+    "write": 17.3
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "item_id": "postgres-mvcc",
+  "category": "databases",
+  "question": "How does PostgreSQL MVCC allow readers and writers to work concurrently without blocking each other?",
+  "ok": true,
+  "error": null,
+  "duration_s": 129.76,
+  "stage_errors": {},
+  "evidence_total": 10,
+  "evidence_verified": 10,
+  "evidence_citable": 10,
+  "evidence_cited": 10,
+  "evidence_unused": 0,
+  "support": {
+    "supported": 8,
+    "partial": 2
+  },
+  "contradictions": 0,
+  "citations": 10,
+  "cited_ids": [
+    "ev_c2bd0e63",
+    "ev_43b0c095",
+    "ev_22739613",
+    "ev_cb360b65",
+    "ev_2657dcec",
+    "ev_a9b0c01d",
+    "ev_3cde6fc9",
+    "ev_d476065e",
+    "ev_517387b8",
+    "ev_0937ac2f"
+  ],
+  "unsupported_citations": 0,
+  "words": 502,
+  "report_ok": true,
+  "writer_repaired": false,
+  "writer_errors": [],
+  "keyword_hits": [
+    "MVCC"
+  ],
+  "keyword_misses": [],
+  "misconception_hits": [],
+  "tokens_prompt": 26355,
+  "tokens_completion": 15232,
+  "tokens_total": 41587,
+  "cost_usd": 0.00277081,
+  "unpriced_models": [],
+  "timings": {
+    "plan": 7.66,
+    "research": 98.93,
+    "evidence": 0.0,
+    "verify": 20.5,
+    "write": 2.67
+  }
+}

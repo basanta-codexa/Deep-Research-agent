@@ -1,0 +1,109 @@
+{
+  "generated_at": 1794041053.8889182,
+  "stats": {
+    "findings_seen": 5,
+    "evidence_kept": 5,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 5
+  },
+  "evidence": [
+    {
+      "id": "ev_56b95061",
+      "claim": "time.time() provides time measurements in seconds and fractions of a second, which might not be sufficient for accurately profiling very short code segments or fine-grained optimizations.",
+      "quote": "Lack of Precision: time.time() provides time measurements in seconds and fractions of a second, which might not be sufficient for accurately profiling very short code segments or fine-grained optimizations.",
+      "url": "https://superfastpython.com/benchmark-time-time/",
+      "title": "Benchmark Python with time.time()",
+      "sub_questions": [
+        "Why does the limited resolution of time.time() make it unsuitable for benchmarking short code paths?"
+      ],
+      "confidence": "high",
+      "span_start": 580,
+      "span_end": 786,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that time.time() gives seconds and fractions of a second, which may not suffice for profiling very short code segments or fine‑grained optimizations, exactly matching the claim.",
+      "trust": "aggregator",
+      "created_at": 1794040900.9024272,
+      "verified": true
+    },
+    {
+      "id": "ev_8a6ce41b",
+      "claim": "time.time() is suitable for longer execution times, not for short execution times less than a second or 500 ms.",
+      "quote": "time.time() method of benchmarking code appropriate for code that has a generally longer execution time (e.g. seconds) rather than short execution times, e.g. less than a second or less than 500 milliseconds.",
+      "url": "https://superfastpython.com/benchmark-time-time/",
+      "title": "Benchmark Python with time.time()",
+      "sub_questions": [
+        "Why does the limited resolution of time.time() make it unsuitable for benchmarking short code paths?"
+      ],
+      "confidence": "high",
+      "span_start": 369,
+      "span_end": 577,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that time.time() is appropriate for longer execution times (e.g., seconds) rather than short execution times, e.g., less than a second or less than 500 milliseconds.",
+      "trust": "aggregator",
+      "created_at": 1794040900.9026349,
+      "verified": true
+    },
+    {
+      "id": "ev_8a22f902",
+      "claim": "time.perf_counter() provides the highest available resolution for performance measurement",
+      "quote": "Unlike time.time(), it provides the highest available resolution for performance measurement.",
+      "url": "https://pytutorial.com/python-timeperf_counter-high-precision-performance-timing/",
+      "title": "PyTutorial | Python time.perf_counter(): High Precision Performance Timing",
+      "sub_questions": [
+        "Which high‑resolution timing functions are available in Python for accurate benchmarking?"
+      ],
+      "confidence": "high",
+      "span_start": 208,
+      "span_end": 301,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that time.perf_counter() provides the highest available resolution for performance measurement.",
+      "trust": "aggregator",
+      "created_at": 1794040900.9027336,
+      "verified": true
+    },
+    {
+      "id": "ev_1d3064da",
+      "claim": "time.perf_counter() should be called before and after the code block to measure execution time",
+      "quote": "perf_counter() is called before and after the loop",
+      "url": "https://www.geeksforgeeks.org/python/time-perf_counter-function-in-python/",
+      "title": "time.perf_counter() function in Python - GeeksforGeeks",
+      "sub_questions": [
+        "How should time.perf_counter be used to benchmark short code paths effectively?"
+      ],
+      "confidence": "high",
+      "span_start": 492,
+      "span_end": 542,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that perf_counter() is called before and after the loop, which is a code block, matching the claim.",
+      "trust": "aggregator",
+      "created_at": 1794040900.9027982,
+      "verified": true
+    },
+    {
+      "id": "ev_7354fbfd",
+      "claim": "time.perf_counter() is accurate for short durations",
+      "quote": "It is designed for performance measurement, includes time spent during sleep, and is accurate for short durations.",
+      "url": "https://www.geeksforgeeks.org/python/time-perf_counter-function-in-python/",
+      "title": "time.perf_counter() function in Python - GeeksforGeeks",
+      "sub_questions": [
+        "How should time.perf_counter be used to benchmark short code paths effectively?"
+      ],
+      "confidence": "high",
+      "span_start": 126,
+      "span_end": 240,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that it is accurate for short durations.",
+      "trust": "aggregator",
+      "created_at": 1794040900.9029057,
+      "verified": true
+    }
+  ]
+}

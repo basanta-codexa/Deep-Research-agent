@@ -1,0 +1,185 @@
+{
+  "generated_at": 1794042755.3259509,
+  "stats": {
+    "findings_seen": 9,
+    "evidence_kept": 9,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 5,
+    "outside_window": 0,
+    "sources": 2
+  },
+  "evidence": [
+    {
+      "id": "ev_3785db8e",
+      "claim": "Readiness probes determine when a container is ready to accept traffic.",
+      "quote": "Readiness probes determine when a container is ready to accept traffic.",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "title": "Liveness, Readiness, and Startup Probes",
+      "sub_questions": [
+        "What is a Kubernetes readiness probe and what is its purpose?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "primary",
+      "created_at": 1794042740.3228881,
+      "verified": false
+    },
+    {
+      "id": "ev_369e8592",
+      "claim": "If the readiness probe returns a failed state, the EndpointSlice controller removes the Pod's IP address from the EndpointSlices of all Services that match the Pod.",
+      "quote": "If the readiness probe returns a failed state, the EndpointSlice controller removes the Pod's IP address from the EndpointSlices of all Services that match the Pod.",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "title": "Liveness, Readiness, and Startup Probes",
+      "sub_questions": [
+        "What is a Kubernetes readiness probe and what is its purpose?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "primary",
+      "created_at": 1794042740.32337,
+      "verified": false
+    },
+    {
+      "id": "ev_f8f62343",
+      "claim": "A probe is a diagnostic performed periodically by the kubelet on a container.",
+      "quote": "A probe is a diagnostic performed periodically by the kubelet on a container.",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "title": "Liveness, Readiness, and Startup Probes",
+      "sub_questions": [
+        "What is a Kubernetes liveness probe and what is its purpose?"
+      ],
+      "confidence": "high",
+      "span_start": 93,
+      "span_end": 170,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote exactly matches the claim.",
+      "trust": "primary",
+      "created_at": 1794042740.3234115,
+      "verified": true
+    },
+    {
+      "id": "ev_869b6b83",
+      "claim": "Based on the probe results, Kubernetes can restart unhealthy containers.",
+      "quote": "Based on the probe results, Kubernetes can restart unhealthy containers.",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "title": "Liveness, Readiness, and Startup Probes",
+      "sub_questions": [
+        "What is a Kubernetes liveness probe and what is its purpose?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "primary",
+      "created_at": 1794042740.3238013,
+      "verified": false
+    },
+    {
+      "id": "ev_d6c3c347",
+      "claim": "A failed readiness probe does not restart the container but marks the pod as not ready.",
+      "quote": "For a failed readiness probe, the kubelet continues running the container that failed checks, and also continues to run more probes; because the check failed, the kubelet sets the Ready condition on the Pod to false.",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "title": "Liveness, Readiness, and Startup Probes",
+      "sub_questions": [
+        "How do readiness and liveness probes differ in terms of behavior and impact on pod lifecycle?"
+      ],
+      "confidence": "high",
+      "span_start": 1988,
+      "span_end": 2204,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that a failed readiness probe does not restart the container but sets the Pod’s Ready condition to false, matching the claim.",
+      "trust": "primary",
+      "created_at": 1794042740.3238559,
+      "verified": true
+    },
+    {
+      "id": "ev_8eff622f",
+      "claim": "A failed liveness probe triggers a container restart.",
+      "quote": "For a startup or liveness probe, if at least failureThreshold probes have failed, Kubernetes treats the container as unhealthy and triggers a restart for that specific container.",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "title": "Liveness, Readiness, and Startup Probes",
+      "sub_questions": [
+        "How do readiness and liveness probes differ in terms of behavior and impact on pod lifecycle?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "primary",
+      "created_at": 1794042740.324299,
+      "verified": false
+    },
+    {
+      "id": "ev_76ce46c3",
+      "claim": "Readiness probes are configured similarly to liveness probes, but use the readinessProbe field instead of the livenessProbe field.",
+      "quote": "Readiness probes are configured similarly to liveness probes. The only difference is that you use the readinessProbe field instead of the livenessProbe field.",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "title": "Configure Liveness, Readiness and Startup Probes",
+      "sub_questions": [
+        "What are typical configuration differences and common use cases for readiness and liveness probes?"
+      ],
+      "confidence": "high",
+      "span_start": 2120,
+      "span_end": 2278,
+      "match": "normalized",
+      "support": "supported",
+      "support_reason": "The quote states that readiness probes are configured similarly to liveness probes and that the only difference is using readinessProbe instead of livenessProbe.",
+      "trust": "primary",
+      "created_at": 1794042740.3247197,
+      "verified": true
+    },
+    {
+      "id": "ev_4a1ba020",
+      "claim": "A pod with containers reporting that they are not ready does not receive traffic through Kubernetes Services.",
+      "quote": "A pod with containers reporting that they are not ready does not receive traffic through Kubernetes Services.",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "title": "Configure Liveness, Readiness and Startup Probes",
+      "sub_questions": [
+        "What are typical configuration differences and common use cases for readiness and liveness probes?"
+      ],
+      "confidence": "high",
+      "span_start": 2010,
+      "span_end": 2119,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly the claim.",
+      "trust": "primary",
+      "created_at": 1794042740.3247523,
+      "verified": true
+    },
+    {
+      "id": "ev_e72ad6dd",
+      "claim": "A liveness probe is used to detect and remedy situations where an application is running but not functioning correctly.",
+      "quote": "A liveness probe is used to detect and remedy situations where an application is running but not functioning correctly.",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "title": "Configure Liveness, Readiness and Startup Probes",
+      "sub_questions": [
+        "What are typical configuration differences and common use cases for readiness and liveness probes?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "primary",
+      "created_at": 1794042740.3251393,
+      "verified": false
+    }
+  ]
+}

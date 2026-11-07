@@ -1,0 +1,30 @@
+{
+  "restated": "What are the differences between asyncio.TaskGroup and asyncio.gather() in terms of how they handle a child task that fails?",
+  "sub_questions": [
+    {
+      "question": "What happens when a child task fails while using asyncio.gather()? Does gather cancel the remaining tasks and how does it propagate the exception?",
+      "search_query": "asyncio.gather cancel on error",
+      "why": "Provides the baseline behavior of gather regarding cancellation and exception propagation when a task fails."
+    },
+    {
+      "question": "What happens when a child task fails while using asyncio.TaskGroup? Does TaskGroup cancel the remaining tasks and how does it propagate the exception?",
+      "search_query": "asyncio.TaskGroup cancel on error",
+      "why": "Shows the specific behavior of TaskGroup in the failure scenario, allowing comparison with gather."
+    },
+    {
+      "question": "How do asyncio.gather and asyncio.TaskGroup differ in reporting exceptions from failed child tasks?",
+      "search_query": "asyncio.gather aggregated exception",
+      "why": "Explains whether gather aggregates exceptions or raises the first one, and how TaskGroup reports exceptions, highlighting a key difference."
+    },
+    {
+      "question": "What cleanup or finalization differences exist between asyncio.gather and asyncio.TaskGroup after a child task fails?",
+      "search_query": "asyncio.TaskGroup cleanup after exception",
+      "why": "Illustrates how each construct handles remaining tasks, cancellation, and cleanup, completing the comparison."
+    }
+  ],
+  "assumptions": [
+    "The user is referring to Python 3.11+ where asyncio.TaskGroup is available.",
+    "The default behavior of asyncio.gather (return_exceptions=False) is being considered.",
+    "The question focuses on the failure of a single child task, not multiple simultaneous failures."
+  ]
+}

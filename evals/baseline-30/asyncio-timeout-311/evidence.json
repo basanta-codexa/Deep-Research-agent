@@ -1,0 +1,90 @@
+{
+  "generated_at": 1794041052.9023473,
+  "stats": {
+    "findings_seen": 4,
+    "evidence_kept": 4,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 3
+  },
+  "evidence": [
+    {
+      "id": "ev_121e7bbb",
+      "claim": "asyncio.timeout is an asynchronous context manager that can be used to limit the amount of time spent waiting on something.",
+      "quote": "Return an asynchronous context manager that can be used to limit the amount of time spent waiting on something.",
+      "url": "https://docs.python.org/3.11/library/asyncio-task.html",
+      "title": "Coroutines and Tasks",
+      "sub_questions": [
+        "What is the asyncio.timeout context manager introduced in Python 3.11 and how is it used to apply a timeout to an awaitable?"
+      ],
+      "confidence": "high",
+      "span_start": 1528,
+      "span_end": 1639,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "Quote states it returns an async context manager that limits waiting time",
+      "trust": "primary",
+      "created_at": 1794037209.5819037,
+      "verified": true
+    },
+    {
+      "id": "ev_780b2ca8",
+      "claim": "asyncio.timeout can be used by wrapping an awaitable in an async with block, e.g., async with asyncio.timeout(10): await long_running_task()",
+      "quote": "async with asyncio.timeout(10): await long_running_task()",
+      "url": "https://docs.python.org/3.11/library/asyncio-task.html",
+      "title": "Coroutines and Tasks",
+      "sub_questions": [
+        "What is the asyncio.timeout context manager introduced in Python 3.11 and how is it used to apply a timeout to an awaitable?"
+      ],
+      "confidence": "high",
+      "span_start": 436,
+      "span_end": 493,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote literally shows the async with syntax with asyncio.timeout(10) wrapping an awaitable.",
+      "trust": "primary",
+      "created_at": 1794037209.5819664,
+      "verified": true
+    },
+    {
+      "id": "ev_3263573c",
+      "claim": "asyncio.wait_for() can be used to wait for an awaitable with a timeout, canceling the task if the timeout elapses",
+      "quote": "Asyncio provides a way to wait on another task with a timeout via the asyncio.wait_for() function. If the timeout elapses before the task completes, the task is canceled.",
+      "url": "https://superfastpython.com/asyncio-wait_for/",
+      "title": "Asyncio wait_for() to Wait With a Timeout",
+      "sub_questions": [
+        "How can I use asyncio.wait with a timeout to limit the execution time of an awaitable?"
+      ],
+      "confidence": "high",
+      "span_start": 138,
+      "span_end": 308,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that asyncio.wait_for() waits on a task with a timeout and cancels the task if the timeout elapses, matching the claim.",
+      "trust": "aggregator",
+      "created_at": 1794037209.5820882,
+      "verified": true
+    },
+    {
+      "id": "ev_8742c0ca",
+      "claim": "If the timeout elapses before the task is completed, the task is canceled and an asyncio.TimeoutError is raised",
+      "quote": "If the timeout elapses before the task is completed, the task is canceled, and an asyncio.TimeoutError is raised, which may need to be handled.",
+      "url": "https://superfastpython.com/asyncio-wait_for/",
+      "title": "Asyncio wait_for() to Wait With a Timeout",
+      "sub_questions": [
+        "How can I use asyncio.wait with a timeout to limit the execution time of an awaitable?"
+      ],
+      "confidence": "high",
+      "span_start": 1609,
+      "span_end": 1752,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states exactly that if the timeout elapses before the task is completed, the task is canceled and an asyncio.TimeoutError is raised.",
+      "trust": "aggregator",
+      "created_at": 1794037209.58214,
+      "verified": true
+    }
+  ]
+}

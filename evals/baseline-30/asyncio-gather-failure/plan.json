@@ -1,0 +1,28 @@
+{
+  "restated": "When a coroutine passed to asyncio.gather() raises an exception, are the other coroutines cancelled?",
+  "sub_questions": [
+    {
+      "question": "What is the default behavior of asyncio.gather when one of its coroutines raises an exception?",
+      "search_query": "asyncio.gather default behavior exception",
+      "why": "Shows the official documentation describing that gather propagates the exception and cancels other tasks by default."
+    },
+    {
+      "question": "Does asyncio.gather cancel the remaining coroutines when one fails?",
+      "search_query": "asyncio.gather cancel remaining coroutines",
+      "why": "Provides evidence that gather cancels pending tasks when an exception occurs, unless return_exceptions is True."
+    },
+    {
+      "question": "What does the return_exceptions parameter do in asyncio.gather?",
+      "search_query": "asyncio.gather return_exceptions explanation",
+      "why": "Explains how setting return_exceptions=True changes the cancellation behavior and allows exceptions to be returned as results."
+    },
+    {
+      "question": "How can you prevent cancellation of other tasks in asyncio.gather?",
+      "search_query": "prevent cancellation asyncio.gather other tasks",
+      "why": "Shows techniques such as using return_exceptions=True or manually handling cancellations to keep other coroutines running."
+    }
+  ],
+  "assumptions": [
+    "Assume Python 3.7+ and default asyncio.gather behavior (return_exceptions=False)."
+  ]
+}

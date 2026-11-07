@@ -1,0 +1,52 @@
+{
+  "generated_at": 1794041053.6154377,
+  "stats": {
+    "findings_seen": 2,
+    "evidence_kept": 2,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 1,
+    "outside_window": 0,
+    "sources": 5
+  },
+  "evidence": [
+    {
+      "id": "ev_f2c9d9e0",
+      "claim": "monkeypatch is preferred for safely setting or deleting attributes, dictionary items, environment variables, or modifying sys.path in tests",
+      "quote": "The monkeypatch fixture helps you to safely set/delete an attribute, dictionary item or environment variable, or to modify sys.path for importing.",
+      "url": "https://docs.pytest.org/en/stable/how-to/monkeypatch.html",
+      "title": "How to monkeypatch/mock modules and environments¶",
+      "sub_questions": [
+        "In what typical testing scenarios is pytest's monkeypatch preferred over unittest.mock.patch?"
+      ],
+      "confidence": "high",
+      "span_start": null,
+      "span_end": null,
+      "match": "missing",
+      "support": "unchecked",
+      "support_reason": "",
+      "trust": "unknown",
+      "created_at": 1794039748.9190936,
+      "verified": false
+    },
+    {
+      "id": "ev_2a5319f8",
+      "claim": "monkeypatch.context allows limiting patches to a specific scope, useful for complex fixtures or patches to the stdlib",
+      "quote": "Use monkeypatch.context to apply patches only in a specific scope, which can help control teardown of complex fixtures or patches to the stdlib.",
+      "url": "https://docs.pytest.org/en/stable/how-to/monkeypatch.html",
+      "title": "How to monkeypatch/mock modules and environments¶",
+      "sub_questions": [
+        "In what typical testing scenarios is pytest's monkeypatch preferred over unittest.mock.patch?"
+      ],
+      "confidence": "high",
+      "span_start": 1039,
+      "span_end": 1183,
+      "match": "normalized",
+      "support": "supported",
+      "support_reason": "The quote states that monkeypatch.context applies patches only in a specific scope and helps control teardown of complex fixtures or patches to the stdlib, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794039748.9203851,
+      "verified": true
+    }
+  ]
+}

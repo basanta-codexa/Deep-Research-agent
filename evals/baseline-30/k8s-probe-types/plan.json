@@ -1,0 +1,21 @@
+{
+  "restated": "What is the difference between a Kubernetes readiness probe and a liveness probe?",
+  "sub_questions": [
+    {
+      "question": "What is a Kubernetes readiness probe?",
+      "search_query": "kubernetes readiness probe definition",
+      "why": "Provides the official definition, purpose, and behavior of readiness probes, which determine if a pod is ready to receive traffic."
+    },
+    {
+      "question": "What is a Kubernetes liveness probe?",
+      "search_query": "kubernetes liveness probe definition",
+      "why": "Provides the official definition, purpose, and behavior of liveness probes, which determine if a pod should be restarted when it becomes unhealthy."
+    },
+    {
+      "question": "How do readiness and liveness probes differ in purpose and behavior?",
+      "search_query": "difference between readiness and liveness probe",
+      "why": "Summarizes the distinct roles, effects on traffic routing, and restart mechanisms, directly answering the core comparison question."
+    }
+  ],
+  "assumptions": []
+}

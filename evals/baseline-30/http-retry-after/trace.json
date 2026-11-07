@@ -1,0 +1,1438 @@
+{
+  "trace_id": "f38b95777e92",
+  "name": "How should an HTTP client handle a 429 response that includes a Retry-After header?",
+  "started_at": "2026-11-07T07:45:59.516071+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "fb434ba1",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.02,
+      "duration_ms": 146587.61,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "6adf5eec",
+      "parent_id": "fb434ba1",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.05,
+      "duration_ms": 1511.87,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "How should an HTTP client handle a 429 response that includes a Retry-After header?",
+        "questions": [
+          {
+            "question": "What is the official meaning of HTTP status code 429 and the Retry-After header?",
+            "search_query": "HTTP 429 Retry-After header semantics"
+          },
+          {
+            "question": "How does a client parse the Retry-After header value when it can be either a number of seconds or an HTTP-date?",
+            "search_query": "Parsing Retry-After header format seconds date"
+          },
+          {
+            "question": "What best‑practice guidelines exist for HTTP clients when they receive a 429 response with a Retry-After header?",
+            "search_query": "Client best practices handling 429 Retry-After"
+          },
+          {
+            "question": "What should a client do if the Retry-After header is missing, malformed, or indicates a time in the past?",
+            "search_query": "Handling missing or invalid Retry-After header"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "a582054c",
+      "parent_id": "6adf5eec",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 0.83,
+      "duration_ms": 1510.87,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1510.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 583,
+        "completion": 873,
+        "total": 1456,
+        "cost_usd": 0.00013098
+      }
+    },
+    {
+      "id": "d04532bb",
+      "parent_id": "fb434ba1",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 1512.02,
+      "duration_ms": 104391.5,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 4,
+        "findings": 4,
+        "sources": 4
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "9445fcd5",
+      "parent_id": "d04532bb",
+      "name": "What is the official meaning of HTTP status code 429 and the Retry-Aft",
+      "kind": "subagent",
+      "start_ms": 1512.16,
+      "duration_ms": 80070.16,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "HTTP 429 Retry-After header semantics",
+        "findings": 0,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://www.rfc-editor.org/info/rfc6585/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "347aa1d0",
+      "parent_id": "9445fcd5",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 1512.23,
+      "duration_ms": 1507.74,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1507.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 419,
+        "completion": 57,
+        "total": 476,
+        "cost_usd": 1.998e-05
+      }
+    },
+    {
+      "id": "5ca8eb1c",
+      "parent_id": "d04532bb",
+      "name": "How does a client parse the Retry-After header value when it can be ei",
+      "kind": "subagent",
+      "start_ms": 1513.76,
+      "duration_ms": 37106.85,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "Parsing Retry-After header format seconds date",
+        "findings": 2,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Retry-After"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "7a014004",
+      "parent_id": "5ca8eb1c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 1513.81,
+      "duration_ms": 2227.87,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2227.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 429,
+        "completion": 65,
+        "total": 494,
+        "cost_usd": 2.132e-05
+      }
+    },
+    {
+      "id": "e91df53a",
+      "parent_id": "9445fcd5",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 3020.1,
+      "duration_ms": 15600.19,
+      "status": "error",
+      "error": "ERROR: search failed: DDGSException: No results found.",
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"HTTP 429 Retry-After header semantics\", \"focus\": \"HTTP 429 Retry-After header semantics\", \"max_chars\": 2600}",
+        "output_chars": 54
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "61af12c3",
+      "parent_id": "5ca8eb1c",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 3741.79,
+      "duration_ms": 6479.37,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Parsing Retry-After header format seconds date\", \"focus\": \"Retry-After header value seconds or HTTP-date parsing\", \"max_chars\": 2000}",
+        "output_chars": 1694
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "d9c0ce6f",
+      "parent_id": "5ca8eb1c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 10221.24,
+      "duration_ms": 2055.72,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2055.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 901,
+        "completion": 106,
+        "total": 1007,
+        "cost_usd": 4.081e-05
+      }
+    },
+    {
+      "id": "bf1c23e7",
+      "parent_id": "5ca8eb1c",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 12277.06,
+      "duration_ms": 3445.12,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Retry-After header parsing rules seconds or date\", \"focus\": \"Retry-After header parsing rules\", \"max_chars\": 2000}",
+        "output_chars": 1694
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "b7a0e83c",
+      "parent_id": "5ca8eb1c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 15722.26,
+      "duration_ms": 3897.05,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3897.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1406,
+        "completion": 358,
+        "total": 1764,
+        "cost_usd": 8.872e-05
+      }
+    },
+    {
+      "id": "02b74352",
+      "parent_id": "9445fcd5",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 18620.42,
+      "duration_ms": 1957.26,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1957.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 491,
+        "completion": 58,
+        "total": 549,
+        "cost_usd": 2.227e-05
+      }
+    },
+    {
+      "id": "bdbbf0ee",
+      "parent_id": "5ca8eb1c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 19619.41,
+      "duration_ms": 9118.91,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 9118.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1174,
+        "completion": 1000,
+        "total": 2174,
+        "cost_usd": 0.00016522
+      }
+    },
+    {
+      "id": "2812a4ee",
+      "parent_id": "9445fcd5",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 20577.81,
+      "duration_ms": 9834.7,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"RFC 6585 429 Retry-After\", \"focus\": \"429 Retry-After\", \"max_chars\": 2600}",
+        "output_chars": 628
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "89e0d271",
+      "parent_id": "5ca8eb1c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 28738.41,
+      "duration_ms": 9882.07,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 9882.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1190,
+        "completion": 1123,
+        "total": 2313,
+        "cost_usd": 0.00018169
+      }
+    },
+    {
+      "id": "1cd881e5",
+      "parent_id": "9445fcd5",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 30412.72,
+      "duration_ms": 2406.57,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2406.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 733,
+        "completion": 77,
+        "total": 810,
+        "cost_usd": 3.2e-05
+      }
+    },
+    {
+      "id": "19d3b869",
+      "parent_id": "9445fcd5",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 32819.44,
+      "duration_ms": 4230.56,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"RFC 6585 429\", \"focus\": \"429\", \"max_chars\": 2600}",
+        "output_chars": 2742
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "7d76c1f0",
+      "parent_id": "9445fcd5",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 37050.21,
+      "duration_ms": 9869.9,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 9869.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1072,
+        "completion": 1000,
+        "total": 2072,
+        "cost_usd": 0.00016216
+      }
+    },
+    {
+      "id": "69ac6d1a",
+      "parent_id": "d04532bb",
+      "name": "What best‑practice guidelines exist for HTTP clients when they receive",
+      "kind": "subagent",
+      "start_ms": 38620.67,
+      "duration_ms": 55935.03,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "Client best practices handling 429 Retry-After",
+        "findings": 2,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://buglyst.com/learn/guides/api-rate-limit-429-debug",
+          "https://wtool.dev/guides/http-429-rate-limiting-retry-after-backoff"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "b6328f22",
+      "parent_id": "69ac6d1a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 38620.72,
+      "duration_ms": 436.92,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 436.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 489,
+        "completion": 78,
+        "total": 567,
+        "cost_usd": 2.481e-05
+      }
+    },
+    {
+      "id": "fb194391",
+      "parent_id": "69ac6d1a",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 39057.74,
+      "duration_ms": 8637.21,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"best practices\", \"max_chars\": 600, \"query\": \"Client best practices handling 429 Retry-After\"}",
+        "output_chars": 721
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "cf23d5e2",
+      "parent_id": "9445fcd5",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 46920.15,
+      "duration_ms": 17641.74,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 17641.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1088,
+        "completion": 2000,
+        "total": 3088,
+        "cost_usd": 0.00029264
+      }
+    },
+    {
+      "id": "d67ee6a7",
+      "parent_id": "69ac6d1a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 47695.0,
+      "duration_ms": 1697.99,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1697.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 706,
+        "completion": 77,
+        "total": 783,
+        "cost_usd": 3.119e-05
+      }
+    },
+    {
+      "id": "92ce434f",
+      "parent_id": "69ac6d1a",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 49393.15,
+      "duration_ms": 23610.81,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"Retry-After\", \"max_chars\": 800, \"query\": \"429 Retry-After best practices client\"}",
+        "output_chars": 950
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "df746d5f",
+      "parent_id": "9445fcd5",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 64561.99,
+      "duration_ms": 17020.18,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": true,
+        "max_tokens": 4000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 17020.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1072,
+        "completion": 2060,
+        "total": 3132,
+        "cost_usd": 0.00029996
+      }
+    },
+    {
+      "id": "4e549775",
+      "parent_id": "69ac6d1a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 73004.06,
+      "duration_ms": 1778.92,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1778.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1020,
+        "completion": 287,
+        "total": 1307,
+        "cost_usd": 6.791e-05
+      }
+    },
+    {
+      "id": "fa091afa",
+      "parent_id": "69ac6d1a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 74783.06,
+      "duration_ms": 9114.05,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 9114.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 750,
+        "completion": 1000,
+        "total": 1750,
+        "cost_usd": 0.0001525
+      }
+    },
+    {
+      "id": "a0706ed2",
+      "parent_id": "d04532bb",
+      "name": "What should a client do if the Retry-After header is missing, malforme",
+      "kind": "subagent",
+      "start_ms": 81582.43,
+      "duration_ms": 24321.04,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "Handling missing or invalid Retry-After header",
+        "findings": 0,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Retry-After"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "155e83ac",
+      "parent_id": "a0706ed2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 81582.57,
+      "duration_ms": 1475.13,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1475.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 435,
+        "completion": 52,
+        "total": 487,
+        "cost_usd": 1.981e-05
+      }
+    },
+    {
+      "id": "b8fa8407",
+      "parent_id": "a0706ed2",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 83057.81,
+      "duration_ms": 3202.59,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Handling missing or invalid Retry-After header\", \"focus\": \"Retry-After header missing malformed past\", \"max_chars\": 2000}",
+        "output_chars": 1694
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "2a0822e9",
+      "parent_id": "69ac6d1a",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 83897.14,
+      "duration_ms": 10658.46,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 10658.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 766,
+        "completion": 1270,
+        "total": 2036,
+        "cost_usd": 0.00018808
+      }
+    },
+    {
+      "id": "c7fe1678",
+      "parent_id": "a0706ed2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 86260.47,
+      "duration_ms": 1837.71,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1837.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 904,
+        "completion": 98,
+        "total": 1002,
+        "cost_usd": 3.986e-05
+      }
+    },
+    {
+      "id": "946bfc61",
+      "parent_id": "a0706ed2",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 88098.25,
+      "duration_ms": 9880.44,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"Retry-After header missing malformed past fallback\", \"focus\": \"missing malformed past\", \"max_chars\": 2000}",
+        "output_chars": 1694
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "6609500e",
+      "parent_id": "a0706ed2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 97978.78,
+      "duration_ms": 5459.31,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5459.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1405,
+        "completion": 605,
+        "total": 2010,
+        "cost_usd": 0.0001208
+      }
+    },
+    {
+      "id": "7e0eb096",
+      "parent_id": "a0706ed2",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 103438.22,
+      "duration_ms": 2465.2,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2465.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1173,
+        "completion": 200,
+        "total": 1373,
+        "cost_usd": 6.119e-05
+      }
+    },
+    {
+      "id": "3f2f8236",
+      "parent_id": "fb434ba1",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 105903.57,
+      "duration_ms": 0.52,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 4,
+        "evidence_kept": 4,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 0,
+        "outside_window": 0,
+        "sources": 4
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "061794fd",
+      "parent_id": "fb434ba1",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 105904.13,
+      "duration_ms": 6079.48,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 4,
+          "partial": 0,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "aa931264",
+      "parent_id": "061794fd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 105904.22,
+      "duration_ms": 4158.35,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4158.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 306,
+        "completion": 374,
+        "total": 680,
+        "cost_usd": 5.78e-05
+      }
+    },
+    {
+      "id": "34dbecd9",
+      "parent_id": "061794fd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 105905.7,
+      "duration_ms": 4318.73,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 4318.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 314,
+        "completion": 400,
+        "total": 714,
+        "cost_usd": 6.142e-05
+      }
+    },
+    {
+      "id": "82e5664f",
+      "parent_id": "061794fd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 105906.9,
+      "duration_ms": 2636.36,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2636.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 313,
+        "completion": 155,
+        "total": 468,
+        "cost_usd": 2.954e-05
+      }
+    },
+    {
+      "id": "68a161d2",
+      "parent_id": "061794fd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 105907.66,
+      "duration_ms": 1389.46,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1389.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 313,
+        "completion": 276,
+        "total": 589,
+        "cost_usd": 4.527e-05
+      }
+    },
+    {
+      "id": "d514a544",
+      "parent_id": "061794fd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 110224.45,
+      "duration_ms": 920.05,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 920.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 343,
+        "completion": 337,
+        "total": 680,
+        "cost_usd": 5.41e-05
+      }
+    },
+    {
+      "id": "361620a2",
+      "parent_id": "061794fd",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 111144.67,
+      "duration_ms": 838.86,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 838.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 329,
+        "completion": 252,
+        "total": 581,
+        "cost_usd": 4.263e-05
+      }
+    },
+    {
+      "id": "10dde3db",
+      "parent_id": "fb434ba1",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 111983.71,
+      "duration_ms": 34603.87,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 172,
+        "citations": 4,
+        "cited_sources": 2,
+        "repaired": true
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "a984360b",
+      "parent_id": "10dde3db",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 111983.81,
+      "duration_ms": 16047.64,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 16047.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 834,
+        "completion": 1800,
+        "total": 2634,
+        "cost_usd": 0.00025902
+      }
+    },
+    {
+      "id": "0b02c81a",
+      "parent_id": "10dde3db",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 128031.52,
+      "duration_ms": 9749.09,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 3600,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 9749.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 895,
+        "completion": 1084,
+        "total": 1979,
+        "cost_usd": 0.00016777
+      }
+    },
+    {
+      "id": "ed90c0d2",
+      "parent_id": "10dde3db",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 137780.92,
+      "duration_ms": 8806.25,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 3600,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 8806.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1360,
+        "completion": 1095,
+        "total": 2455,
+        "cost_usd": 0.00018315
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 3493599.3,
+    "span_count": 49,
+    "llm_calls": 30,
+    "tool_calls": 9,
+    "errors": 1,
+    "tokens": {
+      "prompt": 23213,
+      "completion": 18217,
+      "total": 41430
+    },
+    "cost_usd": 0.0030646,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 30,
+        "prompt": 23213,
+        "completion": 18217,
+        "total": 41430,
+        "cost_usd": 0.0030646,
+        "priced": true,
+        "duration_ms": 162884.4
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 1,
+        "prompt": 583,
+        "completion": 873,
+        "total": 1456,
+        "cost_usd": 0.00013098
+      },
+      "research": {
+        "calls": 20,
+        "prompt": 17623,
+        "completion": 11571,
+        "total": 29194,
+        "cost_usd": 0.00203292
+      },
+      "verify": {
+        "calls": 6,
+        "prompt": 1918,
+        "completion": 1794,
+        "total": 3712,
+        "cost_usd": 0.00029076
+      },
+      "write": {
+        "calls": 3,
+        "prompt": 3089,
+        "completion": 3979,
+        "total": 7068,
+        "cost_usd": 0.00060994
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 146587.6,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 146587.3,
+        "errors": 0
+      },
+      "llm": {
+        "count": 30,
+        "duration_ms": 162884.4,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 4,
+        "duration_ms": 197433.1,
+        "errors": 0
+      },
+      "tool": {
+        "count": 9,
+        "duration_ms": 84921.0,
+        "errors": 1
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 17641.7
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 17020.2
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 16047.6
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 10658.5
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 9882.1
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "fb434ba1",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 146587.6
+      },
+      {
+        "id": "10dde3db",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 34603.9
+      },
+      {
+        "id": "ed90c0d2",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 8806.2
+      }
+    ]
+  }
+}

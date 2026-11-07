@@ -1,0 +1,1346 @@
+{
+  "trace_id": "0c39f5ac130d",
+  "name": "How do pytest fixture scopes affect test isolation and setup cost?",
+  "started_at": "2026-11-07T09:00:26.832649+00:00",
+  "attributes": {
+    "provider": "openrouter",
+    "model": "openai/gpt-oss-20b",
+    "judge_model": "openai/gpt-oss-20b",
+    "concurrency": 2,
+    "max_steps": 3,
+    "verify": true,
+    "single_agent": false
+  },
+  "spans": [
+    {
+      "id": "ee9c5ce4",
+      "parent_id": null,
+      "name": "pipeline",
+      "kind": "pipeline",
+      "start_ms": 0.35,
+      "duration_ms": 67629.36,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {},
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "5f083be3",
+      "parent_id": "ee9c5ce4",
+      "name": "plan",
+      "kind": "stage",
+      "start_ms": 0.62,
+      "duration_ms": 6000.02,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "restated": "How do different pytest fixture scopes influence test isolation and the cost of setting up fixtures?",
+        "questions": [
+          {
+            "question": "What are the pytest fixture scopes and how do they function?",
+            "search_query": "pytest fixture scopes list"
+          },
+          {
+            "question": "How does fixture scope affect test isolation?",
+            "search_query": "pytest fixture scope test isolation"
+          },
+          {
+            "question": "How does fixture scope affect setup cost?",
+            "search_query": "pytest fixture scope setup cost"
+          },
+          {
+            "question": "What are best practices for choosing fixture scopes to balance isolation and setup cost?",
+            "search_query": "pytest fixture scope best practices"
+          }
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "c53f4f33",
+      "parent_id": "5f083be3",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 6.28,
+      "duration_ms": 5992.65,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1200,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 5992.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 564,
+        "completion": 941,
+        "total": 1505,
+        "cost_usd": 0.00013925
+      }
+    },
+    {
+      "id": "445acb75",
+      "parent_id": "ee9c5ce4",
+      "name": "research",
+      "kind": "stage",
+      "start_ms": 6000.73,
+      "duration_ms": 41429.03,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "questions": 4,
+        "findings": 6,
+        "sources": 3
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "69270786",
+      "parent_id": "445acb75",
+      "name": "What are the pytest fixture scopes and how do they function?",
+      "kind": "subagent",
+      "start_ms": 6001.01,
+      "duration_ms": 14894.67,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest fixture scopes list",
+        "findings": 3,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://docs.pytest.org/en/6.2.x/fixture.html",
+          "https://docs.pytest.org/en/stable/how-to/fixtures.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "b09155b8",
+      "parent_id": "69270786",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 6001.34,
+      "duration_ms": 1540.43,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1540.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 423,
+        "completion": 63,
+        "total": 486,
+        "cost_usd": 2.088e-05
+      }
+    },
+    {
+      "id": "c6bc0f6f",
+      "parent_id": "445acb75",
+      "name": "How does fixture scope affect test isolation?",
+      "kind": "subagent",
+      "start_ms": 6002.68,
+      "duration_ms": 21124.89,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest fixture scope test isolation",
+        "findings": 0,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://docs.pytest.org/en/6.2.x/fixture.html",
+          "https://pytest-with-eric.com/fixtures/pytest-fixture-scope/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "61a1e937",
+      "parent_id": "c6bc0f6f",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 6002.76,
+      "duration_ms": 1179.94,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1179.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 468,
+        "completion": 71,
+        "total": 539,
+        "cost_usd": 2.327e-05
+      }
+    },
+    {
+      "id": "8ae693b9",
+      "parent_id": "c6bc0f6f",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 7182.93,
+      "duration_ms": 23.2,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"fixture scope test isolation\", \"max_chars\": 300, \"query\": \"pytest fixture scope test isolation\"}",
+        "output_chars": 490
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "ca170c25",
+      "parent_id": "c6bc0f6f",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 7206.53,
+      "duration_ms": 571.47,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 571.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 619,
+        "completion": 58,
+        "total": 677,
+        "cost_usd": 2.611e-05
+      }
+    },
+    {
+      "id": "3b921888",
+      "parent_id": "69270786",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 7541.91,
+      "duration_ms": 2608.39,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest fixture scopes list\", \"focus\": \"fixture scopes\", \"max_chars\": 2000}",
+        "output_chars": 2012
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "86750a20",
+      "parent_id": "c6bc0f6f",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 7778.34,
+      "duration_ms": 6.46,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"scope\", \"max_chars\": 300, \"query\": \"pytest fixture scope test isolation\"}",
+        "output_chars": 490
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "344d41c4",
+      "parent_id": "c6bc0f6f",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 7784.92,
+      "duration_ms": 1228.96,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1228.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 803,
+        "completion": 94,
+        "total": 897,
+        "cost_usd": 3.631e-05
+      }
+    },
+    {
+      "id": "4c943030",
+      "parent_id": "c6bc0f6f",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 9014.02,
+      "duration_ms": 13120.76,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"scope isolation\", \"max_chars\": 300, \"query\": \"pytest fixture scope isolation\"}",
+        "output_chars": 535
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "12908e2f",
+      "parent_id": "69270786",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 10150.53,
+      "duration_ms": 1590.66,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1590.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 853,
+        "completion": 103,
+        "total": 956,
+        "cost_usd": 3.898e-05
+      }
+    },
+    {
+      "id": "f5260ce4",
+      "parent_id": "69270786",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 11741.5,
+      "duration_ms": 4661.53,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest fixture scopes function class module package session\", \"focus\": \"scope\", \"max_chars\": 2000}",
+        "output_chars": 2030
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "00776564",
+      "parent_id": "69270786",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 16403.29,
+      "duration_ms": 2607.92,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2607.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1378,
+        "completion": 353,
+        "total": 1731,
+        "cost_usd": 8.723e-05
+      }
+    },
+    {
+      "id": "0bb558dc",
+      "parent_id": "69270786",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 19011.55,
+      "duration_ms": 1883.42,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1883.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1170,
+        "completion": 904,
+        "total": 2074,
+        "cost_usd": 0.00015262
+      }
+    },
+    {
+      "id": "bf94ee47",
+      "parent_id": "445acb75",
+      "name": "How does fixture scope affect setup cost?",
+      "kind": "subagent",
+      "start_ms": 20895.83,
+      "duration_ms": 4877.51,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest fixture scope setup cost",
+        "findings": 1,
+        "sources": 1,
+        "steps": 3,
+        "urls": [
+          "https://pytest-with-eric.com/fixtures/pytest-fixture-scope/"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "8a7a9bd1",
+      "parent_id": "bf94ee47",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 20895.91,
+      "duration_ms": 819.73,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 819.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 470,
+        "completion": 69,
+        "total": 539,
+        "cost_usd": 2.307e-05
+      }
+    },
+    {
+      "id": "980c14d9",
+      "parent_id": "bf94ee47",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 21715.75,
+      "duration_ms": 4.14,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"fixture scope setup cost\", \"max_chars\": 600, \"query\": \"pytest fixture scope setup cost\"}",
+        "output_chars": 783
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "e76e673d",
+      "parent_id": "bf94ee47",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 21719.96,
+      "duration_ms": 1453.26,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1453.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 692,
+        "completion": 91,
+        "total": 783,
+        "cost_usd": 3.259e-05
+      }
+    },
+    {
+      "id": "5ac90dba",
+      "parent_id": "c6bc0f6f",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 22134.92,
+      "duration_ms": 4992.51,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 4992.4,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 688,
+        "completion": 699,
+        "total": 1387,
+        "cost_usd": 0.00011151
+      }
+    },
+    {
+      "id": "0a8951bb",
+      "parent_id": "bf94ee47",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 23173.32,
+      "duration_ms": 6.99,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"setup cost fixture scope\", \"max_chars\": 600, \"query\": \"pytest fixture scope setup cost\"}",
+        "output_chars": 783
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "32ef1220",
+      "parent_id": "bf94ee47",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 23180.39,
+      "duration_ms": 1200.14,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1200.0,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 950,
+        "completion": 80,
+        "total": 1030,
+        "cost_usd": 3.89e-05
+      }
+    },
+    {
+      "id": "5ef95ee6",
+      "parent_id": "bf94ee47",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 24380.66,
+      "duration_ms": 5.43,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"focus\": \"setup cost\", \"max_chars\": 600, \"query\": \"pytest fixture scope setup cost\"}",
+        "output_chars": 765
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "37adbb36",
+      "parent_id": "bf94ee47",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 24386.32,
+      "duration_ms": 1386.94,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1386.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 875,
+        "completion": 457,
+        "total": 1332,
+        "cost_usd": 8.566e-05
+      }
+    },
+    {
+      "id": "af68b21c",
+      "parent_id": "445acb75",
+      "name": "What are best practices for choosing fixture scopes to balance isolati",
+      "kind": "subagent",
+      "start_ms": 25773.38,
+      "duration_ms": 21655.8,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "query": "pytest fixture scope best practices",
+        "findings": 2,
+        "sources": 2,
+        "steps": 3,
+        "urls": [
+          "https://docs.pytest.org/en/6.2.x/fixture.html",
+          "https://docs.pytest.org/en/stable/how-to/fixtures.html"
+        ]
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "a34ebc80",
+      "parent_id": "af68b21c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 25773.42,
+      "duration_ms": 2395.74,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 2395.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 412,
+        "completion": 57,
+        "total": 469,
+        "cost_usd": 1.977e-05
+      }
+    },
+    {
+      "id": "cdf9fe35",
+      "parent_id": "af68b21c",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 28169.24,
+      "duration_ms": 4.27,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"pytest fixture scope best practices\", \"focus\": \"fixture scope best practices\", \"max_chars\": 4000}",
+        "output_chars": 3899
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "4b941bba",
+      "parent_id": "af68b21c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 28173.57,
+      "duration_ms": 1194.95,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 4,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "tool_calls",
+        "truncated": false,
+        "latency_ms": 1194.9,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1009,
+        "completion": 86,
+        "total": 1095,
+        "cost_usd": 4.145e-05
+      }
+    },
+    {
+      "id": "78043e8c",
+      "parent_id": "af68b21c",
+      "name": "read_source",
+      "kind": "tool",
+      "start_ms": 29368.64,
+      "duration_ms": 2952.8,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "args": "{\"query\": \"best practices for pytest fixture scope\", \"focus\": \"best practices for pytest fixture scope\", \"max_chars\": 4000}",
+        "output_chars": 4067
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "7e54a28e",
+      "parent_id": "af68b21c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 32321.53,
+      "duration_ms": 3296.24,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 7,
+        "tools": 1,
+        "json_mode": false,
+        "max_tokens": 700,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3296.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1654,
+        "completion": 337,
+        "total": 1991,
+        "cost_usd": 9.343e-05
+      }
+    },
+    {
+      "id": "c53ca5ec",
+      "parent_id": "af68b21c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 35617.85,
+      "duration_ms": 5191.33,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 5191.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1443,
+        "completion": 1000,
+        "total": 2443,
+        "cost_usd": 0.00017329
+      }
+    },
+    {
+      "id": "b1bdaacb",
+      "parent_id": "af68b21c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 40809.38,
+      "duration_ms": 6619.68,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 2000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 6619.6,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 1459,
+        "completion": 1002,
+        "total": 2461,
+        "cost_usd": 0.00017403
+      }
+    },
+    {
+      "id": "8e7235db",
+      "parent_id": "ee9c5ce4",
+      "name": "evidence",
+      "kind": "stage",
+      "start_ms": 47429.83,
+      "duration_ms": 2.6,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "findings_seen": 6,
+        "evidence_kept": 6,
+        "duplicates_exact": 0,
+        "duplicates_near": 0,
+        "unverified_quotes": 2,
+        "outside_window": 0,
+        "sources": 3
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "e3cba6de",
+      "parent_id": "ee9c5ce4",
+      "name": "verify",
+      "kind": "stage",
+      "start_ms": 47432.54,
+      "duration_ms": 8098.6,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "verdicts": {
+          "supported": 3,
+          "partial": 1,
+          "unsupported": 0,
+          "contradicted": 0
+        },
+        "contradictions": 0,
+        "judge_errors": 0
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "fe81db2d",
+      "parent_id": "e3cba6de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 47432.76,
+      "duration_ms": 2910.78,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2910.7,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 354,
+        "completion": 249,
+        "total": 603,
+        "cost_usd": 4.299e-05
+      }
+    },
+    {
+      "id": "bc0f5657",
+      "parent_id": "e3cba6de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 47433.87,
+      "duration_ms": 2338.36,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 2338.3,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 319,
+        "completion": 117,
+        "total": 436,
+        "cost_usd": 2.478e-05
+      }
+    },
+    {
+      "id": "73ce2bbf",
+      "parent_id": "e3cba6de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 47434.64,
+      "duration_ms": 885.27,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 885.2,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 320,
+        "completion": 211,
+        "total": 531,
+        "cost_usd": 3.703e-05
+      }
+    },
+    {
+      "id": "5e570ec2",
+      "parent_id": "e3cba6de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 47435.28,
+      "duration_ms": 3620.83,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 400,
+        "reasoning_effort": null,
+        "finish_reason": "length",
+        "truncated": true,
+        "latency_ms": 3620.8,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 350,
+        "completion": 400,
+        "total": 750,
+        "cost_usd": 6.25e-05
+      }
+    },
+    {
+      "id": "f7e3c48b",
+      "parent_id": "e3cba6de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 51056.14,
+      "duration_ms": 1059.19,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 3,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1000,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 1059.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 366,
+        "completion": 503,
+        "total": 869,
+        "cost_usd": 7.637e-05
+      }
+    },
+    {
+      "id": "0cd3c89a",
+      "parent_id": "e3cba6de",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 52115.49,
+      "duration_ms": 3415.51,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 500,
+        "reasoning_effort": null,
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 3415.5,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 336,
+        "completion": 357,
+        "total": 693,
+        "cost_usd": 5.649e-05
+      }
+    },
+    {
+      "id": "e4b1587c",
+      "parent_id": "ee9c5ce4",
+      "name": "write",
+      "kind": "stage",
+      "start_ms": 55531.2,
+      "duration_ms": 12098.4,
+      "status": "ok",
+      "error": null,
+      "model": "",
+      "attributes": {
+        "words": 543,
+        "citations": 4,
+        "cited_sources": 3,
+        "repaired": false
+      },
+      "usage": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0,
+        "cost_usd": 0.0
+      }
+    },
+    {
+      "id": "bdfbf9ce",
+      "parent_id": "e4b1587c",
+      "name": "llm",
+      "kind": "llm",
+      "start_ms": 55531.27,
+      "duration_ms": 12096.32,
+      "status": "ok",
+      "error": null,
+      "model": "openai/gpt-oss-20b",
+      "attributes": {
+        "model": "openai/gpt-oss-20b",
+        "messages": 2,
+        "tools": 0,
+        "json_mode": false,
+        "max_tokens": 1800,
+        "reasoning_effort": "low",
+        "finish_reason": "stop",
+        "truncated": false,
+        "latency_ms": 12096.1,
+        "priced": true
+      },
+      "usage": {
+        "prompt": 796,
+        "completion": 860,
+        "total": 1656,
+        "cost_usd": 0.00013568
+      }
+    }
+  ],
+  "summary": {
+    "duration_ms": 247443.9,
+    "span_count": 45,
+    "llm_calls": 25,
+    "tool_calls": 10,
+    "errors": 0,
+    "tokens": {
+      "prompt": 18771,
+      "completion": 9162,
+      "total": 27933
+    },
+    "cost_usd": 0.00175419,
+    "unpriced_models": [],
+    "by_model": {
+      "openai/gpt-oss-20b": {
+        "calls": 25,
+        "prompt": 18771,
+        "completion": 9162,
+        "total": 27933,
+        "cost_usd": 0.00175419,
+        "priced": true,
+        "duration_ms": 71472.2
+      }
+    },
+    "by_stage": {
+      "plan": {
+        "calls": 1,
+        "prompt": 564,
+        "completion": 941,
+        "total": 1505,
+        "cost_usd": 0.00013925
+      },
+      "research": {
+        "calls": 17,
+        "prompt": 15366,
+        "completion": 5524,
+        "total": 20890,
+        "cost_usd": 0.0011791
+      },
+      "verify": {
+        "calls": 6,
+        "prompt": 2045,
+        "completion": 1837,
+        "total": 3882,
+        "cost_usd": 0.00030016
+      },
+      "write": {
+        "calls": 1,
+        "prompt": 796,
+        "completion": 860,
+        "total": 1656,
+        "cost_usd": 0.00013568
+      }
+    },
+    "by_kind": {
+      "pipeline": {
+        "count": 1,
+        "duration_ms": 67629.4,
+        "errors": 0
+      },
+      "stage": {
+        "count": 5,
+        "duration_ms": 67628.6,
+        "errors": 0
+      },
+      "llm": {
+        "count": 25,
+        "duration_ms": 71472.2,
+        "errors": 0
+      },
+      "subagent": {
+        "count": 4,
+        "duration_ms": 62552.9,
+        "errors": 0
+      },
+      "tool": {
+        "count": 10,
+        "duration_ms": 23394.0,
+        "errors": 0
+      }
+    },
+    "slowest": [
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 12096.3
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 6619.7
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 5992.7
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 5191.3
+      },
+      {
+        "name": "llm",
+        "kind": "llm",
+        "model": "openai/gpt-oss-20b",
+        "duration_ms": 4992.5
+      }
+    ],
+    "critical_path": [
+      {
+        "id": "ee9c5ce4",
+        "name": "pipeline",
+        "kind": "pipeline",
+        "duration_ms": 67629.4
+      },
+      {
+        "id": "e4b1587c",
+        "name": "write",
+        "kind": "stage",
+        "duration_ms": 12098.4
+      },
+      {
+        "id": "bdfbf9ce",
+        "name": "llm",
+        "kind": "llm",
+        "duration_ms": 12096.3
+      }
+    ]
+  }
+}

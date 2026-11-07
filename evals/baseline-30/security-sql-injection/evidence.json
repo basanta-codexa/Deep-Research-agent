@@ -1,0 +1,128 @@
+{
+  "generated_at": 1794041053.7275317,
+  "stats": {
+    "findings_seen": 6,
+    "evidence_kept": 6,
+    "duplicates_exact": 0,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 6
+  },
+  "evidence": [
+    {
+      "id": "ev_1af23e38",
+      "claim": "SQL injection attacks can use concatenated strings to build malicious queries.",
+      "quote": "You can concatenate together multiple strings to make a single string.",
+      "url": "https://github.com/shellgh0s1/Ethical_Pentesting_Notes/blob/main/SQL_Injection_Cheatsheet",
+      "title": "Ethical_Pentesting_Notes/SQL_Injection_Cheatsheet at main · shellgh0s1/Ethical_Pentesting_Notes",
+      "sub_questions": [
+        "What is SQL injection and how does it exploit concatenated SQL strings?"
+      ],
+      "confidence": "high",
+      "span_start": 520,
+      "span_end": 590,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "The quote confirms that strings can be concatenated, but it does not mention SQL injection or malicious queries.",
+      "trust": "community",
+      "created_at": 1794040128.824835,
+      "verified": true
+    },
+    {
+      "id": "ev_f494c88e",
+      "claim": "Parameterized queries separate SQL statements from parameter values.",
+      "quote": "The core idea of parameterized queries is to separate SQL statements from parameter values.",
+      "url": "https://devgex.com/en/article/00045414",
+      "title": "Parameterized SQL Queries: An In-Depth Analysis of Security and Performance",
+      "sub_questions": [
+        "How do parameterized queries separate data from code to prevent injection?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 442,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that parameterized queries separate SQL statements from parameter values, matching the claim.",
+      "trust": "unknown",
+      "created_at": 1794040128.8250122,
+      "verified": true
+    },
+    {
+      "id": "ev_5011bec3",
+      "claim": "User input is treated as a plain string value, preventing additional SQL execution.",
+      "quote": "Thus, even if user input contains malicious code, the database treats it as a plain string value, preventing additional SQL execution.",
+      "url": "https://devgex.com/en/article/00045414",
+      "title": "Parameterized SQL Queries: An In-Depth Analysis of Security and Performance",
+      "sub_questions": [
+        "How do parameterized queries separate data from code to prevent injection?"
+      ],
+      "confidence": "high",
+      "span_start": 765,
+      "span_end": 899,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that user input is treated as a plain string value, preventing additional SQL execution.",
+      "trust": "unknown",
+      "created_at": 1794040128.825314,
+      "verified": true
+    },
+    {
+      "id": "ev_e95992d6",
+      "claim": "Manual escaping is fragile and can fail to prevent injection.",
+      "quote": "- Manual escaping is a fragile last resort; reach for it only when no parameterized option exists.",
+      "url": "https://generalistprogrammer.com/tutorials/sql-injection-prevention-complete-guide",
+      "title": "SQL Injection Prevention: Complete Guide with Code Examples…",
+      "sub_questions": [
+        "Why can manual escaping of strings fail to prevent injection?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 449,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "Quote says manual escaping is fragile, but does not explicitly mention injection failure.",
+      "trust": "unknown",
+      "created_at": 1794040128.825426,
+      "verified": true
+    },
+    {
+      "id": "ev_a96ecd98",
+      "claim": "Manual escaping is fragile and error-prone because different databases and contexts have subtle escaping rules, making it easy to miss edge cases that attackers can exploit.",
+      "quote": "Manually escaping special characters (like doubling single quotes) is sometimes suggested as a lighter-weight fix, but it's fragile and error-prone in practice — different databases and contexts have different, subtle escaping rules, and it's easy to miss an edge case (encoding issues, alternate quote characters, database-specific syntax quirks) that a determined attacker can exploit.",
+      "url": "https://sqlint.com/articles/sql-injection-how-it-works-and-how-to-prevent-it",
+      "title": "SQL Injection: Prevention Guide | sqlint",
+      "sub_questions": [
+        "What common mistakes in manual escaping lead to vulnerabilities?"
+      ],
+      "confidence": "high",
+      "span_start": 351,
+      "span_end": 738,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote explicitly states that manual escaping is fragile and error‑prone, cites subtle escaping rules across databases and contexts, and notes that missing edge cases can be exploited by attackers.",
+      "trust": "unknown",
+      "created_at": 1794040128.8256261,
+      "verified": true
+    },
+    {
+      "id": "ev_8db027f5",
+      "claim": "Manual escaping is not equivalent to parameterized queries for security.",
+      "quote": "Escaping should never be treated as equivalent to parameterization for security purposes.",
+      "url": "https://sqlint.com/articles/sql-injection-how-it-works-and-how-to-prevent-it",
+      "title": "SQL Injection: Prevention Guide | sqlint",
+      "sub_questions": [
+        "What common mistakes in manual escaping lead to vulnerabilities?"
+      ],
+      "confidence": "high",
+      "span_start": 892,
+      "span_end": 981,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that escaping should never be treated as equivalent to parameterization for security purposes.",
+      "trust": "unknown",
+      "created_at": 1794040128.8257275,
+      "verified": true
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "generated_at": 1794041053.790261,
+  "stats": {
+    "findings_seen": 5,
+    "evidence_kept": 4,
+    "duplicates_exact": 1,
+    "duplicates_near": 0,
+    "unverified_quotes": 0,
+    "outside_window": 0,
+    "sources": 4
+  },
+  "evidence": [
+    {
+      "id": "ev_5511add9",
+      "claim": "COPY . . instructions invalidate the cache by changing every build",
+      "quote": "The most common culprit is a COPY . . early in the Dockerfile that changes every build, forcing every later step to re-execute.",
+      "url": "https://buglyst.com/learn/guides/docker-layer-cache-invalidation-debug",
+      "title": "Fix Docker Build Cache Invalidation Slow Builds | Buglyst",
+      "sub_questions": [
+        "Which Dockerfile instructions cause a build layer cache to be invalidated?"
+      ],
+      "confidence": "high",
+      "span_start": 605,
+      "span_end": 732,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that a COPY . . early in the Dockerfile changes every build, forcing later steps to re-execute, which matches the claim that COPY . . instructions invalidate the cache by changing every build.",
+      "trust": "unknown",
+      "created_at": 1794040446.8881142,
+      "verified": true
+    },
+    {
+      "id": "ev_9cf0325e",
+      "claim": "Changing build args or env variables between runs causes cache misses on ARG or ENV instructions.",
+      "quote": "Another cause is inconsistent build context or build args that differ between runs, causing cache misses on ARG or ENV instructions.",
+      "url": "https://buglyst.com/learn/guides/docker-layer-cache-invalidation-debug",
+      "title": "Fix Docker Build Cache Invalidation Slow Builds | Buglyst",
+      "sub_questions": [
+        "Which Dockerfile instructions cause a build layer cache to be invalidated?",
+        "How do build arguments and environment variables influence Docker layer cache invalidation?"
+      ],
+      "confidence": "high",
+      "span_start": 733,
+      "span_end": 865,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "Quote mentions build args that differ between runs causing cache misses on ARG or ENV instructions, but does not address env variables.",
+      "trust": "unknown",
+      "created_at": 1794040446.8882775,
+      "verified": true
+    },
+    {
+      "id": "ev_9fafe087",
+      "claim": "Updating the base image invalidates all downstream layers, causing the Dockerfile to rebuild from scratch.",
+      "quote": "Every layer after FROM is chained to the base image, so a new base digest invalidates all of them.",
+      "url": "https://www.warpbuild.com/answers/why-do-my-docker-builds-lose-cache-after-a-base-image-update",
+      "title": "Why Does a Base Image Update Invalidate My Cache? | WarpBuild",
+      "sub_questions": [
+        "What impact does updating the base image or its tag have on the Docker build cache?"
+      ],
+      "confidence": "high",
+      "span_start": 50,
+      "span_end": 148,
+      "match": "exact",
+      "support": "partial",
+      "support_reason": "Quote says a new base digest invalidates all downstream layers, but does not mention that this causes the Dockerfile to rebuild from scratch.",
+      "trust": "unknown",
+      "created_at": 1794040446.8883948,
+      "verified": true
+    },
+    {
+      "id": "ev_438edf1d",
+      "claim": "Pinning the base image digest freezes it until the digest changes, so updates only occur on a scheduled rebuild.",
+      "quote": "Pinning freezes the base image until a commit changes the digest, so the update arrives on the scheduled bump rather than on the next build.",
+      "url": "https://www.warpbuild.com/answers/why-do-my-docker-builds-lose-cache-after-a-base-image-update",
+      "title": "Why Does a Base Image Update Invalidate My Cache? | WarpBuild",
+      "sub_questions": [
+        "What impact does updating the base image or its tag have on the Docker build cache?"
+      ],
+      "confidence": "high",
+      "span_start": 1057,
+      "span_end": 1197,
+      "match": "exact",
+      "support": "supported",
+      "support_reason": "The quote states that pinning freezes the base image until the digest changes and that updates arrive on the scheduled bump rather than on the next build, matching the claim exactly.",
+      "trust": "unknown",
+      "created_at": 1794040446.8885536,
+      "verified": true
+    }
+  ]
+}
