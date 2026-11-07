@@ -20,7 +20,7 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 10 | Eval harness (30-question set, metrics, artifacts) | done |
 | 11 | Tracing + cost (spans, waterfall, token attribution) | done |
 | 11b | Live web UI (FastAPI + SSE, citation spotlight) | done |
-| 12 | Ablations | next |
+| 12 | Ablations | design ready; runs next |
 | 13 | Packaging + CI | |
 | 14 | README with real numbers | done |
 

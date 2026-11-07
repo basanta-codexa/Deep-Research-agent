@@ -126,7 +126,9 @@ later runs can be compared against it.
 ## Ablations
 
 Step 12 compares the full pipeline with one component removed at a time. The
-switches are deliberately explicit, and the run summary records them:
+switches are deliberately explicit, and the run summary records them. The
+design, run plan and paired-delta command are in
+[`ablations.md`](ablations.md):
 
 ```bash
 python -m evals.run --all --out evals/runs/base
