@@ -83,6 +83,9 @@ Hard rules:
    strongly than its quote allows.
 7. The user message may list UNCOVERED SUB-QUESTIONS. Do not answer those from
    general knowledge. Mention the gap under Limitations and omit that section.
+8. Do not use markdown tables. Write cited prose paragraphs instead. A table
+   row is a factual claim, and the checker treats the whole table as an uncited
+   paragraph unless every row carries an id; prose is easier to audit.
 
 Length: 350-550 words. Output markdown in exactly this shape:
 
@@ -111,9 +114,10 @@ REPAIR_PROMPT = """Your draft failed citation checks:
 {problems}
 
 Return the corrected draft as markdown only, no fences. Change only what is
-needed: add ids to every uncited paragraph, bullet, and table row; if no evidence
-supports a point, delete it or move it to Limitations. Remove ids that are not
-in the evidence list, and delete any URL from the prose. Keep the structure."""
+needed: add ids to every uncited paragraph and bullet; rewrite any markdown
+table as cited prose paragraphs. If no evidence supports a point, delete it or
+move it to Limitations. Remove ids that are not in the evidence list, and delete
+any URL from the prose. Keep the structure."""
 
 
 class WriterError(RuntimeError):
