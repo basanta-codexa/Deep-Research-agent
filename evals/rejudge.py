@@ -133,6 +133,16 @@ async def rejudge_records(
     return rejudged, details, errors, usage
 
 
+def missing_cited_ids(run_dir: Path, records: list[RunRecord]) -> list[str]:
+    """Old runs predate record.json; a new failed report has an empty list."""
+    return [
+        record.item_id
+        for record in records
+        if not record.cited_ids
+        and not (run_dir / record.item_id / "record.json").exists()
+    ]
+
+
 def _pct(value: float | None) -> str:
     return "n/a" if value is None else f"{float(value):.1%}"
 
@@ -230,7 +240,7 @@ async def run(args: argparse.Namespace) -> int:
             "this is not an independent judge",
             file=sys.stderr,
         )
-    missing_cited = [record.item_id for record in records if not record.cited_ids]
+    missing_cited = missing_cited_ids(run_dir, records)
     if missing_cited:
         print(
             "warning: cited ids were not persisted for "

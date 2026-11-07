@@ -9,6 +9,7 @@ from evals.rejudge import (
     apply_judgements,
     load_records,
     main as rejudge_main,
+    missing_cited_ids,
     render_markdown,
     rejudge_records,
 )
@@ -170,6 +171,14 @@ def test_rejudge_dry_run_does_not_need_a_client(tmp_path, capsys):
 
     assert rejudge_main([str(run), "--dry-run"]) == 0
     assert "q-1" in capsys.readouterr().out
+
+
+def test_missing_cited_ids_distinguishes_old_runs_from_empty_reports(tmp_path):
+    old = make_record(item_id="old", cited_ids=[])
+    new_failed = make_record(item_id="new-failed", cited_ids=[])
+    write_record(tmp_path / new_failed.item_id, new_failed)
+
+    assert missing_cited_ids(tmp_path, [old, new_failed]) == ["old"]
 
 
 def test_load_records_falls_back_to_the_summary_for_old_runs(tmp_path):
