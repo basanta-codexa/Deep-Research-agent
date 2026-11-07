@@ -24,6 +24,7 @@ from evals.metrics import (
     citation_precision,
     compare,
     keyword_recall,
+    strict_support_rate,
     support_rate,
     summarize,
     successful,
@@ -366,6 +367,21 @@ def test_support_rate_counts_partial_as_supported():
 
 def test_support_rate_is_zero_when_nothing_was_judged():
     assert support_rate(make_record(support={})) == 0.0
+
+
+def test_strict_support_rate_does_not_count_partial_as_supported():
+    record = make_record()
+    assert support_rate(record) == pytest.approx(0.8)
+    assert strict_support_rate(record) == pytest.approx(0.6)
+
+
+def test_summary_reports_both_support_definitions():
+    summary = summarize([make_record()])
+    assert summary["support_rate"] == pytest.approx(0.8)
+    assert summary["strict_support_rate"] == pytest.approx(0.6)
+    markdown = to_markdown(summary)
+    assert "claim support (supported + partial)" in markdown
+    assert "strict claim support (supported only)" in markdown
 
 
 def test_citation_precision_penalises_bad_citations():

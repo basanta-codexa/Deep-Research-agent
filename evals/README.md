@@ -15,6 +15,7 @@ distribution, and a distribution is what a regression test can compare against.
 | --- | --- | --- |
 | `success_rate` | report published, checks passed, ≥1 citation | whether the answer is any good |
 | `support_rate` | (supported + partial) ÷ judged claims | one judge's opinion; partial counts as support |
+| `strict_support_rate` | supported ÷ judged claims | one judge's opinion; a quote that supports most of a compound claim is counted as a miss |
 | `verified_rate` | quotes found in the fetched page ÷ findings | relevance: a real quote can still be off-topic |
 | `citation_precision` | citable citations ÷ all citations, micro-averaged | **nothing** — it is 1.0 by construction
 

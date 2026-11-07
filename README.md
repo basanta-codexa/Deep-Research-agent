@@ -138,7 +138,8 @@ It writes a separate `<run>/rejudge/` summary and leaves the original untouched.
 | | |
 | --- | --- |
 | published | 9/10 reports, 0 errors |
-| claim support | 61/61 judged (44 supported, 17 partial, 0 unsupported, 0 contradicted, 1 unjudged) |
+| claim support (lenient) | 61/61 judged (44 supported, 17 partial, 0 unsupported, 0 contradicted, 1 unjudged) |
+| strict claim support | 44/61 = 72% (partial does not count as supported) |
 | citations | 56, every one citable (precision 1.0) |
 | citation coverage | 90% of citable evidence used |
 | keyword recall | 90% (one report never used the term `Retry-After`) |
@@ -156,7 +157,8 @@ Reported per run:
 | Metric | What it means |
 | --- | --- |
 | success rate | report published, checks passed, at least one citation |
-| claim support | share of judged claims the quote actually supports |
+| claim support | share of judged claims the quote supports, counting partial |
+| strict claim support | share of judged claims the quote fully supports |
 | citation precision | **invariant**, micro-averaged over citations, must stay 1.0 |
 | citation coverage | share of citable evidence the report used |
 | keyword recall | proxy for coverage: expected terms present in the prose |

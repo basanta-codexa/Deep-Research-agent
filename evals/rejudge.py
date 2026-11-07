@@ -144,8 +144,14 @@ def render_markdown(summary: dict, original: dict) -> str:
         f"`{summary.get('judge_model', '')}` |"
     )
     lines.append(
-        f"| support rate | {float(original.get('support_rate', 0.0)):.1%} | "
+        f"| support rate (supported + partial) | "
+        f"{float(original.get('support_rate', 0.0)):.1%} | "
         f"{float(summary.get('support_rate', 0.0)):.1%} |"
+    )
+    lines.append(
+        f"| strict support rate (supported only) | "
+        f"{float(original.get('strict_support_rate', 0.0)):.1%} | "
+        f"{float(summary.get('strict_support_rate', 0.0)):.1%} |"
     )
     original_verdicts = original.get("verdicts") or {}
     new_verdicts = summary.get("verdicts") or {}

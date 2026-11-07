@@ -77,12 +77,26 @@ def judged(record: RunRecord) -> int:
 
 
 def support_rate(record: RunRecord) -> float:
+    """Lenient support: partial counts as support, because it is not a rejection."""
     total = judged(record)
     if total == 0:
         return 0.0
     return (
         record.support.get("supported", 0) + record.support.get("partial", 0)
     ) / total
+
+
+def strict_support_rate(record: RunRecord) -> float:
+    """Strict support: only `supported` counts. Partial is not a pass.
+
+    This is the number to quote when the claim is "the quote states what the
+    report says". The lenient rate answers a weaker question: "is it at least
+    related and not contradicted?"
+    """
+    total = judged(record)
+    if total == 0:
+        return 0.0
+    return record.support.get("supported", 0) / total
 
 
 def verified_rate(record: RunRecord) -> float:
@@ -166,6 +180,9 @@ def _precision(records: list[RunRecord]) -> float | None:
 CI_METRICS: dict[str, Callable[[list[RunRecord]], float | None]] = {
     "success_rate": lambda rows: _rate(rows, successful),
     "support_rate": lambda rows: _mean([support_rate(record) for record in rows]),
+    "strict_support_rate": lambda rows: _mean(
+        [strict_support_rate(record) for record in rows]
+    ),
     "verified_rate": lambda rows: _mean([verified_rate(record) for record in rows]),
     "citation_precision": _precision,
     "citation_coverage": lambda rows: _mean(
@@ -253,6 +270,9 @@ def summarize(
         "success_rate": _rate(records, successful),
         "error_rate": _rate(records, lambda r: not r.ok),
         "support_rate": _mean([support_rate(record) for record in records]),
+        "strict_support_rate": _mean(
+            [strict_support_rate(record) for record in records]
+        ),
         "verified_rate": _mean([verified_rate(record) for record in records]),
         # Micro-averaged on purpose. Precision is a property of the citations,
         # not of the questions: a report that cited nothing has no precision,
@@ -311,6 +331,9 @@ def _by_category(records: list[RunRecord]) -> dict[str, dict]:
             "n": len(group),
             "success_rate": _rate(group, successful),
             "support_rate": _mean([support_rate(record) for record in group]),
+            "strict_support_rate": _mean(
+                [strict_support_rate(record) for record in group]
+            ),
             "mean_tokens": _mean([float(record.tokens_total) for record in group]),
         }
         for category, group in sorted(groups.items())
@@ -323,6 +346,7 @@ def _by_category(records: list[RunRecord]) -> dict[str, dict]:
 COMPARED = (
     "success_rate",
     "support_rate",
+    "strict_support_rate",
     "verified_rate",
     "citation_coverage",
     "keyword_recall",
@@ -371,7 +395,8 @@ def compare(baseline: dict, candidate: dict) -> dict:
 
 SUMMARY_METRICS = (
     ("success_rate", "success rate", "pct"),
-    ("support_rate", "claim support", "pct"),
+    ("support_rate", "claim support (supported + partial)", "pct"),
+    ("strict_support_rate", "strict claim support (supported only)", "pct"),
     ("keyword_recall", "keyword recall", "pct"),
     ("citation_coverage", "citation coverage", "pct"),
     ("citation_precision", "citation precision (invariant)", "pct"),
