@@ -129,6 +129,10 @@ invalidates its old record. `--keep-failures` keeps failed rows instead.
 below 1.0, any unsupported citation, or a drop in success/support rate), so it
 can gate CI once step 13 wires it up.
 
+Support verdicts are self-judged by default. Before quoting them, replay them
+with a different model: `python -m evals.rejudge evals/runs/<run> --judge-model <model>`.
+It writes a separate `<run>/rejudge/` summary and leaves the original untouched.
+
 ### Last run: 10-question sample (`--sample 10 --seed 7`)
 
 | | |

@@ -62,6 +62,7 @@ python -m evals.run --id perf-benchmark-clock     # re-run one known failure
 python -m evals.run --resume --out evals/runs/sample10   # keep finished rows
 python -m evals.run --resume --keep-failures --out evals/runs/sample10
 python -m evals.recompute evals/runs/sample10     # re-derive an old run's summary
+python -m evals.rejudge evals/runs/sample10 --judge-model openai/gpt-oss-120b
 python -m evals.compare base/summary.json cand/summary.json
 ```
 
@@ -77,6 +78,14 @@ change: old artifacts keep their per-question records, so the summary is a pure
 function of data you already have — and fields the old run never measured stay
 `n/a` instead of becoming a misleading 0.
 
+`evals.rejudge` is the honesty check the default run cannot provide. It loads
+the saved `evidence.json`, sends every verified claim/quote pair to a different
+model, and writes a new summary under `<run>/rejudge/`. It never overwrites the
+original run, never regenerates a report, and keeps the re-judge's own token
+usage separate from generation cost. It replays support only, not the conflict
+scan. If the re-judge model is the same as the generation model it warns: that
+is still a self-judgement.
+
 ## Artifacts
 
 ```
@@ -90,6 +99,10 @@ evals/runs/<run>/
     plan.json
     trace.json          # span tree: stages, sub-agents, LLM calls, tools
     trace.html          # self-contained waterfall; open it in a browser
+  rejudge/              # optional: independent re-judge output
+    summary.json
+    summary.md
+    rejudge.json        # per-question verdicts and reasons
 ```
 
 `record.json` is written as soon as a question finishes, before `summary.json`.
@@ -125,8 +138,9 @@ day that report shipped.
 ## Known limits
 
 - **Self-judging.** The pipeline's support verdicts come from the cheap judge
-  model, and the eval reports those same verdicts. An independent re-judge with
-  the stronger model is the obvious next step (see the exercises in step 10).
+  model, and a normal run reports those same verdicts. Use `evals.rejudge` with
+  a different model before treating the support rate as independent; the
+  re-judge is only as independent as the second model.
 - **Small n.** 30 questions is enough to see a 10-point regression, not enough
   for a 2-point one. Report confidence intervals before making fine-grained claims.
 - **Provider variance.** Groq's free tier changes latency by 10× within an hour.
