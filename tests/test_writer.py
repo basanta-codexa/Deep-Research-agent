@@ -171,9 +171,11 @@ class FakeClient:
     def __init__(self, replies: list[str]) -> None:
         self.replies = list(replies)
         self.calls = 0
+        self.budgets: list[int | None] = []
 
     async def chat(self, messages, **kwargs):
         self.calls += 1
+        self.budgets.append(kwargs.get("max_tokens"))
         text = self.replies.pop(0) if self.replies else ""
         return LLMResponse(
             message=Message.assistant(text),
@@ -254,6 +256,70 @@ time.perf_counter() is monotonic and high resolution.
     )
     assert report.ok is False
     assert "no_citations" in {problem.code for problem in report.errors}
+
+
+def draft_citing(one, two) -> str:
+    return VALID.replace("ev_11111111", one.id).replace("ev_22222222", two.id)
+
+
+def test_writer_retries_an_empty_completion_with_a_larger_budget():
+    store, one, two = make_store()
+    client = FakeClient(["", draft_citing(one, two)])
+
+    report = asyncio.run(
+        ReportWriter(client).write(question="Which clock?", store=store)
+    )
+
+    assert report.ok is True
+    assert client.calls == 2
+    assert client.budgets[0] == 1800
+    assert client.budgets[1] > client.budgets[0]
+    assert report.errors == []
+
+
+def test_an_empty_completion_is_an_error_not_a_repairable_draft():
+    store, _, _ = make_store()
+    client = FakeClient(["", ""])
+
+    report = asyncio.run(
+        ReportWriter(client, repair_attempts=1).write(
+            question="Which clock?", store=store
+        )
+    )
+
+    assert report.ok is False
+    assert "empty_draft" in {problem.code for problem in report.errors}
+    # Initial call plus one larger-budget retry, and no repair turn after that.
+    assert client.calls == 2
+    assert report.repaired is False
+
+
+def test_repair_gets_more_output_budget_than_the_first_draft():
+    store, one, two = make_store()
+    uncited = """# Timing short code paths
+
+## Summary
+time.time() is wall-clock time.
+
+## Why it is a poor clock
+The clock can move when it is adjusted.
+
+## What to use instead
+time.perf_counter() is monotonic.
+
+## Limitations
+- Two standard-library pages only.
+"""
+    client = FakeClient([uncited, draft_citing(one, two)])
+
+    report = asyncio.run(
+        ReportWriter(client).write(question="Which clock?", store=store)
+    )
+
+    assert report.ok is True
+    assert report.repaired is True
+    assert client.calls == 2
+    assert client.budgets[1] > client.budgets[0]
 
 
 def test_brief_never_contains_urls():

@@ -28,7 +28,7 @@ from typing import Sequence
 from urllib.parse import urlsplit
 
 from .evidence import Evidence, EvidenceStore
-from .llm import LLMClient, Message, Usage
+from .llm import LLMClient, LLMResponse, Message, Usage
 from .planning import Plan
 from .structured import strip_fences
 
@@ -94,6 +94,12 @@ Length: 350-550 words. Output markdown in exactly this shape:
 ## Limitations
 - <what the evidence cannot establish>
 """
+
+EMPTY_RETRY_PROMPT = """Your previous completion was empty or cut off before any
+usable markdown appeared. Return the complete report from the beginning. Include
+the level-1 title, a `## Summary`, at least two content sections, and
+`## Limitations`. Cite only the evidence ids listed above."""
+
 
 REPAIR_PROMPT = """Your draft failed citation checks:
 
@@ -387,6 +393,43 @@ class ReportWriter:
         self.temperature = temperature
         self.repair_attempts = repair_attempts
 
+    async def _complete(
+        self,
+        messages: list[Message],
+        *,
+        temperature: float,
+        max_tokens: int,
+    ) -> tuple[LLMResponse, Usage]:
+        """Ask for markdown, retrying once when the completion is unusable.
+
+        Reasoning models sometimes spend the whole output budget on hidden
+        reasoning and return empty `content` with `finish_reason='stop'`. That is
+        not a draft with fixable citation errors, so the repair prompt cannot
+        help. Retry from scratch with a larger budget instead. The same applies
+        when the provider stops the response at the token limit.
+        """
+        usage = Usage()
+        budget = max_tokens
+        prompt = list(messages)
+        response: LLMResponse | None = None
+
+        for attempt in range(2):
+            response = await self.client.chat(
+                prompt,
+                temperature=temperature,
+                max_tokens=budget,
+            )
+            usage += response.usage
+            content = (response.message.content or "").strip()
+            if content and not response.truncated:
+                break
+            if attempt == 0:
+                budget = max(budget * 2, 3000)
+                prompt = [*prompt, Message.user(EMPTY_RETRY_PROMPT)]
+
+        assert response is not None
+        return response, usage
+
     async def write(
         self,
         *,
@@ -428,35 +471,56 @@ class ReportWriter:
         ]
 
         usage = Usage()
-        response = await self.client.chat(
+        response, spent = await self._complete(
             messages,
             temperature=self.temperature,
             max_tokens=self.max_tokens,
         )
-        usage += response.usage
+        usage += spent
         body = normalize_citations(_strip_fences(response.message.content))
         messages.append(response.message)
 
         problems = check_draft(body, allowed)
+        if not body.strip():
+            problems.append(
+                Problem(
+                    "empty_draft",
+                    "the writer returned no markdown after a retry with a larger budget",
+                )
+            )
         initial_errors = [p for p in problems if p.severity == "error"]
         repaired = False
 
-        for _ in range(self.repair_attempts):
-            errors = [p for p in problems if p.severity == "error"]
-            if not errors:
-                break
-            listing = "\n".join(f"- {p.code}: {p.detail}" for p in errors)
-            messages.append(Message.user(REPAIR_PROMPT.format(problems=listing)))
-            response = await self.client.chat(
-                messages,
-                temperature=0.0,
-                max_tokens=self.max_tokens,
-            )
-            usage += response.usage
-            body = normalize_citations(_strip_fences(response.message.content))
-            messages.append(response.message)
-            problems = check_draft(body, allowed)
-            repaired = True
+        # An empty body has nothing to repair. Sending the same request again
+        # just burns another truncated reasoning completion.
+        if body.strip():
+            for _ in range(self.repair_attempts):
+                errors = [p for p in problems if p.severity == "error"]
+                if not errors:
+                    break
+                listing = "\n".join(f"- {p.code}: {p.detail}" for p in errors)
+                messages.append(
+                    Message.user(REPAIR_PROMPT.format(problems=listing))
+                )
+                response, spent = await self._complete(
+                    messages,
+                    temperature=0.0,
+                    max_tokens=max(self.max_tokens * 2, 3000),
+                )
+                usage += spent
+                body = normalize_citations(
+                    _strip_fences(response.message.content)
+                )
+                messages.append(response.message)
+                problems = check_draft(body, allowed)
+                if not body.strip():
+                    problems.append(
+                        Problem(
+                            "empty_draft",
+                            "the writer returned no markdown after a repair",
+                        )
+                    )
+                repaired = True
 
         cited = extract_ids(body)
         unused = [item.id for item in items if item.id not in cited]
