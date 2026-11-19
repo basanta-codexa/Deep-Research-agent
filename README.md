@@ -23,7 +23,7 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 11 | Tracing + cost (spans, waterfall, token attribution) | done |
 | 11b | Live web UI (FastAPI + SSE, citation spotlight) | done |
 | 12 | Ablations | design ready; runs next |
-| 13 | Packaging + CI | in progress |
+| 13 | Packaging + CI | done |
 | 14 | README with real numbers | done |
 
 See [ROADMAP.md](ROADMAP.md) for the full plan.
