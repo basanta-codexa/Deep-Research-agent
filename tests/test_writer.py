@@ -240,7 +240,7 @@ time.perf_counter() is monotonic and high resolution 【{one.id}】.
 
 def test_writer_rejects_a_report_that_cites_nothing():
     store, one, _ = make_store()
-    draft = f"""# Timing short code paths
+    draft = """# Timing short code paths
 
 ## Summary
 time.time() is wall-clock time and can jump.

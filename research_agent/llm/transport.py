@@ -76,6 +76,7 @@ async def post_json(
             )
             await asyncio.sleep(delay)
 
+    detail = f": {last_error}" if last_error else ""
     raise LLMError(
-        f"request to {path} failed after {max_retries + 1} attempts"
+        f"request to {path} failed after {max_retries + 1} attempts{detail}"
     ) from last_error

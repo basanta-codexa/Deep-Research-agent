@@ -22,7 +22,7 @@ from datetime import datetime
 from pathlib import Path
 
 from research_agent.config import Settings
-from research_agent.llm import create_client
+from research_agent.llm import Message, create_client
 from research_agent.pipeline import PipelineConfig, PipelineResult, ResearchPipeline
 from research_agent.retrieval.cache import NullCache
 from research_agent.tools.web import make_subagent_tools
@@ -72,6 +72,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="skip the planner; one research thread for the whole question",
     )
     parser.add_argument("--no-cache", action="store_true", help="disable retrieval cache")
+    parser.add_argument(
+        "--preflight",
+        action="store_true",
+        help="make one tiny call to the generation and judge models, then exit",
+    )
     parser.add_argument("--dry-run", action="store_true", help="print the plan, no API calls")
     parser.add_argument("--verbose", action="store_true", help="print each pipeline stage")
     parser.add_argument(
@@ -143,6 +148,71 @@ def make_pipeline(settings: Settings, args: argparse.Namespace) -> ResearchPipel
             single_agent=args.single_agent,
         ),
     )
+
+
+async def preflight(settings: Settings, *, check_judge: bool = True) -> int:
+    """Fail before a long run when the provider/key/model cannot answer.
+
+    A 30-question run spends minutes before the first HTTP 402 or 404 is visible
+    in the summary. One tiny completion turns that into a two-second check. The
+    call deliberately ignores the text: a reasoning model may spend its tiny
+    budget on hidden tokens, but reaching the endpoint at all is the signal.
+    """
+    targets = [(settings.model, settings)]
+    judge = settings.judge_settings()
+    if check_judge and judge.model != settings.model:
+        targets.append((judge.model, judge))
+
+    clients = []
+    try:
+        for model, target in targets:
+            client = create_client(target)
+            clients.append(client)
+            try:
+                response = await client.chat(
+                    [Message.user("Reply with exactly: ok")],
+                    temperature=0.0,
+                    max_tokens=16,
+                )
+            except Exception as exc:
+                print(f"preflight {model}: FAIL {type(exc).__name__}: {exc}")
+                return 2
+            print(
+                f"preflight {model}: ok "
+                f"(finish={response.finish_reason or 'unknown'})"
+            )
+        return 0
+    except Exception as exc:
+        print(f"preflight setup: FAIL {type(exc).__name__}: {exc}")
+        return 2
+    finally:
+        for client in clients:
+            try:
+                await client.aclose()
+            except Exception:
+                pass
+
+
+PROVIDER_UNAVAILABLE = (
+    "HTTP 401",
+    "HTTP 402",
+    "HTTP 403",
+    "HTTP 429",
+    "Insufficient credits",
+    "free-models-per-day",
+)
+
+
+def provider_unavailable(record: RunRecord) -> bool:
+    """Whether one failure means the rest of the batch cannot succeed.
+
+    A missing key, empty credit balance, or exhausted daily free tier is not a
+    property of this question. Continuing turns one provider problem into thirty
+    red rows and an hour of retries. A plain HTTP 400 is excluded: that can be a
+    malformed prompt for one question, not a dead account.
+    """
+    message = (record.error or "").lower()
+    return any(marker.lower() in message for marker in PROVIDER_UNAVAILABLE)
 
 
 def reusable_record(
@@ -226,10 +296,14 @@ async def run(args: argparse.Namespace) -> int:
         f"single_agent={args.single_agent} cache={not args.no_cache}"
     )
 
+    if args.preflight:
+        return await preflight(settings, check_judge=not args.no_verify)
+
     pipeline = make_pipeline(settings, args)
     records: list[RunRecord] = []
     results: dict[str, PipelineResult] = {}
     skipped = 0
+    aborted: str | None = None
 
     def on_stage(item_id: str):
         if not args.verbose:
@@ -258,6 +332,10 @@ async def run(args: argparse.Namespace) -> int:
             results[item.id] = result
             print_record(index, len(items), record)
             write_item(out_dir, item, result, record)
+            if provider_unavailable(record):
+                aborted = record.error or "provider unavailable"
+                print(f"        aborting: {aborted[:160]}", flush=True)
+                break
     finally:
         await pipeline.client.aclose()
         if pipeline.judge_client is not pipeline.client:
@@ -275,6 +353,10 @@ async def run(args: argparse.Namespace) -> int:
     summary["verify"] = not args.no_verify
     summary["single_agent"] = args.single_agent
     summary["cache"] = not args.no_cache
+    summary["planned"] = len(items)
+    if aborted is not None:
+        summary["aborted"] = True
+        summary["aborted_reason"] = aborted[:300]
 
     write_artifacts(out_dir, items, records, results, summary)
     (out_dir / "summary.md").write_text(
@@ -287,6 +369,9 @@ async def run(args: argparse.Namespace) -> int:
     print(f"\nwall clock: {elapsed:.1f}s")
     print(f"artifacts:  {out_dir}")
     print(f"traces:     {out_dir}\\<question-id>\\trace.html")
+    if aborted is not None:
+        print(f"aborted:    {aborted[:300]}")
+        return 2
     return 0 if summary["success_rate"] > 0 else 1
 
 

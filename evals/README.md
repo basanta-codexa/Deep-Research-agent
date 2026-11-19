@@ -65,6 +65,7 @@ as *"cancel"*. It is a heuristic, and `tests/test_eval.py` pins its behaviour.
 
 ```bash
 python -m evals.run --dry-run                     # inspect the set, no API calls
+python -m evals.run --preflight                   # one tiny call per model, then exit
 python -m evals.run --sample 10 --seed 7          # reproducible random sample
 python -m evals.run --all                         # full set (long, costs tokens)
 python -m evals.run --category asyncio            # one category
@@ -79,7 +80,13 @@ python -m evals.compare base/summary.json cand/summary.json
 A resumed run reuses every `record.json` whose question still matches. Failed
 rows are re-run by default because free-tier failures are usually transient;
 `--keep-failures` keeps them instead. `--resume` requires an explicit `--out`
-so a typo cannot silently create a new run.
+so a typo cannot silently create a new run. `--preflight` is the cheap guard
+before a full run: it makes one tiny completion against the generation model and
+one against the judge model (unless they are the same), and exits non-zero with
+the provider's message if the key, credit, model, or rate limit is wrong. If a
+run still hits an account-level 401/402/403/429 mid-batch, it writes the records
+it has and aborts instead of turning the remaining questions into identical
+failures; the summary records `aborted`, `aborted_reason` and `planned`.
 
 `evals.compare` exits 1 on regression: any unsupported citation, citation
 precision below 1.0, or a drop in success/support rate. That is the hook for

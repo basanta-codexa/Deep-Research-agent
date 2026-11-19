@@ -34,7 +34,7 @@ from evals.metrics import (
 )
 from research_agent.config import Settings
 from research_agent.evidence import EvidenceStore
-from research_agent.llm import Usage
+from research_agent.llm import LLMResponse, Message, Usage
 from research_agent.pipeline import PipelineResult
 from research_agent.retrieval.cache import NullCache
 from research_agent.tracing import Tracer
@@ -147,6 +147,72 @@ def test_make_pipeline_wires_ablation_flags(monkeypatch):
     assert isinstance(captured["cache"], NullCache)
     assert pipeline.config.verify is False
     assert pipeline.config.single_agent is True
+
+
+class PreflightClient:
+    name = "fake"
+    model = "fake"
+
+    def __init__(self, *, fail: bool = False) -> None:
+        self.fail = fail
+        self.calls = 0
+        self.closed = False
+
+    async def chat(self, *args, **kwargs):
+        self.calls += 1
+        if self.fail:
+            raise RuntimeError("HTTP 402: insufficient credits")
+        return LLMResponse(message=Message.assistant("ok"), model=self.model)
+
+    async def aclose(self) -> None:
+        self.closed = True
+
+
+def test_preflight_checks_generation_and_judge_models(monkeypatch):
+    made: list[PreflightClient] = []
+
+    def fake_create(settings):
+        client = PreflightClient()
+        client.model = settings.model
+        made.append(client)
+        return client
+
+    monkeypatch.setattr(eval_run, "create_client", fake_create)
+    settings = Settings(provider="groq", model="gen", judge_model="judge")
+
+    assert asyncio.run(eval_run.preflight(settings)) == 0
+    assert [client.model for client in made] == ["gen", "judge"]
+    assert all(client.calls == 1 for client in made)
+    assert all(client.closed for client in made)
+
+
+def test_preflight_fails_fast_and_reports_the_provider_error(monkeypatch, capsys):
+    monkeypatch.setattr(
+        eval_run, "create_client", lambda settings: PreflightClient(fail=True)
+    )
+    settings = Settings(provider="groq", model="gen", judge_model="judge")
+
+    assert asyncio.run(eval_run.preflight(settings)) == 2
+    output = capsys.readouterr().out
+    assert "preflight gen: FAIL" in output
+    assert "HTTP 402" in output
+
+
+def test_provider_unavailable_only_stops_on_account_level_errors():
+    def record(error: str) -> RunRecord:
+        return RunRecord(
+            item_id="q", category="test", question="a question", error=error
+        )
+
+    assert eval_run.provider_unavailable(record("plan: PermanentLLMError: HTTP 402"))
+    assert eval_run.provider_unavailable(record("write: LLMError: HTTP 429"))
+    assert eval_run.provider_unavailable(
+        record("write: LLMError: free-models-per-day")
+    )
+    assert not eval_run.provider_unavailable(
+        record("plan: PermanentLLMError: HTTP 400")
+    )
+    assert not eval_run.provider_unavailable(record("timeout after 600s"))
 
 
 def test_dataset_loads_and_is_big_enough():
@@ -412,6 +478,45 @@ class FakePipeline:
             errors=[],
         )
         return result
+
+
+class FailingPipeline(FakePipeline):
+    async def run(self, question, *, on_stage=None):
+        self.calls += 1
+        return PipelineResult(
+            question=question,
+            error="plan: PermanentLLMError: HTTP 402: insufficient credits",
+        )
+
+
+def test_run_aborts_after_an_account_level_provider_error(tmp_path, monkeypatch):
+    first = make_item()
+    second = make_item(
+        id="t-2", question="Another question long enough to validate?"
+    )
+    dataset = tmp_path / "dataset.jsonl"
+    dataset.write_text(
+        first.model_dump_json() + "\n" + second.model_dump_json() + "\n",
+        encoding="utf-8",
+    )
+    out = tmp_path / "run"
+    made: list[FailingPipeline] = []
+
+    def make_fake(settings, args):
+        made.append(FailingPipeline())
+        return made[-1]
+
+    monkeypatch.setattr(eval_run, "make_pipeline", make_fake)
+    args = eval_run.parse_args(
+        ["--dataset", str(dataset), "--all", "--out", str(out)]
+    )
+
+    assert asyncio.run(eval_run.run(args)) == 2
+    assert made[0].calls == 1
+    payload = json.loads((out / "summary.json").read_text(encoding="utf-8"))
+    assert payload["summary"]["aborted"] is True
+    assert payload["summary"]["planned"] == 2
+    assert payload["summary"]["n"] == 1
 
 
 def test_run_resume_skips_finished_questions(tmp_path, monkeypatch):

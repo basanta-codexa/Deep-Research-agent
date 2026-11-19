@@ -56,6 +56,7 @@ $env:RA_PROVIDER='openrouter'
 $env:RA_MODEL='openai/gpt-oss-20b'
 $env:RA_JUDGE_MODEL='openai/gpt-oss-20b'
 
+.\venv\Scripts\python.exe -m evals.run --preflight
 .\venv\Scripts\python.exe -m evals.run --all --out evals/runs/full-postfix --concurrency 2 --timeout 600
 .\venv\Scripts\python.exe -m evals.run --all --single-agent --out evals/runs/single-agent --concurrency 2 --timeout 600
 .\venv\Scripts\python.exe -m evals.run --all --no-verify --out evals/runs/no-verify --concurrency 2 --timeout 600

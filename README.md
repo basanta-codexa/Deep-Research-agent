@@ -41,11 +41,12 @@ cp .env.example .env          # then set RA_PROVIDER and a key if using a hosted
 
 ```bash
 .\venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\venv\Scripts\python.exe -m ruff check .
 .\venv\Scripts\python.exe -m pytest
 ```
 
-The package metadata is in [`pyproject.toml`](pyproject.toml); CI runs the same
-test command on Python 3.11 and 3.12 for every push and pull request.
+The package metadata is in [`pyproject.toml`](pyproject.toml); CI runs lint and
+the test suite on Python 3.11 and 3.12 for every push and pull request.
 
 ## Live web UI
 
