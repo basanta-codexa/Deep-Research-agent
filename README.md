@@ -214,9 +214,10 @@ short failures. They carry 95% cluster-bootstrap intervals over questions
 (2,000 resamples); with n=30 those intervals are wide, and that is the point.
 Citation precision is the exception — micro-averaged, because a
 report that cited nothing has no precision; that failure shows up in success
-rate instead. Every run writes `summary.json` and `summary.md`, plus
-`report.md`, `evidence.json`, `plan.json`, `trace.json` and `trace.html` per
-question under `evals/runs/`.
+rate instead. Every run writes `summary.json`, `summary.md` and `manifest.json`
+(the git commit, dataset hash, settings and package versions, with the API key
+recorded only as `set`/`missing`), plus `report.md`, `evidence.json`,
+`plan.json`, `trace.json` and `trace.html` per question under `evals/runs/`.
 
 ## Tracing & cost
 

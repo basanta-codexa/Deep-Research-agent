@@ -282,17 +282,17 @@ async def run(args: argparse.Namespace) -> int:
     out_dir = Path(args.out) if args.out else run_dir / "rejudge"
     out_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now().isoformat(timespec="seconds")
+    payload = {
+        "summary": summary,
+        "records": [record.to_dict() for record in rejudged],
+        "dataset": original_payload.get("dataset", []),
+    }
+    # Keep the generation run's provenance with its rejudge. The judge is new,
+    # the code and corpus under test are not.
+    if original_payload.get("manifest"):
+        payload["manifest"] = original_payload["manifest"]
     (out_dir / "summary.json").write_text(
-        json.dumps(
-            {
-                "summary": summary,
-                "records": [record.to_dict() for record in rejudged],
-                "dataset": original_payload.get("dataset", []),
-            },
-            indent=2,
-            ensure_ascii=False,
-        ),
-        encoding="utf-8",
+        json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
     )
     (out_dir / "rejudge.json").write_text(
         json.dumps(

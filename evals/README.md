@@ -103,6 +103,19 @@ usage separate from generation cost. It replays support only, not the conflict
 scan. If the re-judge model is the same as the generation model it warns: that
 is still a self-judgement.
 
+## Provenance
+
+Every run writes `manifest.json`, and embeds the same object under `manifest` in
+`summary.json`: the git commit and whether the tree was dirty, the dataset file
+SHA-256 plus a separate hash of the selected subset, the settings that change
+behaviour, the CLI options, and Python/package versions. The API key is recorded
+only as `set` or `missing`; its value never enters an artifact.
+
+That is what makes a number checkable a month later. If the manifest says
+`dirty: true`, the commit alone does not identify the code, and the run is
+provisional. `evals.rejudge` carries the generation manifest forward, because a
+rejudge changes the judge, not the code or corpus under test.
+
 ## Baseline
 
 The published baseline is in [`baseline-30/`](baseline-30/). It is the
@@ -165,8 +178,9 @@ metadata exists to catch that mistake.
 
 ```
 evals/runs/<run>/
-  summary.json          # summary + every RunRecord + the dataset used
+  summary.json          # summary + every RunRecord + dataset + embedded manifest
   summary.md            # the table a human reads
+  manifest.json         # commit, dataset hash, settings, runtime versions
   <question-id>/
     record.json         # RunRecord: status, support counts, cited ids, tokens
     report.md

@@ -559,19 +559,29 @@ def test_run_resume_skips_finished_questions(tmp_path, monkeypatch):
     assert payload["summary"]["single_agent"] is False
     assert payload["summary"]["cache"] is True
     assert payload["records"][0]["item_id"] == item.id
+    assert (out / "manifest.json").exists()
+    assert payload["manifest"]["dataset"]["selected"] == 1
+    assert payload["manifest"]["settings"]["api_key"] in {"set", "missing"}
 
 
 def test_write_artifacts_serialises_summary_records_and_dataset(tmp_path):
     item = make_item()
     record = make_record(item_id=item.id)
     summary = summarize([record])
-    write_artifacts(tmp_path, [item], [record], {}, summary)
+    manifest = {"schema": 1, "repository": {"commit": "abc123"}}
+    write_artifacts(
+        tmp_path, [item], [record], {}, summary, manifest=manifest
+    )
     payload = __import__("json").loads(
         (tmp_path / "summary.json").read_text(encoding="utf-8")
     )
     assert payload["records"][0]["item_id"] == item.id
     assert payload["dataset"][0]["question"] == item.question
     assert payload["summary"]["n"] == 1
+    assert payload["manifest"] == manifest
+    assert json.loads(
+        (tmp_path / "manifest.json").read_text(encoding="utf-8")
+    ) == manifest
 
 
 # --------------------------------------------------------------------------- #

@@ -76,6 +76,11 @@ Compare each candidate to the control with the paired bootstrap:
   evals/runs/single-agent/rejudge/summary.json
 ```
 
+Before comparing, check that the control and candidate `manifest.json` name the
+same commit and dataset hash; a difference in either means the delta is not the
+feature under test. A `dirty: true` manifest is usable, but the commit alone no
+longer identifies the code, so record that caveat with the result.
+
 The script aligns questions by id, resamples the paired differences, and reports
 percentage-point deltas for quality metrics and relative deltas for latency,
 tokens and cost. The control is `full-postfix`, not the frozen baseline.

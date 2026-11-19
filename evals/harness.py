@@ -236,19 +236,22 @@ def write_artifacts(
     records: list[RunRecord],
     results: dict[str, PipelineResult],
     summary: dict,
+    *,
+    manifest: dict | None = None,
 ) -> None:
     directory.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "summary": summary,
+        "records": [record.to_dict() for record in records],
+        "dataset": [item.model_dump() for item in items],
+    }
+    if manifest is not None:
+        payload["manifest"] = manifest
+        (directory / "manifest.json").write_text(
+            json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
     (directory / "summary.json").write_text(
-        json.dumps(
-            {
-                "summary": summary,
-                "records": [record.to_dict() for record in records],
-                "dataset": [item.model_dump() for item in items],
-            },
-            indent=2,
-            ensure_ascii=False,
-        ),
-        encoding="utf-8",
+        json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
     )
 
     records_by_id = {record.item_id: record for record in records}

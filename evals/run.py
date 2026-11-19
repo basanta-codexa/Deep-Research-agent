@@ -27,8 +27,9 @@ from research_agent.pipeline import PipelineConfig, PipelineResult, ResearchPipe
 from research_agent.retrieval.cache import NullCache
 from research_agent.tools.web import make_subagent_tools
 
-from .dataset import EvalItem, category_counts, load_dataset
+from .dataset import DEFAULT_PATH, EvalItem, category_counts, load_dataset
 from .harness import load_record, run_item, write_artifacts, write_item
+from .manifest import collect_manifest
 from .metrics import RunRecord, summarize, to_markdown
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -261,7 +262,8 @@ def print_record(
 
 
 async def run(args: argparse.Namespace) -> int:
-    items = select_items(load_dataset(args.dataset) if args.dataset else load_dataset(), args)
+    dataset_path = Path(args.dataset) if args.dataset else DEFAULT_PATH
+    items = select_items(load_dataset(dataset_path), args)
 
     print(f"dataset: {len(items)} question(s)")
     for category, count in category_counts(items).items():
@@ -358,7 +360,16 @@ async def run(args: argparse.Namespace) -> int:
         summary["aborted"] = True
         summary["aborted_reason"] = aborted[:300]
 
-    write_artifacts(out_dir, items, records, results, summary)
+    manifest = collect_manifest(
+        settings=settings,
+        items=items,
+        dataset_path=dataset_path,
+        args=args,
+    )
+
+    write_artifacts(
+        out_dir, items, records, results, summary, manifest=manifest
+    )
     (out_dir / "summary.md").write_text(
         to_markdown(summary, title=f"Eval run {stamp}"), encoding="utf-8"
     )
@@ -369,6 +380,13 @@ async def run(args: argparse.Namespace) -> int:
     print(f"\nwall clock: {elapsed:.1f}s")
     print(f"artifacts:  {out_dir}")
     print(f"traces:     {out_dir}\\<question-id>\\trace.html")
+    repository = manifest["repository"]
+    commit = repository.get("commit", "unknown") if repository.get("available") else "unknown"
+    dirty = " + dirty" if repository.get("dirty") else ""
+    print(
+        f"provenance: {commit[:12]}{dirty}  "
+        f"dataset {manifest['dataset']['sha256'][:12]}"
+    )
     if aborted is not None:
         print(f"aborted:    {aborted[:300]}")
         return 2
