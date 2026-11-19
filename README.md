@@ -1,5 +1,7 @@
 # research-agent
 
+[![CI](https://github.com/basanta-codexa/Deep-Research-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/basanta-codexa/Deep-Research-agent/actions/workflows/ci.yml)
+
 A deep research agent where **every claim is traceable to a source span and machine-checked**.
 
 Provider-agnostic (local Ollama by default), built from scratch — no agent framework.
@@ -21,7 +23,7 @@ Provider-agnostic (local Ollama by default), built from scratch — no agent fra
 | 11 | Tracing + cost (spans, waterfall, token attribution) | done |
 | 11b | Live web UI (FastAPI + SSE, citation spotlight) | done |
 | 12 | Ablations | design ready; runs next |
-| 13 | Packaging + CI | |
+| 13 | Packaging + CI | in progress |
 | 14 | README with real numbers | done |
 
 See [ROADMAP.md](ROADMAP.md) for the full plan.
@@ -34,6 +36,16 @@ ollama serve                  # only needed for the local provider
 cp .env.example .env          # then set RA_PROVIDER and a key if using a hosted one
 .\venv\Scripts\python.exe -m examples.step5_planner
 ```
+
+## Development
+
+```bash
+.\venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\venv\Scripts\python.exe -m pytest
+```
+
+The package metadata is in [`pyproject.toml`](pyproject.toml); CI runs the same
+test command on Python 3.11 and 3.12 for every push and pull request.
 
 ## Live web UI
 
