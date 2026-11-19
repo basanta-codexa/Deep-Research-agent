@@ -20,6 +20,7 @@ from evals.harness import (
     write_record,
 )
 from evals.run import reusable_record
+from evals.recompute import recompute
 from evals.metrics import (
     RunRecord,
     citation_coverage,
@@ -36,7 +37,7 @@ from research_agent.config import Settings
 from research_agent.evidence import EvidenceStore
 from research_agent.llm import LLMResponse, Message, Usage
 from research_agent.pipeline import PipelineResult
-from research_agent.retrieval.cache import NullCache
+from research_agent.retrieval.cache import Cache, NullCache
 from research_agent.tracing import Tracer
 
 # --------------------------------------------------------------------------- #
@@ -145,6 +146,7 @@ def test_make_pipeline_wires_ablation_flags(monkeypatch):
     pipeline = eval_run.make_pipeline(settings, args)
 
     assert isinstance(captured["cache"], NullCache)
+    assert pipeline.cache is captured["cache"]
     assert pipeline.config.verify is False
     assert pipeline.config.single_agent is True
 
@@ -213,6 +215,24 @@ def test_provider_unavailable_only_stops_on_account_level_errors():
         record("plan: PermanentLLMError: HTTP 400")
     )
     assert not eval_run.provider_unavailable(record("timeout after 600s"))
+
+
+def test_make_pipeline_attaches_the_real_cache_when_enabled(monkeypatch, tmp_path):
+    monkeypatch.setattr(eval_run, "create_client", lambda settings: InertClient())
+    monkeypatch.setattr(
+        eval_run, "make_subagent_tools", lambda settings, *, cache=None: []
+    )
+    settings = Settings(
+        provider="groq",
+        model="m",
+        judge_model="j",
+        cache_path=str(tmp_path / "cache.sqlite3"),
+    )
+
+    pipeline = eval_run.make_pipeline(settings, eval_run.parse_args([]))
+
+    assert isinstance(pipeline.cache, Cache)
+    assert pipeline.cache.stats()["enabled"] is True
 
 
 def test_dataset_loads_and_is_big_enough():
@@ -455,6 +475,7 @@ class FakePipeline:
         self.calls = 0
         self.client = FakeClient()
         self.judge_client = self.client
+        self.cache = NullCache()
         self.last_trace = Tracer("fake")
 
     async def run(self, question, *, on_stage=None):
@@ -562,6 +583,30 @@ def test_run_resume_skips_finished_questions(tmp_path, monkeypatch):
     assert (out / "manifest.json").exists()
     assert payload["manifest"]["dataset"]["selected"] == 1
     assert payload["manifest"]["settings"]["api_key"] in {"set", "missing"}
+    assert payload["summary"]["cache_stats"]["enabled"] is False
+
+
+def test_recompute_keeps_run_facts_it_cannot_derive_from_records():
+    payload = {
+        "records": [make_record(item_id="t-1").to_dict()],
+        "summary": {
+            "provider": "openrouter",
+            "cache_stats": {"enabled": True, "hits": 3},
+            "resumed": 1,
+            "planned": 30,
+            "aborted": True,
+            "aborted_reason": "HTTP 402",
+        },
+    }
+
+    summary = recompute(payload)
+
+    assert summary["provider"] == "openrouter"
+    assert summary["cache_stats"] == {"enabled": True, "hits": 3}
+    assert summary["resumed"] == 1
+    assert summary["planned"] == 30
+    assert summary["aborted"] is True
+    assert summary["aborted_reason"] == "HTTP 402"
 
 
 def test_write_artifacts_serialises_summary_records_and_dataset(tmp_path):

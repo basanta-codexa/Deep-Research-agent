@@ -27,7 +27,7 @@ from urllib.parse import urljoin, urlsplit
 import httpx
 import trafilatura
 
-from .cache import Cache
+from .cache import CacheBackend
 
 MAX_BYTES = 2_000_000
 MAX_REDIRECTS = 5
@@ -182,7 +182,7 @@ def extract_text(html: str, url: str, content_type: str) -> tuple[str | None, st
 async def fetch(
     url: str,
     *,
-    cache: Cache | None = None,
+    cache: CacheBackend | None = None,
     timeout: float = 20.0,
 ) -> Document:
     url = _normalize(url)

@@ -197,6 +197,12 @@ def test_null_cache_never_stores_anything():
         cache = NullCache()
         await cache.aset("key", {"value": 1})
         assert await cache.aget("key") is None
-        assert cache.stats()["enabled"] is False
+        stats = cache.stats()
+        assert stats["enabled"] is False
+        assert stats["lookups"] == 1
+        assert stats["hits"] == 0
+        assert stats["misses"] == 1
+        assert stats["sets"] == 1
+        assert stats["hit_rate"] is None
 
     asyncio.run(check())

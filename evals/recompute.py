@@ -35,6 +35,14 @@ CARRIED = (
     "verify",
     "single_agent",
     "cache",
+    # Facts about the run, not about its records: recomputation cannot recover
+    # them, so dropping them would silently turn an aborted run into a complete
+    # one and a warm cache into an unknown one.
+    "cache_stats",
+    "resumed",
+    "planned",
+    "aborted",
+    "aborted_reason",
 )
 
 

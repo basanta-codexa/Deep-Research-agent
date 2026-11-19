@@ -24,7 +24,7 @@ from pathlib import Path
 from research_agent.config import Settings
 from research_agent.llm import Message, create_client
 from research_agent.pipeline import PipelineConfig, PipelineResult, ResearchPipeline
-from research_agent.retrieval.cache import NullCache
+from research_agent.retrieval.cache import Cache, NullCache
 from research_agent.tools.web import make_subagent_tools
 
 from .dataset import DEFAULT_PATH, EvalItem, category_counts, load_dataset
@@ -137,7 +137,11 @@ def apply_settings_overrides(
 def make_pipeline(settings: Settings, args: argparse.Namespace) -> ResearchPipeline:
     client = create_client(settings)
     judge_client = create_client(settings.judge_settings())
-    cache = NullCache() if args.no_cache else None
+    cache = (
+        NullCache()
+        if args.no_cache
+        else Cache(settings.cache_path, ttl_s=settings.cache_ttl_s)
+    )
     return ResearchPipeline(
         client,
         make_subagent_tools(settings, cache=cache),
@@ -148,6 +152,7 @@ def make_pipeline(settings: Settings, args: argparse.Namespace) -> ResearchPipel
             verify=not args.no_verify,
             single_agent=args.single_agent,
         ),
+        cache=cache,
     )
 
 
@@ -356,6 +361,9 @@ async def run(args: argparse.Namespace) -> int:
     summary["single_agent"] = args.single_agent
     summary["cache"] = not args.no_cache
     summary["planned"] = len(items)
+    cache = getattr(pipeline, "cache", None)
+    if cache is not None:
+        summary["cache_stats"] = cache.stats()
     if aborted is not None:
         summary["aborted"] = True
         summary["aborted_reason"] = aborted[:300]
@@ -383,6 +391,12 @@ async def run(args: argparse.Namespace) -> int:
     repository = manifest["repository"]
     commit = repository.get("commit", "unknown") if repository.get("available") else "unknown"
     dirty = " + dirty" if repository.get("dirty") else ""
+    if cache is not None:
+        stats = summary["cache_stats"]
+        print(
+            f"cache:      {stats['hits']} hits / {stats['lookups']} lookups, "
+            f"{stats['sets']} sets"
+        )
     print(
         f"provenance: {commit[:12]}{dirty}  "
         f"dataset {manifest['dataset']['sha256'][:12]}"

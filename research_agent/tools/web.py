@@ -23,7 +23,7 @@ from typing import Annotated
 from pydantic import Field
 
 from ..config import Settings
-from ..retrieval.cache import Cache
+from ..retrieval.cache import Cache, CacheBackend
 from ..retrieval.fetch import FetchError, fetch
 from ..retrieval.search import (
     CachedSearch,
@@ -75,7 +75,7 @@ def relevant_window(text: str, focus: str, max_chars: int) -> str:
 
 
 def _build_tools(
-    settings: Settings, cache: Cache, backend: SearchBackend
+    settings: Settings, cache: CacheBackend, backend: SearchBackend
 ) -> dict[str, Tool]:
     @tool
     async def web_search(
@@ -182,7 +182,7 @@ def _build_tools(
 def make_web_tools(
     settings: Settings,
     *,
-    cache: Cache | None = None,
+    cache: CacheBackend | None = None,
     backend: SearchBackend | None = None,
 ) -> list[Tool]:
     """All three tools, for the top-level agent."""
@@ -196,7 +196,7 @@ def make_web_tools(
 def make_subagent_tools(
     settings: Settings,
     *,
-    cache: Cache | None = None,
+    cache: CacheBackend | None = None,
     backend: SearchBackend | None = None,
 ) -> list[Tool]:
     """Just `read_source`. A sub-agent with one good tool wanders less than one

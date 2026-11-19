@@ -16,7 +16,7 @@ from typing import Protocol
 
 from ddgs import DDGS
 
-from .cache import Cache
+from .cache import CacheBackend
 
 
 class SearchError(Exception):
@@ -98,7 +98,9 @@ class DuckDuckGoBackend:
 class CachedSearch:
     """Decorator around a backend: same interface, adds a persistent cache."""
 
-    def __init__(self, backend: SearchBackend, cache: Cache, ttl_s: int = 3_600):
+    def __init__(
+        self, backend: SearchBackend, cache: CacheBackend, ttl_s: int = 3_600
+    ):
         self.backend = backend
         self.cache = cache
         self.ttl_s = ttl_s

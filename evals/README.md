@@ -24,6 +24,7 @@ distribution, and a distribution is what a regression test can compare against.
 | `repair_rate` | runs where the writer needed a constraint-driven rewrite | quality: a repair can still be a good report |
 | `mean_tokens`, `mean_seconds` | token spend and latency per question | where the tokens went (see the trace) |
 | `mean_cost_usd` | dollars per question from `research_agent/pricing.py` | what you *paid* — a free tier is genuinely `$0` |
+| `cache_stats` | hits, misses, writes, rows and live rows per run | cache warmth, not answer quality; a big `--no-cache` delta can still be network variance |
 
 Every rate also carries a **95% cluster-bootstrap interval over questions**
 (2,000 resamples, seed 7). Questions are the sampling unit because claims

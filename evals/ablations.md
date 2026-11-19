@@ -19,7 +19,9 @@ as well as the generator; a same-model judge cannot be called independent.
 
 All runs use OpenRouter and `openai/gpt-oss-20b` unless stated otherwise. The
 control and the cached ablations share the warm retrieval cache; `--no-cache`
-bypasses it. Support verdicts are replayed with `openai/gpt-oss-120b` so the
+bypasses it. Each run records `cache_stats` in `summary.json`: the no-cache run
+must show `enabled: false` and every lookup a miss, or the switch did not take
+effect. Support verdicts are replayed with `openai/gpt-oss-120b` so the
 comparison is not self-judged. The no-verifier run skips generation-time
 verification but is still re-judged offline, so it has a quality number; what it
 lacks is the verifier's feedback to the writer, not a measurement.

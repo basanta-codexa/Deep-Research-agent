@@ -23,6 +23,7 @@ from typing import Callable, Sequence
 from .evidence import EvidenceStore
 from .llm import LLMClient, Usage
 from .planning import Plan, Planner, SubQuestion
+from .retrieval.cache import CacheBackend
 from .subagent import ResearchBatch, ResearchOrchestrator
 from .tools.registry import Tool
 from .tracing import Tracer, TraceLLMClient
@@ -93,9 +94,13 @@ class ResearchPipeline:
         *,
         judge_client: LLMClient | None = None,
         config: PipelineConfig | None = None,
+        cache: CacheBackend | None = None,
     ) -> None:
         self.tools = tools
         self.config = config or PipelineConfig()
+        # A run-scoped resource, not a setting: the eval reads its counters at
+        # the end to explain a `--no-cache` delta.
+        self.cache = cache
         self.last_trace: Tracer | None = None
         # Wrap once: the wrapper reads the *current* tracer from a ContextVar,
         # so the same wrapper serves every run in a process.

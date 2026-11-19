@@ -20,7 +20,7 @@ import json
 import sqlite3
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Protocol
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS kv (
@@ -31,11 +31,26 @@ CREATE TABLE IF NOT EXISTS kv (
 """
 
 
+class CacheBackend(Protocol):
+    """What the retrieval layer needs. `Cache` and `NullCache` both satisfy it."""
+
+    async def aget(self, key: str) -> Any | None: ...
+
+    async def aset(self, key: str, value: Any, ttl_s: int | None = None) -> None: ...
+
+    def stats(self) -> dict[str, Any]: ...
+
+
 class Cache:
     def __init__(self, path: str | Path = "cache/agent.sqlite3", ttl_s: int = 86_400):
         self.path = Path(path)
         self.ttl_s = ttl_s
         self.path.parent.mkdir(parents=True, exist_ok=True)
+        # Per-run counters. Without them an eval cannot say whether the cache
+        # was warm, so a `--no-cache` delta has no attribution.
+        self.hits = 0
+        self.misses = 0
+        self.sets = 0
         self._init_db()
 
     # -- sync internals; public API is async ----------------------------- #
@@ -75,10 +90,16 @@ class Cache:
 
     # -- async API: sqlite3 blocks, so it must not run on the event loop --- #
     async def aget(self, key: str) -> Any | None:
-        return await asyncio.to_thread(self._get, key)
+        value = await asyncio.to_thread(self._get, key)
+        if value is None:
+            self.misses += 1
+        else:
+            self.hits += 1
+        return value
 
     async def aset(self, key: str, value: Any, ttl_s: int | None = None) -> None:
         await asyncio.to_thread(self._set, key, value, ttl_s or self.ttl_s)
+        self.sets += 1
 
     def stats(self) -> dict[str, Any]:
         with self._connect() as conn:
@@ -86,7 +107,19 @@ class Cache:
             live = conn.execute(
                 "SELECT COUNT(*) FROM kv WHERE expires_at > ?", (time.time(),)
             ).fetchone()[0]
-        return {"path": str(self.path), "rows": total, "live": live}
+        lookups = self.hits + self.misses
+        return {
+            "path": str(self.path),
+            "enabled": True,
+            "rows": total,
+            "live": live,
+            "expired": total - live,
+            "lookups": lookups,
+            "hits": self.hits,
+            "misses": self.misses,
+            "sets": self.sets,
+            "hit_rate": round(self.hits / lookups, 4) if lookups else None,
+        }
 
 
 class NullCache:
@@ -94,17 +127,34 @@ class NullCache:
 
     The retrieval layer only needs `aget`/`aset`; keeping the same shape means
     the ablation changes caching, not the search path. It never touches disk.
+    It still *counts* lookups, so the run can prove the switch took effect:
+    every lookup is a miss and no write is stored.
     """
 
     def __init__(self) -> None:
         self.path = None
         self.ttl_s = 0
+        self.hits = 0
+        self.misses = 0
+        self.sets = 0
 
     async def aget(self, key: str) -> Any | None:
+        self.misses += 1
         return None
 
     async def aset(self, key: str, value: Any, ttl_s: int | None = None) -> None:
-        return None
+        self.sets += 1
 
     def stats(self) -> dict[str, Any]:
-        return {"path": None, "rows": 0, "live": 0, "enabled": False}
+        return {
+            "path": None,
+            "enabled": False,
+            "rows": 0,
+            "live": 0,
+            "expired": 0,
+            "lookups": self.hits + self.misses,
+            "hits": self.hits,
+            "misses": self.misses,
+            "sets": self.sets,
+            "hit_rate": None,
+        }
